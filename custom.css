@@ -1399,7 +1399,7 @@ menupopup#ContentSelectDropdownPopup {
   #urlbar-background {
     border-radius: 99px !important;
   }
-   #urlbar[breakout][breakout-extend][open],
+  #urlbar[breakout][breakout-extend][open],
   #urlbar[breakout][breakout-extend][open] > #urlbar-background {
     border-radius: 16px 16px 0px 0px !important;
   }
@@ -1570,7 +1570,7 @@ menupopup#ContentSelectDropdownPopup {
     transform: translateY(8px) !important;
   }
   #identity-box, #star-button-box, #reader-mode-button{
-    margin-bottom: 1px !important;
+    margin-bottom: 0px !important;
   }
   #urlbar {
     margin-bottom: 1px !important;
@@ -1689,7 +1689,13 @@ menupopup#ContentSelectDropdownPopup {
   .toolbarbutton-animatable-box {
     transform: scale(85%) !important;
     margin-left: -2px !important;
-    margin-top: 0px !important;
+    margin-top: -1px !important;
+  }
+  #identity-box, #star-button-box, #reader-mode-button{
+    margin-bottom: -1px !important;
+  }
+  #urlbar[breakout][breakout-extend][open] #identity-icon-box {
+    margin-bottom: -2px !important;
   }
 }
 
