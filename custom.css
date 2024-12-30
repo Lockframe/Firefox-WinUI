@@ -1022,8 +1022,12 @@ menupopup#ContentSelectDropdownPopup {
   }
 
   /* Hovering tab */
-  .tabbrowser-tab:not([selected]):hover .tab-background {
-    background-color: rgba(0,0,0,.03) !important;
+  .tab-background {
+    .tabbrowser-tab:hover &:not([selected], [multiselected]) {
+      #TabsToolbar:not([brighttext]) & {
+        background-color: rgba(0,0,0,.03) !important;
+      }
+    }
   }
 
   /* Inactive tab text */  
@@ -1659,7 +1663,7 @@ menupopup#ContentSelectDropdownPopup {
   }
 }
 
-@media (-moz-bool-pref: "uc.grayer-tabbed") {
+@media (-moz-bool-pref: "uc.winui.grayer-tabbed") {
   @media (prefers-color-scheme: dark) {
     #tabbrowser-tabbox:not(:-moz-window-inactive),
     #navigator-toolbox:not(:-moz-window-inactive) {
@@ -1767,6 +1771,15 @@ menupopup#ContentSelectDropdownPopup {
   }
   
   @media (prefers-color-scheme: light) {
+    /* Hovering tab */
+    .tab-background {
+      .tabbrowser-tab:hover &:not([selected], [multiselected]) {
+        #TabsToolbar:not([brighttext]) & {
+          background-color: transparent !important;
+        }
+      }
+    }
+
     /* Hovering tab animated */
     .tabbrowser-tab:not([selected]) .tab-background {
       background-color: transparent !important;
@@ -1780,5 +1793,4 @@ menupopup#ContentSelectDropdownPopup {
       transition: box-shadow ease-in-out 143ms !important;
     }
   }
-  
 }
