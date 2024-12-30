@@ -1,0 +1,201 @@
+/* Edge-Frfox */
+@import url("content/common.css");
+@import url("content/newtab.css");
+@import url("tweaks/sidebery.css") (-moz-bool-pref: "uc.tweak.theme.sidebery");
+
+.chrome-debug-toolbar {
+  display:none !important;
+}
+
+
+@media (prefers-color-scheme: dark) {
+@-moz-document url-prefix("about:newtab"),
+url-prefix("about:home"),
+url-prefix("about:firefoxview") {
+
+/* Pinned site tiles */
+  .top-site-outer {
+    & .tile {
+      border-radius: 5px !important;
+      height: 60px !important;
+      width: 88px !important;
+      box-shadow: none !important;
+      border: 1px solid rgba(255,255,255,.02) !important;
+      border-top: 1px solid rgba(255,255,255,.045) !important;
+      
+      border: none !important;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.07),
+      0 -1px 0 rgba(255,255,255,.035) !important;
+      height: 70px !important;
+      width: 70px !important;
+      
+      background-color: rgb(255, 255, 255, .0605) !important;
+
+      & .icon-wrapper {
+        border-radius: 4px !important;
+        width: 24px !important;
+        height: 24px !important;
+        
+        width: 32px !important;
+        height: 32px !important;
+
+        &.letter-fallback::before {
+          font-size: 32px !important;
+        }
+      }
+    }
+
+    & .default-icon,
+    & .search-topsite {
+      background-size: 100% !important;
+      height: 24px !important;
+      width: 24px !important;
+      
+      width: 32px !important;
+      height: 32px !important;
+    }
+  }
+
+/* Padding between them 
+.top-site-outer .top-site-inner > a {
+	padding: 0 16px 0 !important;
+}*/
+
+/* Fix site icons have background color */
+.top-site-outer .top-site-icon {
+	background-color: transparent !important;
+}
+
+/* Pinned site context menu button */
+.top-site-outer .context-menu-button {
+	background-color: transparent !important;
+}
+
+/* Pinned site titles */
+.top-site-outer .title {
+	color: white !important;
+	text-shadow: none !important;
+	font-family: 'SF Pro Text' !important;
+	font-family: 'Aptos' !important;
+	font-size: 13.5px !important;
+}
+
+
+/* END OF DARK MODE CUSTOMIZATION */
+}}
+
+@media (prefers-color-scheme: light) {
+@-moz-document url-prefix("about:newtab"),
+url-prefix("about:home"),
+url-prefix("about:firefoxview") {
+
+/* Pinned site tiles */
+  .top-site-outer {
+    & .tile {
+      border-radius: 6px !important;
+      height: 60px !important;
+      width: 88px !important;
+      box-shadow: none !important;
+      border: 1px solid rgba(0,0,0,.08) !important;
+      border-bottom: 1px solid rgba(0,0,0,.22) !important;
+      
+      border: none !important;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.08),
+      0 1px 0 rgba(0,0,0,.14),
+      0 4px 12px rgba(0,0,0,.0305) !important;
+      height: 70px !important;
+      width: 70px !important;
+      
+      background-color: rgba(255,255,255,.7) !important;
+      
+      & .icon-wrapper {
+        border-radius: 4px !important;
+        width: 24px !important;
+        height: 24px !important;
+        
+        width: 28px !important;
+        height: 28px !important;
+
+        &.letter-fallback::before {
+          font-size: 32px !important;
+        }
+      }
+    }
+
+    & .default-icon,
+    & .search-topsite {
+      background-size: 100% !important;
+      height: 24px !important;
+      width: 24px !important;
+      
+      width: 28px !important;
+      height: 28px !important;
+    }
+  }
+
+/* Padding between them 
+.top-site-outer .top-site-inner > a {
+	padding: 0 16px 0 !important;
+}*/
+
+/* Fix site icons have background color */
+.top-site-outer .top-site-icon {
+	background-color: transparent !important;
+}
+
+/* Pinned site context menu button */
+.top-site-outer .context-menu-button {
+	background-color: transparent !important;
+}
+
+/* Pinned site titles */
+.top-site-outer .title {
+	color: rgba(0,0,0,.89) !important;
+	text-shadow: none !important;
+	font-family: 'SF Pro Text' !important;
+	font-family: 'Aptos' !important;
+	font-size: 13.5px !important;
+}
+
+/* END OF LIGHT MODE CUSTOMIZATION */
+}}
+
+
+
+
+
+
+
+/* Background color/images */
+@-moz-document url(about:newtab),
+url(about:home),
+url(about:privatebrowsing) {
+  body {
+    --newtab-element-hover-color: rgb(239 239 239 / .3) !important;
+    --newtab-element-active-color: rgb(239 239 239 / .45) !important;
+    --text-shadow: 0 1px 2px #000;
+    --icon-shadow: drop-shadow(0 0.3px 0.6px #000);
+    
+    
+    background-color: light-dark(#f9f9f9,#272727) !important;
+    background-color: light-dark(rgba(255,255,255,.7),rgba(58,58,58,.45))!important;
+    
+    
+    background-image: var(--bg-0) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+
+    :root[lwt-newtab-brighttext] &,
+    :root.private & {
+      background-image: var(--bg-1), var(--bg-0) !important;
+      --newtab-element-hover-color: rgb(66 66 66 / .4) !important;
+      --newtab-element-active-color: rgb(66 66 66 / .55) !important;
+}
+
+
+
+
+
+
+}
