@@ -1594,6 +1594,14 @@ menupopup#ContentSelectDropdownPopup {
 
 /* URL bar separators */
 @media (-moz-bool-pref: "uc.winui.urlbar-extra-separators") {
+  #urlbar-input {
+    margin-bottom: 1px !important;
+  }
+  
+  #urlbar[breakout][breakout-extend] #urlbar-input {
+    margin-bottom: -1px !important;
+  }
+  
   @media (prefers-color-scheme: dark) {
     #urlbar-container {
       box-shadow: 1px 0 0 rgba(255,255,255,.0605),
@@ -1608,10 +1616,10 @@ menupopup#ContentSelectDropdownPopup {
         -1px 0 0 rgba(0,0,0,.1),
         2px 0 0 rgba(255,255,255,.85),
         -2px 0 0 rgba(255,255,255,.85) !important;
-      margin-bottom: 1px !important;
+      margin-bottom: 0px !important;
     }
     #urlbar {
-      transform: translateY(1px) !important;
+      transform: translateY(0px) !important;
     }
   }
 }
