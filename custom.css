@@ -1324,6 +1324,9 @@ menupopup#ContentSelectDropdownPopup {
 	 width: 100%;
 	 text-align: left !important;
   }
+  #urlbar[breakout][breakout-extend] #urlbar-input {
+    margin-top: 1px !important;
+  }
 }
 
 /* Hide tab bar with 1 tab - Needs polishing */
