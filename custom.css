@@ -977,6 +977,9 @@ menupopup#ContentSelectDropdownPopup {
   #downloads-indicator-progress-inner{
     --toolbarbutton-icon-fill-attention: var(--accentDark) !important;
   }
+  .downloadProgress::-moz-progress-bar {
+    background-color: var(--accentDark) !important;
+  }
 
   /* Tabs toolbar background color */
   * {
@@ -1218,6 +1221,9 @@ menupopup#ContentSelectDropdownPopup {
   /* Changes color of download progress circle but it's weird w green */
   #downloads-indicator-progress-inner{
     --toolbarbutton-icon-fill-attention: rgb(0, 95, 184) !important;
+  }
+  .downloadProgress::-moz-progress-bar {
+    background-color: var(--accentLight) !important;
   }
 
   /* Tabs toolbar background color */
