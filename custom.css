@@ -790,6 +790,27 @@ menupopup#ContentSelectDropdownPopup {
 	background-color: unset !important;
 }
 
+/* Fix for missing window buttons when the browser isn't focused */
+:root:-moz-window-inactive .titlebar-buttonbox {
+  opacity: .5 !important;
+  padding-bottom: 11px !important;
+}
+:root[sizemode="maximized"] .titlebar-buttonbox {
+  opacity: .5 !important;
+  padding-bottom: 0 !important;
+  transform: translate(-2px, -4px) !important;
+}
+:root:not(:-moz-window-inactive) .titlebar-buttonbox {
+  opacity: 0 !important;
+}
+.titlebar-min {
+  transform: translateX(1px) !important;
+}
+.titlebar-close {
+  padding-right: 19px !important;
+  margin-right: -2px !important;
+}
+
 /* ============= DARK ================== */
 
 @media (prefers-color-scheme: dark) {
@@ -1331,52 +1352,51 @@ menupopup#ContentSelectDropdownPopup {
 
 /* Hide tab bar with 1 tab - Needs polishing */
 @media (-moz-bool-pref: "uc.winui.hide-with-1-tab") {
-:root[sizemode="normal"] #nav-bar{ --uc-window-drag-space-width: 20px }
+  :root[sizemode="normal"] #nav-bar{ --uc-window-drag-space-width: 20px }
 
-#titlebar{ -moz-appearance: none !important; }
-#TabsToolbar{ min-height: 0 !important; margin-top: -1px !important; }
+  #titlebar{ -moz-appearance: none !important; }
+  #TabsToolbar{ min-height: 0 !important; margin-top: -1px !important; }
 
-#tabbrowser-tabs,
-#tabbrowser-arrowscrollbox{ min-height: 0 !important; }
+  #tabbrowser-tabs,
+  #tabbrowser-arrowscrollbox{ min-height: 0 !important; }
 
-.accessibility-indicator,
-.private-browsing-indicator{ 
-  height: unset !important;
-}
-.accessibility-indicator > hbox{ padding-block: 0 !important }
-
-.tabbrowser-tab:only-of-type,
-.tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]{
-  visibility: collapse !important;
-  min-height: 0 !important;
-  height: 0;
+  .accessibility-indicator,
+  .private-browsing-indicator{ 
+    height: unset !important;
   }
-}
+  .accessibility-indicator > hbox{ padding-block: 0 !important }
 
-/* Fix window controls not being clickable */
-:root[tabsintitlebar] #toolbar-menubar[autohide="true"][inactive]{
-  transition: height 0ms steps(1) 80ms;
-}
-:where(#nav-bar){
-  border-inline: var(--uc-window-drag-space-width,0) solid var(--toolbar-bgcolor);
-}
+  .tabbrowser-tab:only-of-type,
+  .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]{
+    visibility: collapse !important;
+    min-height: 0 !important;
+    height: 0;
+  }
+  /* Fix window controls not being clickable */
+  :root[tabsintitlebar] #toolbar-menubar[autohide="true"][inactive]{
+    transition: height 0ms steps(1) 80ms;
+  }
+  :where(#nav-bar){
+    border-inline: var(--uc-window-drag-space-width,0) solid var(--toolbar-bgcolor);
+  }
 
-#tabbrowser-arrowscrollbox-periphery,
-#private-browsing-indicator-with-label,
-#TabsToolbar > .titlebar-buttonbox-container{
-  contain: strict;
-  contain-intrinsic-height: 0;
-}
-#tabbrowser-arrowscrollbox-periphery{
-  contain-intrinsic-width: 36px;
-  padding-inline-end: 4px;
-}
-#private-browsing-indicator-with-label{
-  contain-intrinsic-width: 116px;
-}
-#TabsToolbar > .titlebar-buttonbox-container{
-  contain-intrinsic-width: var(--uc-window-control-width,138px);
-  margin-bottom: 0 !important;
+  #tabbrowser-arrowscrollbox-periphery,
+  #private-browsing-indicator-with-label,
+  #TabsToolbar > .titlebar-buttonbox-container{
+    contain: strict;
+    contain-intrinsic-height: 0;
+  }
+  #tabbrowser-arrowscrollbox-periphery{
+    contain-intrinsic-width: 36px;
+    padding-inline-end: 4px;
+  }
+  #private-browsing-indicator-with-label{
+    contain-intrinsic-width: 116px;
+  }
+  #TabsToolbar > .titlebar-buttonbox-container{
+    contain-intrinsic-width: var(--uc-window-control-width,138px);
+    margin-bottom: 0 !important;
+  }
 }
 
 /* Fix Sidebar revamp causing a weird line to appear below nav bar */
