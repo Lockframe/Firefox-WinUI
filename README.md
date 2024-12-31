@@ -12,7 +12,7 @@ A custom CSS addon for [bmFtZQ](https://github.com/bmFtZQ)'s [Edge-frfx](https:/
 * `browser.tabs.allow_transparent_browser`
 * `widget.transparent-windows`
 * `widget.windows.mica`
-5. Create and set the following boolean keys to false:
+5. Create and/or set the following boolean keys to false:
 * `uc.tweak.disable-drag-space`
 * `uc.tweak.floating-tabs`
 * `uc.tweak.force-tab-colour`
@@ -20,6 +20,7 @@ A custom CSS addon for [bmFtZQ](https://github.com/bmFtZQ)'s [Edge-frfx](https:/
 * `uc.tweak.remove-tab-separators`
 * `uc.tweak.revert-context-menu`
 * `uc.tweak.rounded-corners`
+* `browser.startup.blankWindow`
 
 You can also add the following boolean keys to enable some tweaks:
 * `uc.winui.aptos`
