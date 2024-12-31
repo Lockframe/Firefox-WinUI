@@ -13,6 +13,10 @@
     rgba(255,255,255,.02) !important;
   --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
   --acrylic: url(image/accnoise256.png) !important;
+  --accentLight: color-mix(in srgb, accentColor 100%, transparent) !important;
+  --accentLight2: color-mix(in srgb, accentColor 80%, transparent) !important;
+  --accentDark: color-mix(in srgb, accentColor 60%, white) !important;
+  --accentDark2: color-mix(in srgb, accentColor 40%, white) !important;
 }
 
 /* Window-wide transparency */
@@ -30,7 +34,7 @@
 
 /* Center tab and URL text vertically */
 @media not (-moz-bool-pref: "uc.winui.aptos") {
-  .tabbrowser-tab label, .urlbar-input-box, #identity-icon-label  {
+  .tabbrowser-tab label, .urlbar-input-box, #identity-icon-label, .searchbar-textbox {
     margin-bottom: 2px !important;
   }
 }
@@ -263,31 +267,43 @@ tooltip {
 /* URL bar customization */
 #urlbar-background {
   outline: none !important;
+  border: none !important;
   height: 30px !important;
   transform: translateY(1px) !important;
   border-radius: 3px !important;
-  box-shadow: none !important;
-  transition: border 83ms linear, background-color 83ms linear, box-shadow 83ms linear !important;
+  transition: background-color 83ms linear, box-shadow 83ms linear !important;
 }
-/* Hover */
-#urlbar:hover>#urlbar-background {
-  transition: border 83ms linear, background-color 83ms linear, box-shadow 83ms linear !important;
-}
+
 /* Open */
 #urlbar[open]>#urlbar-background {
-  box-shadow: none !important;
+  border: none !important;
   transition: background-color 0ms !important;
-  border-radius: 4px 4px 8px 8px !important;
+  border-radius: 3px 3px 8px 8px !important;
 }
 /* Results */
 #urlbar[breakout][breakout-extend][open] {
   transition: background-color 0ms !important;
-  border-radius: 4px 4px 8px 8px !important;
+  border-radius: 3px 3px 8px 8px !important;
 }
 
 /* Zoom percentage in the URL bar */
 #urlbar-zoom-button {
   display: none !important
+}
+
+/* Search bar customization */
+#searchbar {
+  outline: none !important;
+  border: none !important;
+  height: 30px !important;
+  border-radius: 3px !important;
+  transition: background-color 83ms linear, box-shadow 83ms linear !important;
+}
+.searchbar-textbox{
+  margin-left: 6px !important;
+}
+#searchbar:focus-within .searchbar-textbox {
+  margin-left: 5.5px !important;
 }
 
 /* Set separator color */
@@ -381,8 +397,8 @@ menuitem {
 /* Panel colors */
 * {
   --arrowpanel-background: light-dark(#fff, rgb(44,44,44)) !important;
-  --arrowpanel-color: light-dark(rgba(0,0,0,.89), #fff) !important;
-  --arrowpanel-border-color: light-dark(rgba(0,0,0,.06), rgba(0,0,0,.2)) !important;
+  --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
+  --arrowpanel-border-color: light-dark(rgba(0,0,0,.125), rgba(0,0,0,.2)) !important;
   --panel-item-hover-bgcolor: light-dark(rgba(0,0,0,.03), rgba(255,255,255,.0605)) !important;
   --panel-item-active-bgcolor: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.04)) !important;
   --panel-separator-color: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0605)) !important;
@@ -407,8 +423,7 @@ menuitem {
 #context-viewpartialsource-selection,
 #context-print-selection,
 #context-inspect-a11y,
-#context-stripOnShareLink,
-#extension_one-tab_com-menuitem-_9sBzehdOfS,
+#context-stripOnShareLink
 {
   display: none !important;
 }
@@ -582,7 +597,7 @@ scrollbox[orient="horizontal"],
   color: black !important;
   margin-inline: 0px 8px !important;
   padding-inline: 5px 5px !important;
-  background: #60cdff !important;
+  background: light-dark(var(--accentLight), var(--accentDark)) !important;
   border-radius: 99px !important;
   font-weight: 550 !important;
   margin-top: 5px !important;
@@ -595,7 +610,7 @@ scrollbox[orient="horizontal"],
     }
     &::after { /* Custom label */
       content: "Private";
-      margin-block: 0 4px;
+      margin-block: 0 3px;
       margin-inline: 6px 6px;
       display: block !important;
       font-family: 'Segoe UI Variable Text' !important;
@@ -628,6 +643,16 @@ menupopup, panel {
   }
 }
 
+/* Space for panel shadows - Moves context menu, needs polishing
+menupopup, panel {
+  --panel-shadow-margin: 24px !important;
+} */
+
+#PopupSearchAutoComplete {
+  --panel-border-radius: 0 0 8px 8px !important;
+  --panel-border-color: transparent !important;
+}
+
 #PopupAutoComplete > richlistbox > richlistitem {
   min-height: 32px !important;
 }
@@ -638,7 +663,7 @@ menupopup, panel {
   }
 }
 
-/* PopUp Window customization */
+/* PopUp Window customization - Needs Polishing 
 :root[chromehidden~="toolbar"] #PanelUI-button {
   display: none !important;
 }
@@ -657,8 +682,7 @@ menupopup, panel {
   #statuspanel-label {
     margin: 0 0 8px 8px !important;
   }
-}
-
+} */
 
 /* Ctrl F */
 .findbar-textbox {
@@ -678,7 +702,7 @@ menupopup, panel {
 .findbar-textbox:focus {
   outline: none !important;
   border-bottom: 2px solid !important;
-  border-bottom-color: light-dark(#005fb8, #60cdff) !important;
+  border-bottom-color: light-dark(var(--accentLight), var(--accentDark)) !important;
 }
 findbar {
   padding-bottom: 10px !important;
@@ -779,10 +803,6 @@ menupopup#ContentSelectDropdownPopup {
   .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background {
     background: rgba(58, 58, 58, .45) !important;
   }
-  /* Fix active tab color in inactive window 133 */
-  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive {
-    background: rgb(48,48,48) !important;
-  }
 
   /* Bottom corners */
   .tab-background:is([selected], [multiselected]) {
@@ -818,30 +838,36 @@ menupopup#ContentSelectDropdownPopup {
     }
   }
 
-  /* URL bar customization */
-  #urlbar-background {
+  /* URL bar and search bar customization */
+  #urlbar-background, #searchbar {
     background-color: rgb(255, 255, 255, .0605) !important;
-    border: 1px solid rgba(255,255,255,.02) !important;
-    border-top: 1px solid rgba(255,255,255,.045) !important;
-    border: none !important;
     box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
   }
   /* Hover */
-  #urlbar:hover>#urlbar-background {
+  #urlbar:hover>#urlbar-background, #searchbar:hover {
     background-color: rgba(255,255,255,.0837) !important;
-    border-top: 1px solid rgba(255,255,255,.02) !important;
-    border-bottom: 1px solid rgba(255,255,255,.5) !important;
-    border: none !important;
     box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
   }
   /* Open */
-  #urlbar[open]>#urlbar-background {
-    border-color: rgba(255,255,255,.0698) !important;
-    outline: 1px solid rgba(255,255,255,.0698) !important;
+  #urlbar[open]>#urlbar-background, #searchbar:focus-within {
     background-color: rgb(30,30,30) !important;
-    outline: none !important;
-    border: none !important;
     box-shadow: 0 0 0 1px rgba(255,255,255,.0698) !important;
+  }
+  #searchbar:focus-within {
+    box-shadow: 0 0 0 1px rgba(255,255,255,.0698), 0 -2px 0 var(--accentDark) inset !important;
+    border-radius: 3px 3px 0 0 !important;
+    background-color: rgb(30,30,30) !important;
+    transform: translateY(1px) !important;
+    height: 32px !important;
+    padding-bottom: 2px !important;
+  }
+  #PopupSearchAutoComplete {
+    --panel-background: rgb(44,44,44) !important;
+    transform: translateY(1px) !important;
+  }
+  /* Panel shadows */
+  menupopup, panel {
+    --panel-shadow: 0 1px 4px rgba(0,0,0,.26) !important;
   }
   /* Results */
   #urlbar[breakout][breakout-extend][open] {
@@ -849,18 +875,19 @@ menupopup#ContentSelectDropdownPopup {
   }
   /* URL bar bottom border when opened */
   .urlbarView {
-    box-shadow: 0 2px 0 0 rgb(96, 205, 255) inset, 0 8px 16px rgba(0,0,0,.26), 0 0 0 1px rgba(0,0,0,.26) !important;
+    box-shadow: 0 2px 0 0 var(--accentDark) inset, 0 8px 16px rgba(0,0,0,.26), 0 0 0 1px rgba(0,0,0,.26) !important;
     background-color: rgb(44,44,44) !important;
   }
   /* URL breakout results */
   .urlbarView-row {
-    color: rgba(255,255,255,1);
-    --urlbar-popup-url-color: rgba(135,235,255,1);
+    color: rgb(255,255,255);
+    --urlbar-popup-url-color: var(--accentDark2) !important;
     background-color: transparent !important;
   }
   /* URL breakout results hover*/
-  .urlbarView-row:hover {
-    --urlbar-popup-url-color: rgba(135,235,255,0);
+  .urlbarView-row:hover,
+  #PopupSearchAutoComplete .autocomplete-richlistitem:hover {
+    --urlbar-popup-url-color: transparent !important;
     background-color: rgba(255,255,255,.0605) !important;
   }
   /* URL breakout result */
@@ -870,7 +897,11 @@ menupopup#ContentSelectDropdownPopup {
   }
   /* WinUI blue border on the left of URL bar result */
   .urlbarView-row[selected] .urlbarView-row-inner::before {
-    background-color: rgb(96, 205, 255) !important;
+    background-color: var(--accentDark) !important;
+  }
+  /* Links */
+  .urlbarView-url {
+    color: var(--accentDark2) !important;;
   }
 
   /* URL tooltip */
@@ -940,34 +971,32 @@ menupopup#ContentSelectDropdownPopup {
       --toolbarbutton-icon-fill-attention: rgb(108, 203, 95) !important;
   }
   #downloads-button[progress] {
-      --downloads-progress-fill: rgb(96, 205, 255) !important;
+      --downloads-progress-fill: var(--accentDark) !important;
   }
   /* Changes color of download progress circle but it's weird w green */
   #downloads-indicator-progress-inner{
-    --toolbarbutton-icon-fill-attention: rgb(96, 205, 255) !important;
+    --toolbarbutton-icon-fill-attention: var(--accentDark) !important;
   }
 
   /* Tabs toolbar background color */
   * {
-    --lwt-accent-color: rgb(10, 10, 10) !important; /* Active window color */
-    --lwt-accent-color-inactive: rgba(119, 84, 84, 0) !important; /* Inactive window color */
-
-    --lwt-accent-color: var(--mica) !important; /* Fake Mica */
+    --lwt-accent-color: var(--mica) !important; /* Active window color */
+    --lwt-accent-color-inactive: var(--mica) !important; /* Inactive window color */
   }
 
   /* Colors when window is inactive */
-  .tabbrowser-tab[selected]:-moz-window-inactive .tab-background {
-    background-color: rgb(44,44,44) !important;
-  }
-
+  .tabbrowser-tab[selected]:-moz-window-inactive .tab-background,
+  .tab-background:is([selected], [multiselected]):-moz-window-inactive,
   #nav-bar:-moz-window-inactive,
   #PersonalToolbar:-moz-window-inactive {
-    background-color: rgb(44,44,44) !important; !important;
+    background-color: rgba(58,58,58,.45)  !important;
+    --uc-tab-corner-bg: rgba(58,58,58,.45) !important;
   }
-
-  .tab-background:is([selected], [multiselected]):-moz-window-inactive {
-      --uc-tab-corner-bg: rgb(44, 44, 44) !important;
+  /* Active tab */
+  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive {
+    background-color: rgba(58,58,58,.6)  !important;
   }
+  
 
   /* Tab Preview Cards */
   .tab-preview-text-container {
@@ -989,7 +1018,7 @@ menupopup#ContentSelectDropdownPopup {
   }
 
   #select-translations-panel-done-button-primary {
-    background: #60cdff !important;
+    background: var(--accentDark) !important;
     color: black !important;
     box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -1px 0 rgba(0,0,0,.14) inset !important;
   }
@@ -1052,30 +1081,44 @@ menupopup#ContentSelectDropdownPopup {
   }
 
   /* URL bar customization */
-  #urlbar-background {
+  #urlbar-background, #searchbar {
     background-color: rgba(255,255,255,.7) !important;
-    border: none !important;
     box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
   }
   /* Hover */
-  #urlbar:hover>#urlbar-background {
+  #urlbar:hover>#urlbar-background, #searchbar:hover {
     background-color: rgba(249,249,249,.5) !important;
-    border: none !important;
     box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
   }
   /* Open */
   #urlbar[open]>#urlbar-background {
     box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
     background-color: rgb(252,252,252) !important;
-    border-radius: 4px 4px 8px 8px !important;
+  }
+  #searchbar:focus-within {
+    box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 -2px 0 var(--accentLight) inset !important;
+    border-radius: 3px 3px 0 0 !important;
+    background-color: rgb(252,252,252) !important;
+    transform: translateY(1px) !important;
+    height: 32px !important;
+    padding-bottom: 2px !important;
+  }
+  #PopupSearchAutoComplete {
+    --panel-background: rgb(252,252,252) !important;
+    --panel-border-color: rgba(0,0,0,.125) !important;
+    transform: translateY(1px) !important;
+  }
+  /* Panel shadows */
+  menupopup, panel {
+    --panel-shadow: 0 1px 4px rgba(0,0,0,.14) !important;
   }
   /* Results */
   #urlbar[breakout][breakout-extend][open] {
-    border-radius: 4px 4px 8px 8px !important;
+    border-radius: 3px 3px 8px 8px !important;
   }
   /* URL bar bottom border when opened */
   .urlbarView {
-    box-shadow: 0 2px 0 0 rgb(0, 95, 184) inset, 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
+    box-shadow: 0 2px 0 0 var(--accentLight) inset, 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
     background-color: rgb(247,247,247) !important;
   }
   /* URL breakout results */
@@ -1085,7 +1128,8 @@ menupopup#ContentSelectDropdownPopup {
     background-color: transparent !important;
   }
   /* URL breakout results hover*/
-  .urlbarView-row:hover {
+  .urlbarView-row:hover,
+  #PopupSearchAutoComplete .autocomplete-richlistitem:hover {
     --urlbar-popup-url-color: rgb(0,62,146);
     background-color: rgba(0,0,0,.03) !important;
   }
@@ -1096,7 +1140,11 @@ menupopup#ContentSelectDropdownPopup {
   }
   /* WinUI blue border on the left of URL bar result */
   .urlbarView-row[selected] .urlbarView-row-inner::before {
-    background-color: rgb(0,95,184) !important;
+    background-color: var(--accentLight) !important;
+  }
+  /* Links */
+  .urlbarView-url {
+    color: var(--accentLight2) !important;
   }
 
   /* URL tooltip */
@@ -1437,8 +1485,6 @@ menupopup#ContentSelectDropdownPopup {
   /* Fix alignment of private window label */
   .private-browsing-indicator-with-label {
     margin-top: 4px !important;
-    background: light-dark(#005fb8,#60cdff) !important;
-    color: light-dark(white,black) !important;
   }
   :root[sizemode="maximized"] .private-browsing-indicator-with-label {
     margin-top: 5px !important;
@@ -1691,10 +1737,9 @@ menupopup#ContentSelectDropdownPopup {
     margin-left: -2px !important;
     margin-top: -1px !important;
   }
-  #identity-box, #star-button-box, #reader-mode-button{
-    margin-bottom: -1px !important;
-  }
-  #urlbar[breakout][breakout-extend][open] #identity-icon-box {
+
+  #urlbar[breakout][breakout-extend][open] #identity-icon-box,
+  #urlbar[breakout][breakout-extend][open] #star-button-box {
     margin-bottom: -2px !important;
   }
 }
