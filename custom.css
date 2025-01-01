@@ -1783,7 +1783,7 @@ menupopup#ContentSelectDropdownPopup {
   .toolbarbutton-animatable-box {
     transform: scale(85%) !important;
     margin-left: -2px !important;
-    margin-top: -1px !important;
+    margin-top: 0px !important;
   }
 
   #urlbar[breakout][breakout-extend][open] #identity-icon-box,
