@@ -791,19 +791,24 @@ menupopup#ContentSelectDropdownPopup {
 	background-color: unset !important;
 }
 
-/* Fix for missing window buttons when the browser isn't focused */
-:root:-moz-window-inactive .titlebar-buttonbox {
-  opacity: .5 !important;
-  padding-bottom: 11px !important;
+/* Fix for missing window buttons when the browser isn't focused - Hacky */
+.titlebar-buttonbox {
+	height: 30px;
+}
+/* Decreases the clashing contrast between buttons - Close button does not reappear if included here */
+:root:not(:-moz-window-inactive) .titlebar-restore,
+:root:not(:-moz-window-inactive) .titlebar-min,
+:root:not(:-moz-window-inactive) .titlebar-max {
+  list-style-image: unset !important;
 }
 :root[sizemode="maximized"] .titlebar-buttonbox {
+  opacity: 1 !important;
+  transform: translate(-2px, -1px) !important;
+}
+:root:-moz-window-inactive .titlebar-buttonbox {
   opacity: .5 !important;
-  padding-bottom: 0 !important;
-  transform: translate(-2px, -4px) !important;
 }
-:root:not(:-moz-window-inactive) .titlebar-buttonbox {
-  opacity: 0 !important;
-}
+
 .titlebar-min {
   transform: translateX(1px) !important;
 }
@@ -811,6 +816,10 @@ menupopup#ContentSelectDropdownPopup {
   padding-right: 19px !important;
   margin-right: -2px !important;
 }
+.titlebar-close:hover {
+  background-color: #c42b1c !important;
+}
+
 
 /* ============= DARK ================== */
 
