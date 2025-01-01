@@ -7,7 +7,7 @@
   display:none !important;
 }
 
-
+/* New tab page */
 @media (prefers-color-scheme: dark) {
 @-moz-document url-prefix("about:newtab"),
 url-prefix("about:home"),
@@ -16,28 +16,18 @@ url-prefix("about:firefoxview") {
 /* Pinned site tiles */
   .top-site-outer {
     & .tile {
-      border-radius: 5px !important;
-      height: 60px !important;
-      width: 88px !important;
-      box-shadow: none !important;
-      border: 1px solid rgba(255,255,255,.02) !important;
-      border-top: 1px solid rgba(255,255,255,.045) !important;
-      
+      border-radius: 4px !important;
+      height: 70px !important;
+      width: 70px !important;
       border: none !important;
       box-shadow: 0 0 0 1px rgba(255,255,255,.07),
       0 -1px 0 rgba(255,255,255,.035) !important;
-      height: 70px !important;
-      width: 70px !important;
-      
       background-color: rgb(255, 255, 255, .0605) !important;
 
       & .icon-wrapper {
         border-radius: 4px !important;
-        width: 24px !important;
-        height: 24px !important;
-        
-        width: 32px !important;
-        height: 32px !important;
+        width: 28px !important;
+        height: 28px !important;
 
         &.letter-fallback::before {
           font-size: 32px !important;
@@ -48,11 +38,8 @@ url-prefix("about:firefoxview") {
     & .default-icon,
     & .search-topsite {
       background-size: 100% !important;
-      height: 24px !important;
-      width: 24px !important;
-      
-      width: 32px !important;
-      height: 32px !important;
+      width: 28px !important;
+      height: 28px !important;
     }
   }
 
@@ -75,8 +62,7 @@ url-prefix("about:firefoxview") {
 .top-site-outer .title {
 	color: white !important;
 	text-shadow: none !important;
-	font-family: 'SF Pro Text' !important;
-	font-family: 'Aptos' !important;
+	font-family: 'Aptos', 'Segoe UI Variable Text', 'Segoe UI' !important;
 	font-size: 13.5px !important;
 }
 
@@ -92,27 +78,17 @@ url-prefix("about:firefoxview") {
 /* Pinned site tiles */
   .top-site-outer {
     & .tile {
-      border-radius: 6px !important;
-      height: 60px !important;
-      width: 88px !important;
-      box-shadow: none !important;
-      border: 1px solid rgba(0,0,0,.08) !important;
-      border-bottom: 1px solid rgba(0,0,0,.22) !important;
-      
+      border-radius: 4px !important;
+      height: 70px !important;
+      width: 70px !important;
       border: none !important;
       box-shadow: 0 0 0 1px rgba(0,0,0,.08),
       0 1px 0 rgba(0,0,0,.14),
       0 4px 12px rgba(0,0,0,.0305) !important;
-      height: 70px !important;
-      width: 70px !important;
-      
       background-color: rgba(255,255,255,.7) !important;
       
       & .icon-wrapper {
         border-radius: 4px !important;
-        width: 24px !important;
-        height: 24px !important;
-        
         width: 28px !important;
         height: 28px !important;
 
@@ -125,9 +101,6 @@ url-prefix("about:firefoxview") {
     & .default-icon,
     & .search-topsite {
       background-size: 100% !important;
-      height: 24px !important;
-      width: 24px !important;
-      
       width: 28px !important;
       height: 28px !important;
     }
@@ -152,17 +125,12 @@ url-prefix("about:firefoxview") {
 .top-site-outer .title {
 	color: rgba(0,0,0,.89) !important;
 	text-shadow: none !important;
-	font-family: 'SF Pro Text' !important;
-	font-family: 'Aptos' !important;
+	font-family: 'Aptos', 'Segoe UI Variable Text', 'Segoe UI' !important;
 	font-size: 13.5px !important;
 }
 
 /* END OF LIGHT MODE CUSTOMIZATION */
 }}
-
-
-
-
 
 
 
@@ -178,7 +146,7 @@ url(about:privatebrowsing) {
     
     
     background-color: light-dark(#f9f9f9,#272727) !important;
-    background-color: light-dark(rgba(255,255,255,.7),rgba(58,58,58,.45))!important;
+    background-color: light-dark(rgba(255,255,255,.5),rgba(58,58,58,.3))!important;
     
     
     background-image: var(--bg-0) !important;
@@ -191,11 +159,169 @@ url(about:privatebrowsing) {
       background-image: var(--bg-1), var(--bg-0) !important;
       --newtab-element-hover-color: rgb(66 66 66 / .4) !important;
       --newtab-element-active-color: rgb(66 66 66 / .55) !important;
+    }
+  }
 }
 
+/* Built-in pages control */
+/* Color control */
+@-moz-document url-prefix(about:) {
+  :root {
+    --accentLight: color-mix(in srgb, accentColor 100%, transparent) !important;
+    --accentLight2: color-mix(in srgb, accentColor 80%, transparent) !important;
+    --accentLight3: color-mix(in srgb, accentColor 90%, transparent) !important;
+    --accentLight4: color-mix(in srgb, accentColor 90%, black) !important;
+    --accentDark: color-mix(in srgb, accentColor 60%, white) !important;
+    --accentDark2: color-mix(in srgb, accentColor 40%, white) !important;
+    --accentDark3: color-mix(in srgb, accentColor 50%, white) !important;
+    --accentDark4: color-mix(in srgb, accentColor 60%, white 30%, black) !important;
+  
+    --in-content-page-color: light-dark(#252525, #fff) !important;
+    --in-content-page-background: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
+    --in-content-deemphasized-text: light-dark(#666, #bbb) !important;
+    --in-content-box-background: light-dark(#fff, #333) !important;
+    --in-content-box-background-odd: light-dark(rgb(0 0 0 / .05), rgb(255 255 255 / .05)) !important;
+    --in-content-box-info-background: light-dark(#f7f7f7, rgb(255 255 255 / 0.15)) !important;
+    --in-content-icon-color: light-dark(#666, #fff) !important;
+    
+    --in-content-accent-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
+    --in-content-accent-color-active: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+    
+    --in-content-border-hover: light-dark(rgb(0 0 0 / .5), rgb(255 255 255 / .3)) !important;
+    --in-content-border-invalid: var(--red-50) !important;
+    --in-content-border-color: light-dark(#bebebe, rgb(255 255 255 / .2)) !important;
+    --in-content-error-text-color: light-dark(#FF848A, #FF9AA2) !important;
+    
+    --in-content-link-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+    --in-content-link-color-hover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+    --in-content-link-color-active: light-dark(var(--accentLight4), var(--accentDark3)) !important;
+    --in-content-link-color-visited: light-dark(#0078D4, #75B6E8) !important;
+    
+    --link-color: var(--in-content-link-color) !important;
+    --link-color-hover: var(--in-content-link-color-hover) !important;
+    --link-color-active: var(--in-content-link-color-active) !important;
+    --link-color-visited: var(--in-content-link-color-visited) !important;
+    
+    --in-content-button-text-color: var(--in-content-text-color) !important;
+    --in-content-button-text-color-hover: var(--in-content-text-color) !important;
+    --in-content-button-text-color-active: var(--in-content-button-text-color-hover) !important;
+    
+    --in-content-button-background: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+    --in-content-button-background-hover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+    --in-content-button-background-active: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+    
+    --in-content-primary-button-text-color: light-dark(#fff, #fff) !important;
+    --in-content-primary-button-background: light-dark(#0061e0, #006CBE) !important;
+    --in-content-primary-button-background-hover: light-dark(#0250bb, #0078D4) !important;
+    --in-content-primary-button-background-active: light-dark(#053e94, #005CA3) !important;
+    --color-accent-primary: light-dark(#0078D4, #006CBE) !important;
+    --color-accent-primary-hover: light-dark(#006CBE, #0078D4) !important;
+    --color-accent-primary-active: light-dark(#0749AC, #005CA3) !important;
+    
+    
+    --color-accent-primary: light-dark(var(--accentLight), var(--accentDark)) !important;
+    --color-accent-primary-hover: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+    --color-accent-primary-active: light-dark(var(--accentLight4), var(--accentDark2)) !important;
+    
+    --in-content-danger-button-background: light-dark(#DF4951, #E12424) !important;
+    --in-content-danger-button-background-hover: light-dark(#EA656C, #F94343) !important;
+    --in-content-danger-button-background-active: light-dark(#BB353C, #AA1E1E) !important;
+    --in-content-focus-outline-color: light-dark(rgb(0 85 215 / .5), #63ADE5) !important;
+    
+    --in-content-focus-outline-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+    
+    --focus-outline-color: var(--in-content-focus-outline-color) !important;
+    --in-content-table-background: light-dark(#f7f7f7, #252525) !important;
+    --in-content-text-color: var(--in-content-page-color) !important;
+    --border-interactive-color: light-dark(#929292, #858585) !important;
+    scrollbar-color:
+      light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
+      light-dark(#f7f7f7, #252525) !important;
+  }
 
+  ::selection {
+    background-color: light-dark(var(--accentDark4), var(--accentDark));
+    color: light-dark(#fff, #000);
+  }
+  
+  /* Parts restyling */
+  * {
+  	font-family: 'Segoe UI Variable Text' !important;
+  }
+  .sticky-container, .main-search, .main-heading {
+  	background-color: transparent !important;
+  }
+  search-textbox {
+  	border: none !important;
+  	outline: none !important;
+  }
+  .navigation, #sidebar {
+  	background-color: light-dark(rgba(0,0,0,.0205), rgba(0,0,0,.1)) !important;
+  	border-right: 1px solid !important;
+  	border-color: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.1)) !important;
+    margin-left: -27px !important;
+    padding-right: 7px !important;
+  }
+  #sidebar {
+    margin-right: 22px !important;
+  }
+  @media (prefers-color-scheme: light) {
+  	search-textbox {
+  		background-color: rgba(255,255,255,.7) !important;
+	  	box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+  	}
+  }
+  @media (prefers-color-scheme: dark) {
+  	search-textbox {
+  		background-color: rgba(255,255,255,.0605) !important;
+	  	box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
+  	}
+  }
+  
+}
 
+/*
+  MARK: Preferences page
+*/
+@-moz-document url-prefix(about:preferences),
+url-prefix(about:addons) {
+  .category[selected] {
+    position: relative !important;
+    border-radius: 4px !important;
+  }
 
+  .category[selected]:not(:hover, :active) {
+    background-color: var(--in-content-button-background) !important;
+  }
 
+  .category[selected]::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    margin-block: auto;
+    height: 24px;
+    width: 3px;
+    left: 2px;
+    background-color: var(--in-content-accent-color);
+    border-radius: 3px;
+  }
 
+  button.tab-button:hover {
+    border-block-color: transparent var(--in-content-box-border-color) !important;
+  }
+
+  button.tab-button[selected],
+  button.tab-button[selected]:hover {
+    border-block-color: transparent currentColor !important;
+  }
+
+  .toggle-button {
+    --toggle-dot-margin: 4px !important;
+    --toggle-width: 40px !important;
+    --toggle-height: 20px !important;
+    --toggle-background-color: transparent !important;
+    --toggle-dot-background-color: var(--in-content-page-color) !important;
+    --toggle-dot-background-color-on-pressed: #fff !important;
+    --toggle-dot-transform-x: calc(var(--toggle-width) - 2 * var(--toggle-dot-margin) - 2 * var(--toggle-border-width) - var(--toggle-dot-width)) !important;
+  }
 }
