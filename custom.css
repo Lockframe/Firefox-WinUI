@@ -1511,6 +1511,16 @@ menupopup#ContentSelectDropdownPopup {
   * {
     --uc-titlebar-shadow: none !important;
   }
+  /* Fix for missing window buttons when the browser isn't focused */
+  :root:-moz-window-inactive .titlebar-buttonbox {
+    transform: translateY(-2px) !important;
+    
+  }
+  :root[sizemode="maximized"] .titlebar-buttonbox {
+    height: 29px !important;
+    transform: translate(-2px, 10px) !important;
+  }
+  
   /* Fix alignment of private window label */
   .private-browsing-indicator-with-label {
     margin-top: 4px !important;
