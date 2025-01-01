@@ -614,6 +614,7 @@ scrollbox[orient="horizontal"],
       margin-inline: 6px 6px;
       display: block !important;
       font-family: 'Segoe UI Variable Text' !important;
+      color: light-dark(white, black) !important;
   }
 }
 
