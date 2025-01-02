@@ -15,12 +15,15 @@
   --acrylic: url(image/accnoise256.png) !important;
   --accentLight: color-mix(in srgb, accentColor 100%, transparent) !important;
   --accentLight2: color-mix(in srgb, accentColor 80%, transparent) !important;
+  --accentLight3: color-mix(in srgb, accentColor 90%, transparent) !important;
+  --accentLight4: color-mix(in srgb, accentColor 90%, black) !important;
   --accentDark: color-mix(in srgb, accentColor 60%, white) !important;
   --accentDark2: color-mix(in srgb, accentColor 40%, white) !important;
+  --accentDark3: color-mix(in srgb, accentColor 50%, white) !important;
 }
 
 /* Window-wide transparency */
-:root {   
+:root {
     & tabbox#tabbrowser-tabbox,
     & #tabbrowser-tabpanels {
         background-color: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
@@ -818,6 +821,45 @@ menupopup#ContentSelectDropdownPopup {
 }
 .titlebar-close:hover {
   background-color: #c42b1c !important;
+}
+
+/* Urlbar search mode indicator */
+#urlbar-search-mode-indicator {
+  height: 26px !important;
+  margin-top: 1px !important;
+  color: light-dark(white, black) !important;
+  padding-inline: 10px 6px !important;
+  border-radius: 99px !important;
+  
+  #urlbar[focused] > .urlbar-input-container > & {
+    background-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
+  }
+
+  #urlbar:not([focused]) > .urlbar-input-container > & {
+    background-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
+  }
+}
+
+#urlbar[breakout][breakout-extend][open] #urlbar-search-mode-indicator {
+  margin-top: 2px !important;
+}
+
+#urlbar-search-mode-indicator-close,
+#searchmode-switcher-close {
+  margin-left: 2px !important;
+  border-radius: 99px !important;
+
+  @media (prefers-contrast) {
+    fill-opacity: 1.0;
+  }
+
+  &:hover {
+    background-color: var(--urlbar-box-hover-bgcolor);
+
+    &:active {
+      background-color: rgba(0,0,0,.1) !important;
+    }
+  }
 }
 
 
