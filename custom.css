@@ -862,6 +862,20 @@ menupopup#ContentSelectDropdownPopup {
   }
 }
 
+/* Tab throbber */
+.tab-throbber {
+  @media (prefers-reduced-motion: no-preference) {
+    :root[sessionrestored] & {
+      &[progress]::before {
+        fill: light-dark(var(--accentLight), var(--accentDark)) !important;
+      }
+    }
+  }
+}
+
+:root {
+  --tab-loading-fill: light-dark(var(--accentLight), var(--accentDark)) !important;
+}
 
 /* ============= DARK ================== */
 
