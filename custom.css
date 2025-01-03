@@ -600,7 +600,7 @@ scrollbox[orient="horizontal"],
   color: black !important;
   margin-inline: 0px 8px !important;
   padding-inline: 5px 5px !important;
-  background: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background: light-dark(var(--accentLight4), var(--accentDark)) !important;
   border-radius: 99px !important;
   font-weight: 550 !important;
   margin-top: 5px !important;
@@ -875,6 +875,23 @@ menupopup#ContentSelectDropdownPopup {
 
 :root {
   --tab-loading-fill: light-dark(var(--accentLight), var(--accentDark)) !important;
+}
+
+/* Bookmarks bar */
+#PersonalToolbar {
+  height: 32px !important;
+  padding-inline: 6px !important;
+  padding-block: 0 !important;
+  transition: all 183ms ease-in-out !important;
+  
+  /* Fix arrow vertical position */
+  & .toolbarbutton-1 {
+    align-items: center !important;
+  }
+}
+#personal-toolbar-empty-description, toolbarbutton.bookmark-item:not(.subviewbutton) {
+  padding-inline: 4px !important;
+  margin-block: 4px !important;
 }
 
 /* ============= DARK ================== */
@@ -1955,5 +1972,18 @@ menupopup#ContentSelectDropdownPopup {
       box-shadow: 0 -33px 0 rgba(0,0,0,.03) inset !important;
       transition: box-shadow ease-in-out 143ms !important;
     }
+  }
+}
+
+@media (-moz-bool-pref: "uc.winui.taller-bookmarks") {
+  #PersonalToolbar {
+    height: 42px !important;
+    padding-inline: 6px !important;
+    padding-block: 2px !important;
+  }
+  #personal-toolbar-empty-description, toolbarbutton.bookmark-item:not(.subviewbutton) {
+    padding-inline: 7px !important;
+    margin-block: 4px !important;
+    margin-inline: 3px !important;
   }
 }
