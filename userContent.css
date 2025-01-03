@@ -171,6 +171,7 @@ url(about:privatebrowsing) {
     --accentLight2: color-mix(in srgb, accentColor 80%, transparent) !important;
     --accentLight3: color-mix(in srgb, accentColor 90%, transparent) !important;
     --accentLight4: color-mix(in srgb, accentColor 90%, black) !important;
+    --accentLight5: color-mix(in srgb, accentColor 10%, white) !important;
     --accentDark: color-mix(in srgb, accentColor 60%, white) !important;
     --accentDark2: color-mix(in srgb, accentColor 40%, white) !important;
     --accentDark3: color-mix(in srgb, accentColor 50%, white) !important;
@@ -247,9 +248,12 @@ url(about:privatebrowsing) {
   /* Parts restyling */
   * {
   	font-family: 'Segoe UI Variable Text' !important;
+    text-decoration: none !important;
+    prefix: none !important;
   }
   .sticky-container, .main-search, .main-heading, #toolbar {
   	background-color: transparent !important;
+  	position: relative !important;
   }
   search-textbox, #about-config-search {
     border: none !important;
@@ -282,9 +286,62 @@ url(about:privatebrowsing) {
 		border-radius: 8px !important;
 		margin: 4px !important;
 	}
+  menulist {
+    border-radius: 4px !important;
+  }
 
   .addon-detail-sitepermissions, .addon-detail-row {
     padding-bottom: 16px !important;
+  }
+
+  #prefs {
+    border-radius: 4px !important;
+    border-color: light-dark(rgba(0,0,0,.1), rgba(255,255,255,.06)) !important;
+    border: none !important;
+    background-color: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.06)) !important;
+  }
+
+  #prefs > tr.odd {
+    background-color: light-dark(rgba(0,0,0,.065), rgba(255,255,255,.105)) !important;
+  }
+
+  #prefs > tr {
+    transition: background-color 83ms linear !important;
+  }
+
+  #prefs > tr:hover {
+    background-color: light-dark(rgba(0,0,0,.03), rgba(255,255,255,.0605)) !important;
+  }
+  #prefs > tr.odd:hover {
+    background-color: light-dark(rgba(0,0,0,.085), rgba(255,255,255,.137)) !important;
+  }
+
+  .more-options-button,
+  .button-edit,
+  .button-reset,
+  .accessory-button,
+  #historyMode,
+  #clearHistoryButton,
+  .searchEngineAction,
+  #defaultEngine,
+  #defaultPrivateEngine,
+  #restoreDefaultSearchEngines,
+  treecol {
+    background-color: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.06)) !important;
+    transition: background-color 83ms linear !important;
+  }
+  .more-options-button:not([disabled]):hover,
+  .button-edit:not([disabled]):hover,
+  .button-reset:not([disabled]):hover,
+  .accessory-button:not([disabled]):hover,
+  #historyMode:not([disabled]):hover,
+  #clearHistoryButton:not([disabled]):hover,
+  .searchEngineAction:not([disabled]):hover,
+  #defaultEngine:not([disabled]):hover,
+  #defaultPrivateEngine:not([disabled]):hover,
+  #restoreDefaultSearchEngines:not([disabled]):hover,
+  treecol:not([disabled]):hover {
+    background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
   }
   
   @media (prefers-color-scheme: light) {
@@ -322,6 +379,24 @@ url(about:privatebrowsing) {
     .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
     }
+
+    #prefs {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06) !important;
+    }
+
+    .more-options-button,
+    .button-edit,
+    .button-reset,
+    .accessory-button,
+    #historyMode,
+    #clearHistoryButton,
+    .searchEngineAction,
+    #defaultEngine,
+    #defaultPrivateEngine,
+    #restoreDefaultSearchEngines,
+    treecol {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+    }
   }
   @media (prefers-color-scheme: dark) {
   	search-textbox, #about-config-search {
@@ -357,6 +432,24 @@ url(about:privatebrowsing) {
 
     .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
       box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26) !important;
+    }
+
+    #prefs {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) !important;
+    }
+
+    .more-options-button,
+    .button-edit,
+    .button-reset,
+    .accessory-button,
+    #historyMode,
+    #clearHistoryButton,
+    .searchEngineAction,
+    #defaultEngine,
+    #defaultPrivateEngine,
+    #restoreDefaultSearchEngines,
+    treecol {
+      box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
     }
   }
 }
