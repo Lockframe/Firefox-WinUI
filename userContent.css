@@ -248,12 +248,13 @@ url(about:privatebrowsing) {
   * {
   	font-family: 'Segoe UI Variable Text' !important;
   }
-  .sticky-container, .main-search, .main-heading {
+  .sticky-container, .main-search, .main-heading, #toolbar {
   	background-color: transparent !important;
   }
-  search-textbox {
-  	border: none !important;
+  search-textbox, #about-config-search {
+    border: none !important;
   	outline: none !important;
+    transition: background-color 83ms linear, box-shadow 83ms linear !important;
   }
   .navigation, #sidebar {
   	background-color: light-dark(rgba(0,0,0,.0205), rgba(0,0,0,.1)) !important;
@@ -265,19 +266,99 @@ url(about:privatebrowsing) {
   #sidebar {
     margin-right: 22px !important;
   }
+
+  .addon.card {
+    margin-block: 5px !important;
+    transition: all 83ms linear !important;
+  }
+
+	.menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+		-moz-appearance: none !important;
+		padding: 4px !important;
+		background-color: light-dark(rgb(243,243,243), rgb(44,44,44)) !important;
+		/*background-clip: padding-box !important;*/
+		background-image: url('image/accnoise256.png') !important;
+		border: none !important;
+		border-radius: 8px !important;
+		margin: 4px !important;
+	}
+
+  .addon-detail-sitepermissions, .addon-detail-row {
+    padding-bottom: 16px !important;
+  }
+  
   @media (prefers-color-scheme: light) {
-  	search-textbox {
+  	search-textbox, #about-config-search {
   		background-color: rgba(255,255,255,.7) !important;
 	  	box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+      color: rgba(0,0,0,.89) !important;
   	}
+    search-textbox:hover, #about-config-search:hover {
+      background-color: rgba(249,249,249,.5) !important;
+    }
+    search-textbox:focus-within, #about-config-search:focus-within {
+      background-color: rgb(252,252,252) !important;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 -2px 0 var(--accentLight) inset !important;
+    }
+
+    .addon.card {
+      background: rgba(255,255,255,.7) !important;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06) !important;
+    }
+    addon-card:not([expanded]) > .addon.card:hover {
+      background: rgba(249,249,249,.5) !important;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06),
+      0 4px 8px rgba(0,0,0,.03) !important;
+    }
+
+    .addon-detail-sitepermissions, .addon-detail-row {
+      border-top: 1px solid rgba(0,0,0,.06) !important;
+    }
+    .tab-group {
+      border-top: 1px solid rgba(0,0,0,.06) !important;
+      border-bottom: 1px solid rgba(0,0,0,.06) !important;
+    }
+
+    .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
+    }
   }
   @media (prefers-color-scheme: dark) {
-  	search-textbox {
+  	search-textbox, #about-config-search {
   		background-color: rgba(255,255,255,.0605) !important;
 	  	box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
   	}
+    search-textbox:hover, #about-config-search:hover {
+      background-color: rgba(255,255,255,.0837) !important;
+    }
+    search-textbox:focus-within, #about-config-search:focus-within {
+      background-color: rgb(30,30,30) !important;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.0698), 0 -2px 0 var(--accentDark) inset !important;
+    }
+
+    .addon.card {
+      background: rgba(255,255,255,.0605) !important;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) !important;
+    }
+    addon-card:not([expanded]) > .addon.card:hover {
+      background: rgba(255,255,255,.0837) !important;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.1),
+      0 -1px 0 rgba(255,255,255,.035),
+      0 4px 8px rgba(0,0,0,.1) !important;
+    }
+
+    .addon-detail-sitepermissions, .addon-detail-row {
+      border-top: 1px solid rgba(0,0,0,.2) !important;
+    }
+    .tab-group {
+      border-top: 1px solid rgba(0,0,0,.2) !important;
+      border-bottom: 1px solid rgba(0,0,0,.2) !important;
+    }
+
+    .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26) !important;
+    }
   }
-  
 }
 
 /*
@@ -285,9 +366,20 @@ url(about:privatebrowsing) {
 */
 @-moz-document url-prefix(about:preferences),
 url-prefix(about:addons) {
+  .category {
+    color: light-dark(rgba(0,0,0,.89), #fff) !important;
+    margin-block: 4px !important;
+    font-size: 14px !important;
+    height: 48px !important;
+    min-height: 0 !important;
+    padding-inline-start: 34px !important;
+    background-position-x: 11px !important;
+  }
+
   .category[selected] {
     position: relative !important;
     border-radius: 4px !important;
+    color: light-dark(#000, #fff) !important;
   }
 
   .category[selected]:not(:hover, :active) {
@@ -301,7 +393,7 @@ url-prefix(about:addons) {
     margin-block: auto;
     height: 24px;
     width: 3px;
-    left: 2px;
+    left: -1px !important;
     background-color: var(--in-content-accent-color);
     border-radius: 3px;
   }
@@ -316,12 +408,17 @@ url-prefix(about:addons) {
   }
 
   .toggle-button {
-    --toggle-dot-margin: 4px !important;
+    --toggle-dot-margin: 3px !important;
     --toggle-width: 40px !important;
     --toggle-height: 20px !important;
     --toggle-background-color: transparent !important;
     --toggle-dot-background-color: var(--in-content-page-color) !important;
-    --toggle-dot-background-color-on-pressed: #fff !important;
+    --toggle-dot-background-color-on-pressed: light-dark(white, black) !important;
     --toggle-dot-transform-x: calc(var(--toggle-width) - 2 * var(--toggle-dot-margin) - 2 * var(--toggle-border-width) - var(--toggle-dot-width)) !important;
+  }
+}
+@-moz-document url-prefix(about:preferences) {
+  .category {
+    padding-inline-start: 10px !important;
   }
 }
