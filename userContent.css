@@ -251,15 +251,21 @@ url(about:privatebrowsing) {
     text-decoration: none !important;
     prefix: none !important;
   }
+
+  /* Headers */
   .sticky-container, .main-search, .main-heading, #toolbar {
   	background-color: transparent !important;
   	position: relative !important;
   }
-  search-textbox, #about-config-search {
+
+  /* Search bars */
+  search-textbox, #about-config-search, input {
     border: none !important;
   	outline: none !important;
     transition: background-color 83ms linear, box-shadow 83ms linear !important;
   }
+
+  /* Sidebars */
   .navigation, #sidebar {
   	background-color: light-dark(rgba(0,0,0,.0205), rgba(0,0,0,.1)) !important;
   	border-right: 1px solid !important;
@@ -271,15 +277,20 @@ url(about:privatebrowsing) {
     margin-right: 22px !important;
   }
 
+  /* Addon cards */
   .addon.card {
     margin-block: 5px !important;
     transition: all 83ms linear !important;
   }
+  .addon-detail-sitepermissions, .addon-detail-row {
+    padding-bottom: 16px !important;
+  }
 
+  /* Context menu */
 	.menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
 		-moz-appearance: none !important;
 		padding: 4px !important;
-		background-color: light-dark(rgb(243,243,243), rgb(44,44,44)) !important;
+		background-color: light-dark(rgb(255,255,255), rgb(44,44,44)) !important;
 		/*background-clip: padding-box !important;*/
 		background-image: url('image/accnoise256.png') !important;
 		border: none !important;
@@ -290,25 +301,19 @@ url(about:privatebrowsing) {
     border-radius: 4px !important;
   }
 
-  .addon-detail-sitepermissions, .addon-detail-row {
-    padding-bottom: 16px !important;
-  }
-
+  /* About:config table */
   #prefs {
     border-radius: 4px !important;
     border-color: light-dark(rgba(0,0,0,.1), rgba(255,255,255,.06)) !important;
     border: none !important;
     background-color: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.06)) !important;
   }
-
   #prefs > tr.odd {
     background-color: light-dark(rgba(0,0,0,.065), rgba(255,255,255,.105)) !important;
   }
-
   #prefs > tr {
     transition: background-color 83ms linear !important;
   }
-
   #prefs > tr:hover {
     background-color: light-dark(rgba(0,0,0,.03), rgba(255,255,255,.0605)) !important;
   }
@@ -316,48 +321,67 @@ url(about:privatebrowsing) {
     background-color: light-dark(rgba(0,0,0,.085), rgba(255,255,255,.137)) !important;
   }
 
-  .more-options-button,
-  .button-edit,
-  .button-reset,
-  .accessory-button,
-  #historyMode,
-  #clearHistoryButton,
-  .searchEngineAction,
-  #defaultEngine,
-  #defaultPrivateEngine,
-  #restoreDefaultSearchEngines,
+  /* Buttons */
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]),
+  menulist,
+  .web-appearance-choice,
   treecol {
+    border: none !important;
+    outline: none !important;
     background-color: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.06)) !important;
     transition: background-color 83ms linear !important;
   }
-  .more-options-button:not([disabled]):hover,
-  .button-edit:not([disabled]):hover,
-  .button-reset:not([disabled]):hover,
-  .accessory-button:not([disabled]):hover,
-  #historyMode:not([disabled]):hover,
-  #clearHistoryButton:not([disabled]):hover,
-  .searchEngineAction:not([disabled]):hover,
-  #defaultEngine:not([disabled]):hover,
-  #defaultPrivateEngine:not([disabled]):hover,
-  #restoreDefaultSearchEngines:not([disabled]):hover,
+  /* Hover */
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not([disabled]):hover,
+  menulist:not([disabled]):hover,
+  .web-appearance-choice:not([disabled]):hover,
   treecol:not([disabled]):hover {
     background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
   }
+
+  .button-save {
+    background-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
+    color: light-dark(#fff, #000) !important;
+    transition: all 83ms linear !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+  }
+  .button-save:hover {
+    background-color: light-dark(var(--accentLight), var(--accentDark2)) !important;
+  }
+  .button-save:active {
+    background-color: light-dark(var(--accentLight4), var(--accentDark2)) !important;
+    opacity: .8 !important;
+  }
   
   @media (prefers-color-scheme: light) {
-  	search-textbox, #about-config-search {
+  	search-textbox,
+    #about-config-search,
+    input#downloadFolder,
+    #form-edit > input {
   		background-color: rgba(255,255,255,.7) !important;
 	  	box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
       color: rgba(0,0,0,.89) !important;
   	}
-    search-textbox:hover, #about-config-search:hover {
+    search-textbox:hover,
+    #about-config-search:hover,
+    input#downloadFolder:hover,
+    #form-edit > input:hover {
       background-color: rgba(249,249,249,.5) !important;
     }
-    search-textbox:focus-within, #about-config-search:focus-within {
+    search-textbox:focus-within,
+    #about-config-search:focus-within,
+    input#downloadFolder:focus-within,
+    #form-edit > input:focus-within {
       background-color: rgb(252,252,252) !important;
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 -2px 0 var(--accentLight) inset !important;
     }
+    input#downloadFolder,
+    #form-edit > input {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.45) !important;
+    }
 
+    /* Addon cards */
     .addon.card {
       background: rgba(255,255,255,.7) !important;
       box-shadow: 0 0 0 1px rgba(0,0,0,.06) !important;
@@ -367,7 +391,6 @@ url(about:privatebrowsing) {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06),
       0 4px 8px rgba(0,0,0,.03) !important;
     }
-
     .addon-detail-sitepermissions, .addon-detail-row {
       border-top: 1px solid rgba(0,0,0,.06) !important;
     }
@@ -376,41 +399,46 @@ url(about:privatebrowsing) {
       border-bottom: 1px solid rgba(0,0,0,.06) !important;
     }
 
+    /* Context menu */
     .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
     }
 
+    /* About:config table */
     #prefs {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06) !important;
     }
 
-    .more-options-button,
-    .button-edit,
-    .button-reset,
-    .accessory-button,
-    #historyMode,
-    #clearHistoryButton,
-    .searchEngineAction,
-    #defaultEngine,
-    #defaultPrivateEngine,
-    #restoreDefaultSearchEngines,
+    /* Buttons */
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]),
+    menulist,
+    .web-appearance-choice,
     treecol {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
     }
   }
+
   @media (prefers-color-scheme: dark) {
-  	search-textbox, #about-config-search {
+  	search-textbox, #about-config-search, input {
   		background-color: rgba(255,255,255,.0605) !important;
 	  	box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
   	}
-    search-textbox:hover, #about-config-search:hover {
+    search-textbox:hover, #about-config-search:hover. input:hover {
       background-color: rgba(255,255,255,.0837) !important;
     }
-    search-textbox:focus-within, #about-config-search:focus-within {
+    search-textbox:focus-within, #about-config-search:focus-within, input:focus-within {
       background-color: rgb(30,30,30) !important;
       box-shadow: 0 0 0 1px rgba(255,255,255,.0698), 0 -2px 0 var(--accentDark) inset !important;
     }
+    input {
+      box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.54) !important;
+    }
+    search-textbox input {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
 
+    /* Addon cards */
     .addon.card {
       background: rgba(255,255,255,.0605) !important;
       box-shadow: 0 0 0 1px rgba(0,0,0,.14) !important;
@@ -421,7 +449,6 @@ url(about:privatebrowsing) {
       0 -1px 0 rgba(255,255,255,.035),
       0 4px 8px rgba(0,0,0,.1) !important;
     }
-
     .addon-detail-sitepermissions, .addon-detail-row {
       border-top: 1px solid rgba(0,0,0,.2) !important;
     }
@@ -430,24 +457,18 @@ url(about:privatebrowsing) {
       border-bottom: 1px solid rgba(0,0,0,.2) !important;
     }
 
+    /* Context menu */
     .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
       box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26) !important;
     }
 
+    /* About:config table */
     #prefs {
       box-shadow: 0 0 0 1px rgba(0,0,0,.14) !important;
     }
 
-    .more-options-button,
-    .button-edit,
-    .button-reset,
-    .accessory-button,
-    #historyMode,
-    #clearHistoryButton,
-    .searchEngineAction,
-    #defaultEngine,
-    #defaultPrivateEngine,
-    #restoreDefaultSearchEngines,
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]),
+    menulist,
     treecol {
       box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
     }
