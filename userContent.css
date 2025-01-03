@@ -419,23 +419,30 @@ url(about:privatebrowsing) {
   }
 
   @media (prefers-color-scheme: dark) {
-  	search-textbox, #about-config-search, input {
+  	search-textbox,
+    #about-config-search,
+    input#downloadFolder,
+    #form-edit > input {
   		background-color: rgba(255,255,255,.0605) !important;
 	  	box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
   	}
-    search-textbox:hover, #about-config-search:hover. input:hover {
+    search-textbox:hover,
+    #about-config-search:hover,
+    input#downloadFolder:hover,
+    #form-edit > input:hover {
       background-color: rgba(255,255,255,.0837) !important;
     }
-    search-textbox:focus-within, #about-config-search:focus-within, input:focus-within {
+    search-textbox:focus-within,
+    #about-config-search:focus-within,
+    input#downloadFolder:focus-within,
+    #form-edit > input:focus-within {
       background-color: rgb(30,30,30) !important;
       box-shadow: 0 0 0 1px rgba(255,255,255,.0698), 0 -2px 0 var(--accentDark) inset !important;
     }
-    input {
+    
+    input#downloadFolder,
+    #form-edit > input {
       box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.54) !important;
-    }
-    search-textbox input {
-      background-color: transparent !important;
-      box-shadow: none !important;
     }
 
     /* Addon cards */
