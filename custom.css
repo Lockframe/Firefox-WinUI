@@ -234,6 +234,10 @@ meupopup {
 .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
 	background-image: url(image/accnoise256.png) !important;
 }
+/* Remove inner border from context menu */
+.menupopup-arrowscrollbox {
+  border: none !important;
+}
 /* Hovered menu item animation */
 menupopup menu:hover:not([disabled=true]),
 menupopup menuitem:hover:not([disabled=true]),
@@ -373,11 +377,6 @@ menuitem {
 /* URL bar icons radius */
 :root {
   --urlbar-icon-border-radius: 4px !important;
-}
-
-/* Remove outline from context menu without affection entries positioning */
-.menupopup-arrowscrollbox {
-  border: 1px solid transparent !important;
 }
 
 /* Bottom tab corners are transparent when tab is hovered */
@@ -894,6 +893,64 @@ menupopup#ContentSelectDropdownPopup {
   margin-block: 4px !important;
 }
 
+/* Dialog boxes */
+#commonDialog, #commonDialogWindow {
+  background-color: light-dark(#fff, rgb(44,44,44,44)) !important;
+  border-radius: 8px !important;
+}
+.titleIcon {
+  background-color: light-dark(rgb(252,252,252), rgb(44,44,44,44)) !important;
+}
+#titleContainer * {
+  font-weight: 100 !important;
+}
+.dialogBox:not(.spotlightBox) {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,.26) !important;
+  outline: 1px solid rgba(0,0,0,.2) !important;
+}
+.dialogBox {
+  min-height: 160px !important;
+}
+#infoRow {
+  margin-bottom: -8px !important;
+  padding-block: 12px !important;
+}
+.dialog-button-box {
+  background-color: light-dark(#f3f3f3,#202020) !important;
+  border-top: 1px solid light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1)) !important;
+  margin-inline: -12px !important;
+  margin-block-end: -16px !important;
+  padding-block-start: 10px !important;
+  min-width:  unset !important;
+}
+
+.dialog-button-box button {
+  margin-bottom: 10px !important;
+  transition: all 83ms linear !important;
+  width: -moz-available !important;
+  font-weight: normal !important;
+  background-color: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+}
+.dialog-button-box button:not([dlgtype="accept"]):hover {
+  background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+}
+.dialog-button-box button[dlgtype="accept"] {
+  background-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
+  color: light-dark(#fff, #000) !important;
+  transition: all 83ms linear !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+  margin-left: 10px !important;
+}
+.dialog-button-box button[dlgtype="accept"]:hover {
+  background-color: light-dark(var(--accentLight), var(--accentDark2)) !important;
+}
+.dialog-button-box button[dlgtype="cancel"] {
+  margin-right: 10px !important;
+  margin-left: 5px !important;
+}
+
+
 /* ============= DARK ================== */
 
 @media (prefers-color-scheme: dark) {
@@ -1128,6 +1185,11 @@ menupopup#ContentSelectDropdownPopup {
     background: var(--accentDark) !important;
     color: black !important;
     box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -1px 0 rgba(0,0,0,.14) inset !important;
+  }
+  
+  /* Dialog boxes */
+  .dialog-button-box button:not([dlgtype="accept"]) {
+    box-shadow: 0 0 0 1px rgba(255,255,255,.0605), 0 -1px 0 rgba(255,255,255,.03) !important;
   }
 }
 
@@ -1373,6 +1435,11 @@ menupopup#ContentSelectDropdownPopup {
   #select-translations-panel-done-button-primary {
     background: #005fb8 !important;
     box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -1px 0 rgba(0,0,0,.4) inset !important;
+  }
+  
+  /* Dialog boxes */
+  .dialog-button-box button:not([dlgtype="accept"]) {
+    box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
   }
 }
 
@@ -1945,8 +2012,8 @@ menupopup#ContentSelectDropdownPopup {
     }
     .tabbrowser-tab:not([selected]):hover .tab-background {
       background-color: transparent !important;
-      box-shadow: 0 -33px 0 rgba(255,255,255,.0605) inset !important;
-      transition: box-shadow ease-in-out 143ms !important;
+      box-shadow: 0 -36px 0 rgba(255,255,255,.0605) inset !important;
+      transition: box-shadow ease-out 183ms !important;
     }
   }
   
@@ -1969,8 +2036,8 @@ menupopup#ContentSelectDropdownPopup {
 
     .tabbrowser-tab:not([selected]):hover .tab-background {
       background-color: transparent !important;
-      box-shadow: 0 -33px 0 rgba(0,0,0,.03) inset !important;
-      transition: box-shadow ease-in-out 143ms !important;
+      box-shadow: 0 -36px 0 rgba(0,0,0,.03) inset !important;
+      transition: box-shadow ease-out 183ms !important;
     }
   }
 }
