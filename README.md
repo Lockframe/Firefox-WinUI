@@ -1,5 +1,5 @@
 # Firefox-WinUI
-A custom CSS addon for [bmFtZQ](https://github.com/bmFtZQ)'s [Edge-frfx](https://github.com/bmFtZQ/Edge-FrFox) theme with some [tweaks by MrOtherGuy](https://github.com/MrOtherGuy/firefox-csshacks) to make it look more inline with Windows 11's design.
+A custom CSS addon for [bmFtZQ](https://github.com/bmFtZQ)'s [Edge-frfox](https://github.com/bmFtZQ/Edge-FrFox) theme with some [tweaks by MrOtherGuy](https://github.com/MrOtherGuy/firefox-csshacks) to make it look more inline with Windows 11's design.
 
 <!-- Use <img> element to set a maximum width. -->
 <img src="screenshots/WinUI-Firefox.png" alt="WinUi-Firefox theme screenshot">
