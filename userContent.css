@@ -170,15 +170,15 @@ url(about:privatebrowsing) {
 /* Color control */
 @-moz-document url-prefix(about:) {
   :root {
-    --accentLight: color-mix(in srgb, accentColor 100%, transparent) !important;
-    --accentLight2: color-mix(in srgb, accentColor 80%, transparent) !important;
-    --accentLight3: color-mix(in srgb, accentColor 90%, transparent) !important;
-    --accentLight4: color-mix(in srgb, accentColor 90%, black) !important;
-    --accentLight5: color-mix(in srgb, accentColor 10%, white) !important;
-    --accentDark: color-mix(in srgb, accentColor 60%, white) !important;
-    --accentDark2: color-mix(in srgb, accentColor 40%, white) !important;
-    --accentDark3: color-mix(in srgb, accentColor 50%, white) !important;
-    --accentDark4: color-mix(in srgb, accentColor 60%, white 30%, black) !important;
+    --accentLight: color-mix(in srgb, accentColor 90%, black) !important; /* Main */
+    --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
+    --accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent) !important; /* Pressed */
+    --accentLight4: color-mix(in srgb, accentColor 100%, transparent) !important; /* Full saturation */
+
+    --accentDark: color-mix(in srgb, accentColor 60%, white) !important; /* Main */
+    --accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent) !important; /* Hover */
+    --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
+    --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
   
     --in-content-page-color: light-dark(#252525, #fff) !important;
     --in-content-page-background: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
@@ -188,8 +188,8 @@ url(about:privatebrowsing) {
     --in-content-box-info-background: light-dark(#f7f7f7, rgb(255 255 255 / 0.15)) !important;
     --in-content-icon-color: light-dark(#666, #fff) !important;
     
-    --in-content-accent-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
-    --in-content-accent-color-active: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+    --in-content-accent-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+    --in-content-accent-color-active: light-dark(var(--accentLight3), var(--accentDark3)) !important;
     
     --in-content-border-hover: light-dark(rgb(0 0 0 / .5), rgb(255 255 255 / .3)) !important;
     --in-content-border-invalid: var(--red-50) !important;
@@ -198,8 +198,8 @@ url(about:privatebrowsing) {
     
     --in-content-link-color: light-dark(var(--accentLight), var(--accentDark)) !important;
     --in-content-link-color-hover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
-    --in-content-link-color-active: light-dark(var(--accentLight4), var(--accentDark3)) !important;
-    --in-content-link-color-visited: light-dark(#0078D4, #75B6E8) !important;
+    --in-content-link-color-active: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+    --in-content-link-color-visited: light-dark(var(--accentLight), var(--accentDark)) !important;
     
     --link-color: var(--in-content-link-color) !important;
     --link-color-hover: var(--in-content-link-color-hover) !important;
@@ -214,24 +214,19 @@ url(about:privatebrowsing) {
     --in-content-button-background-hover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
     --in-content-button-background-active: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
     
-    --in-content-primary-button-text-color: light-dark(#fff, #fff) !important;
-    --in-content-primary-button-background: light-dark(#0061e0, #006CBE) !important;
-    --in-content-primary-button-background-hover: light-dark(#0250bb, #0078D4) !important;
-    --in-content-primary-button-background-active: light-dark(#053e94, #005CA3) !important;
-    --color-accent-primary: light-dark(#0078D4, #006CBE) !important;
-    --color-accent-primary-hover: light-dark(#006CBE, #0078D4) !important;
-    --color-accent-primary-active: light-dark(#0749AC, #005CA3) !important;
-    
-    
+    --in-content-primary-button-text-color: light-dark(#fff, #000) !important;
+    --in-content-primary-button-background: light-dark(var(--accentLight), var(--accentDark)) !important;
+    --in-content-primary-button-background-hover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+    --in-content-primary-button-background-active: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  
     --color-accent-primary: light-dark(var(--accentLight), var(--accentDark)) !important;
-    --color-accent-primary-hover: light-dark(var(--accentLight3), var(--accentDark3)) !important;
-    --color-accent-primary-active: light-dark(var(--accentLight4), var(--accentDark2)) !important;
+    --color-accent-primary-hover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+    --color-accent-primary-active: light-dark(var(--accentLight3), var(--accentDark3)) !important;
     
     --in-content-danger-button-background: light-dark(#DF4951, #E12424) !important;
     --in-content-danger-button-background-hover: light-dark(#EA656C, #F94343) !important;
     --in-content-danger-button-background-active: light-dark(#BB353C, #AA1E1E) !important;
-    --in-content-focus-outline-color: light-dark(rgb(0 85 215 / .5), #63ADE5) !important;
-    
+
     --in-content-focus-outline-color: light-dark(var(--accentLight), var(--accentDark)) !important;
     
     --focus-outline-color: var(--in-content-focus-outline-color) !important;
@@ -253,6 +248,9 @@ url(about:privatebrowsing) {
   	font-family: 'Segoe UI Variable Text' !important;
     text-decoration: none !important;
     prefix: none !important;
+  }
+  hbox {
+    font-weight: normal !important;
   }
 
   /* Headers */
@@ -328,7 +326,7 @@ url(about:privatebrowsing) {
   }
 
   /* Buttons */
-  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button),
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow),
   menulist,
   .web-appearance-choice,
   treecol {
@@ -339,11 +337,34 @@ url(about:privatebrowsing) {
     font-weight: normal !important;
   }
   /* Hover */
-  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not([disabled]):hover,
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):hover,
   menulist:not([disabled]):hover,
   .web-appearance-choice:not([disabled]):hover,
   treecol:not([disabled]):hover {
     background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+  }
+  /* Pressed */
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):active,
+  menulist:not([disabled]):active,
+  .web-appearance-choice:not([disabled]):active,
+  treecol:not([disabled]):active {
+    background-color: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326)) !important;
+  }
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):active,
+  menulist:not([disabled]):active > *,
+  .web-appearance-choice:not([disabled]):active > *,
+  treecol:not([disabled]):active > * {
+    opacity: .6 !important;
+  }
+
+  .more-options-button {
+    background-color: unset !important;
+  }
+  .more-options-button:hover {
+    background-color: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+  }
+  .more-options-button:active {
+    background-color: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
   }
 
   .button-save,
@@ -352,7 +373,7 @@ url(about:privatebrowsing) {
   #data-migration,
   #chooseFolder,
   #syncNow {
-    background-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
+    background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
     color: light-dark(#fff, #000) !important;
     transition: all 83ms linear !important;
     border: 1px solid rgba(255,255,255,.08) !important;
@@ -364,7 +385,7 @@ url(about:privatebrowsing) {
   #data-migration:hover,
   #chooseFolder:hover,
   #syncNow:hover {
-    background-color: light-dark(var(--accentLight), var(--accentDark2)) !important;
+    background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
   }
   .button-save:active,
   button[type="submit"]:active,
@@ -372,9 +393,317 @@ url(about:privatebrowsing) {
   #data-migration:active,
   #chooseFolder:active,
   #syncNow:active {
-    background-color: light-dark(var(--accentLight4), var(--accentDark2)) !important;
+    background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
     opacity: .8 !important;
   }
+
+  /* Check Box - Adapted from Firefox UWP */
+	checkbox {
+		opacity: 1 !important;
+	}
+	checkbox > .checkbox-check, input[type="checkbox"] {
+		background-color: light-dark(rgba(0,0,0,.0241),rgba(0,0,0,.1)) !important;
+		border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+		background-clip: padding-box !important;
+		border-radius: 4px !important;
+		-moz-context-properties: fill !important;
+		fill: light-dark(#fff,#000) !important;
+		-moz-appearance: none !important;
+		width: 20px !important;
+		height: 20px !important;
+		margin: 0px !important;
+		box-shadow: none !important;
+    transition: all 43ms linear !important;
+	}
+	checkbox:hover > .checkbox-check, input[type="checkbox"]:hover {
+		background-color: light-dark(rgba(0,0,0,.0578),rgba(255,255,255,.0419)) !important;
+	}
+	checkbox:active > .checkbox-check, input[type="checkbox"]:active {
+		background-color: light-dark(rgba(0,0,0,.0924),rgba(255,255,255,.0698)) !important;
+		border-color: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+	}
+	input[type="checkbox"]:checked, checkbox[checked="true"] > .checkbox-check {
+		background: light-dark(var(--accentLight), var(--accentDark)) !important;
+		border-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+	}
+	input[type="checkbox"]:checked:hover, checkbox[checked="true"]:hover > .checkbox-check {
+		background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+		border-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+	}
+	input[type="checkbox"]:checked:active, checkbox[checked="true"]:hover:active > .checkbox-check {
+		background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+		border-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+		fill: light-dark(rgba(255,255,255,.7), rgba(0,0,0,.5)) !important;
+	}
+	checkbox[checked="true"] > .checkbox-check , input[type="checkbox"]:checked {
+		background-image: url("chrome://global/skin/icons/check.svg") !important;
+		background-repeat: no-repeat !important;
+		background-size: 12px !important;
+		background-position: center center !important;
+	}
+	input[type="checkbox"] {
+		margin-right: 10px !important;
+	}
+	input[type="checkbox"]:-moz-focusring {
+		outline: none !important;
+	}
+	.checkbox-label-box {
+		margin-left: 10px !important;
+	}
+  /* Check Box Disabled */
+	checkbox[disabled="true"] > .checkbox-label-box {
+		color: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3614)) !important;
+	}
+	checkbox[disabled="true"] > .checkbox-check {
+		background-color: transparent !important;
+		border: 1px solid light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+		fill: transparent !important;
+	}
+	checkbox[disabled="true"][checked="true"] > .checkbox-check, checkbox[disabled="true"][checked="true"]:is(:hover, :hover:active) > .checkbox-check  {
+		background-color: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+		border: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+		fill: light-dark(#fff,rgba(255,255,255,.53)) !important;
+	}
+
+  /* Toggle Switch */
+	input[type="checkbox"].toggle-button, input[type="checkbox"] + .slider, .protections-popup-tp-switch, .toggle-button {
+		background-clip: padding-box !important;
+		background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+		background-image: none !important;
+		border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+		border-radius: 12px !important;
+		padding: 9px !important;
+		padding-right: 32px !important;
+    width: 38px !important;
+    height: 18px;
+	}
+	.protections-popup-tp-switch {
+		padding: 3px !important;
+		padding-right: 26px !important;
+	}
+	input[type="checkbox"].toggle-button:hover, input[type="checkbox"]:hover + .slider, .protections-popup-tp-switch:hover, .toggle-button:hover {
+		background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+	}
+	input[type="checkbox"].toggle-button:active, input[type="checkbox"]:active + .slider, .protections-popup-tp-switch:active, .toggle-button:active {
+		background-color: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698)) !important;
+	}
+	input[type="checkbox"].toggle-button:checked, input[type="checkbox"]:checked + .slider, .protections-popup-tp-switch[enabled], .toggle-button[aria-pressed="true"] {
+		background: light-dark(var(--accentLight), var(--accentDark)) !important;
+		border-color: transparent !important;
+	}
+	input[type="checkbox"].toggle-button:checked:hover, input[type="checkbox"]:checked:hover + .slider, .protections-popup-tp-switch[enabled]:hover, .toggle-button[aria-pressed="true"]:hover {
+		background: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+		border-color: transparent !important;
+	}
+	input[type="checkbox"].toggle-button:checked:active, input[type="checkbox"]:checked:active + .slider, .protections-popup-tp-switch[enabled]:active, .toggle-button[aria-pressed="true"]:active {
+		background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+		border-color: transparent !important;
+	}
+	input[type="checkbox"].toggle-button::before, input + .slider::before, .protections-popup-tp-switch::before, .toggle-button::before {
+	    background: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
+	    height: 12px !important;
+	    width: 12px !important;
+	    outline: none !important;
+		margin: 0px !important;
+		transition: transform 200ms, height 83ms linear, width 83ms linear !important;
+		transform: translateX(-6px) translateY(-6px) !important;
+	}
+	.protections-popup-tp-switch::before {
+		transform: none !important;
+	}
+	input[type="checkbox"].toggle-button:hover::before, input:hover + .slider::before, .protections-popup-tp-switch:hover::before, .toggle-button:hover::before {
+		height: 14px !important;
+    width: 14px !important;
+    transform: translateX(-7px) translateY(-7px) !important;
+	}
+	input[type="checkbox"].toggle-button:checked::before, input:checked + .slider::before, .protections-popup-tp-switch[enabled]::before, .toggle-button[aria-pressed="true"]::before {
+		background: light-dark(white,black) !important;
+		transform: translateX(-3px) translateY(-6px) !important;
+	}
+  input[type="checkbox"].toggle-button:checked:hover::before, input:hover:checked + .slider:hover::before, .protections-popup-tp-switch[enabled]:hover::before, .toggle-button[aria-pressed="true"]:hover::before {
+		transform: translateX(-4px) translateY(-7px) !important;
+	}
+	.protections-popup-tp-switch[enabled]::before {
+		transform: translateX(23px) !important;
+	}
+	input[type="checkbox"].toggle-button:checked:hover::before, input:hover:checked + .slider::before, .protections-popup-tp-switch[enabled]:hover::before {
+		background: AccentColorText !important;
+	}
+	.slider::before {
+		bottom: 0px !important;
+		inset-inline-start: 0px !important;
+	}
+	input[type="checkbox"] + .slider::before {
+		transform: translateX(2px) translateY(-3px) !important;
+	}
+	input[type="checkbox"]:checked + .slider::before {
+		transform: translateX(27px) translateY(-3px) !important;
+	}
+
+  /* Radio Button */
+	radio {
+		opacity: 1 !important;
+	}
+	input[type="radio"] {
+		appearance: none !important;
+		background-clip: border-box !important;
+		background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+		border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+
+		outline: none !important;
+		border-radius: 100% !important;
+		margin-right: 5px !important;
+		box-shadow: none !important;
+		width: auto !important;
+		height: auto !important;
+		list-style: none !important;
+	}
+	input[type="radio"]:hover {
+		background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+		border-color: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+	}
+	input[type="radio"]:hover:active {
+		background-color: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.698)) !important;
+		border-color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+	}
+	input[type="radio"]:checked {
+		background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+		border-color: transparent !important;
+	}
+	input[type="radio"]:checked:hover {
+		background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+		border-color: transparent !important;
+	}
+	input[type="radio"]:checked:hover:active {
+		background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+		border-color: transparent !important;
+	}
+	input[type="radio"]::before {
+		display: block !important;
+		content: "" !important;
+		background: transparent !important;
+		height: 8px !important;
+		width: 8px !important;
+		margin: 4px !important;
+		border-radius: 100% !important;
+		transition: all 43ms linear !important;
+	}
+	input[type="radio"]:hover::before {
+		height: 10px !important;
+		width: 10px !important;
+		margin: 3px !important;
+	}
+	input[type="radio"]:hover:active::before {
+		background: light-dark(#fff,#000) !important;
+	}
+	input[type="radio"]:checked::before {
+		background: light-dark(#fff,#000) !important;
+	}
+	input[type="radio"]:checked:hover::before {
+		background: light-dark(#fff,#000) !important;
+	}
+	input[type="radio"]:checked:hover:active::before {
+		background: Alight-dark(#fff,#000) !important;
+	}
+	input[type="radio"] + span {
+		position: relative !important;
+		bottom: 0px !important;
+	}
+
+  /* Old radio buttons */
+	radio {
+		position: relative !important;
+	}
+	radio > .radio-check {
+		-moz-context-properties: fill !important;
+		appearance: none !important;
+
+		background-clip: padding-box !important;
+		background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+		border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+		border-radius: 100% !important;
+
+		padding: 1px !important;
+		margin-right: 5px !important;
+		box-shadow: none !important;
+		width: 18px !important;
+		height: 18px !important;
+	}
+	radio:hover > .radio-check {
+		background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+		border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+	}
+	radio:hover:active > .radio-check {
+		background-color: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.698)) !important;
+		border: 1px solid light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+	}
+	radio[selected="true"] > .radio-check {
+		fill: light-dark(#fff,#000) !important;
+		background-clip: border-box !important;
+		background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+		border-color: transparent !important;
+	}
+	radio[selected="true"]:hover > .radio-check {
+		fill: light-dark(#fff,#000) !important;
+		background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+		border-color: transparent !important;
+	}
+	radio[selected="true"]:hover:active > .radio-check {
+		fill: light-dark(#fff,#000) !important;
+		background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+		border-color: transparent !important;
+	}
+
+	radio[selected="true"]::before {
+		position: absolute !important;
+		left: 5px !important;
+		display: block !important;
+		content: "" !important;
+		background: light-dark(#fff,#000) !important;
+		height: 8px !important;
+		width: 8px !important;
+		border-radius: 100% !important;
+		transition: all 43ms linear !important;
+	}
+
+	/* Radio Button Disabled */
+	radio[disabled="true"] > .radio-label-box {
+		color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+	}
+	radio:is([disabled="true"], [disabled="true"][selected="true"]) > .radio-check {
+		background-color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+		border: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+	}
+	radio:is([disabled="true"], [disabled="true"][selected="true"]):is(:hover, :hover:active) > .radio-check {
+		background-color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+		border: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+	}
+	radio > .radio-label-box {
+		margin-left: 5px !important;
+		outline: none !important;
+	}
+
+	input[type="range"] {
+		-moz-appearance: none !important;
+		border: none !important;
+		background: light-dark(rgba(0,0,0,.44), rgba(255,255,255,.54)) !important;
+		height: 2px !important;
+	}
+	input[type="range"]:hover {
+		background: light-dark(rgba(0,0,0,.44), rgba(255,255,255,.54)) !important;
+	}
+	input[type="range"]::-moz-range-progress {
+		background: light-dark(var(--accentLight), var(--accentDark)) !important;
+		height: 2px !important;
+	}
+	input[type="range"]::-moz-range-thumb {
+		background: light-dark(var(--accentLight), var(--accentDark)) !important;
+		border: none !important;
+		width: 20px !important;
+		height: 20px !important;
+		border-radius: 50% !important;
+	}
+
 
   /* Add new shortcut dialog */
   .edit-topsites-wrapper .modal {
@@ -459,11 +788,18 @@ url(about:privatebrowsing) {
     }
 
     /* Buttons */
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button),
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow),
     menulist,
     .web-appearance-choice,
     treecol {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+    }
+    /* Pressed */
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):active,
+    menulist:not([disabled]):active,
+    .web-appearance-choice:not([disabled]):active,
+    treecol:not([disabled]):active {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.0578) !important;
     }
   }
 
@@ -524,10 +860,18 @@ url(about:privatebrowsing) {
       box-shadow: 0 0 0 1px rgba(0,0,0,.14) !important;
     }
 
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button),
+    /* Buttons */
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow),
     menulist,
     treecol {
       box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
+    }
+    /* Pressed */
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):active,
+    menulist:not([disabled]):active,
+    .web-appearance-choice:not([disabled]):active,
+    treecol:not([disabled]):active {
+      box-shadow: 0 0 0 1px rgba(255,255,255,.0698) !important;
     }
   }
 }
@@ -576,16 +920,6 @@ url-prefix(about:addons) {
   button.tab-button[selected],
   button.tab-button[selected]:hover {
     border-block-color: transparent currentColor !important;
-  }
-
-  .toggle-button {
-    --toggle-dot-margin: 3px !important;
-    --toggle-width: 40px !important;
-    --toggle-height: 20px !important;
-    --toggle-background-color: transparent !important;
-    --toggle-dot-background-color: var(--in-content-page-color) !important;
-    --toggle-dot-background-color-on-pressed: light-dark(white, black) !important;
-    --toggle-dot-transform-x: calc(var(--toggle-width) - 2 * var(--toggle-dot-margin) - 2 * var(--toggle-border-width) - var(--toggle-dot-width)) !important;
   }
 }
 @-moz-document url-prefix(about:preferences) {
