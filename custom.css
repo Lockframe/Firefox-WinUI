@@ -13,13 +13,15 @@
     rgba(255,255,255,.02) !important;
   --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
   --acrylic: url(image/accnoise256.png) !important;
-  --accentLight: color-mix(in srgb, accentColor 100%, transparent) !important;
-  --accentLight2: color-mix(in srgb, accentColor 80%, transparent) !important;
-  --accentLight3: color-mix(in srgb, accentColor 90%, transparent) !important;
-  --accentLight4: color-mix(in srgb, accentColor 90%, black) !important;
-  --accentDark: color-mix(in srgb, accentColor 80%, white 40%) !important;
-  --accentDark2: color-mix(in srgb, accentColor 40%, white) !important;
-  --accentDark3: color-mix(in srgb, accentColor 50%, white) !important;
+  --accentLight: color-mix(in srgb, accentColor 90%, black) !important; /* Main */
+  --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
+  --accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent) !important; /* Pressed */
+  --accentLight4: color-mix(in srgb, accentColor 100%, transparent) !important; /* Full saturation */
+
+  --accentDark: color-mix(in srgb, accentColor 60%, white) !important; /* Main */
+  --accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent) !important; /* Hover */
+  --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
+  --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
 }
 
 /* Window-wide transparency */
@@ -509,7 +511,7 @@ menuitem {
 
 /* Remove tab scroll buttons */
 #tabbrowser-arrowscrollbox{
-  --uc-compat-scrollbutton-margin: 1px; /* compatibility for non_floating_sharp_tabs.css */
+  --uc-compat-scrollbutton-margin: 1px;
   --uc-scrollbutton-up-background: linear-gradient(-90deg,transparent,var(--lwt-accent-color) 35%);
   --uc-scrollbutton-down-background: linear-gradient(90deg,transparent,var(--lwt-accent-color) 35%);
 }
@@ -599,7 +601,7 @@ scrollbox[orient="horizontal"],
   color: black !important;
   margin-inline: 0px 8px !important;
   padding-inline: 5px 5px !important;
-  background: light-dark(var(--accentLight4), var(--accentDark)) !important;
+  background: light-dark(var(--accentLight), var(--accentDark)) !important;
   border-radius: 99px !important;
   font-weight: 550 !important;
   margin-top: 5px !important;
@@ -830,11 +832,11 @@ menupopup#ContentSelectDropdownPopup {
   border-radius: 99px !important;
   
   #urlbar[focused] > .urlbar-input-container > & {
-    background-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
+    background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
   }
 
   #urlbar:not([focused]) > .urlbar-input-container > & {
-    background-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
+    background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
   }
 }
 
@@ -934,7 +936,7 @@ menupopup#ContentSelectDropdownPopup {
   background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
 }
 .dialog-button-box button[dlgtype="accept"] {
-  background-color: light-dark(var(--accentLight4), var(--accentDark)) !important;
+  background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
   color: light-dark(#fff, #000) !important;
   transition: all 83ms linear !important;
   border: 1px solid rgba(255,255,255,.08) !important;
@@ -942,7 +944,10 @@ menupopup#ContentSelectDropdownPopup {
   margin-left: 10px !important;
 }
 .dialog-button-box button[dlgtype="accept"]:hover {
-  background-color: light-dark(var(--accentLight), var(--accentDark2)) !important;
+  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+}
+.dialog-button-box button[dlgtype="accept"]:active {
+  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
 }
 .dialog-button-box button[dlgtype="cancel"] {
   margin-right: 10px !important;
@@ -1041,7 +1046,7 @@ menupopup#ContentSelectDropdownPopup {
   /* URL breakout results */
   .urlbarView-row {
     color: rgb(255,255,255);
-    --urlbar-popup-url-color: var(--accentDark2) !important;
+    --urlbar-popup-url-color: var(--accentDark) !important;
     background-color: transparent !important;
   }
   /* URL breakout results hover*/
@@ -1061,7 +1066,7 @@ menupopup#ContentSelectDropdownPopup {
   }
   /* Links */
   .urlbarView-url {
-    color: var(--accentDark2) !important;;
+    color: var(--accentDark) !important;;
   }
 
   /* URL tooltip */
@@ -1312,7 +1317,7 @@ menupopup#ContentSelectDropdownPopup {
   }
   /* Links */
   .urlbarView-url {
-    color: var(--accentLight2) !important;
+    color: var(--accentLight) !important;
   }
 
   /* URL tooltip */
