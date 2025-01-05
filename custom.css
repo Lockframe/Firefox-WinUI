@@ -17,7 +17,7 @@
   --accentLight2: color-mix(in srgb, accentColor 80%, transparent) !important;
   --accentLight3: color-mix(in srgb, accentColor 90%, transparent) !important;
   --accentLight4: color-mix(in srgb, accentColor 90%, black) !important;
-  --accentDark: color-mix(in srgb, accentColor 60%, white) !important;
+  --accentDark: color-mix(in srgb, accentColor 80%, white 40%) !important;
   --accentDark2: color-mix(in srgb, accentColor 40%, white) !important;
   --accentDark3: color-mix(in srgb, accentColor 50%, white) !important;
 }
@@ -721,7 +721,6 @@ findbar {
 menupopup#ContentSelectDropdownPopup {
   margin-left: -14px !important;
   color: light-dark(rgba(0,0,0,.89), rgb(255,255,255)) !important;
-  color: black !important;
 }
 
 #ContentSelectDropdown > menupopup > menuitem > .menu-iconic-text {
@@ -899,7 +898,7 @@ menupopup#ContentSelectDropdownPopup {
   border-radius: 8px !important;
 }
 .titleIcon {
-  background-color: light-dark(rgb(252,252,252), rgb(44,44,44,44)) !important;
+  background-color: light-dark(#fff, rgb(44,44,44,44)) !important;
 }
 #titleContainer * {
   font-weight: 100 !important;
