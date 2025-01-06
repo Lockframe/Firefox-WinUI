@@ -26,6 +26,14 @@
   --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
   --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
   
+  --button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+  --buttonHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+  --buttonPressed: light-dark(rgba(255,255,255,.3), rgba(255,255,255,.0326)) !important;
+  --buttonShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+  --buttonShadowLightPressed: 0 0 0 1px rgba(0,0,0,.0578) !important;
+  --buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
+  --buttonShadowDarkPressed: 0 0 0 1px rgba(255,255,255,.0698) !important;
+  
   --textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
   --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
   --textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
@@ -464,7 +472,7 @@ menuitem {
 
 /* AI provider button */
 #provider {
-  background-color: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
+  background-color: var(--button) !important;
   border: 1px solid !important;
   border-color: light-dark(rgba(0,0,0,.06),rgba(255,255,255,.04)) !important;
   border-top: 1px solid light-dark(rgba(0,0,0,.06),rgba(255,255,255,.06)) !important;
@@ -686,7 +694,7 @@ menupopup, panel {
 .findbar-textbox {
   height: 30px !important;
   border-radius: 4px !important;
-  background-color: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+  background-color: var(--button) !important;
   border: 1px solid !important;
   border-color: light-dark(rgba(0,0,0,.08), rgba(255,255,255,.02)) !important;
   border-bottom-color: light-dark(rgba(0,0,0,.22), rgba(255,255,255,.02)) !important;
@@ -894,8 +902,24 @@ menupopup#ContentSelectDropdownPopup {
 .bookmark-item:not(menu, menuitem):active {
   background-color: var(--textButtonPressed) !important;
 }
-.bookmark-item:not(menu, menuitem):active * {
-  opacity: .6 !important;
+
+/* Default button */
+button {
+  transition: none !important;
+  font-weight: normal !important;
+  background-color: var(--button) !important;
+  
+  box-shadow: var(--buttonShadowLight) !important;
+}
+button:hover {
+  background-color: var(--buttonHover) !important;
+}
+button:active {
+  background-color: var(--buttonPressed) !important;
+  box-shadow: var(--buttonShadowLight) !important;
+}
+button:active * {
+  opacity: .768 !important;
 }
 
 /* Dialog boxes */
@@ -938,27 +962,26 @@ menupopup#ContentSelectDropdownPopup {
   transition: none !important;
   width: -moz-available !important;
   font-weight: normal !important;
-  background-color: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+  background-color: var(--button) !important;
   margin-inline: 8px !important;
 }
+
 .dialog-button-box button:not([dlgtype="accept"]):hover {
   background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
 }
-.dialog-button-box button[dlgtype="accept"] {
+.dialog-button-box button[dlgtype="accept"], #customization-done-button {
+  box-shadow: none !important;
   background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
   color: light-dark(#fff, #000) !important;
   border: 1px solid rgba(255,255,255,.08) !important;
   border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
   margin-left: 10px !important;
 }
-.dialog-button-box button[dlgtype="accept"]:hover {
+.dialog-button-box button[dlgtype="accept"]:hover, #customization-done-button:hover {
   background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
 }
-.dialog-button-box button[dlgtype="accept"]:active {
+.dialog-button-box button[dlgtype="accept"]:active, #customization-done-button:active {
   background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
-}
-.dialog-button-box button[dlgtype="accept"]:active * {
-  opacity: .6 !important;
 }
 .dialog-button-box button[dlgtype="cancel"] {
   margin-right: 10px !important;
@@ -1277,6 +1300,7 @@ html[windowtype="Toolkit:PictureInPicture"] {
   border-radius: 8px !important;
 }
 
+/* In-url toolbar buttons */
 .toolbarbutton-1 > .toolbarbutton-icon,
 .toolbarbutton-1 > .toolbarbutton-text,
 .toolbarbutton-1 > .toolbarbutton-badge-stack,
@@ -1288,6 +1312,40 @@ panel button,
 panel menulist,
 .titlebar-button {
   transition: none !important;
+}
+
+.toolbarbutton-1 > .toolbarbutton-icon:hover,
+.toolbarbutton-1 > .toolbarbutton-text:hover,
+.toolbarbutton-1 > .toolbarbutton-badge-stack:hover,
+:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem):hover,
+.urlbar-page-action:hover,
+.identity-box-button:hover,
+#tracking-protection-icon-container:hover,
+panel button:hover,
+panel menulist:hover,
+.titlebar-button:hover {
+  background-color: var(--textButtonHover) !important;
+}
+
+:is(
+  .toolbarbutton-1 > .toolbarbutton-icon,
+  .toolbarbutton-1 > .toolbarbutton-text,
+  .toolbarbutton-1 > .toolbarbutton-badge-stack,
+  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+  .urlbar-page-action,
+  .identity-box-button,
+  #tracking-protection-icon-container,
+  panel button,
+  panel menulist,
+  .titlebar-button
+):is(:active, [open="true"]) {
+  background-color: var(--textButtonPressed) !important;
+}
+
+/* Titles */
+h1, h2, h3 {
+  text-align: left !important;
+  margin-left: 8px !important;
 }
 
 /* ============= DARK ================== */
@@ -1341,17 +1399,16 @@ panel menulist,
   /* URL bar and search bar customization */
   #urlbar-background, #searchbar {
     background-color: rgb(255, 255, 255, .0605) !important;
-    box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
+    box-shadow: var(--buttonShadowDark) !important;
   }
   /* Hover */
   #urlbar:hover>#urlbar-background, #searchbar:hover {
     background-color: rgba(255,255,255,.0837) !important;
-    box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
   }
   /* Open */
   #urlbar[open]>#urlbar-background, #searchbar:focus-within {
     background-color: rgb(30,30,30) !important;
-    box-shadow: 0 0 0 1px rgba(255,255,255,.0698) !important;
+    box-shadow: var(--buttonShadowDarkPressed) !important;
   }
   #searchbar:focus-within {
     box-shadow: 0 0 0 1px rgba(255,255,255,.0698), 0 -2px 0 var(--accentDark) inset !important;
@@ -1499,7 +1556,6 @@ panel menulist,
   .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive {
     background-color: rgba(58,58,58,.6)  !important;
   }
-  
 
   /* Tab Preview Cards */
   .tab-preview-text-container {
@@ -1526,9 +1582,34 @@ panel menulist,
     box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -1px 0 rgba(0,0,0,.14) inset !important;
   }
   
+  /* Default buttons */
+  button {
+    box-shadow: var(--buttonShadowDark) !important;
+  }
+  button:active {
+    box-shadow: var(--buttonShadowDarkPressed) !important;
+  }
+  
   /* Dialog boxes */
   .dialog-button-box button:not([dlgtype="accept"]) {
     box-shadow: 0 0 0 1px rgba(255,255,255,.0605), 0 -1px 0 rgba(255,255,255,.03) !important;
+  }
+  
+  /* In-url toolbar buttons */
+  :is(
+  .toolbarbutton-1 > .toolbarbutton-icon,
+  .toolbarbutton-1 > .toolbarbutton-text,
+  .toolbarbutton-1 > .toolbarbutton-badge-stack,
+  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+  .urlbar-page-action,
+  .identity-box-button,
+  #tracking-protection-icon-container,
+  panel button,
+  panel menulist,
+  .titlebar-button,
+  button
+  ):active > * {
+    opacity: .786 !important;
   }
 }
 
@@ -1591,16 +1672,15 @@ panel menulist,
   /* URL bar customization */
   #urlbar-background, #searchbar {
     background-color: rgba(255,255,255,.7) !important;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+    box-shadow: var(--buttonShadowLight) !important;
   }
   /* Hover */
   #urlbar:hover>#urlbar-background, #searchbar:hover {
     background-color: rgba(249,249,249,.5) !important;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
   }
   /* Open */
   #urlbar[open]>#urlbar-background {
-    box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+    box-shadow: var(--buttonShadowLightPressed) !important;
     background-color: rgb(252,252,252) !important;
   }
   #searchbar:focus-within {
@@ -1776,9 +1856,34 @@ panel menulist,
     box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -1px 0 rgba(0,0,0,.4) inset !important;
   }
   
+  /* Default buttons */
+  button {
+    box-shadow: var(--buttonShadowLight) !important;
+  }
+  button:active {
+    box-shadow: var(--buttonShadowLightPressed) !important;
+  }
+  
   /* Dialog boxes */
   .dialog-button-box button:not([dlgtype="accept"]) {
     box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+  }
+  
+  /* In-url toolbar buttons */
+  :is(
+  .toolbarbutton-1 > .toolbarbutton-icon,
+  .toolbarbutton-1 > .toolbarbutton-text,
+  .toolbarbutton-1 > .toolbarbutton-badge-stack,
+  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+  .urlbar-page-action,
+  .identity-box-button,
+  #tracking-protection-icon-container,
+  panel button,
+  panel menulist,
+  .titlebar-button,
+  button
+  ):active > * {
+    opacity: .6 !important;
   }
 }
 
