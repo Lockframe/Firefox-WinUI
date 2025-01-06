@@ -1277,6 +1277,18 @@ html[windowtype="Toolkit:PictureInPicture"] {
   border-radius: 8px !important;
 }
 
+.toolbarbutton-1 > .toolbarbutton-icon,
+.toolbarbutton-1 > .toolbarbutton-text,
+.toolbarbutton-1 > .toolbarbutton-badge-stack,
+:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+.urlbar-page-action,
+.identity-box-button,
+#tracking-protection-icon-container,
+panel button,
+panel menulist,
+.titlebar-button {
+  transition: none !important;
+}
 
 /* ============= DARK ================== */
 
@@ -2358,7 +2370,16 @@ html[windowtype="Toolkit:PictureInPicture"] {
   menupopup menuitem:not([disabled=true]),
   #urlbar-background,
   #searchbar,
+  .toolbarbutton-1 > .toolbarbutton-icon,
+  .toolbarbutton-1 > .toolbarbutton-text,
+  .toolbarbutton-1 > .toolbarbutton-badge-stack,
   :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+  .urlbar-page-action,
+  .identity-box-button,
+  #tracking-protection-icon-container,
+  panel button,
+  panel menulist,
+  .titlebar-button,
   .dialog-button-box button  {
     transition: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear !important;
   }
