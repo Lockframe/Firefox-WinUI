@@ -13,6 +13,9 @@
     rgba(255,255,255,.02) !important;
   --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
   --acrylic: url(image/accnoise256.png) !important;
+  
+  --commonBackground: light-dark(#fff,#2c2c2c) !important;
+  
   --accentLight: color-mix(in srgb, accentColor 90%, black) !important; /* Main */
   --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
   --accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent) !important; /* Pressed */
@@ -22,6 +25,10 @@
   --accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent) !important; /* Hover */
   --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
   --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
+  
+  --textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+  --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+  --textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
 }
 
 /* Window-wide transparency */
@@ -171,22 +178,13 @@
   padding: 8px !important;
   padding-inline: 10.5px !important;
   padding-block: 6.5px !important;
-  transition: background-color linear 83ms !important;
-}
-
-.tab-close-button:hover {
-  transition: background-color linear 83ms !important;
+  transition: none !important;
 }
 
 /* Toolbar buttons hover */
-.toolbarbutton-1:hover > .toolbarbutton-icon,
-.toolbarbutton-1:hover > stack {
-  transition: background-color linear 83ms !important;
-}
-
-/* New tab hover */
-#TabsToolbar .toolbarbutton-1:hover>.toolbarbutton-icon, .tab-close-button:hover {
-  transition: background-color linear 83ms !important;
+.toolbarbutton-1 > .toolbarbutton-icon,
+.toolbarbutton-1 > stack {
+  transition: none !important;
 }
 
 /* URL breakout results */
@@ -244,14 +242,10 @@ meupopup {
 menupopup menu:hover:not([disabled=true]),
 menupopup menuitem:hover:not([disabled=true]),
 menupopup menu[_moz-menuactive]:not([disabled=true]),
-menupopup menuitem[_moz-menuactive]:not([disabled=true]) {
-  transition: background-color linear 83ms !important;
-}
+menupopup menuitem[_moz-menuactive]:not([disabled=true]),
 menupopup menu:not([disabled=true]),
-menupopup menuitem:not([disabled=true]),
-menupopup menu[_moz-menuactive]:not([disabled=true]),
-menupopup menuitem[_moz-menuactive]:not([disabled=true]) {
-  transition: background-color linear 83ms !important;
+menupopup menuitem:not([disabled=true]) {
+  transition: none !important;
 }
 
 tooltip {
@@ -280,18 +274,17 @@ tooltip {
   height: 30px !important;
   transform: translateY(1px) !important;
   border-radius: 3px !important;
-  transition: background-color 83ms linear, box-shadow 83ms linear !important;
+  transition: none !important;
 }
 
 /* Open */
 #urlbar[open]>#urlbar-background {
-  border: none !important;
-  transition: background-color 0ms !important;
+  transition: none !important;
   border-radius: 3px 3px 8px 8px !important;
 }
 /* Results */
 #urlbar[breakout][breakout-extend][open] {
-  transition: background-color 0ms !important;
+  transition: none !important;
   border-radius: 3px 3px 8px 8px !important;
 }
 
@@ -306,7 +299,7 @@ tooltip {
   border: none !important;
   height: 30px !important;
   border-radius: 3px !important;
-  transition: background-color 83ms linear, box-shadow 83ms linear !important;
+  transition: none !important;
 }
 .searchbar-textbox{
   margin-left: 6px !important;
@@ -400,7 +393,7 @@ menuitem {
 
 /* Panel colors */
 * {
-  --arrowpanel-background: light-dark(#fff, rgb(44,44,44)) !important;
+  --arrowpanel-background: var(--commonBackground) !important;
   --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
   --arrowpanel-border-color: light-dark(rgba(0,0,0,.125), rgba(0,0,0,.2)) !important;
   --panel-item-hover-bgcolor: light-dark(rgba(0,0,0,.03), rgba(255,255,255,.0605)) !important;
@@ -882,7 +875,6 @@ menupopup#ContentSelectDropdownPopup {
   height: 32px !important;
   padding-inline: 6px !important;
   padding-block: 0 !important;
-  transition: all 183ms ease-in-out !important;
   
   /* Fix arrow vertical position */
   & .toolbarbutton-1 {
@@ -893,14 +885,26 @@ menupopup#ContentSelectDropdownPopup {
   padding-inline: 4px !important;
   margin-block: 4px !important;
 }
+:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem) {
+  transition: none !important;
+}
+.bookmark-item:not(menu, menuitem):hover {
+  background-color: var(--textButtonHover) !important;
+}
+.bookmark-item:not(menu, menuitem):active {
+  background-color: var(--textButtonPressed) !important;
+}
+.bookmark-item:not(menu, menuitem):active * {
+  opacity: .6 !important;
+}
 
 /* Dialog boxes */
 #commonDialog, #commonDialogWindow {
-  background-color: light-dark(#fff, rgb(44,44,44,44)) !important;
+  background-color: var(--commonBackground) !important;
   border-radius: 8px !important;
 }
 .titleIcon {
-  background-color: light-dark(#fff, rgb(44,44,44,44)) !important;
+  background-color: var(--commonBackground) !important;
 }
 #titleContainer * {
   font-weight: 100 !important;
@@ -916,6 +920,10 @@ menupopup#ContentSelectDropdownPopup {
   margin-bottom: -8px !important;
   padding-block: 12px !important;
 }
+#infoBody {
+  margin-bottom: -4px !important;
+  transform: translateY(-10px) !important;
+}
 .dialog-button-box {
   background-color: light-dark(#f3f3f3,#202020) !important;
   border-top: 1px solid light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1)) !important;
@@ -927,10 +935,11 @@ menupopup#ContentSelectDropdownPopup {
 
 .dialog-button-box button {
   margin-bottom: 10px !important;
-  transition: all 83ms linear !important;
+  transition: none !important;
   width: -moz-available !important;
   font-weight: normal !important;
   background-color: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+  margin-inline: 8px !important;
 }
 .dialog-button-box button:not([dlgtype="accept"]):hover {
   background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
@@ -938,7 +947,6 @@ menupopup#ContentSelectDropdownPopup {
 .dialog-button-box button[dlgtype="accept"] {
   background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
   color: light-dark(#fff, #000) !important;
-  transition: all 83ms linear !important;
   border: 1px solid rgba(255,255,255,.08) !important;
   border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
   margin-left: 10px !important;
@@ -949,9 +957,324 @@ menupopup#ContentSelectDropdownPopup {
 .dialog-button-box button[dlgtype="accept"]:active {
   background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
 }
+.dialog-button-box button[dlgtype="accept"]:active * {
+  opacity: .6 !important;
+}
 .dialog-button-box button[dlgtype="cancel"] {
   margin-right: 10px !important;
+  margin-left: 0 !important;
+}
+
+/* Check Box - Adapted from Firefox UWP */
+checkbox {
+  opacity: 1 !important;
+}
+checkbox > .checkbox-check, input[type="checkbox"] {
+  background-color: light-dark(rgba(0,0,0,.0241),rgba(0,0,0,.1)) !important;
+  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+  background-clip: padding-box !important;
+  border-radius: 4px !important;
+  -moz-context-properties: fill !important;
+  fill: light-dark(#fff,#000) !important;
+  -moz-appearance: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0px !important;
+  box-shadow: none !important;
+  transition: background-color 43ms linear !important;
+}
+checkbox:hover > .checkbox-check, input[type="checkbox"]:hover {
+  background-color: light-dark(rgba(0,0,0,.0578),rgba(255,255,255,.0419)) !important;
+}
+checkbox:active > .checkbox-check, input[type="checkbox"]:active {
+  background-color: light-dark(rgba(0,0,0,.0924),rgba(255,255,255,.0698)) !important;
+  border-color: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+}
+input[type="checkbox"]:checked, checkbox[checked="true"] > .checkbox-check {
+  background: light-dark(var(--accentLight), var(--accentDark)) !important;
+  border-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+}
+input[type="checkbox"]:checked:hover, checkbox[checked="true"]:hover > .checkbox-check {
+  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  border-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+}
+input[type="checkbox"]:checked:active, checkbox[checked="true"]:hover:active > .checkbox-check {
+  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  border-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  fill: light-dark(rgba(255,255,255,.7), rgba(0,0,0,.5)) !important;
+}
+checkbox[checked="true"] > .checkbox-check , input[type="checkbox"]:checked {
+  background-image: url("chrome://global/skin/icons/check.svg") !important;
+  background-repeat: no-repeat !important;
+  background-size: 12px !important;
+  background-position: center center !important;
+}
+input[type="checkbox"] {
+  margin-right: 10px !important;
+}
+input[type="checkbox"]:-moz-focusring {
+  outline: none !important;
+}
+.checkbox-label-box {
+  margin-left: 10px !important;
+}
+/* Check Box Disabled */
+checkbox[disabled="true"] > .checkbox-label-box {
+  color: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3614)) !important;
+}
+checkbox[disabled="true"] > .checkbox-check {
+  background-color: transparent !important;
+  border: 1px solid light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+  fill: transparent !important;
+}
+checkbox[disabled="true"][checked="true"] > .checkbox-check, checkbox[disabled="true"][checked="true"]:is(:hover, :hover:active) > .checkbox-check  {
+  background-color: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+  border: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+  fill: light-dark(#fff,rgba(255,255,255,.53)) !important;
+}
+
+/* Toggle Switch */
+input[type="checkbox"].toggle-button, input[type="checkbox"] + .slider, .protections-popup-tp-switch, .toggle-button {
+  background-clip: padding-box !important;
+  background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+  background-image: none !important;
+  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+  border-radius: 12px !important;
+  padding: 9px !important;
+  padding-right: 32px !important;
+  width: 38px !important;
+  height: 18px;
+}
+.protections-popup-tp-switch {
+  padding: 3px !important;
+  padding-right: 26px !important;
+}
+input[type="checkbox"].toggle-button:hover, input[type="checkbox"]:hover + .slider, .protections-popup-tp-switch:hover, .toggle-button:hover {
+  background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+}
+input[type="checkbox"].toggle-button:active, input[type="checkbox"]:active + .slider, .protections-popup-tp-switch:active, .toggle-button:active {
+  background-color: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698)) !important;
+}
+input[type="checkbox"].toggle-button:checked, input[type="checkbox"]:checked + .slider, .protections-popup-tp-switch[enabled], .toggle-button[aria-pressed="true"] {
+  background: light-dark(var(--accentLight), var(--accentDark)) !important;
+  border-color: transparent !important;
+}
+input[type="checkbox"].toggle-button:checked:hover, input[type="checkbox"]:checked:hover + .slider, .protections-popup-tp-switch[enabled]:hover, .toggle-button[aria-pressed="true"]:hover {
+  background: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  border-color: transparent !important;
+}
+input[type="checkbox"].toggle-button:checked:active, input[type="checkbox"]:checked:active + .slider, .protections-popup-tp-switch[enabled]:active, .toggle-button[aria-pressed="true"]:active {
+  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  border-color: transparent !important;
+}
+input[type="checkbox"].toggle-button::before, input + .slider::before, .protections-popup-tp-switch::before, .toggle-button::before {
+  background: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
+  height: 12px !important;
+  width: 12px !important;
+  outline: none !important;
+  margin: 0px !important;
+  transition: transform 200ms, height 83ms linear, width 83ms linear !important;
+  transform: translateX(-6px) translateY(-6px) !important;
+}
+.protections-popup-tp-switch::before {
+  transform: none !important;
+}
+input[type="checkbox"].toggle-button:hover::before, input:hover + .slider::before, .protections-popup-tp-switch:hover::before, .toggle-button:hover::before {
+  height: 14px !important;
+  width: 14px !important;
+  transform: translateX(-7px) translateY(-7px) !important;
+}
+input[type="checkbox"].toggle-button:checked::before, input:checked + .slider::before, .protections-popup-tp-switch[enabled]::before, .toggle-button[aria-pressed="true"]::before {
+  background: light-dark(white,black) !important;
+  transform: translateX(-3px) translateY(-6px) !important;
+}
+input[type="checkbox"].toggle-button:checked:hover::before, input:hover:checked + .slider:hover::before, .protections-popup-tp-switch[enabled]:hover::before, .toggle-button[aria-pressed="true"]:hover::before {
+  transform: translateX(-4px) translateY(-7px) !important;
+}
+.protections-popup-tp-switch[enabled]::before {
+  transform: translateX(23px) !important;
+}
+input[type="checkbox"].toggle-button:checked:hover::before, input:hover:checked + .slider::before, .protections-popup-tp-switch[enabled]:hover::before {
+  background: AccentColorText !important;
+}
+.slider::before {
+  bottom: 0px !important;
+  inset-inline-start: 0px !important;
+}
+input[type="checkbox"] + .slider::before {
+  transform: translateX(2px) translateY(-3px) !important;
+}
+input[type="checkbox"]:checked + .slider::before {
+  transform: translateX(27px) translateY(-3px) !important;
+}
+
+/* Radio Button */
+radio {
+  opacity: 1 !important;
+}
+input[type="radio"] {
+  appearance: none !important;
+  background-clip: border-box !important;
+  background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+
+  outline: none !important;
+  border-radius: 100% !important;
+  margin-right: 5px !important;
+  box-shadow: none !important;
+  width: auto !important;
+  height: auto !important;
+  list-style: none !important;
+}
+input[type="radio"]:hover {
+  background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+  border-color: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+}
+input[type="radio"]:hover:active {
+  background-color: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.698)) !important;
+  border-color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+}
+input[type="radio"]:checked {
+  background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  border-color: transparent !important;
+}
+input[type="radio"]:checked:hover {
+  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  border-color: transparent !important;
+}
+input[type="radio"]:checked:hover:active {
+  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  border-color: transparent !important;
+}
+input[type="radio"]::before {
+  display: block !important;
+  content: "" !important;
+  background: transparent !important;
+  height: 8px !important;
+  width: 8px !important;
+  margin: 4px !important;
+  border-radius: 100% !important;
+  transition: all 43ms linear !important;
+}
+input[type="radio"]:hover::before {
+  height: 10px !important;
+  width: 10px !important;
+  margin: 3px !important;
+}
+input[type="radio"]:hover:active::before {
+  background: light-dark(#fff,#000) !important;
+}
+input[type="radio"]:checked::before {
+  background: light-dark(#fff,#000) !important;
+}
+input[type="radio"]:checked:hover::before {
+  background: light-dark(#fff,#000) !important;
+}
+input[type="radio"]:checked:hover:active::before {
+  background: Alight-dark(#fff,#000) !important;
+}
+input[type="radio"] + span {
+  position: relative !important;
+  bottom: 0px !important;
+}
+
+/* Old radio buttons */
+radio {
+  position: relative !important;
+}
+radio > .radio-check {
+  -moz-context-properties: fill !important;
+  appearance: none !important;
+
+  background-clip: padding-box !important;
+  background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+  border-radius: 100% !important;
+
+  padding: 1px !important;
+  margin-right: 5px !important;
+  box-shadow: none !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+radio:hover > .radio-check {
+  background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+}
+radio:hover:active > .radio-check {
+  background-color: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.698)) !important;
+  border: 1px solid light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+}
+radio[selected="true"] > .radio-check {
+  fill: light-dark(#fff,#000) !important;
+  background-clip: border-box !important;
+  background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  border-color: transparent !important;
+}
+radio[selected="true"]:hover > .radio-check {
+  fill: light-dark(#fff,#000) !important;
+  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  border-color: transparent !important;
+}
+radio[selected="true"]:hover:active > .radio-check {
+  fill: light-dark(#fff,#000) !important;
+  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  border-color: transparent !important;
+}
+
+radio[selected="true"]::before {
+  position: absolute !important;
+  left: 5px !important;
+  display: block !important;
+  content: "" !important;
+  background: light-dark(#fff,#000) !important;
+  height: 8px !important;
+  width: 8px !important;
+  border-radius: 100% !important;
+  transition: all 43ms linear !important;
+}
+
+/* Radio Button Disabled */
+radio[disabled="true"] > .radio-label-box {
+  color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+}
+radio:is([disabled="true"], [disabled="true"][selected="true"]) > .radio-check {
+  background-color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+  border: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+}
+radio:is([disabled="true"], [disabled="true"][selected="true"]):is(:hover, :hover:active) > .radio-check {
+  background-color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+  border: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+}
+radio > .radio-label-box {
   margin-left: 5px !important;
+  outline: none !important;
+}
+
+input[type="range"] {
+  -moz-appearance: none !important;
+  border: none !important;
+  background: light-dark(rgba(0,0,0,.44), rgba(255,255,255,.54)) !important;
+  height: 2px !important;
+}
+input[type="range"]:hover {
+  background: light-dark(rgba(0,0,0,.44), rgba(255,255,255,.54)) !important;
+}
+input[type="range"]::-moz-range-progress {
+  background: light-dark(var(--accentLight), var(--accentDark)) !important;
+  height: 2px !important;
+}
+input[type="range"]::-moz-range-thumb {
+  background: light-dark(var(--accentLight), var(--accentDark)) !important;
+  border: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+}
+
+/* Picture in Picture */
+html[windowtype="Toolkit:PictureInPicture"] { 
+  border-radius: 8px !important;
 }
 
 
@@ -1936,7 +2259,7 @@ menupopup#ContentSelectDropdownPopup {
   .toolbarbutton-animatable-box {
     transform: scale(85%) !important;
     margin-left: -2px !important;
-    margin-top: 0px !important;
+    margin-top: 0 !important;
   }
 
   #urlbar[breakout][breakout-extend][open] #identity-icon-box,
@@ -2019,6 +2342,34 @@ menupopup#ContentSelectDropdownPopup {
       box-shadow: 0 -36px 0 rgba(255,255,255,.0605) inset !important;
       transition: box-shadow ease-out 183ms !important;
     }
+  }
+  
+  /* Simple animations */
+  .tab-close-button,
+  .toolbarbutton-1 > .toolbarbutton-icon,
+  .toolbarbutton-1 > stack,
+  toolbarbutton,
+  #TabsToolbar .toolbarbutton-1>.toolbarbutton-icon,
+  menupopup menu:hover:not([disabled=true]),
+  menupopup menuitem:hover:not([disabled=true]),
+  menupopup menu[_moz-menuactive]:not([disabled=true]),
+  menupopup menuitem[_moz-menuactive]:not([disabled=true]),
+  menupopup menu:not([disabled=true]),
+  menupopup menuitem:not([disabled=true]),
+  #urlbar-background,
+  #searchbar,
+  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+  .dialog-button-box button  {
+    transition: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear !important;
+  }
+
+  #PersonalToolbar {
+    transition: all 183ms ease-in-out !important;
+  }
+
+  #urlbar[breakout][breakout-extend][open],
+  #urlbar[open]>#urlbar-background {
+    transition: none !important;
   }
   
   @media (prefers-color-scheme: light) {
