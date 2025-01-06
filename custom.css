@@ -255,6 +255,28 @@ menupopup menu:not([disabled=true]),
 menupopup menuitem:not([disabled=true]) {
   transition: none !important;
 }
+/* Right arrow */
+.menu-right {
+  opacity: 0 !important;
+}
+
+menu::after {
+  content: "❯";
+  margin-left: 8px;
+  margin-top: -2px !important;
+  color: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
+  font-size: 12px !important;
+}
+#protections-popup-mainView .subviewbutton-nav:not(.notFound), .widget-overflow-list .subviewbutton-nav, .PanelUI-subView .subviewbutton-nav {
+  &::after {
+    content: "❯" !important;
+    color: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
+    opacity: 1 !important;
+    font-size: 16px !important;
+    margin-bottom: -4px !important;
+    margin-top: -8px !important;
+  }
+}
 
 tooltip {
   -moz-appearance: none !important;
@@ -1310,8 +1332,14 @@ html[windowtype="Toolkit:PictureInPicture"] {
 #tracking-protection-icon-container,
 panel button,
 panel menulist,
-.titlebar-button {
+.titlebar-button,
+#clearDownloadsPanel,
+#downloadsHistory,
+.downloadButton {
   transition: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .toolbarbutton-1 > .toolbarbutton-icon:hover,
@@ -1323,8 +1351,13 @@ panel menulist,
 #tracking-protection-icon-container:hover,
 panel button:hover,
 panel menulist:hover,
-.titlebar-button:hover {
+.titlebar-button:hover,
+#clearDownloadsPanel:hover,
+#downloadsHistory:hover,
+.downloadButton:hover {
   background-color: var(--textButtonHover) !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 :is(
@@ -1337,9 +1370,14 @@ panel menulist:hover,
   #tracking-protection-icon-container,
   panel button,
   panel menulist,
-  .titlebar-button
+  .titlebar-button,
+  #clearDownloadsPanel,
+  #downloadsHistory,
+ .downloadButton
 ):is(:active, [open="true"]) {
   background-color: var(--textButtonPressed) !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 /* Titles */
