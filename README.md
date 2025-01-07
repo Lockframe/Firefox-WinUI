@@ -12,6 +12,7 @@ A custom CSS addon for [bmFtZQ](https://github.com/bmFtZQ)'s [Edge-frfox](https:
 * `browser.tabs.allow_transparent_browser`
 * `widget.transparent-windows`
 * `widget.windows.mica`
+* `svg.context-properties.content.enabled`
 5. Create and/or set the following boolean keys to false:
 * `uc.tweak.disable-drag-space`
 * `uc.tweak.floating-tabs`
