@@ -15,6 +15,8 @@
   --acrylic: url(image/accnoise256.png) !important;
   
   --commonBackground: light-dark(#fff,#2c2c2c) !important;
+  --footer: light-dark(#f3f3f3, #202020) !important;
+  --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1)) !important;
   
   --accentLight: color-mix(in srgb, accentColor 90%, black) !important; /* Main */
   --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
@@ -34,9 +36,16 @@
   --buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
   --buttonShadowDarkPressed: 0 0 0 1px rgba(255,255,255,.0698) !important;
   
+  --inputBarLight: 0 0 0 1px rgba(0,0,0,.0605), 0 1px 0 rgba(0,0,0,.39) !important;
+  --inputBarFocusLight: 0 0 0 1px rgba(0,0,0,.0578), 0 1px 0 var(--accentLight), 0 -1px 0 var(--accentLight) inset !important;
+  --inputBarDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(0,0,0,.46) !important;
+  --inputBarFocusDark: 0 0 0 1px rgba(255,255,255,.0698), 0 1px 0 var(--accentDark), 0 -1px 0 var(--accentDark) inset !important;
+  
   --textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
   --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
   --textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
+  
+  text-decoration: none !important;
 }
 
 /* Window-wide transparency */
@@ -93,7 +102,7 @@
 
 /* URL Tooltip */
 #statuspanel-label{
-  border-radius: 4px !important;
+  border-radius: 3px !important;
   padding: 5px !important;
   margin: 0 0 4px 4px !important;
   background-image: url(image/accnoise256.png) !important;
@@ -259,7 +268,6 @@ menupopup menuitem:not([disabled=true]) {
 .menu-right {
   opacity: 0 !important;
 }
-
 menu::after {
   content: "❯";
   margin-left: 8px;
@@ -276,6 +284,11 @@ menu::after {
     margin-bottom: -4px !important;
     margin-top: -8px !important;
   }
+}
+
+/* Change profile button in settings menu */
+appMenu-empty-profiles-button {
+  padding-inline-end: fit-content !important;
 }
 
 tooltip {
@@ -356,7 +369,7 @@ tooltip {
   transform: translateY(8px) !important;
 }
 #urlbar[breakout][breakout-extend] > #urlbar-background {
-  border-radius: 4px 4px 0px 0px !important;
+  border-radius: 3px 3px 0px 0px !important;
   border-bottom: 1px transparent !important;
 }
 
@@ -433,26 +446,6 @@ menuitem {
 
 #appMenu-multiView {
   background-image: url(image/accnoise256.png) !important;
-}
-
-/* Context Menu entries removal */
-#context-sendimage,
-#context-viewimageinfo,
-#context-setDesktopBackground,
-#context-sep-setbackground,
-#context-openlinkinusercontext-menu,
-#context-openlinkintab,
-#context-viewsource,
-#context-media-pause,
-#context-media-mute,
-#context-video-fullscreen,
-#context-sendvideo,
-#context-viewpartialsource-selection,
-#context-print-selection,
-#context-inspect-a11y,
-#context-stripOnShareLink
-{
-  display: none !important;
 }
 
 /* Translation pop up */
@@ -821,11 +814,11 @@ menupopup#ContentSelectDropdownPopup {
 .titlebar-buttonbox {
 	height: 30px;
 }
-/* Decreases the clashing contrast between buttons - Close button does not reappear if included here */
+/* Decreases the clashing contrast between buttons - Close button does not reappear if included here - Not compatible with W10
 :root:not(:-moz-window-inactive) .titlebar-restore,
 :root:not(:-moz-window-inactive) .titlebar-min,
 :root:not(:-moz-window-inactive) .titlebar-max {
-  list-style-image: unset !important;
+  list-style-image: unset !important; */
 }
 :root[sizemode="maximized"] .titlebar-buttonbox {
   opacity: 1 !important;
@@ -834,7 +827,6 @@ menupopup#ContentSelectDropdownPopup {
 :root:-moz-window-inactive .titlebar-buttonbox {
   opacity: .5 !important;
 }
-
 .titlebar-min {
   transform: translateX(1px) !important;
 }
@@ -842,7 +834,9 @@ menupopup#ContentSelectDropdownPopup {
   padding-right: 19px !important;
   margin-right: -2px !important;
 }
-.titlebar-close:hover {
+.titlebar-close:hover,
+:root:not(:-moz-window-inactive) .titlebar-close:hover,
+:root:-moz-window-inactive .titlebar-close:hover {
   background-color: #c42b1c !important;
 }
 
@@ -925,25 +919,6 @@ menupopup#ContentSelectDropdownPopup {
   background-color: var(--textButtonPressed) !important;
 }
 
-/* Default button */
-button {
-  transition: none !important;
-  font-weight: normal !important;
-  background-color: var(--button) !important;
-  
-  box-shadow: var(--buttonShadowLight) !important;
-}
-button:hover {
-  background-color: var(--buttonHover) !important;
-}
-button:active {
-  background-color: var(--buttonPressed) !important;
-  box-shadow: var(--buttonShadowLight) !important;
-}
-button:active * {
-  opacity: .768 !important;
-}
-
 /* Dialog boxes */
 #commonDialog, #commonDialogWindow {
   background-color: var(--commonBackground) !important;
@@ -971,8 +946,8 @@ button:active * {
   transform: translateY(-10px) !important;
 }
 .dialog-button-box {
-  background-color: light-dark(#f3f3f3,#202020) !important;
-  border-top: 1px solid light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1)) !important;
+  background-color: var(--footer) !important;
+  border-top: 1px solid var(--footerBorder) !important;
   margin-inline: -12px !important;
   margin-block-end: -16px !important;
   padding-block-start: 10px !important;
@@ -1002,12 +977,155 @@ button:active * {
 .dialog-button-box button[dlgtype="accept"]:hover, #customization-done-button:hover {
   background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
 }
-.dialog-button-box button[dlgtype="accept"]:active, #customization-done-button:active {
+.dialog-button-box button[dlgtype="accept"]:active, #customization-done-button:active{
   background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
 }
 .dialog-button-box button[dlgtype="cancel"] {
   margin-right: 10px !important;
   margin-left: 0 !important;
+}
+.popup-notification-learnmore-link, .text-link {
+  margin-bottom: 12px !important;
+  color: light-dark(var(--accentLight), var(--accentDark)) !important;
+}
+.popup-notification-body :is(checkbox){
+  margin-block: 8px !important;
+}
+
+/* Save bookmark panel */
+#editBMPanel_namePicker {
+  outline: none !important;
+  border: none !important;
+  border-radius: 3px !important;
+  background-color: var(--button) !important;
+}
+#editBMPanel_namePicker:hover {
+  background-color: var(--buttonHover) !important;
+}
+#editBMPanel_namePicker:active {
+  background-color: var(--buttonPressed) !important;
+}
+
+/* In-url toolbar buttons */
+.toolbarbutton-1 > .toolbarbutton-icon,
+.toolbarbutton-1 > .toolbarbutton-text,
+.toolbarbutton-1 > .toolbarbutton-badge-stack,
+:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+.urlbar-page-action,
+.identity-box-button,
+#tracking-protection-icon-container,
+.titlebar-button,
+#clearDownloadsPanel,
+#downloadsHistory,
+.downloadButton {
+  transition: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.toolbarbutton-1 > .toolbarbutton-icon:hover,
+.toolbarbutton-1 > .toolbarbutton-text:hover,
+.toolbarbutton-1 > .toolbarbutton-badge-stack:hover,
+:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem):hover,
+.urlbar-page-action:hover,
+.identity-box-button:hover,
+#tracking-protection-icon-container:hover,
+.titlebar-button:hover,
+#clearDownloadsPanel:hover,
+#downloadsHistory:hover,
+.downloadButton:hover {
+  background-color: var(--textButtonHover) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+:is(
+  .toolbarbutton-1 > .toolbarbutton-icon,
+  .toolbarbutton-1 > .toolbarbutton-text,
+  .toolbarbutton-1 > .toolbarbutton-badge-stack,
+  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+  .urlbar-page-action,
+  .identity-box-button,
+  #tracking-protection-icon-container,
+  .titlebar-button,
+  #clearDownloadsPanel,
+  #downloadsHistory,
+  .downloadButton
+):is(:active, [open="true"]) {
+  background-color: var(--textButtonPressed) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Default buttons */
+button, 
+#editBookmarkPanelRemoveButton, 
+button.popup-notification-secondary-button,
+panel menulist {
+  transition: none !important;
+  font-weight: normal !important;
+  background-color: var(--button) !important;
+  border-radius: 3px !important;
+}
+button:hover, 
+#editBookmarkPanelRemoveButton:hover, 
+button.popup-notification-secondary-button:hover,
+panel menulist:hover {
+  background-color: var(--buttonHover) !important;
+  border-radius: 3px !important;
+}
+button:active, 
+#editBookmarkPanelRemoveButton:active, 
+button.popup-notification-secondary-button:active,
+panel menulist:active {
+  background-color: var(--buttonPressed) !important;
+  border-radius: 3px !important;
+}
+button:active * {
+  opacity: .768 !important;
+}
+
+/* Accent color buttons */
+#editBookmarkPanelDoneButton,
+button.primary,
+#appMenu-update-banner {
+  box-shadow: none !important;
+  background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  color: light-dark(#fff, #000) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+  border-radius: 4px !important;
+  font-weight: normal !important;
+}
+#editBookmarkPanelDoneButton:hover,
+button.primary:hover,
+#appMenu-update-banner:hover {
+  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  box-shadow: none !important;
+}
+#editBookmarkPanelDoneButton:active,
+button.primary:active,
+#appMenu-update-banner:active {
+  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  box-shadow: none !important;
+}
+/* Update menu button icon color */
+.panel-banner-item {
+  &[notificationid="update-available"], &[notificationid="update-downloading"], &[notificationid="update-manual"], &[notificationid="update-other-instance"], &[notificationid="update-restart"] {
+    & > .toolbarbutton-icon {
+      fill: light-dark(white,black) !important;
+      margin: auto !important;
+    }
+  }
+}
+
+/* Footer */
+.panel-footer {
+  background-color: var(--footer) !important;
+  border-top: 1px solid var(--footerBorder) !important;
+  padding: 8px !important;
+  margin: 0 !important;
 }
 
 /* Check Box - Adapted from Firefox UWP */
@@ -1322,68 +1440,10 @@ html[windowtype="Toolkit:PictureInPicture"] {
   border-radius: 8px !important;
 }
 
-/* In-url toolbar buttons */
-.toolbarbutton-1 > .toolbarbutton-icon,
-.toolbarbutton-1 > .toolbarbutton-text,
-.toolbarbutton-1 > .toolbarbutton-badge-stack,
-:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
-.urlbar-page-action,
-.identity-box-button,
-#tracking-protection-icon-container,
-panel button,
-panel menulist,
-.titlebar-button,
-#clearDownloadsPanel,
-#downloadsHistory,
-.downloadButton {
-  transition: none !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-.toolbarbutton-1 > .toolbarbutton-icon:hover,
-.toolbarbutton-1 > .toolbarbutton-text:hover,
-.toolbarbutton-1 > .toolbarbutton-badge-stack:hover,
-:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem):hover,
-.urlbar-page-action:hover,
-.identity-box-button:hover,
-#tracking-protection-icon-container:hover,
-panel button:hover,
-panel menulist:hover,
-.titlebar-button:hover,
-#clearDownloadsPanel:hover,
-#downloadsHistory:hover,
-.downloadButton:hover {
-  background-color: var(--textButtonHover) !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-:is(
-  .toolbarbutton-1 > .toolbarbutton-icon,
-  .toolbarbutton-1 > .toolbarbutton-text,
-  .toolbarbutton-1 > .toolbarbutton-badge-stack,
-  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
-  .urlbar-page-action,
-  .identity-box-button,
-  #tracking-protection-icon-container,
-  panel button,
-  panel menulist,
-  .titlebar-button,
-  #clearDownloadsPanel,
-  #downloadsHistory,
- .downloadButton
-):is(:active, [open="true"]) {
-  background-color: var(--textButtonPressed) !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
 /* Titles */
 h1, h2, h3 {
   text-align: left !important;
-  margin-left: 8px !important;
+  margin-left: 12px !important;
 }
 
 /* ============= DARK ================== */
@@ -1621,10 +1681,22 @@ h1, h2, h3 {
   }
   
   /* Default buttons */
-  button {
+  button,  
+  #editBookmarkPanelRemoveButton,
+  button.popup-notification-secondary-button,
+  panel menulist {
     box-shadow: var(--buttonShadowDark) !important;
   }
-  button:active {
+  button:hover,  
+  #editBookmarkPanelRemoveButton:hover,
+  button.popup-notification-secondary-button:hover,
+  panel menulist:hover {
+    box-shadow: var(--buttonShadowDark) !important;
+  }
+  button:active, 
+  #editBookmarkPanelRemoveButton:active,
+  button.popup-notification-secondary-button:active,
+  panel menulist:active {
     box-shadow: var(--buttonShadowDarkPressed) !important;
   }
   
@@ -1633,7 +1705,15 @@ h1, h2, h3 {
     box-shadow: 0 0 0 1px rgba(255,255,255,.0605), 0 -1px 0 rgba(255,255,255,.03) !important;
   }
   
-  /* In-url toolbar buttons */
+  /* Save bookmark panel */
+  #editBMPanel_namePicker {
+    box-shadow: var(--inputBarDark) !important;
+  }
+  #editBMPanel_namePicker:focus-within {
+    box-shadow: var(--inputBarFocusDark) !important;
+  }
+  
+  /* Active button opacity*/
   :is(
   .toolbarbutton-1 > .toolbarbutton-icon,
   .toolbarbutton-1 > .toolbarbutton-text,
@@ -1895,10 +1975,22 @@ h1, h2, h3 {
   }
   
   /* Default buttons */
-  button {
+  button,
+  #editBookmarkPanelRemoveButton,
+  button.popup-notification-secondary-button,
+  panel menulist{
     box-shadow: var(--buttonShadowLight) !important;
   }
-  button:active {
+  button:hover,
+  #editBookmarkPanelRemoveButton:hover,
+  button.popup-notification-secondary-button:hover,
+  panel menulist:hover {
+    box-shadow: var(--buttonShadowLight) !important;
+  }
+  button:active,
+  #editBookmarkPanelRemoveButton:active,
+  button.popup-notification-secondary-button:active,
+  panel menulist:active {
     box-shadow: var(--buttonShadowLightPressed) !important;
   }
   
@@ -1907,7 +1999,15 @@ h1, h2, h3 {
     box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
   }
   
-  /* In-url toolbar buttons */
+  /* Save bookmark panel */
+  #editBMPanel_namePicker {
+    box-shadow: var(--inputBarLight) !important;
+  }
+  #editBMPanel_namePicker:focus-within {
+    box-shadow: var(--inputBarFocusLight) !important;
+  }
+  
+  /* Active button opacity */
   :is(
   .toolbarbutton-1 > .toolbarbutton-icon,
   .toolbarbutton-1 > .toolbarbutton-text,
