@@ -61,6 +61,19 @@
   font-family: 'Segoe UI Variable Text', 'Segoe UI', sans-serif !important;
 }
 
+/* Proper downloads and menu icon */
+#downloads-button,
+#downloads-indicator-anchor,
+#appMenu-downloads-button,
+#appMenu-library-downloads-button {
+  list-style-image: url("winui-icons/downloads.svg") !important;
+}
+#PanelUI-menu-button,
+#appMenu-more-button2,
+.unified-extensions-item-menu-button {
+  list-style-image: url("winui-icons/menu.svg") !important;
+}
+
 /* Center tab and URL text vertically */
 @media not (-moz-bool-pref: "uc.winui.aptos") {
   .tabbrowser-tab label, .urlbar-input-box, #identity-icon-label, .searchbar-textbox {
@@ -827,6 +840,10 @@ menupopup#ContentSelectDropdownPopup {
 :root:-moz-window-inactive .titlebar-buttonbox {
   opacity: .5 !important;
 }
+:root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
+  opacity: .5 !important;
+  transform: translate(-2px, -1px) !important;
+}
 .titlebar-min {
   transform: translateX(1px) !important;
 }
@@ -1067,6 +1084,7 @@ panel menulist {
   font-weight: normal !important;
   background-color: var(--button) !important;
   border-radius: 3px !important;
+  border: none !important;
 }
 button:hover, 
 #editBookmarkPanelRemoveButton:hover, 
@@ -1084,6 +1102,9 @@ panel menulist:active {
 }
 button:active * {
   opacity: .768 !important;
+}
+#editBMPanel_foldersExpander {
+  margin-left: 8px !important;
 }
 
 /* Accent color buttons */
@@ -2142,11 +2163,11 @@ h1, h2, h3 {
 /* Mac-like back/forward buttons */
 @media (-moz-bool-pref: "uc.winui.mac-back-forward") {
   #back-button {
-    list-style-image: url("icons/back-mac.svg") !important;
+    list-style-image: url("winui-icons/back-mac.svg") !important;
   }
 
   #forward-button {
-    list-style-image: url("icons/forward-mac.svg") !important;
+    list-style-image: url("winui-icons/forward-mac.svg") !important;
   }
 }
 
@@ -2671,5 +2692,35 @@ h1, h2, h3 {
     padding-inline: 7px !important;
     margin-block: 4px !important;
     margin-inline: 3px !important;
+  }
+}
+
+@media (-moz-bool-pref: "uc.winui.macos-navbar-icons") {
+  #back-button {
+    list-style-image: url("winui-icons/back-mac.svg") !important;
+  }
+  #forward-button {
+    list-style-image: url("winui-icons/forward-mac.svg") !important;
+  }
+  #add-ons-button,
+  #appMenu-extensions-themes-button,
+  #unified-extensions-button,
+  #unified-extensions-manage-extensions {
+  list-style-image: url("winui-icons/extension-mac.svg") !important;
+  }
+  #PanelUI-menu-button,
+  #appMenu-more-button2,
+  .unified-extensions-item-menu-button {
+    list-style-image: url("winui-icons/menu-mac.svg") !important;
+  }
+  .tab-icon-image[src="chrome://branding/content/icon32.png"],
+  .tab-icon-image[src="chrome://browser/skin/privatebrowsing/favicon.svg"] {
+    content: url("winui-icons/newtab-mac.svg") !important;
+  }
+  #downloads-button,
+  #downloads-indicator-anchor,
+  #appMenu-downloads-button,
+  #appMenu-library-downloads-button {
+  list-style-image: url("winui-icons/downloads-mac.svg") !important;
   }
 }
