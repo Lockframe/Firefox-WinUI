@@ -20,11 +20,12 @@ url(about:privatebrowsing) {
     margin-inline-end: 36px !important;
     margin-block-end: 36px !important;
     margin-block-start: -2px !important;
-    transition: all linear 83ms !important;
+    transition: all 83ms linear !important;
     & .tile {
       background-color: transparent !important;
       border-radius: unset !important;
       box-shadow: none !important;
+      outline: none !important;
 
       & .icon-wrapper {
         border-radius: 4px !important;
@@ -52,7 +53,7 @@ url(about:privatebrowsing) {
     background-color: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326)) !important;
   }
   .top-site-outer:active > * {
-    opacity: .6 !important;
+    opacity: .75 !important;
   }
 
   /* Site icons background color and context menu button */
@@ -83,10 +84,9 @@ url(about:privatebrowsing) {
 
   /* Pinned site titles */
   .top-site-outer .title {
-    color: light-dark(black,white) !important;
+    color: light-dark(rgba(0,0,0,.89),white) !important;
     text-shadow: none !important;
-    font-family: 'Aptos', 'Segoe UI Variable Text', 'Segoe UI' !important;
-    font-size: 13.5px !important;
+    font-size: 13px !important;
     margin-inline: 12px !important;
   }
 
@@ -137,6 +137,16 @@ url(about:privatebrowsing) {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06),
       0 1px 0 rgba(0,0,0,.1) !important;
     }
+    .top-site-outer:hover {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06),
+      0 1px 0 rgba(0,0,0,.1),
+      0 4px 8px rgba(0,0,0,.03) !important;
+      transform: translateY(-4px) !important;
+    }
+    .top-site-outer:active {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.0578) !important;
+      transform: none !important;
+    }
     .search-wrapper .search-handoff-button, .search-wrapper input {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06),
       0 1px 0 rgba(0,0,0,.45) !important;
@@ -152,7 +162,17 @@ url(about:privatebrowsing) {
     /* Pinned site tiles */
     .top-site-outer {
       box-shadow: 0 0 0 1px rgba(255,255,255,.07),
-      0 -1px 0 rgba(255,255,255,.035) !important;    
+      0 -1px 0 rgba(255,255,255,.035) !important;
+    }
+    .top-site-outer:hover {
+      box-shadow: 0 0 0 1px rgba(255,255,255,.14),
+      0 -1px 0 rgba(255,255,255,.035),
+      0 4px 8px rgba(0,0,0,.2) !important;
+      transform: translateY(-4px) !important;
+    }
+    .top-site-outer:active {
+      box-shadow: 0 0 0 1px rgba(255,255,255,.0698) !important;
+      transform: none !important;
     }
     .search-wrapper .search-handoff-button, .search-wrapper input {
       box-shadow: 0 0 0 1px rgba(255,255,255,.08),
@@ -245,7 +265,7 @@ url(about:privatebrowsing) {
   
   /* Parts restyling */
   * {
-  	font-family: 'Segoe UI Variable Text' !important;
+  	font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Arial' !important;
     text-decoration: none !important;
     prefix: none !important;
   }
@@ -413,7 +433,7 @@ url(about:privatebrowsing) {
 		height: 20px !important;
 		margin: 0px !important;
 		box-shadow: none !important;
-    transition: all 43ms linear !important;
+    transition: background-color 43ms linear !important;
 	}
 	checkbox:hover > .checkbox-check, input[type="checkbox"]:hover {
 		background-color: light-dark(rgba(0,0,0,.0578),rgba(255,255,255,.0419)) !important;
@@ -703,7 +723,6 @@ url(about:privatebrowsing) {
 		height: 20px !important;
 		border-radius: 50% !important;
 	}
-
 
   /* Add new shortcut dialog */
   .edit-topsites-wrapper .modal {
