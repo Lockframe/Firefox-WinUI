@@ -6,7 +6,7 @@ A custom CSS addon for [bmFtZQ](https://github.com/bmFtZQ)'s [Edge-frfox](https:
 
 ## How to install
 1. Go to your Firefox profile's chrome folder after installing Edge-Frfox and optionally make a backup of the original `userContent.css`.
-2. Download the `icons` folder, `custom.css` and `userContent.css` from this repository and add them to your Firefox profile's `chrome` folder.
+2. Download the `winui-icons` folder, `custom.css` and `userContent.css` from this repository and add them to your Firefox profile's `chrome` folder.
 3. Close and restart Firefox, if performed correctly, the theme should now be installed.
 4. Go to `about:config` and set the following boolean keys to true:
 * `browser.tabs.allow_transparent_browser`
@@ -41,6 +41,7 @@ You can also add the following boolean keys to enable some tweaks:
 * `uc.winui.rounded-navbar`
 * `uc.winui.smaller-toolbar-buttons`
 * `uc.winui.taller-bookmarks`
+* `uc.winui.macos-navbar-icons`
 * `uc.winui.taller-urlbar`
 * `uc.winui.transparent-urlbar`
 * `uc.winui.uppercase-newtab-label`
