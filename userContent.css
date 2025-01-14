@@ -20,7 +20,7 @@ url(about:privatebrowsing) {
     margin-inline-end: 36px !important;
     margin-block-end: 36px !important;
     margin-block-start: -2px !important;
-    transition: all 83ms linear !important;
+    transition: var(--basicBGAnimation) !important;
     & .tile {
       background-color: transparent !important;
       border-radius: unset !important;
@@ -165,7 +165,7 @@ url(about:privatebrowsing) {
       0 -1px 0 rgba(255,255,255,.035) !important;
     }
     .top-site-outer:hover {
-      box-shadow: 0 0 0 1px rgba(255,255,255,.14),
+      box-shadow: 0 0 0 1px rgba(255,255,255,.1),
       0 -1px 0 rgba(255,255,255,.035),
       0 4px 8px rgba(0,0,0,.2) !important;
       transform: translateY(-4px) !important;
@@ -194,11 +194,13 @@ url(about:privatebrowsing) {
     --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
     --accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent) !important; /* Pressed */
     --accentLight4: color-mix(in srgb, accentColor 100%, transparent) !important; /* Full saturation */
+    --accentWarningLight: color-mix(in srgb, var(--accentLight3) 50%, white) !important;
 
     --accentDark: color-mix(in srgb, accentColor 60%, white) !important; /* Main */
     --accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent) !important; /* Hover */
     --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
     --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
+    --accentWarningDark: color-mix(in srgb, var(--accentDark3) 50%, black) !important;
   
     --in-content-page-color: light-dark(#252525, #fff) !important;
     --in-content-page-background: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
@@ -253,24 +255,54 @@ url(about:privatebrowsing) {
     --in-content-table-background: light-dark(#f7f7f7, #252525) !important;
     --in-content-text-color: var(--in-content-page-color) !important;
     --border-interactive-color: light-dark(#929292, #858585) !important;
+
+    --commonBackground: light-dark(#fff,#2c2c2c) !important;
+    --footer: light-dark(#f3f3f3, #202020) !important;
+    --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1)) !important;
+    --textColor: light-dark(rgba(0,0,0,.89), rgb(255,255,255)) !important;
+    --textInverse: light-dark(#fff, #000) !important;
+
+    --cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
+    --cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837)) !important;
+    --cardShadowLight: 0 0 0 1px rgba(0,0,0,.06) !important;
+    --cardShadowLightHover: 0 0 0 1px rgba(0,0,0,.06), 0 4px 8px rgba(0,0,0,.03) !important;
+    --cardShadowDark: 0 0 0 1px rgba(0,0,0,.14) !important;
+    --cardShadowDarkHover: 0 0 0 1px rgba(255,255,255,.1), 0 -1px 0 rgba(255,255,255,.035), 0 4px 8px rgba(0,0,0,.1) !important;
+
+    --button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+    --buttonHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+    --buttonPressed: light-dark(rgba(255,255,255,.3), rgba(255,255,255,.0326)) !important;
+    --buttonShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+    --buttonShadowLightPressed: 0 0 0 1px rgba(0,0,0,.0578) !important;
+    --buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
+    --buttonShadowDarkPressed: 0 0 0 1px rgba(255,255,255,.0698) !important;
+
+    --textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+    --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+    --textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
+
+    --basicBGAnimation: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear, transform 83ms linear !important;
+
     scrollbar-color:
       light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
       light-dark(#f7f7f7, #252525) !important;
   }
 
   ::selection {
-    background-color: light-dark(var(--accentDark4), var(--accentDark));
-    color: light-dark(#fff, #000);
+    background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+    color: var(--textInverse) !important;
   }
   
   /* Parts restyling */
   * {
   	font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Arial' !important;
     text-decoration: none !important;
-    prefix: none !important;
   }
   hbox {
     font-weight: normal !important;
+  }
+  .content-blocking-warning-title, .privacy-detailedoption .radio-label-box {
+    font-weight: 600 !important;
   }
 
   /* Headers */
@@ -281,12 +313,17 @@ url(about:privatebrowsing) {
 
   /* Search bars */
   search-textbox, #about-config-search, input {
+    border-radius: 3px !important;
     border: none !important;
   	outline: none !important;
     transition: background-color 83ms linear, box-shadow 83ms linear !important;
   }
   .textbox-search-sign {
     margin-inline: 6px !important;
+    margin-right: 12px !important;
+  }
+  .textbox-search-icon, .textbox-search-sign, .textbox-search-clear {
+    margin-inline-start: 8px !important;
   }
 
   /* Sidebars */
@@ -303,11 +340,60 @@ url(about:privatebrowsing) {
 
   /* Addon cards */
   .addon.card {
+    background-color: var(--cardBG) !important;
     margin-block: 5px !important;
-    transition: all 83ms linear !important;
+    transition: var(--basicBGAnimation) !important;
   }
+  addon-card:not([expanded]) > .addon.card:hover {
+    background-color: var(--cardBGHover) !important; 
+  }
+
   .addon-detail-sitepermissions, .addon-detail-row {
     padding-bottom: 16px !important;
+  }
+
+  /* Addon page */    
+  button.tab-button {
+    border: none !important;
+    margin: 4px !important;
+    font-weight: normal !important;
+    color: var(--textColor) !important;
+    border-radius: 99px !important;
+  }
+  /* It was initially supposed to look like RTM tabs in the search menu, but I didn't manage to center the indicator */
+  /*button.tab-button[selected]::after {
+    content: '' !important;
+    background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+    position: absolute !important;
+    border-radius: 99px !important;
+    margin-top: 23px !important;
+    margin-left: -35px !important;
+    height: 3px !important;
+    width: 16px !important;
+  }*/
+  button.tab-button[selected] {
+    color: var(--textInverse) !important;
+    background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  }
+  .addon-detail-contribute {
+    background-color: var(--button) !important;
+    border: 1px solid light-dark(rgba(0,0,0,.0605), rgba(255,255,255,.0605)) !important;
+    border-bottom-color: light-dark(rgba(0,0,0,.45), rgba(255,255,255,.54)) !important;
+  }
+  .addon-detail-contribute-button {
+    fill: var(--textInverse) !important;
+    color: var(--textInverse) !important;
+    font-weight: normal !important;
+    margin-bottom: unset !important;
+    background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  }
+
+  .sync-group {
+    background-color: var(--cardBG) !important;
+    border: none !important;
+  }
+  .sync-info-box {
+    padding: 14px 16px !important;
   }
 
   /* Context menu */
@@ -345,36 +431,148 @@ url(about:privatebrowsing) {
     background-color: light-dark(rgba(0,0,0,.085), rgba(255,255,255,.137)) !important;
   }
 
+  /* Needs organizing */
+  /* Tables */
+  listheader {
+    background-color: var(--button) !important;
+    border: 1px solid light-dark(rgba(0,0,0,.0605),rgba(255,255,255,.0605)) !important;
+  }
+  #handlersView {
+    background: var(--button-background-color) !important;
+    border: 1px solid light-dark(rgba(0,0,0,.0605),rgba(255,255,255,.0605)) !important;
+    margin: 0 0 8px 0 !important;
+  }
+  richlistitem {
+    min-height: 36px !important;
+    border-top: 1px solid var(--) !important;
+  }
+  
+  /* Info boxes */
+  .info-box-container {
+    background-color: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+    border: none !important;
+    outline: 1px solid light-dark(rgba(0,0,0,.0605),rgba(0,0,0,.1)) !important;
+    padding: 8px 16px !important;
+    padding-bottom: 16px !important;
+    margin-top: 8px !important;
+  }
+  #dohStatusSection {
+    padding-block: 8px !important;
+  }
+  .web-appearance-choice-footer {
+    padding: 8px !important;
+    border-top: 1px solid var(--footerBorder) !important;
+  }
+  #permissionsGroup hbox {
+    margin-block: 2px !important;
+  }
+  #web-appearance-override-warning, #text-zoom-override-warning {
+    background-color: light-dark(var(--accentWarningLight), var(--accentWarningDark)) !important;
+  }
+  #web-appearance-chooser .icon-container, 
+  #web-appearance-override-warning .icon-container, 
+  #text-zoom-override-warning .icon-container {
+    height: unset !important;
+    margin-right: 6px !important;
+  }
+  #web-appearance-chooser .icon, 
+  #web-appearance-override-warning .icon, 
+  #text-zoom-override-warning .icon {
+    color: #fff !important;
+  }
+
+  .subcategory:not([hidden]) ~ .subcategory {
+    border-top: 1px solid light-dark(rgba(0,0,0,.1),rgba(255,255,255,.1)) !important;
+  }
+  
+  .sidebar-footer-list {
+    margin-block: 0 8px !important;
+  }
+  
+  .textbox-search-icon {
+    margin-right: 4px !important;
+  }
+  
+  moz-message-bar .container .actions {
+    background: none !important;
+    border: none !important;
+    padding: unset !important;
+    margin: 0 0 auto auto !important;
+  }
+  
+  .collapsible-section {
+    padding: 10px 40px !important;
+  }
+
+  /* Links */
+  a:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button),
+  .text-link,
+  button.text-link:is(:not([disabled="true"]), :enabled),
+  ::part(support-link) {
+    padding: 4px 0 !important;
+    border-radius: 4px !important;
+    transition: var(--basicBGAnimation) !important;
+    max-width: -moz-available !important;
+    width: min-content !important;
+    display: ruby !important;
+  }
+  a:hover:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button),
+  .text-link:hover,
+  button.text-link:is(:not([disabled="true"]), :enabled):hover,
+  ::part(support-link):hover {
+    background: var(--textButtonHover) !important;
+  }
+  a:active:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button),
+  .text-link:active,
+  button.text-link:is(:not([disabled="true"]), :enabled):active,
+  ::part(support-link):active {
+    background: var(--textButtonPressed) !important;
+    color: var(--accentLight4) !important;
+  }
+
   /* Buttons */
-  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow),
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button),
   menulist,
   .web-appearance-choice,
   treecol {
     border: none !important;
     outline: none !important;
-    background-color: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.06)) !important;
-    transition: background-color 83ms linear !important;
+    background-color: var(--button) !important;
+    transition: var(--basicBGAnimation) !important;
     font-weight: normal !important;
   }
   /* Hover */
-  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):hover,
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):hover,
   menulist:not([disabled]):hover,
   .web-appearance-choice:not([disabled]):hover,
   treecol:not([disabled]):hover {
     background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
   }
   /* Pressed */
-  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):active,
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
   menulist:not([disabled]):active,
   .web-appearance-choice:not([disabled]):active,
   treecol:not([disabled]):active {
     background-color: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326)) !important;
   }
-  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):active,
-  menulist:not([disabled]):active > *,
-  .web-appearance-choice:not([disabled]):active > *,
-  treecol:not([disabled]):active > * {
-    opacity: .6 !important;
+
+  .arrowhead {
+    border-radius: 3px !important;
+    min-height: 30px !important;
+    min-width: 30px !important;
+    max-height: 30px !important;
+    max-width: 30px !important;
+    margin-right: -4px !important;
+  }
+  .back-button {
+    background-color: transparent !important;
+    transition: var(--basicBGAnimation) !important;
+  }
+  .back-button:hover {
+    background-color: var(--buttonHover) !important;
+  }
+  .back-button:active {
+    background-color: var(--buttonPressed) !important;
   }
 
   .more-options-button {
@@ -395,7 +593,7 @@ url(about:privatebrowsing) {
   #syncNow {
     background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
     color: light-dark(#fff, #000) !important;
-    transition: all 83ms linear !important;
+    transition: var(--basicBGAnimation) !important;
     border: 1px solid rgba(255,255,255,.08) !important;
     border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
   }
@@ -751,12 +949,22 @@ url(about:privatebrowsing) {
   }
   
   @media (prefers-color-scheme: light) {
+    .category:active * {
+      opacity: .6 !important;
+    }
+    *.category:active {
+      opacity: .6 !important;
+    }
+    .sidebar-footer-link:active * {
+      opacity: .6 !important;
+    }
+
   	search-textbox,
     #about-config-search,
     input#downloadFolder,
     #form-edit > input {
   		background-color: rgba(255,255,255,.7) !important;
-	  	box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+	  	box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.45) !important;
       color: rgba(0,0,0,.89) !important;
   	}
     search-textbox:hover,
@@ -780,20 +988,24 @@ url(about:privatebrowsing) {
 
     /* Addon cards */
     .addon.card {
-      background: rgba(255,255,255,.7) !important;
-      box-shadow: 0 0 0 1px rgba(0,0,0,.06) !important;
+      box-shadow: var(--cardShadowLight) !important;
     }
-    addon-card:not([expanded]) > .addon.card:hover {
-      background: rgba(249,249,249,.5) !important;
-      box-shadow: 0 0 0 1px rgba(0,0,0,.06),
-      0 4px 8px rgba(0,0,0,.03) !important;
+    .addon-card:not([expanded]) > .addon.card:hover {
+      box-shadow: var(--cardShadowLightHover) !important;
     }
     .addon-detail-sitepermissions, .addon-detail-row {
       border-top: 1px solid rgba(0,0,0,.06) !important;
     }
     .tab-group {
       border-top: 1px solid rgba(0,0,0,.06) !important;
-      border-bottom: 1px solid rgba(0,0,0,.06) !important;
+      border-bottom: none !important;
+    }
+    .addon-details .tab-group {
+      border-top: none !important;
+    }
+
+    .sync-group {
+      box-shadow: var(--cardShadowLight) !important;
     }
 
     /* Context menu */
@@ -807,28 +1019,44 @@ url(about:privatebrowsing) {
     }
 
     /* Buttons */
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow),
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button),
     menulist,
     .web-appearance-choice,
     treecol {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
     }
     /* Pressed */
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):active,
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
     menulist:not([disabled]):active,
     .web-appearance-choice:not([disabled]):active,
     treecol:not([disabled]):active {
       box-shadow: 0 0 0 1px rgba(0,0,0,.0578) !important;
     }
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
+    menulist:not([disabled]):active > *,
+    .web-appearance-choice:not([disabled]):active > *,
+    treecol:not([disabled]):active > * {
+      opacity: .6 !important;
+    }
   }
 
   @media (prefers-color-scheme: dark) {
+    .category:active *{
+      opacity: .786 !important;
+    }
+    *.category:active {
+      opacity: .786 !important;
+    }
+    .sidebar-footer-link:active * {
+      opacity: .786 !important;
+    }
+
   	search-textbox,
     #about-config-search,
     input#downloadFolder,
     #form-edit > input {
   		background-color: rgba(255,255,255,.0605) !important;
-	  	box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
+	  	box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02), 0 1px 0 rgba(255,255,255,.54) !important;
   	}
     search-textbox:hover,
     #about-config-search:hover,
@@ -852,21 +1080,21 @@ url(about:privatebrowsing) {
 
     /* Addon cards */
     .addon.card {
-      background: rgba(255,255,255,.0605) !important;
-      box-shadow: 0 0 0 1px rgba(0,0,0,.14) !important;
+      box-shadow: var(--cardShadowDark) !important;
     }
     addon-card:not([expanded]) > .addon.card:hover {
-      background: rgba(255,255,255,.0837) !important;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.1),
-      0 -1px 0 rgba(255,255,255,.035),
-      0 4px 8px rgba(0,0,0,.1) !important;
+      box-shadow: var(--cardShadowDarkHover) !important;
     }
     .addon-detail-sitepermissions, .addon-detail-row {
       border-top: 1px solid rgba(0,0,0,.2) !important;
     }
     .tab-group {
       border-top: 1px solid rgba(0,0,0,.2) !important;
-      border-bottom: 1px solid rgba(0,0,0,.2) !important;
+      border-bottom: none !important;
+    }
+
+    .sync-group {
+      box-shadow: var(--cardShadowDark) !important;
     }
 
     /* Context menu */
@@ -876,21 +1104,27 @@ url(about:privatebrowsing) {
 
     /* About:config table */
     #prefs {
-      box-shadow: 0 0 0 1px rgba(0,0,0,.14) !important;
+      box-shadow: var(--cardShadowDark) !important;
     }
 
     /* Buttons */
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow),
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button),
     menulist,
     treecol {
       box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
     }
     /* Pressed */
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not([disabled]):active,
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
     menulist:not([disabled]):active,
     .web-appearance-choice:not([disabled]):active,
     treecol:not([disabled]):active {
       box-shadow: 0 0 0 1px rgba(255,255,255,.0698) !important;
+    }
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
+    menulist:not([disabled]):active > *,
+    .web-appearance-choice:not([disabled]):active > *,
+    treecol:not([disabled]):active > * {
+      opacity: .786 !important;
     }
   }
 }
@@ -901,7 +1135,7 @@ url(about:privatebrowsing) {
 @-moz-document url-prefix(about:preferences),
 url-prefix(about:addons) {
   .category {
-    color: light-dark(rgba(0,0,0,.89), #fff) !important;
+    color: var(--textColor) !important;
     margin-block: 4px !important;
     font-size: 14px !important;
     height: 48px !important;
@@ -913,7 +1147,7 @@ url-prefix(about:addons) {
   .category[selected] {
     position: relative !important;
     border-radius: 4px !important;
-    color: light-dark(#000, #fff) !important;
+    color: var(--textColor) !important;
   }
 
   .category[selected]:not(:hover, :active) {
