@@ -17,6 +17,7 @@
   --commonBackground: light-dark(#fff,#2c2c2c) !important;
   --footer: light-dark(#f3f3f3, #202020) !important;
   --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1)) !important;
+  --textColor: light-dark(rgba(0,0,0,.89), rgb(255,255,255)) !important;
   
   --accentLight: color-mix(in srgb, accentColor 90%, black) !important; /* Main */
   --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
@@ -27,6 +28,8 @@
   --accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent) !important; /* Hover */
   --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
   --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
+  
+  --accentDarkFilter: saturate(1.55) brightness(1.05) !important;
   
   --button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
   --buttonHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
@@ -45,7 +48,10 @@
   --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
   --textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
   
+  --basicBGAnimation: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear !important;
+  
   text-decoration: none !important;
+  outline: none !important;
 }
 
 /* Window-wide transparency */
@@ -59,6 +65,25 @@
 /* Font change */
 * {
   font-family: 'Segoe UI Variable Text', 'Segoe UI', sans-serif !important;
+}
+
+/* Simple animations */
+.tab-close-button,
+.toolbarbutton-1 > .toolbarbutton-icon,
+.toolbarbutton-1 > stack,
+#TabsToolbar .toolbarbutton-1>.toolbarbutton-icon,
+.toolbarbutton-1 > .toolbarbutton-icon,
+.toolbarbutton-1 > .toolbarbutton-text,
+.toolbarbutton-1 > .toolbarbutton-badge-stack,
+:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+.urlbar-page-action,
+.identity-box-button,
+#tracking-protection-icon-container,
+.dialog-button-box button  {
+  transition: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear !important;
+}
+#PersonalToolbar {
+  transition: all 183ms ease-in-out !important;
 }
 
 /* Proper downloads and menu icon */
@@ -208,13 +233,6 @@
   padding: 8px !important;
   padding-inline: 10.5px !important;
   padding-block: 6.5px !important;
-  transition: none !important;
-}
-
-/* Toolbar buttons hover */
-.toolbarbutton-1 > .toolbarbutton-icon,
-.toolbarbutton-1 > stack {
-  transition: none !important;
 }
 
 /* URL breakout results */
@@ -268,15 +286,7 @@ meupopup {
 .menupopup-arrowscrollbox {
   border: none !important;
 }
-/* Hovered menu item animation */
-menupopup menu:hover:not([disabled=true]),
-menupopup menuitem:hover:not([disabled=true]),
-menupopup menu[_moz-menuactive]:not([disabled=true]),
-menupopup menuitem[_moz-menuactive]:not([disabled=true]),
-menupopup menu:not([disabled=true]),
-menupopup menuitem:not([disabled=true]) {
-  transition: none !important;
-}
+
 /* Right arrow */
 .menu-right {
   opacity: 0 !important;
@@ -335,12 +345,10 @@ tooltip {
 
 /* Open */
 #urlbar[open]>#urlbar-background {
-  transition: none !important;
   border-radius: 3px 3px 8px 8px !important;
 }
 /* Results */
 #urlbar[breakout][breakout-extend][open] {
-  transition: none !important;
   border-radius: 3px 3px 8px 8px !important;
 }
 
@@ -926,9 +934,7 @@ menupopup#ContentSelectDropdownPopup {
   padding-inline: 4px !important;
   margin-block: 4px !important;
 }
-:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem) {
-  transition: none !important;
-}
+
 .bookmark-item:not(menu, menuitem):hover {
   background-color: var(--textButtonHover) !important;
 }
@@ -937,29 +943,44 @@ menupopup#ContentSelectDropdownPopup {
 }
 
 /* Dialog boxes */
+dialog {
+  & #titleContainer {
+    & #titleText {
+      font-weight: 600 !important;
+    }
+  }
+}
+
+#titleContainer {
+  margin-left: 12px !important;
+  margin-top: 13px !important;
+  margin-bottom: 10px !important;
+  text-transform: capitalize !important;
+}
+
 #commonDialog, #commonDialogWindow {
   background-color: var(--commonBackground) !important;
   border-radius: 8px !important;
 }
 .titleIcon {
   background-color: var(--commonBackground) !important;
-}
-#titleContainer * {
-  font-weight: 100 !important;
+  display: none !important;
 }
 .dialogBox:not(.spotlightBox) {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,.26) !important;
-  outline: 1px solid rgba(0,0,0,.2) !important;
+  outline: 1px solid rgba(117,117,117,.4) !important;
 }
 .dialogBox {
-  min-height: 160px !important;
+  min-height: calc(100% + 21px) !important;
+}
+#commonDialog[subdialog] description {
+  margin-inline: 12px !important;
 }
 #infoRow {
-  margin-bottom: -8px !important;
+  margin-bottom: -10px !important;
   padding-block: 12px !important;
 }
 #infoBody {
-  margin-bottom: -4px !important;
+  min-height: 16px !important;
   transform: translateY(-10px) !important;
 }
 .dialog-button-box {
@@ -969,11 +990,25 @@ menupopup#ContentSelectDropdownPopup {
   margin-block-end: -16px !important;
   padding-block-start: 10px !important;
   min-width:  unset !important;
+  
+  margin-block-start: -12px !important;
+  padding-block-start: 24px !important;
+  padding-block-end: 14px !important;
+  padding-inline: 14px !important;
+}
+
+#checkboxContainer {
+  margin-left: 8px !important;
+  margin-top: 5px !important;
+  margin-bottom: 11px !important;
+}
+
+#editBookmarkHeaderSeparator {
+  display: none !important;
 }
 
 .dialog-button-box button {
   margin-bottom: 10px !important;
-  transition: none !important;
   width: -moz-available !important;
   font-weight: normal !important;
   background-color: var(--button) !important;
@@ -1031,11 +1066,9 @@ menupopup#ContentSelectDropdownPopup {
 .urlbar-page-action,
 .identity-box-button,
 #tracking-protection-icon-container,
-.titlebar-button,
 #clearDownloadsPanel,
 #downloadsHistory,
 .downloadButton {
-  transition: none !important;
   background-color: transparent !important;
   box-shadow: none !important;
   border: none !important;
@@ -1048,7 +1081,6 @@ menupopup#ContentSelectDropdownPopup {
 .urlbar-page-action:hover,
 .identity-box-button:hover,
 #tracking-protection-icon-container:hover,
-.titlebar-button:hover,
 #clearDownloadsPanel:hover,
 #downloadsHistory:hover,
 .downloadButton:hover {
@@ -1065,7 +1097,6 @@ menupopup#ContentSelectDropdownPopup {
   .urlbar-page-action,
   .identity-box-button,
   #tracking-protection-icon-container,
-  .titlebar-button,
   #clearDownloadsPanel,
   #downloadsHistory,
   .downloadButton
@@ -1080,7 +1111,6 @@ button,
 #editBookmarkPanelRemoveButton, 
 button.popup-notification-secondary-button,
 panel menulist {
-  transition: none !important;
   font-weight: normal !important;
   background-color: var(--button) !important;
   border-radius: 3px !important;
@@ -1141,12 +1171,24 @@ button.primary:active,
   }
 }
 
+/* Incorrect button margin fix */
+#identity-popup-clear-sitedata-button, 
+#identity-popup-security-button {
+  margin-bottom: 0px !important;
+}
+
 /* Footer */
 .panel-footer {
   background-color: var(--footer) !important;
   border-top: 1px solid var(--footerBorder) !important;
-  padding: 8px !important;
-  margin: 0 !important;
+  margin: 4px 0 0 0 !important;
+  padding-block: 15px !important;
+  padding-inline: 11px !important;
+}
+
+.panel-footer button {
+  width: -moz-available !important;
+  margin-inline: 4px !important;
 }
 
 /* Check Box - Adapted from Firefox UWP */
@@ -1725,6 +1767,9 @@ h1, h2, h3 {
   .dialog-button-box button:not([dlgtype="accept"]) {
     box-shadow: 0 0 0 1px rgba(255,255,255,.0605), 0 -1px 0 rgba(255,255,255,.03) !important;
   }
+  .dialogBox:not(.spotlightBox) {
+    box-shadow: 0 32px 64px 0 rgba(0,0,0,.37), 0 2px 21px rgba(0,0,0,.37) !important;
+  }
   
   /* Save bookmark panel */
   #editBMPanel_namePicker {
@@ -1745,10 +1790,13 @@ h1, h2, h3 {
   #tracking-protection-icon-container,
   panel button,
   panel menulist,
-  .titlebar-button,
   button
   ):active > * {
     opacity: .786 !important;
+  }
+  
+  menupopup * {
+  color: #fff !important;
   }
 }
 
@@ -2019,6 +2067,9 @@ h1, h2, h3 {
   .dialog-button-box button:not([dlgtype="accept"]) {
     box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
   }
+  .dialogBox:not(.spotlightBox) {
+    box-shadow: 0 32px 64px 0 rgba(0,0,0,.19), 0 2px 21px rgba(0,0,0,.15) !important;
+  }
   
   /* Save bookmark panel */
   #editBMPanel_namePicker {
@@ -2039,10 +2090,13 @@ h1, h2, h3 {
   #tracking-protection-icon-container,
   panel button,
   panel menulist,
-  .titlebar-button,
   button
   ):active > * {
     opacity: .6 !important;
+  }
+  
+  menupopup * {
+  color: rgba(0,0,0,.89) !important;
   }
 }
 
@@ -2264,13 +2318,10 @@ h1, h2, h3 {
   * {
     --uc-titlebar-shadow: none !important;
   }
-  /* Fix for missing window buttons when the browser isn't focused */
-  :root:-moz-window-inactive .titlebar-buttonbox {
-    transform: translateY(-2px) !important;
-    
-  }
   :root[sizemode="maximized"] .titlebar-buttonbox {
-    height: 29px !important;
+    transform: translate(-2px, 10px) !important;
+  }
+  :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
     transform: translate(-2px, 10px) !important;
   }
   
@@ -2545,6 +2596,26 @@ h1, h2, h3 {
 }
 
 @media (-moz-bool-pref: "uc.winui.extra-animations") {
+  /* Simple animations extras */
+  panel button,
+  panel menulist,
+  toolbarbutton,
+  menupopup menu:hover:not([disabled=true]),
+  menupopup menuitem:hover:not([disabled=true]),
+  menupopup menu[_moz-menuactive]:not([disabled=true]),
+  menupopup menuitem[_moz-menuactive]:not([disabled=true]),
+  menupopup menu:not([disabled=true]),
+  menupopup menuitem:not([disabled=true]),
+  #urlbar-background,
+  #searchbar  {
+    transition: var(--basicBGAnimation) !important;
+  }
+
+  #urlbar[breakout][breakout-extend][open],
+  #urlbar[open]>#urlbar-background {
+    transition: none !important;
+  }
+  
   /* active tab text */
   .tabbrowser-tab[selected] label, .tabbrowser-tab:not([selected]) label { 
     transition: font-weight 83ms ease-in-out !important;
@@ -2577,12 +2648,23 @@ h1, h2, h3 {
     transition: transform .1s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
   }
   
-  /* Tab closing slide animation */
+  /* Tab closing/opening animations */
   .tabbrowser-tab:not([pinned],[fadein]){
-    transition-duration: 240ms, 240ms !important;
+    transition-duration: 0s, .3s !important;
     transition-timing-function: ease-out, ease-out !important;
-    visibility: visible !important;
+    opacity: .5 !important;
+    background-color: light-dark(rgba(255,255,255,.45),rgba(58,58,58,.225)) !important;
+    animation: scale-out 140ms ease-out !important;
   }
+
+  .tabbrowser-tab[fadein] .tab-background,
+  .tabbrowser-tab[fadein] .tab-stack{
+    animation: scale-in .2s ease-out !important;
+  }
+  .tabbrowser-tab[fadein] .tab-content {
+    animation: opacity-in .5s ease-out !important;
+  }
+
   .tab-content:not([fadein],[pinned])
   .tab-icon-pending:not([fadein]),
   .tab-icon-image:not([fadein]),
@@ -2591,6 +2673,115 @@ h1, h2, h3 {
   }
   .tab-label:not([fadein]){
     display: flex !important;
+  }
+
+  @keyframes scale-out {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(.85);
+    }
+    100% {
+      transform: scale(.5);
+    }
+  }
+  @keyframes scale-in {
+    0% {
+      transform: scale(.5);
+    }
+    50% {
+      transform: scale(.85);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes opacity-in {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: .5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Back/forward button bounce animations */
+  #back-button {
+    list-style-image: none !important;
+  }
+
+  #back-button::after {
+    content: url('icons/back.svg') !important;
+    position: absolute !important;
+    margin-top: 4px !important;
+    transition: transform .1s ease-out !important;
+  }
+
+  #back-button:not([disabled="true"]):active::after {
+    animation: bounce-left .2s ease-out !important;
+  }
+
+  @keyframes bounce-left {
+      0% {
+          transform: translateX(0);
+      }
+      30% {
+          transform: translateX(-3px);
+      }
+      60% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(0);
+      }
+  }
+
+  #forward-button {
+    list-style-image: none !important;
+  }
+
+  #forward-button::after {
+    content: url('icons/forward.svg') !important;
+    position: absolute !important;
+    margin-top: 4px !important;
+    transition: transform .1s ease-out !important;
+  }
+
+  #forward-button:not([disabled="true"]):active::after {
+    animation: bounce-right .2s ease-out !important;
+  }
+
+  @keyframes bounce-right {
+      0% {
+          transform: translateX(0);
+      }
+      30% {
+          transform: translateX(3px);
+      }
+      60% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(0);
+      }
+  }
+  @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
+    #forward-button::after, #back-button::after {
+      scale: .85 !important;
+    }
+  }
+  @media (-moz-bool-pref: "uc.winui.mac-back-forward") {
+    #forward-button::after {
+      content: url('winui-icons/forward-mac.svg') !important;
+    }
+    #back-button::after {
+      content: url('winui-icons/back-mac.svg') !important;
+    }
   }
   
   /* Animate cog icon */
@@ -2618,43 +2809,6 @@ h1, h2, h3 {
       box-shadow: 0 -36px 0 rgba(255,255,255,.0605) inset !important;
       transition: box-shadow ease-out 183ms !important;
     }
-  }
-  
-  /* Simple animations */
-  .tab-close-button,
-  .toolbarbutton-1 > .toolbarbutton-icon,
-  .toolbarbutton-1 > stack,
-  toolbarbutton,
-  #TabsToolbar .toolbarbutton-1>.toolbarbutton-icon,
-  menupopup menu:hover:not([disabled=true]),
-  menupopup menuitem:hover:not([disabled=true]),
-  menupopup menu[_moz-menuactive]:not([disabled=true]),
-  menupopup menuitem[_moz-menuactive]:not([disabled=true]),
-  menupopup menu:not([disabled=true]),
-  menupopup menuitem:not([disabled=true]),
-  #urlbar-background,
-  #searchbar,
-  .toolbarbutton-1 > .toolbarbutton-icon,
-  .toolbarbutton-1 > .toolbarbutton-text,
-  .toolbarbutton-1 > .toolbarbutton-badge-stack,
-  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
-  .urlbar-page-action,
-  .identity-box-button,
-  #tracking-protection-icon-container,
-  panel button,
-  panel menulist,
-  .titlebar-button,
-  .dialog-button-box button  {
-    transition: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear !important;
-  }
-
-  #PersonalToolbar {
-    transition: all 183ms ease-in-out !important;
-  }
-
-  #urlbar[breakout][breakout-extend][open],
-  #urlbar[open]>#urlbar-background {
-    transition: none !important;
   }
   
   @media (prefers-color-scheme: light) {
