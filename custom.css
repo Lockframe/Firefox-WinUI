@@ -2214,7 +2214,7 @@ h1, h2, h3 {
 }
 
 * {
-  --uc-toolbarbutton-tab-gap: 2px !important;
+  --uc-toolbarbutton-tab-gap: -1px !important;
 }
 
 :root:not([lwtheme]),
