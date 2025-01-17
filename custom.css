@@ -184,6 +184,13 @@
 .tab-background:is([selected], [multiselected]):-moz-window-inactive::after {
   --uc-tab-corner-bg: light-dark(rgba(255,255,255,.95),rgba(255, 255, 255, .095)) !important;
 }
+/* Ensure they won't appear elsewhere */
+.tab-background:not([selected], [multiselected]):-moz-window-inactive::before,
+.tab-background:not([selected], [multiselected]):-moz-window-inactive::after,
+.tab-background:not([selected], [multiselected])::before,
+.tab-background:not([selected], [multiselected])::after {
+  --uc-tab-corner-bg: transparent !important;
+}
 
 /* Unselected tabs are 1px smaller than selected tabs */
 .tab-background:not([selected]) {
@@ -264,10 +271,19 @@
   margin-right: 6px !important;
   width: 30px !important;
   height: 22px !important;
-  padding: 8px !important;
+
   padding-inline: 10.5px !important;
   padding-block: 6.5px !important;
+  
+  /*width: 32px !important;
+  height: 24px !important;
+  padding-inline: 11.5px !important;
+  padding-block: 7.5px !important;
+  margin-right: 3px !important;
+  margin-bottom: 2px !important;
+  border-radius: 4px !important;*/
 }
+
 
 /* URL breakout results */
 .urlbarView-row {
@@ -757,7 +773,8 @@ panel {
 
 #PopupAutoComplete {
   & > .autocomplete-richlistbox {
-    margin-top: -2px !important;
+    margin-block: -2px !important;
+    border-radius: 0 !important;
   }
 }
 
@@ -2737,9 +2754,6 @@ h1, h2, h3 {
   .toolbarbutton-1 image{
     scale: .85 !important;
   }
-  .toolbarbutton-animatable-box {
-    scale: .8 !important;
-  }
   
   .toolbarbutton-1 {
     margin-inline: -1px !important;
@@ -2755,6 +2769,7 @@ h1, h2, h3 {
     margin-inline: 5px !important;
   }
 
+  /* They move around but I haven't found a way to fix this yet */
   #reload-button > .toolbarbutton-animatable-box > .toolbarbutton-animatable-image,
   #stop-button > .toolbarbutton-animatable-box > .toolbarbutton-animatable-image,
   .toolbarbutton-animatable-box image {
