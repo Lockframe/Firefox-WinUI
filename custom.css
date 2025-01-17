@@ -18,6 +18,7 @@
   --footer: light-dark(#f3f3f3, #202020) !important;
   --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1)) !important;
   --textColor: light-dark(rgba(0,0,0,.89), rgb(255,255,255)) !important;
+  --textInverse: light-dark(#fff,#000) !important;
   
   --accentLight: color-mix(in srgb, accentColor 90%, black) !important; /* Main */
   --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
@@ -140,18 +141,18 @@
 :root[sizemode="normal"] #toolbar-menubar,
 :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{ 
   padding-top: 0px !important;
-  padding-left: 8px !important;
-  margin-top: -1px !important;
+  padding-left: 9px !important;
+  margin-top: -.5px !important;
 }
 /* Maximized version of the one above */
 :root[sizemode="maximized"] #toolbar-menubar,
 :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{ 
-  padding-left: 8px !important;
+  padding-left: 9px !important;
 }
 
 /* Tab spacing */
 .tabbrowser-tab{
-  padding-inline: .5px !important;
+  padding-inline: 0 !important;
   z-index: 1 !important;
 }
 
@@ -194,7 +195,7 @@
 
 /* Unselected tabs are 1px smaller than selected tabs */
 .tab-background:not([selected]) {
-  margin-block: 1px !important;
+  clip-path: inset(1px round 7px 7px 0 0) !important;
 }
 
 /* Navbar height*/
@@ -215,7 +216,7 @@
 
 /* Fix tab height */
 :root {
-  --tab-min-height: 29px !important;
+  --tab-min-height: 32px !important;
 
   &[uidensity=compact] {
     --tab-min-height: unset !important;
@@ -231,8 +232,13 @@
 
 :root {
   & #TabsToolbar {
-    --tab-min-height: 29px !important;
+    --tab-min-height: 31px !important;
   }
+}
+
+/* Fix for toolbar icons pinned to the tab area */
+#TabsToolbar .toolbarbutton-1 {
+  margin-bottom: -1px !important;
 }
 
 /* Border below the nav bar */
@@ -268,22 +274,12 @@
 /* Tab close button */
 .tab-close-button {
   border-radius: 3px !important;
-  margin-right: 6px !important;
+  margin-right: 5px !important;
   width: 30px !important;
-  height: 22px !important;
-
+  height: 21px !important;
   padding-inline: 10.5px !important;
-  padding-block: 6.5px !important;
-  
-  /*width: 32px !important;
-  height: 24px !important;
-  padding-inline: 11.5px !important;
-  padding-block: 7.5px !important;
-  margin-right: 3px !important;
-  margin-bottom: 2px !important;
-  border-radius: 4px !important;*/
+  padding-block: 6px !important;
 }
-
 
 /* URL breakout results */
 .urlbarView-row {
@@ -708,46 +704,51 @@ scrollbox[orient="horizontal"],
 /* private browsing indicator. */
 .private-browsing-indicator-with-label {
   color: black !important;
-  margin-inline: 0px 8px !important;
-  padding-inline: 5px 5px !important;
+  margin-inline: 0 8px !important;
+  padding-inline: 4px 5px !important;
   background: light-dark(var(--accentLight), var(--accentDark)) !important;
   border-radius: 99px !important;
-  font-weight: 550 !important;
-  margin-top: 5px !important;
-  height: 32px !important;
+  font-weight: 400 !important;
+  margin-top: 6px !important;
+  height: 28px !important;
   
   & > label { /* Original label */
-    margin-top: 0 !important;
-    font-family: 'Segoe UI Variable Text' !important;
     display: none;
     }
     &::after { /* Custom label */
       content: "Private";
       margin-block: 0 3px;
       margin-inline: 6px 6px;
-      display: block !important;
-      font-family: 'Segoe UI Variable Text' !important;
-      color: light-dark(white, black) !important;
+      color: var(--textInverse) !important;
   }
 }
 
 .private-browsing-indicator-icon {
-  height: 24px !important;
-  width: 24px !important;
+  height: 22px !important;
+  width: 22px !important;
 }
 
 :root[sizemode="maximized"] .private-browsing-indicator-with-label {
-  margin-top: 1px !important;
+  margin-top: 2px !important;
+}
+
+/* Fix 2px extra padding in some areas */
+#PopupAutoComplete {
+  & > .autocomplete-richlistbox {
+    margin-block: -2px !important;
+    border-radius: 0 !important;
+  }
 }
 
 /* Autologin pop up */
 #PopupAutoComplete {
-  margin-left: -6px !important;
+  margin-left: -26px !important;
+  margin-top: -32px !important;
 
   & .autocomplete-richlistitem[originaltype="loginsFooter"] {
     height: 32px !important;
     min-height: 32px !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 0 !important;
   }
 }
 
@@ -769,13 +770,6 @@ panel {
 
 #PopupAutoComplete > richlistbox > richlistitem {
   min-height: 32px !important;
-}
-
-#PopupAutoComplete {
-  & > .autocomplete-richlistbox {
-    margin-block: -2px !important;
-    border-radius: 0 !important;
-  }
 }
 
 /* PopUp Window customization - Needs Polishing 
@@ -921,14 +915,15 @@ menupopup#ContentSelectDropdownPopup {
 }
 :root[sizemode="maximized"] .titlebar-buttonbox {
   opacity: 1 !important;
-  transform: translate(-2px, -1px) !important;
+  transform: translate(-2px, 0) !important;
 }
 :root:-moz-window-inactive .titlebar-buttonbox {
   opacity: .5 !important;
+  margin-top: -1px !important;
 }
 :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
   opacity: .5 !important;
-  transform: translate(-2px, -1px) !important;
+  transform: translate(-2px, 0) !important;
 }
 .titlebar-min {
   transform: translateX(1px) !important;
@@ -1599,6 +1594,20 @@ h1, h2, h3 {
   fill: var(--textPressed) !important;
 }
 
+/* Inactive window text colors */
+:root body {
+  --toolbar-color: var(--textColor) !important;
+  --toolbarbutton-icon-fill: var(--textColor) !important;
+
+  &:-moz-window-inactive {
+    --toolbar-color: var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
+    --toolbarbutton-icon-fill:  var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
+  }
+  #urlbar:-moz-window-inactive * {
+    color: var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
+  }
+}
+
 /* Animate cog icon */
 #PanelUI-menu-button:hover > .toolbarbutton-badge-stack > .toolbarbutton-icon {
   transform: rotate(-15deg) !important;
@@ -1612,18 +1621,21 @@ h1, h2, h3 {
   transition: transform linear 0s !important;
 }
 
-/* Inactive window text colors */
-:root body {
-  --toolbar-color: var(--textColor) !important;
-  --toolbarbutton-icon-fill: var(--textColor) !important;
-
-  &:-moz-window-inactive {
-    --toolbar-color: var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
-    --toolbarbutton-icon-fill:  var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
-  }
-  #urlbar:-moz-window-inactive * {
-    color: var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
-  }
+/* Tab moving animation */
+#tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+.tabbrowser-tab[tab-grouping],
+.tabbrowser-tab[tabdrop-samewindow] {
+  opacity: .6 !important;
+  scale: .95 !important;
+  transition: transform 200ms cubic-bezier(0, .75, .25, 1), opacity 183ms linear, scale 187ms linear !important;
+}
+/* Tab moving transition. */
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+.tabbrowser-tab:not([tab-grouping]),
+.tabbrowser-tab[tabdrop-samewindow] {
+  opacity: 1 !important;
+  scale: 1 !important;
+  transition: transform 200ms cubic-bezier(0, .75, .25, 1), opacity 187ms linear, scale 187ms linear !important;
 }
 
 /* ============= DARK ================== */
@@ -2231,7 +2243,7 @@ h1, h2, h3 {
 }
 
 * {
-  --uc-toolbarbutton-tab-gap: -1px !important;
+  --uc-toolbarbutton-tab-gap: 0 !important;
 }
 
 :root:not([lwtheme]),
@@ -2407,8 +2419,8 @@ h1, h2, h3 {
         0 8px 16px 0 rgba(0,0,0,.26),
         0 0 0 1px rgba(255,255,255,.0605) inset,
         0 1px 0 rgba(255,255,255,.1) inset !important;
-      background-image: var(--extraacrylic) !important;
       border: none !important;
+      background-image: var(--extraacrylic) !important;
       }
     .panel-viewstack {
       background-color: rgb(33,33,33) !important;
@@ -2430,19 +2442,18 @@ h1, h2, h3 {
         0 1px 0 rgba(255,255,255,.85) inset !important;
     }
     .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
-	    box-shadow: 0 0 0 1px rgba(0,0,0,.06),
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06),
         0 8px 16px 0 rgba(0,0,0,.14),
-        0 0 0 1px rgba(255,255,255,.7) inset,
         0 1px 0 rgba(255,255,255,.85) inset !important;
-      background-image: var(--extraacrylic) !important;
       border: none !important;
-      }
+      background-image: var(--extraacrylic) !important;
+    }
     .panel-viewstack {
       box-shadow: 0 0 0 1px rgba(255,255,255,.7) inset,
         0 1px 0 rgba(255,255,255,.85) inset !important;
       border-radius: 8px !important;
       background-image: var(--extraacrylic) !important;
-      }
+    }
   }
 }
 
@@ -2482,82 +2493,85 @@ h1, h2, h3 {
 }
 
 @media (-moz-bool-pref: "uc.winui.floating-tabs") {
-  * {
-    --uc-titlebar-shadow: none !important;
+  .tab-background:not([selected]) {
+    clip-path: inset(1px round 7px) !important;
   }
-  :root[sizemode="maximized"] .titlebar-buttonbox {
-    transform: translate(-2px, 10px) !important;
+  
+  /* Fix window controls */
+  :root .titlebar-buttonbox,
+  :root:-moz-window-inactive .titlebar-buttonbox {
+    transform: translate(0, 10px) !important;
+    margin-top: -3px !important;
   }
+  
+  :root[sizemode="maximized"] .titlebar-buttonbox,
   :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
     transform: translate(-2px, 10px) !important;
+    margin-top: -11px !important;
   }
   
   /* Fix alignment of private window label */
   .private-browsing-indicator-with-label {
-    margin-top: 4px !important;
+    margin-top: 16px !important;
   }
   :root[sizemode="maximized"] .private-browsing-indicator-with-label {
-    margin-top: 5px !important;
+    margin-top: 9px !important;
   }
-  
-  /* Fix window controls */
-  :root[sizemode="maximized"] .titlebar-buttonbox-container {
-    margin-top: -10px !important;
-  }
-  /* Proper tab roundness */
+
+  /* Tab roundness */
   .tab-background {
     border-radius: 8px !important;
   }
-  /* Bottom tab corners */
-  :root {
-    #TabsToolbar {
-      --tab-border-radius:0px !important;
-    }
-  }
-  /* Move tabs up */
-  .tabbrowser-tab {
-    margin-bottom: 5px !important;
-  }
 
-  .toolbar-items {
-    margin-top: -5px !important;
+  /* Bottom tab corners */
+  .tab-background:is([selected], [multiselected])::before,
+  .tab-background:is([selected], [multiselected])::after {
+    --uc-tab-corner-bg: transparent !important;
+    --uc-tab-corner-outline: none !important;
   }
-  :root[sizemode="maximized"] .toolbar-items {
-    margin-top: 5px !important;
+  
+  /* Tab height */
+  :root {
+    --tab-min-height: 46px !important;
+  }
+  :root[sizemode="maximized"] {
+    --tab-min-height: 36px !important;
   }
 
   /* New tab button */
   #TabsToolbar #tabs-newtab-button>.toolbarbutton-icon {
-    margin-bottom: 7px !important;
+    margin-bottom: -4px !important;
+  }
+  /* Tab close button */
+  .tab-close-button {
+    height: 22px !important;
+    padding-block: 6.5px !important;
+  }
+  
+  /* Toolbar icons pinned to the tab area */
+  #TabsToolbar .toolbarbutton-1 {
+    margin-bottom: 6px !important;
   }
 
   /* Tab space bottom and top */
   :root[sizemode="normal"] #toolbar-menubar,
   :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
-    padding-left: 5px !important;
-    margin-top: -2.5px !important;
-    margin-top: 0px !important;
+    padding-left: 7px !important;
+    margin-top: -4.5px !important;
   }
   :root[sizemode="maximized"] #toolbar-menubar,
   :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
-    padding-left: 5px !important;
-    margin-top: 2px !important;
-    margin-top: -.5px !important;
+    padding-left: 7px !important;
+    margin-top: 0px !important;
   }
-
-  @media (prefers-color-scheme: light) {
-   #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
-   #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-     box-shadow: 0 0 0 1px rgba(0,0,0,.0805),
-       0 1px 0 rgba(255,255,255,.85) inset !important;
-    }
+  #tabbrowser-arrowscrollbox,
+  #tabbrowser-arrowscrollbox > * {
+    margin-bottom: 3.5px !important;
+    margin-top: 3px !important;
   }
-  @media (prefers-color-scheme: dark) {
-    #tabbrowser-tabs .tab-background:is([selected], 
-    [multiselected]), #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-      box-shadow: 0 0 0 1px rgba(0,0,0,.25),
-        0 1px 0 rgba(255,255,255,.0605) inset !important;
-    }
+  .tab-content {
+    margin-bottom: 1px !important;
+    margin-left: -1px !important;
   }
 }
 
