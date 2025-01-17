@@ -1621,21 +1621,9 @@ h1, h2, h3 {
   transition: transform linear 0s !important;
 }
 
-/* Tab moving animation */
-#tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
-.tabbrowser-tab[tab-grouping],
-.tabbrowser-tab[tabdrop-samewindow] {
-  opacity: .6 !important;
-  scale: .95 !important;
-  transition: transform 200ms cubic-bezier(0, .75, .25, 1), opacity 183ms linear, scale 187ms linear !important;
-}
-/* Tab moving transition. */
-#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
-.tabbrowser-tab:not([tab-grouping]),
-.tabbrowser-tab[tabdrop-samewindow] {
-  opacity: 1 !important;
-  scale: 1 !important;
-  transition: transform 200ms cubic-bezier(0, .75, .25, 1), opacity 187ms linear, scale 187ms linear !important;
+/* Disable tab burst animation */
+.tab-loading-burst { 
+  display:none !important; 
 }
 
 /* ============= DARK ================== */
@@ -2566,12 +2554,30 @@ h1, h2, h3 {
   }
   #tabbrowser-arrowscrollbox,
   #tabbrowser-arrowscrollbox > * {
-    margin-bottom: 3.5px !important;
+    margin-bottom: 4px !important;
     margin-top: 3px !important;
   }
   .tab-content {
     margin-bottom: 1px !important;
     margin-left: -1px !important;
+  }
+  
+  /* Select tab by clicking on the empty space above it */
+  #tabbrowser-tabs {
+    margin-top: -9px !important;
+
+    & .tabbrowser-tab,
+    & #tabs-newtab-button {
+      padding-top: 9px !important;
+    }
+  }
+
+  #scrollbutton-up:not(.menupopup-scrollbutton),
+  #scrollbutton-down:not(.menupopup-scrollbutton) {
+    &,
+    & ~ spacer {
+      margin-top: 8px !important;
+    }
   }
 }
 
@@ -2827,7 +2833,7 @@ h1, h2, h3 {
     transition: none !important;
   }
   
-  /* active tab text */
+  /* Active tab text */
   .tabbrowser-tab[selected] label, .tabbrowser-tab:not([selected]) label { 
     transition: font-weight 83ms ease-in-out !important;
   }
@@ -2849,6 +2855,21 @@ h1, h2, h3 {
   #TabsToolbar #tabs-newtab-button>.toolbarbutton-icon {
     transition: all 83ms cubic-bezier(0.165, 0.84, 0.44, 1) !important;
   }
+  
+  /* Tab moving animation - Breaks tab opening/closing animation - messes with click animation
+  #tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+  .tabbrowser-tab[tab-grouping],
+  .tabbrowser-tab[tabdrop-samewindow] {
+    opacity: .6 !important;
+    scale: .95 !important;
+    transition: transform 200ms cubic-bezier(0, .75, .25, 1), opacity 183ms linear, scale 187ms linear !important;
+  }
+  #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+  .tabbrowser-tab:not([tab-grouping]) {
+    opacity: 1 !important;
+    scale: 1 !important;
+    transition: transform 200ms cubic-bezier(0, .75, .25, 1), opacity 187ms linear, scale 187ms linear !important;
+  } */
 
   /* Tab click animation */
   .tabbrowser-tab:active .tab-content {
