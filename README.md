@@ -10,18 +10,13 @@ A custom CSS addon for [bmFtZQ](https://github.com/bmFtZQ)'s [Edge-frfox](https:
 3. Close and restart Firefox, if performed correctly, the theme should now be installed.
 4. Go to `about:config` and set the following boolean keys to true:
 * `browser.tabs.allow_transparent_browser`
+* `svg.context-properties.content.enabled`
 * `widget.transparent-windows`
 * `widget.windows.mica`
-* `svg.context-properties.content.enabled`
 5. Create and/or set the following boolean keys to false:
-* `uc.tweak.disable-drag-space`
-* `uc.tweak.floating-tabs`
-* `uc.tweak.force-tab-colour`
-* `uc.tweak.newtab-background`
-* `uc.tweak.remove-tab-separators`
-* `uc.tweak.revert-context-menu`
-* `uc.tweak.rounded-corners`
 * `browser.startup.blankWindow`
+* `uc.tweak.newtab-background`
+* `uc.tweak.revert-context-menu`
 
 You can also add the following boolean keys to enable some tweaks:
 * `uc.winui.aptos`
