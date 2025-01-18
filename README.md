@@ -28,7 +28,9 @@ You can also add the following boolean keys to enable some tweaks:
 * `uc.winui.grayer-tabbed`
 * `uc.winui.hide-with-1-tab`
 * `uc.winui.immersive-navbar`
+* `uc.winui.js-animations`
 * `uc.winui.mac-back-forward`
+* `uc.winui.macos-navbar-icons`
 * `uc.winui.more-acrylic`
 * `uc.winui.navbar-highlights`
 * `uc.winui.pill-urlbar`
@@ -36,8 +38,9 @@ You can also add the following boolean keys to enable some tweaks:
 * `uc.winui.rounded-navbar`
 * `uc.winui.smaller-toolbar-buttons`
 * `uc.winui.taller-bookmarks`
-* `uc.winui.macos-navbar-icons`
 * `uc.winui.taller-urlbar`
 * `uc.winui.transparent-urlbar`
 * `uc.winui.uppercase-newtab-label`
 * `uc.winui.urlbar-extra-separators`
+
+Refer to [this guide](https://github.com/MrOtherGuy/fx-autoconfig) if you'd like to enable the JS animations.
