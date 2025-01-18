@@ -11,6 +11,7 @@
     rgba(255,255,255,.02) 
     rgba(255,255,255,.02) 
     rgba(255,255,255,.02) !important;
+  --borderAuto: 1px solid light-dark(var(--lightborder), var(--darkborder)) !important;
   --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
   --acrylic: url(image/accnoise256.png) !important;
   
@@ -30,6 +31,7 @@
   --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
   --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
   
+  --accentAuto: light-dark(var(--accentLight), var(--accentDark)) !important;
   --accentDarkFilter: saturate(1.55) brightness(1.05) !important;
   
   --button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
@@ -43,6 +45,7 @@
   --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
   --textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
   
+  --inputActive: light-dark(rgb(252,252,252), rgb(30,30,30)) !important;
   --inputBarLight: 0 0 0 1px rgba(0,0,0,.0605), 0 1px 0 rgba(0,0,0,.39) !important;
   --inputBarFocusLight: 0 0 0 1px rgba(0,0,0,.0578), 0 1px 0 var(--accentLight), 0 -1px 0 var(--accentLight) inset !important;
   --inputBarDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(0,0,0,.46) !important;
@@ -708,7 +711,7 @@ scrollbox[orient="horizontal"],
 .private-browsing-indicator-with-label {
   color: black !important;
   margin-inline: 0 8px !important;
-  padding-inline: 4px 5px !important;
+  padding-inline: 3px 5px !important;
   background: light-dark(var(--accentLight), var(--accentDark)) !important;
   border-radius: 99px !important;
   font-weight: 400 !important;
@@ -721,7 +724,7 @@ scrollbox[orient="horizontal"],
     &::after { /* Custom label */
       content: "Private";
       margin-block: 0 3px;
-      margin-inline: 6px 6px;
+      margin-inline: 6px;
       color: var(--textInverse) !important;
   }
 }
@@ -1024,12 +1027,58 @@ menupopup#ContentSelectDropdownPopup {
 }
 
 /* Dialog boxes */
-dialog {
+dialog:not(#window-modal-dialog) {
+  background-color: var(--commonBackground) !important;
   & #titleContainer {
     & #titleText {
       font-weight: 600 !important;
     }
   }
+}
+
+#description {
+  margin-inline: 12px !important;
+  font-weight: 600 !important;
+  margin-top: 11px !important;
+}
+#rememberContainer {
+  margin-left: 12px !important;
+  margin-top: -6px !important;
+}
+#remember-text {
+  margin-block: 8px 17px !important;
+}
+
+#items {
+  margin-inline: 4.5px 5px !important;
+  border: none !important;
+  background: transparent !important;
+  border-radius: 8px !important;
+}
+#items richlistitem {
+  color: var(--textColor) !important;
+  margin: 4px 3px 2px !important;
+  border-radius: 4px !important;
+}
+#items richlistitem[selected="true"] {
+  background: var(--buttonHover) !important;
+  color: var(--textColor) !important;
+}
+#items richlistitem[selected="true"]::before {
+  content: '';
+  height: 16px;
+  background-color: var(--accentAuto);
+  width: 3px;
+  position: absolute;
+  border-radius: 99px;
+}
+
+.name {
+  font-weight: normal !important;
+  margin-left: -16px !important;
+}
+label[data-l10n-id="choose-other-app-description"] {
+  margin-left: 15px !important;
 }
 
 #titleContainer {
@@ -1221,7 +1270,8 @@ button:active * {
 /* Accent color buttons */
 #editBookmarkPanelDoneButton,
 button.primary,
-#appMenu-update-banner {
+#appMenu-update-banner,
+button[data-l10n-id="choose-app-btn"] {
   box-shadow: none !important;
   background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
   color: light-dark(#fff, #000) !important;
@@ -1232,13 +1282,15 @@ button.primary,
 }
 #editBookmarkPanelDoneButton:hover,
 button.primary:hover,
-#appMenu-update-banner:hover {
+#appMenu-update-banner:hover,
+button[data-l10n-id="choose-app-btn"]:hover {
   background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
   box-shadow: none !important;
 }
 #editBookmarkPanelDoneButton:active,
 button.primary:active,
-#appMenu-update-banner:active {
+#appMenu-update-banner:active,
+button[data-l10n-id="choose-app-btn"]:active {
   background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
   box-shadow: none !important;
 }
@@ -1650,11 +1702,11 @@ h1, h2, h3 {
 /* Animate cog icon */
 #PanelUI-menu-button:hover > .toolbarbutton-badge-stack > .toolbarbutton-icon {
   transform: rotate(-15deg) !important;
-  transition: transform ease-in-out .23s !important;
+  transition: transform ease-in-out .33s !important;
 }
 #PanelUI-menu-button:active > .toolbarbutton-badge-stack > .toolbarbutton-icon {
   transform: rotate(360deg) !important;
-  transition: transform ease-in-out .43s !important;
+  transition: transform ease-in-out .92s !important;
 }
 #PanelUI-menu-button > .toolbarbutton-badge-stack > .toolbarbutton-icon {
   transition: transform linear 0s !important;
@@ -1768,7 +1820,7 @@ h1, h2, h3 {
   }
   /* Open */
   #urlbar[open]>#urlbar-background, #searchbar:focus-within {
-    background-color: rgb(30,30,30) !important;
+    background-color: var(--inputActive) !important;
     box-shadow: var(--buttonShadowDarkPressed) !important;
   }
   #searchbar:focus-within {
@@ -1790,6 +1842,7 @@ h1, h2, h3 {
   /* Results */
   #urlbar[breakout][breakout-extend][open] {
     background-color: rgb(30,30,30) !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,.0605) inset !important;
   }
   /* URL bar bottom border when opened */
   .urlbarView {
@@ -2063,7 +2116,7 @@ h1, h2, h3 {
   /* Open */
   #urlbar[open]>#urlbar-background {
     box-shadow: var(--buttonShadowLightPressed) !important;
-    background-color: rgb(252,252,252) !important;
+    background-color: var(--inputActive) !important;
   }
   #searchbar:focus-within {
     box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 -2px 0 var(--accentLight) inset !important;
@@ -2085,6 +2138,7 @@ h1, h2, h3 {
   /* Results */
   #urlbar[breakout][breakout-extend][open] {
     border-radius: 3px 3px 8px 8px !important;
+    box-shadow: 0 1px 0 rgba(0,0,0,.0605) inset !important;
   }
   /* URL bar bottom border when opened */
   .urlbarView {
@@ -2628,7 +2682,7 @@ h1, h2, h3 {
   :root[sizemode="normal"] #toolbar-menubar,
   :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
     padding-left: 7px !important;
-    margin-top: -4.5px !important;
+    margin-top: -4px !important;
   }
   :root[sizemode="maximized"] #toolbar-menubar,
   :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
@@ -2928,13 +2982,9 @@ h1, h2, h3 {
   }
   
   /* New tab button and close tab button click animations */
-  #TabsToolbar .toolbarbutton-1:active>.toolbarbutton-icon {
-    opacity: 60% !important;
-  }
   .tabbrowser-tab .tab-close-button:active{
     width: 28px !important;
     height: 20px !important;
-    opacity: 60% !important;
   }
   #TabsToolbar #tabs-newtab-button:active>.toolbarbutton-icon {
     padding-inline: 10px !important;
@@ -2970,7 +3020,7 @@ h1, h2, h3 {
   }
   
   /* Back/forward button bounce animations */
-  #back-button {
+  #back-button, #forward-button {
     list-style-image: none !important;
   }
 
@@ -2978,44 +3028,62 @@ h1, h2, h3 {
     content: url('icons/back.svg') !important;
     position: absolute !important;
     margin-top: 4px !important;
-    transition: transform .1s ease-out !important;
+    transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
   }
-
   #back-button:not([disabled="true"]):active::after {
-    animation: bounce-left .2s ease-out !important;
+    animation: bounceLeft 187ms ease-out !important;
+    animation: bounceLeft2 .5s cubic-bezier(0.55, 0.55, 0, 1) !important;
   }
 
-  @keyframes bounce-left {
-      0% {
-          transform: translateX(0);
-      }
-      30% {
-          transform: translateX(-3px);
-      }
-      60% {
-          transform: translateX(0);
-      }
-      100% {
-          transform: translateX(0);
-      }
+  @keyframes bounceLeft {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateX(-3px);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
-
-  #forward-button {
-    list-style-image: none !important;
+  @keyframes bounceLeft2 {
+    0% {
+      transform: scaleX(1);
+      transform-origin: right;
+    }
+    30% {
+      transform: scaleX(0.7);
+      transform-origin: right;
+    }
+    60% {
+      transform: scaleX(1.1);
+      transform-origin: right;
+    }
+    80% {
+      transform: scaleX(0.98);
+      transform-origin: right;
+    }
+    100% {
+      transform: scaleX(1);
+      transform-origin: right;
+    }
   }
 
   #forward-button::after {
     content: url('icons/forward.svg') !important;
     position: absolute !important;
     margin-top: 4px !important;
-    transition: transform .1s ease-out !important;
+    transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
   }
-
   #forward-button:not([disabled="true"]):active::after {
-    animation: bounce-right .2s ease-out !important;
+    animation: bounceRight 187ms ease-out !important;
+    animation: bounceRight2 .5s cubic-bezier(0.55, 0.55, 0, 1) !important;
   }
 
-  @keyframes bounce-right {
+  @keyframes bounceRight {
       0% {
           transform: translateX(0);
       }
@@ -3029,6 +3097,29 @@ h1, h2, h3 {
           transform: translateX(0);
       }
   }
+  @keyframes bounceRight2 {
+    0% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    30% {
+      transform: scaleX(0.7);
+      transform-origin: left;
+    }
+    60% {
+      transform: scaleX(1.1);
+      transform-origin: left;
+    }
+    80% {
+      transform: scaleX(0.98);
+      transform-origin: left;
+    }
+    100% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+  
   @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
     #forward-button::after, #back-button::after {
       scale: .85 !important;
@@ -3145,6 +3236,70 @@ h1, h2, h3 {
     }
     #forward-button::after {
       content: url("winui-icons/forward-mac.svg") !important;
+    }
+  }
+}
+
+@media (-moz-bool-pref: "uc.winui.js-animations") {
+  #back-button, #forward-button {
+    list-style-image: none !important;
+  }
+
+  #back-button::after {
+    content: url('icons/back.svg') !important;
+    position: absolute !important;
+    margin-top: 4px !important;
+    transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
+  }
+
+  #forward-button::after {
+    content: url('icons/forward.svg') !important;
+    position: absolute !important;
+    margin-top: 4px !important;
+    transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
+  }
+  
+  @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
+    #back-button::after, #forward-button::after {
+      scale: .85 !important;
+    }
+    #back-button:not([disabled="true"]):hover image, #forward-button:not([disabled="true"]):hover image {
+      box-shadow: 0 -.5px 0 2px var(--textByuttonHover) !important;
+    }
+    #back-button:not([disabled="true"]):active image, #forward-button:not([disabled="true"]):active image  {
+      box-shadow: 0 -.5px 0 2px var(--textButtonPressed) !important;
+    }
+  }
+}
+
+@media not (-moz-bool-pref: "widget.windows.mica") {
+  /* Browser frame color */
+  * {
+    --lwt-accent-color: light-dark(#e8e8e8, #202020) !important; /* Active window color */
+    --lwt-accent-color-inactive: light-dark(#e8e8e8, #202020) !important; /* Inactive window color */
+  }
+  
+  /* Window buttons */
+  .titlebar-buttonbox {
+    height: initial !important;
+  }
+  
+  @media (-moz-bool-pref: "uc.winui.floating-tabs") {
+    /* Fix window controls */
+    .titlebar-buttonbox {
+      height: 43px !important;
+    }
+    
+    :root .titlebar-buttonbox,
+    :root:-moz-window-inactive .titlebar-buttonbox {
+      transform: translate(0, 8px) !important;
+      margin-top: 0 !important;
+    }
+
+    :root[sizemode="maximized"] .titlebar-buttonbox,
+    :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
+      transform: translate(-2px, 0px) !important;
+      margin-top: 0 !important;
     }
   }
 }
