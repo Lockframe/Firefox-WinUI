@@ -13,7 +13,7 @@ url-prefix("about:home"),
 url-prefix("about:firefoxview"),
 url(about:privatebrowsing) {
   .top-site-outer {
-    background-color: light-dark(rgba(255,255,255,.7), rgb(255, 255, 255, .0605)) !important;
+    background-color: light-dark(rgba(255,255,255,.7), rgb(255, 255, 255, .0512)) !important;
     border-radius: 4px !important;
     height: 100px !important;
     width: 100px !important;
@@ -47,13 +47,13 @@ url(about:privatebrowsing) {
     }
 
   .top-site-outer:hover {
-    background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+    background-color: light-dark(#fff, rgba(255,255,255,.0698)) !important;
   }
   .top-site-outer:active {
-    background-color: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326)) !important;
+    background-color: light-dark(#fff, rgba(255,255,255,.0698)) !important;
   }
-  .top-site-outer:active > * {
-    opacity: .75 !important;
+  .top-site-outer:active * {
+    color: var(--textPressed) !important;
   }
 
   /* Site icons background color and context menu button */
@@ -97,7 +97,7 @@ url(about:privatebrowsing) {
   .search-wrapper .search-handoff-button, .search-wrapper input {
     background-color: light-dark(255,255,255,.7), rgba(255,255,255,.0605) !important;
     border-radius: 4px !important;
-    transition: all 83ms !important;
+    transition: var(--basicBGAnimation) !important;
   }
   .search-wrapper:hover .search-handoff-button, .search-wrapper input {
     background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
@@ -111,21 +111,9 @@ url(about:privatebrowsing) {
     }
   }
 
-  /* Background color/images */
+  /* Background colors */
   body {
-    --newtab-element-hover-color: rgb(239 239 239 / .3) !important;
-    --newtab-element-active-color: rgb(239 239 239 / .45) !important;
-    --text-shadow: 0 1px 2px #000;
-    --icon-shadow: drop-shadow(0 0.3px 0.6px #000);
-    
-    background-color: light-dark(rgba(255,255,255,.5),rgba(58,58,58,.3))!important;
-
-    :root[lwt-newtab-brighttext] &,
-    :root.private & {
-      background-image: none !important;
-      --newtab-element-hover-color: rgb(66 66 66 / .4) !important;
-      --newtab-element-active-color: rgb(66 66 66 / .55) !important;
-    }
+    background-color: light-dark(rgba(255,255,255,.45),rgba(58,58,58,.25))!important;
   }
   .info {
     background-color: light-dark(rgba(0,0,0,.0605), rgba(255,255,255,.0605)) !important;
@@ -134,14 +122,13 @@ url(about:privatebrowsing) {
   @media (prefers-color-scheme: light) {
     /* Pinned site tiles */
     .top-site-outer {
-      box-shadow: 0 0 0 1px rgba(0,0,0,.06),
-      0 1px 0 rgba(0,0,0,.1) !important;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.0578),
+      0 2px 4px rgba(0,0,0,.04) !important;
     }
     .top-site-outer:hover {
-      box-shadow: 0 0 0 1px rgba(0,0,0,.06),
-      0 1px 0 rgba(0,0,0,.1),
-      0 4px 8px rgba(0,0,0,.03) !important;
-      transform: translateY(-4px) !important;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.0578),
+      0 2px 4px rgba(0,0,0,.1) !important;
+      transform: translateY(-3px) !important;
     }
     .top-site-outer:active {
       box-shadow: 0 0 0 1px rgba(0,0,0,.0578) !important;
@@ -161,16 +148,24 @@ url(about:privatebrowsing) {
   @media (prefers-color-scheme: dark) {
     /* Pinned site tiles */
     .top-site-outer {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.1),
+      0 2px 4px rgba(0,0,0,.13) !important;
+
       box-shadow: 0 0 0 1px rgba(255,255,255,.07),
-      0 -1px 0 rgba(255,255,255,.035) !important;
+      0 -1px 0 rgba(255,255,255,.03) !important;
     }
     .top-site-outer:hover {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.1),
+      0 2px 4px rgba(0,0,0,.26) !important;
+
       box-shadow: 0 0 0 1px rgba(255,255,255,.1),
       0 -1px 0 rgba(255,255,255,.035),
-      0 4px 8px rgba(0,0,0,.2) !important;
-      transform: translateY(-4px) !important;
+      0 2px 4px rgba(0,0,0,.26) !important;
+      transform: translateY(-3px) !important;
     }
     .top-site-outer:active {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.1) !important;
+
       box-shadow: 0 0 0 1px rgba(255,255,255,.0698) !important;
       transform: none !important;
     }
@@ -261,6 +256,7 @@ url(about:privatebrowsing) {
     --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1)) !important;
     --textColor: light-dark(rgba(0,0,0,.89), rgb(255,255,255)) !important;
     --textInverse: light-dark(#fff, #000) !important;
+    --tableOdd: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
 
     --cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
     --cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837)) !important;
@@ -283,6 +279,8 @@ url(about:privatebrowsing) {
 
     --basicBGAnimation: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear, transform 83ms linear !important;
 
+    --prefs-table-border-width: 0 !important;
+
     scrollbar-color:
       light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
       light-dark(#f7f7f7, #252525) !important;
@@ -291,6 +289,13 @@ url(about:privatebrowsing) {
   ::selection {
     background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
     color: var(--textInverse) !important;
+  }
+
+  /* Background colors */
+  @media not (-moz-bool-pref: "browser.tabs.allow_transparent_browser") {
+    body {
+      background-color: light-dark(#fff, #2c2c2c)!important;
+    }
   }
   
   /* Parts restyling */
@@ -374,7 +379,7 @@ url(about:privatebrowsing) {
   button.tab-button[selected] {
     color: var(--textInverse) !important;
     background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
-  }
+  }*/
   .addon-detail-contribute {
     background-color: var(--button) !important;
     border: 1px solid light-dark(rgba(0,0,0,.0605), rgba(255,255,255,.0605)) !important;
@@ -414,25 +419,31 @@ url(about:privatebrowsing) {
   /* About:config table */
   #prefs {
     border-radius: 4px !important;
-    border-color: light-dark(rgba(0,0,0,.1), rgba(255,255,255,.06)) !important;
     border: none !important;
-    background-color: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.06)) !important;
+    background-color: transparent !important;
   }
   #prefs > tr.odd {
-    background-color: light-dark(rgba(0,0,0,.065), rgba(255,255,255,.105)) !important;
+    background-color: transparent !important;
+    border-radius: 4px !important;
+    box-shadow: 0 0 0 99px var(--tableOdd) inset;
+    border: 1px solid black !important;
   }
   #prefs > tr {
-    transition: background-color 83ms linear !important;
+    transition: var(--textButtonHover) !important;
+    border-radius: 4px !important;
+    transition: var(--basicBGAnimation) !important;
   }
   #prefs > tr:hover {
-    background-color: light-dark(rgba(0,0,0,.03), rgba(255,255,255,.0605)) !important;
+    background-color: var(--textButtonHover) !important;
   }
-  #prefs > tr.odd:hover {
-    background-color: light-dark(rgba(0,0,0,.085), rgba(255,255,255,.137)) !important;
+  #prefs > tr.add {
+    background-color: transparent !important;
+  }
+  #prefs[has-visible-prefs] > .add > th, #prefs[has-visible-prefs] > .add > td {
+    padding-top: 0 !important;
   }
 
-  /* Needs organizing */
-  /* Tables */
+  /* Other tables */
   listheader {
     background-color: var(--button) !important;
     border: 1px solid light-dark(rgba(0,0,0,.0605),rgba(255,255,255,.0605)) !important;
@@ -444,7 +455,7 @@ url(about:privatebrowsing) {
   }
   richlistitem {
     min-height: 36px !important;
-    border-top: 1px solid var(--) !important;
+    border-top: 1px solid light-dark(rgba(0,0,0,.0605), rgba(255,255,255,.0605)) !important;
   }
   
   /* Info boxes */
@@ -925,7 +936,7 @@ url(about:privatebrowsing) {
   /* Add new shortcut dialog */
   .edit-topsites-wrapper .modal {
     box-shadow: 0 8px 16px rgba(0,0,0,.26) !important;
-    outline: 1px solid rgba(0,0,0,.2) !important;
+    outline: 1px solid rgba(117,117,117,.4) !important;
     width: fit-content !important;
     border: none !important;
   }
@@ -941,7 +952,7 @@ url(about:privatebrowsing) {
     border-top: 1px solid light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1)) !important;
     border-radius: 0 0 8px 8px !important;
     flex-flow: row nowrap !important;
-    padding: 15px 11px 0 !important;
+    padding: 25px 21px 10px !important;
   }
   .topsite-form .actions button {
     margin-inline: 4px !important;
@@ -949,6 +960,10 @@ url(about:privatebrowsing) {
   }
   
   @media (prefers-color-scheme: light) {
+    .edit-topsites-wrapper .modal {
+      box-shadow: 0 32px 64px 0 rgba(0,0,0,.19), 0 2px 21px rgba(0,0,0,.15) !important;
+    }
+
     .category:active * {
       opacity: .6 !important;
     }
@@ -1013,11 +1028,6 @@ url(about:privatebrowsing) {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
     }
 
-    /* About:config table */
-    #prefs {
-      box-shadow: 0 0 0 1px rgba(0,0,0,.06) !important;
-    }
-
     /* Buttons */
     button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button),
     menulist,
@@ -1041,6 +1051,10 @@ url(about:privatebrowsing) {
   }
 
   @media (prefers-color-scheme: dark) {
+    .edit-topsites-wrapper .modal {
+      box-shadow: 0 32px 64px 0 rgba(0,0,0,.37), 0 2px 21px rgba(0,0,0,.37) !important;
+    }
+
     .category:active *{
       opacity: .786 !important;
     }
@@ -1100,11 +1114,6 @@ url(about:privatebrowsing) {
     /* Context menu */
     .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
       box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26) !important;
-    }
-
-    /* About:config table */
-    #prefs {
-      box-shadow: var(--cardShadowDark) !important;
     }
 
     /* Buttons */
