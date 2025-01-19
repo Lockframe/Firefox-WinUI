@@ -2625,7 +2625,7 @@ h1, h2, h3 {
   /* Fix window controls */
   :root .titlebar-buttonbox,
   :root:-moz-window-inactive .titlebar-buttonbox {
-    transform: translate(0, 10px) !important;
+    transform: translate(0, 9px) !important;
     margin-top: -3px !important;
   }
   
@@ -2706,14 +2706,6 @@ h1, h2, h3 {
     & .tabbrowser-tab,
     & #tabs-newtab-button {
       padding-top: 9px !important;
-    }
-  }
-
-  #scrollbutton-up:not(.menupopup-scrollbutton),
-  #scrollbutton-down:not(.menupopup-scrollbutton) {
-    &,
-    & ~ spacer {
-      margin-top: 8px !important;
     }
   }
 }
@@ -2918,7 +2910,7 @@ h1, h2, h3 {
     scale: .85 !important;
   }
   
-  .toolbarbutton-1 {
+  .toolbarbutton-1:not(#downloadsFooterButtons *) {
     margin-inline: -1px !important;
   }
   #unified-extensions-button {
@@ -3284,12 +3276,25 @@ h1, h2, h3 {
     height: initial !important;
   }
   
+  @media (prefers-color-scheme: dark) {
+    /* Fix opened address bar top border is too translucent */
+    #urlbar[breakout][breakout-extend][open] {
+      box-shadow: 0 1px 0 rgba(255,255,255,.0605) inset !important;
+    }
+  }
+  
   @media (-moz-bool-pref: "uc.winui.floating-tabs") {
     /* Fix window controls */
     .titlebar-buttonbox {
-      height: 43px !important;
+      height: 46px !important;
     }
-    
+    .titlebar-buttonbox image {
+      transform: translateY(-1px) !important;
+    }
+    .titlebar-min {
+      transform: translateX(0) !important;
+    }
+
     :root .titlebar-buttonbox,
     :root:-moz-window-inactive .titlebar-buttonbox {
       transform: translate(0, 8px) !important;
