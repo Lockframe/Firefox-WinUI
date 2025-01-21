@@ -183,7 +183,7 @@ url(about:privatebrowsing) {
 
 /* Built-in pages control */
 /* Color control */
-@-moz-document url-prefix(about:) {
+@-moz-document regexp("chrome:\/\/(?!devtools).*"), regexp("about:(?!(blank|devtools)).*") {
   :root {
     --accentLight: color-mix(in srgb, accentColor 90%, black) !important; /* Main */
     --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
@@ -197,6 +197,8 @@ url(about:privatebrowsing) {
     --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
     --accentWarningDark: color-mix(in srgb, var(--accentDark3) 50%, black) !important;
   
+    --accentAuto: light-dark(var(--accentLight), var(--accentDark)) !important;
+    
     --in-content-page-color: light-dark(#252525, #fff) !important;
     --in-content-page-background: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
     --in-content-deemphasized-text: light-dark(#666, #bbb) !important;
@@ -252,10 +254,27 @@ url(about:privatebrowsing) {
     --border-interactive-color: light-dark(#929292, #858585) !important;
 
     --commonBackground: light-dark(#fff,#2c2c2c) !important;
+    
+    --searchBackground: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
+    --searchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.41) !important;
+    --searchShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.46) !important;
+    --searchActiveShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset !important;
+    --searchActiveShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset !important;
+    --disabledSearch: light-dark(rgba(249,249,249,.3),rgba(255,255,255,.0419)) !important;
+    --disabledSearchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+    --disabledSearchShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02)  !important;
+    --disabledSearchText: light-dark(rgba(0,0,0,.3614),rgba(255,255,255,.3628)) !important;
+    
+    --dialogShadowDark: 0 32px 64px 0 rgba(0,0,0,.37), 0 2px 21px rgba(0,0,0,.37) !important;
+    --dialogShadowLight: 0 32px 64px 0 rgba(0,0,0,.19), 0 2px 21px rgba(0,0,0,.15) !important;
+    --dialogBorder: rgba(117,117,117,.4) !important;
+    --dialogSmoke: rgba(0,0,0,.3) !important;
     --footer: light-dark(#f3f3f3, #202020) !important;
     --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1)) !important;
+
     --textColor: light-dark(rgba(0,0,0,.89), rgb(255,255,255)) !important;
     --textInverse: light-dark(#fff, #000) !important;
+
     --tableOdd: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
 
     --cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
@@ -280,6 +299,7 @@ url(about:privatebrowsing) {
     --basicBGAnimation: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear, transform 83ms linear !important;
 
     --prefs-table-border-width: 0 !important;
+    --main-margin-start: unset !important;
 
     scrollbar-color:
       light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
@@ -313,7 +333,7 @@ url(about:privatebrowsing) {
   /* Headers */
   .sticky-container, .main-search, .main-heading, #toolbar {
   	background-color: transparent !important;
-  	position: relative !important;
+  	position: static !important;
   }
 
   /* Search bars */
@@ -330,7 +350,33 @@ url(about:privatebrowsing) {
   .textbox-search-icon, .textbox-search-sign, .textbox-search-clear {
     margin-inline-start: 8px !important;
   }
-
+  
+  input[type="number"][hidespinbuttons="true"] {
+    appearance: none !important;
+  }
+  textarea, input[type="text"] {
+    background-color: var(--searchBackground) !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 3px !important;
+    margin-block-end: 8px !important;
+    
+    box-shadow: var(--searchShadowDark) !important;
+  }
+  textarea:focus-within {
+    box-shadow: var(--searchActiveShadowDark) !important;
+  }
+  
+  /* Disabled input bars */
+  input:disabled, 
+  textarea:disabled, 
+  search-textbox[disabled="true"] {
+    background-color: var(--disabledSearch) !important;
+    opacity: 1 !important;
+    border: none !important;
+    color: var(--disabledSearchText) !important;
+  }
+  
   /* Sidebars */
   .navigation, #sidebar {
   	background-color: light-dark(rgba(0,0,0,.0205), rgba(0,0,0,.1)) !important;
@@ -341,6 +387,21 @@ url(about:privatebrowsing) {
   }
   #sidebar {
     margin-right: 22px !important;
+  }
+  #categories {
+    margin: 4px 0 0 !important;
+  }
+  #categories > .category {
+    height: 36px !important;
+    background-size: 16px !important;
+    background-position-y: center !important;
+  }
+  #categories .category-name {
+    padding-inline-start: 2px !important;
+  }
+  .category-icon {
+    height: 16px !important;
+    width: 16px !important;
   }
 
   /* Addon cards */
@@ -357,7 +418,7 @@ url(about:privatebrowsing) {
     padding-bottom: 16px !important;
   }
 
-  /* Addon page */    
+  /* Addon page */
   button.tab-button {
     border: none !important;
     margin: 4px !important;
@@ -443,19 +504,22 @@ url(about:privatebrowsing) {
     padding-top: 0 !important;
   }
 
-  /* Other tables */
-  listheader {
+  /* Other tables and trees */
+  listheader, treecols {
     background-color: var(--button) !important;
     border: 1px solid light-dark(rgba(0,0,0,.0605),rgba(255,255,255,.0605)) !important;
+    height: 40px !important;
   }
-  #handlersView {
-    background: var(--button-background-color) !important;
+  #handlersView, tree, richlistbox:not(#sidebar *, .navigation *) {
+    background: var(--button) !important;
     border: 1px solid light-dark(rgba(0,0,0,.0605),rgba(255,255,255,.0605)) !important;
+    border-top: none !important;
     margin: 0 0 8px 0 !important;
   }
-  richlistitem {
-    min-height: 36px !important;
+  richlistitem:not(.category) {
+    min-height: 40px !important;
     border-top: 1px solid light-dark(rgba(0,0,0,.0605), rgba(255,255,255,.0605)) !important;
+    background-color: transparent !important;
   }
   
   /* Info boxes */
@@ -515,13 +579,65 @@ url(about:privatebrowsing) {
     padding: 10px 40px !important;
   }
 
+  .container {
+    border: none !important;
+  }
+
+  .container .content {
+    gap: unset !important;
+  }
+
+  .container .actions.active {
+    background-color: transparent !important;
+    padding: unset !important;
+    margin-left: 72px !important;
+  }
+
+  .category[badge-count]::after {
+    font-weight: normal !important;
+    margin-inline: 0 -2px !important;
+    padding: unset !important;
+  }
+
+  /* Error pages */
+  body.certerror .title {
+    margin-top: -240px !important;
+  }
+  #badCertAdvancedPanel {
+    background-color: light-dark(rgba(255,255,255,.7), rgba(44,44,44,.7)) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    outline: 1px solid rgba(117,117,117,.4) !important;
+    padding: 1px 0 0 0 !important;
+  }
+  #badCertTechnicalInfo {
+    margin: 27px 24px 0 !important;
+  }
+  #advancedPanelButtonContainer {
+    background-color: light-dark(#f3f3f3, #202020) !important;
+    padding: 21px 25px !important;
+    border-radius: 0 0 8px 8px !important;
+    border-top: 1px solid light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1)) !important;
+  }
+
+  #translations-manage-install-list {
+    background-color: var(--button) !important;
+    border: 1px solid !important;
+    border-color: light-dark(rgba(0,0,0,.0605), rgba(255,255,255,.0605)) !important;
+    margin-top: 12px !important;
+  }
+
+  .translations-manage-language:first-child {
+    border-bottom: 1px solid light-dark(rgba(0,0,0,.0605), rgba(255,255,255,.0605)) !important;
+  }
+
   /* Links */
   a:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button),
   .text-link,
   button.text-link:is(:not([disabled="true"]), :enabled),
   ::part(support-link) {
-    padding: 4px 0 !important;
-    border-radius: 4px !important;
+    padding: 0 0 !important;
+    border-radius: 2px !important;
     transition: var(--basicBGAnimation) !important;
     max-width: -moz-available !important;
     width: min-content !important;
@@ -531,18 +647,20 @@ url(about:privatebrowsing) {
   .text-link:hover,
   button.text-link:is(:not([disabled="true"]), :enabled):hover,
   ::part(support-link):hover {
-    background: var(--textButtonHover) !important;
+    box-shadow: 0 0 0 1px var(--textButtonHover),
+      0 0 0 99px var(--textButtonHover) inset !important;
   }
   a:active:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button),
   .text-link:active,
   button.text-link:is(:not([disabled="true"]), :enabled):active,
   ::part(support-link):active {
-    background: var(--textButtonPressed) !important;
+    box-shadow: 0 0 0 1px var(--textButtonPressed),
+      0 0 0 99px var(--textButtonPressed) inset !important;
     color: var(--accentLight4) !important;
   }
 
   /* Buttons */
-  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button),
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not(button.primary):not([dlgtype="accept"]):not(.dialogClose):not(.close-icon):not([default="true"]),
   menulist,
   .web-appearance-choice,
   treecol {
@@ -553,14 +671,14 @@ url(about:privatebrowsing) {
     font-weight: normal !important;
   }
   /* Hover */
-  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):hover,
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not(button.primary):not([dlgtype="accept"]):not(.dialogClose):not(.close-icon):not([default="true"]):not([disabled]):hover,
   menulist:not([disabled]):hover,
   .web-appearance-choice:not([disabled]):hover,
   treecol:not([disabled]):hover {
     background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
   }
   /* Pressed */
-  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
+  button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not(button.primary):not([dlgtype="accept"]):not(.dialogClose):not(.close-icon):not([default="true"]):not([disabled]):active,
   menulist:not([disabled]):active,
   .web-appearance-choice:not([disabled]):active,
   treecol:not([disabled]):active {
@@ -596,24 +714,28 @@ url(about:privatebrowsing) {
     background-color: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
   }
 
+  /* Accent color buttons */
   .button-save,
   button[type="submit"],
   #checkForUpdatesButton3,
   #data-migration,
   #chooseFolder,
-  #syncNow {
+  #syncNow,
+  button.primary {
     background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
     color: light-dark(#fff, #000) !important;
     transition: var(--basicBGAnimation) !important;
     border: 1px solid rgba(255,255,255,.08) !important;
     border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+    font-weight: normal !important;
   }
   .button-save:hover,
   button[type="submit"]:hover,
   #checkForUpdatesButton3:hover,
   #data-migration:hover,
   #chooseFolder:hover,
-  #syncNow:hover {
+  #syncNow:hover,
+  button.primary:hover {
     background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
   }
   .button-save:active,
@@ -621,7 +743,8 @@ url(about:privatebrowsing) {
   #checkForUpdatesButton3:active,
   #data-migration:active,
   #chooseFolder:active,
-  #syncNow:active {
+  #syncNow:active,
+  button.primary:active {
     background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
     opacity: .8 !important;
   }
@@ -947,6 +1070,7 @@ url(about:privatebrowsing) {
   .a11y-link-button {
     color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
   }
+  
   .actions {
     background-color: light-dark(#f3f3f3,#202020) !important;
     border-top: 1px solid light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1)) !important;
@@ -958,7 +1082,189 @@ url(about:privatebrowsing) {
     margin-inline: 4px !important;
     width: -moz-available !important;
   }
+
+  .in-menulist menuitem {
+    border-radius: 4px !important;
+  }
+
+  .in-menulist menuitem[selected="true"]::before {
+    content: '' !important;
+    width: 3px !important;
+    height: 16px !important;
+    border-radius: 99px !important;
+    background-color: var(--accentAuto) !important;
+    position: relative !important;
+    display: block !important;
+    margin-left: -10px !important;
+    margin-right: 7px !important;
+    animation: selectorBar 187ms forwards !important;
+  }
+  .in-menulist menuitem[selected="true"], .in-menulist menuitem:hover {
+    background-color: var(--textButtonHover) !important;
+    color: var(--textColor) !important;
+  }
+
+  /*** Settings page dialog boxes - from Firefox UWP ***/
+	treecol {
+		border-inline-start-width: 0px !important;
+	}
+	listheader {
+		border-bottom: 0px !important;
+	}
+	.menulist-label-box {
+		border: none !important;
+	}
+	.menulist-dropmarker {
+		padding-right: 0px !important;
+	}
+	.menulist-label-box {
+		padding-left: 0px !important;
+	}
+	resizer {
+		display: none !important;
+	}
   
+  #permissionsDisableDescription {
+    margin-block: 4px 24px !important;
+  }
+  
+  .dialogTitleBar {
+		background-color: var(--commonBackground) !important;
+		border-bottom: none !important;
+	}
+  h3, .heading-medium {
+    font-weight: 600 !important;
+    margin-left: -1px !important;
+    font-size: 1.05em !important;
+  }
+  .update-name {
+    font-weight: 600 !important;
+  }
+  .dialogTitle {
+    font-weight: normal !important;
+    text-align: left !important;
+    margin-left: 12px !important;
+    margin-top: -1px !important;
+  }
+  .dialogClose {
+		margin: 0px !important;
+		width: 40px !important;
+		height: 25px !important;
+	}
+  button.dialogClose, .close-icon {
+    background-color: transparent !important;
+    color: var(--textColor) !important;
+    translate: -1px -2px !important;
+  }
+  button.dialogClose:hover, .close-icon:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  button.dialogClose:active, .close-icon:active {
+    background-color: var(--textButtonPressed) !important;
+    color: var(--textPressed) !important;
+  }
+  
+	window, dialog {
+		background-color: transparent !important;
+		padding: 0px !important;
+	}
+	.dialogFrame {
+		margin: 0px !important;
+	}
+  
+  [part="content-box"] {
+    padding: 0 24px !important;
+  }
+
+  dialog > groupbox > hbox > checkbox {
+    margin-top: 0px !important;
+  }
+  separator.groove {
+    display: none !important;
+  }
+  .dialogBox {
+    min-height: calc(491px + 24px) !important;
+  }
+	
+  /* Dark overlay */
+	.dialogOverlay[topmost="true"] {
+		background: var(--dialogSmoke) !important;
+	}
+	.dialogBox, .container[role="dialog"] {
+		background-color: var(--commonBackground) !important;
+		background-clip: padding-box !important;
+		color: var(--textColor) !important;
+		box-shadow: 0 32px 64px 0 rgba(0,0,0,.37), 0 2px 21px rgba(0,0,0,.37) !important;
+    outline: 1px solid rgba(117,117,117,.4) !important;
+		border: none !important;
+		animation: fadeInScale .3s;
+		border-radius: 7px !important;
+		overflow: hidden !important;
+	}
+	.dialog-content-box, .container[role="dialog"] > .content {
+		padding: 24px !important;
+		margin-bottom: 24px !important;
+		border-bottom: 1px solid blue !important;
+		background-color: black !important;
+		background-clip: padding-box !important;
+	}
+  /* Hacky way to make a footer */
+	.dialog-button-box {
+    padding: 0px 24px 24px 24px !important;
+    background-color: var(--footer) !important;
+    border-top: 1px solid var(--footerBorder) !important;
+    padding-block-start: 25px !important;
+    padding-block-end: 25px !important;
+    margin-block: 0 0 !important;
+    padding-inline: 20px 21px !important;
+  }
+  .dialog-button-box button {
+    width: -moz-available !important;
+    font-weight: normal !important;
+    margin-inline: 4.5px !important;
+  }
+  
+  dialog#history > richlistbox {
+    background-color: transparent !important;
+    border: none !important;
+    margin-inline: -2px !important;
+  }
+  
+  dialog#history > richlistbox > richlistitem.update {
+    color: var(--textColor) !important;
+    background-color: rgba(255,255,255,.0512) !important;
+    border-radius: 4px !important;
+    margin-block-end: 4px !important;
+    padding: 12px 16px !important;
+    border: none !important;
+    outline: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.2)) !important;
+    margin-inline: 1px;
+    margin-top: 1px;
+    background-color: var(--cardBG) !important;
+  }
+  dialog#history > richlistbox > richlistitem.update[current="true"]::before {
+    content: '';
+    width: 3px;
+    height: 64px;
+    top: 9%;
+    left: -16px !important;
+    margin-bottom: -64px;
+    border-radius: 99px;
+    background-color: var(--accentAuto);
+    display: block;
+    position: relative;
+    animation: selectorBar 187ms forwards !important;
+  }
+  
+  @keyframes selectorBar {
+    0% {
+      transform: scale(100%, 0%);
+    }
+    100% {
+      transform: scale(100%, 100%);
+    }
+  }
+
   @media (prefers-color-scheme: light) {
     .edit-topsites-wrapper .modal {
       box-shadow: 0 32px 64px 0 rgba(0,0,0,.19), 0 2px 21px rgba(0,0,0,.15) !important;
@@ -992,7 +1298,7 @@ url(about:privatebrowsing) {
     #about-config-search:focus-within,
     input#downloadFolder:focus-within,
     #form-edit > input:focus-within {
-      background-color: rgb(252,252,252) !important;
+      background-color: rgb(255,255,255) !important;
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 -2px 0 var(--accentLight) inset !important;
     }
     input#downloadFolder,
@@ -1000,7 +1306,19 @@ url(about:privatebrowsing) {
     #filter {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.45) !important;
     }
+    textarea, input[type="text"] {
+      box-shadow: var(--searchShadowLight) !important;
+    }
+    textarea:focus-within {
+      box-shadow: var(--searchActiveShadowLight) !important;
+    }
 
+    input:disabled, 
+    textarea:disabled, 
+    search-textbox[disabled="true"] {
+      box-shadow: var(--disabledSearchShadowLight) !important;
+    }
+    
     /* Addon cards */
     .addon.card {
       box-shadow: var(--cardShadowLight) !important;
@@ -1029,20 +1347,20 @@ url(about:privatebrowsing) {
     }
 
     /* Buttons */
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button),
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not(button.primary):not([dlgtype="accept"]):not(.dialogClose):not(.close-icon):not([default="true"]),
     menulist,
     .web-appearance-choice,
     treecol {
       box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
     }
     /* Pressed */
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not(button.primary):not([dlgtype="accept"]):not(.dialogClose):not(.close-icon):not([default="true"]):not([disabled]):active,
     menulist:not([disabled]):active,
     .web-appearance-choice:not([disabled]):active,
     treecol:not([disabled]):active {
       box-shadow: 0 0 0 1px rgba(0,0,0,.0578) !important;
     }
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not(button.primary):not([dlgtype="accept"]):not(.dialogClose):not(.close-icon):not([default="true"]):not([disabled]):active,
     menulist:not([disabled]):active > *,
     .web-appearance-choice:not([disabled]):active > *,
     treecol:not([disabled]):active > * {
@@ -1091,6 +1409,19 @@ url(about:privatebrowsing) {
     #filter {
       box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.54) !important;
     }
+    
+    textarea, input[type="text"] {
+      box-shadow: var(--searchShadowDark) !important;
+    }
+    textarea:focus-within {
+      box-shadow: var(--searchActiveShadowDark) !important;
+    }
+    
+    input:disabled, 
+    textarea:disabled, 
+    search-textbox[disabled="true"] {
+      box-shadow: var(--disabledSearchShadowDark) !important;
+    }
 
     /* Addon cards */
     .addon.card {
@@ -1117,19 +1448,19 @@ url(about:privatebrowsing) {
     }
 
     /* Buttons */
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button),
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not(button.primary):not([dlgtype="accept"]):not(.dialogClose):not(.close-icon):not(button[default="true"]),
     menulist,
     treecol {
       box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
     }
     /* Pressed */
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not(button.primary):not([dlgtype="accept"]):not(.dialogClose):not(.close-icon):not([default="true"]):not([disabled]):active,
     menulist:not([disabled]):active,
     .web-appearance-choice:not([disabled]):active,
     treecol:not([disabled]):active {
       box-shadow: 0 0 0 1px rgba(255,255,255,.0698) !important;
     }
-    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not([disabled]):active,
+    button:not(.toggle-button):not(.category):not([role="menuitem"]):not([role="menuitemcheckbox"]):not(.tab-button):not(.button-save):not([type="checkbox"]):not([type="radio"]):not(.a11y-link-button):not([type="submit"]):not(.context-menu-button):not(.search-button):not(.more-options-button):not(#checkForUpdatesButton3):not(#data-migration):not(#chooseFolder):not(#syncNow):not(.arrowhead):not(.back-button):not(.button-link):not(.addon-detail-contribute-button):not(button.primary):not([dlgtype="accept"]):not(.dialogClose):not(.close-icon):not([default="true"]):not([disabled]):active,
     menulist:not([disabled]):active > *,
     .web-appearance-choice:not([disabled]):active > *,
     treecol:not([disabled]):active > * {
@@ -1145,17 +1476,18 @@ url(about:privatebrowsing) {
 url-prefix(about:addons) {
   .category {
     color: var(--textColor) !important;
-    margin-block: 4px !important;
+    margin-block: 2px !important;
     font-size: 14px !important;
     height: 48px !important;
     min-height: 0 !important;
     padding-inline-start: 34px !important;
     background-position-x: 11px !important;
+    border-radius: 4px !important;
+    transition: none !important;
   }
 
   .category[selected] {
     position: relative !important;
-    border-radius: 4px !important;
     color: var(--textColor) !important;
   }
 
@@ -1168,11 +1500,12 @@ url-prefix(about:addons) {
     position: absolute;
     inset-block: 0;
     margin-block: auto;
-    height: 24px;
+    height: 16px;
     width: 3px;
     left: -1px !important;
-    background-color: var(--in-content-accent-color);
-    border-radius: 3px;
+    background-color: var(--accentAuto);
+    border-radius: 99px;
+    animation: selectorBar 187ms forwards !important;
   }
 
   button.tab-button:hover {
@@ -1183,9 +1516,16 @@ url-prefix(about:addons) {
   button.tab-button[selected]:hover {
     border-block-color: transparent currentColor !important;
   }
+  
+  .rating-star {
+    fill: var(--textColor) !important;
+  }
 }
 @-moz-document url-prefix(about:preferences) {
   .category {
+    padding-inline-start: 10px !important;
+  }
+  #categories .category-name {
     padding-inline-start: 10px !important;
   }
 }
