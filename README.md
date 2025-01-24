@@ -1,46 +1,91 @@
-# Firefox-WinUI
-A custom CSS addon for [bmFtZQ](https://github.com/bmFtZQ)'s [Edge-frfox](https://github.com/bmFtZQ/Edge-FrFox) theme with some [tweaks by MrOtherGuy](https://github.com/MrOtherGuy/firefox-csshacks) and [Guerra24's Firefox-UWP-Style](https://github.com/Guerra24/Firefox-UWP-Style) to make it look native to Windows 11's design.
+# Firefox WinUI Theme
 
-<!-- Use <img> element to set a maximum width. -->
-<img src="screenshots/WinUI-Firefox.png" alt="WinUi-Firefox theme screenshot">
+A custom CSS addon that transforms Firefox to look native to Windows 11's design, combining elements from multiple community themes.
 
-## How to install
-1. Go to your Firefox profile's chrome folder after installing Edge-Frfox and optionally make a backup of the original `userContent.css`.
-2. Download the `winui-icons` and `images` folder, `custom.css` and `userContent.css` from this repository and add them to your Firefox profile's `chrome` folder.
-3. Close and restart Firefox, if performed correctly, the theme should now be installed.
-4. Go to `about:config` and set the following boolean keys to true:
-* `browser.tabs.allow_transparent_browser`
-* `svg.context-properties.content.enabled`
-* `widget.transparent-windows`
-* `widget.windows.mica`
-5. Create and/or set the following boolean keys to false:
-* `browser.startup.blankWindow`
-* `uc.tweak.newtab-background`
-* `uc.tweak.revert-context-menu`
+## Overview
 
-You can also add the following boolean keys to enable some tweaks:
-* `uc.winui.aptos`
-* `uc.winui.centered-url`
-* `uc.winui.extra-acrylic`
-* `uc.winui.extra-animations`
-* `uc.winui.extra-highlights`
-* `uc.winui.floating-tabs`
-* `uc.winui.grayer-tabbed`
-* `uc.winui.hide-with-1-tab`
-* `uc.winui.immersive-navbar`
-* `uc.winui.js-animations`
-* `uc.winui.mac-back-forward`
-* `uc.winui.macos-navbar-icons`
-* `uc.winui.more-acrylic`
-* `uc.winui.navbar-highlights`
-* `uc.winui.pill-urlbar`
-* `uc.winui.rounded-corners`
-* `uc.winui.rounded-navbar`
-* `uc.winui.smaller-toolbar-buttons`
-* `uc.winui.taller-bookmarks`
-* `uc.winui.taller-urlbar`
-* `uc.winui.transparent-urlbar`
-* `uc.winui.uppercase-newtab-label`
-* `uc.winui.urlbar-extra-separators`
+This theme integrates styling from:
+- [Edge-Frfox](https://github.com/bmFtZQ/Edge-FrFox) by bmFtZQ
+- [Firefox CSS Hacks](https://github.com/MrOtherGuy/firefox-csshacks) by MrOtherGuy
+- [Firefox UWP Style](https://github.com/Guerra24/Firefox-UWP-Style) by Guerra24
 
-Refer to [this guide](https://github.com/MrOtherGuy/fx-autoconfig) if you'd like to enable the JS animations.
+![WinUI Firefox Theme Screenshot](screenshots/WinUI-Firefox.png)
+
+## Prerequisites
+
+- Firefox browser
+- Edge-Frfox theme installed
+
+## Installation
+
+### 1. Prepare Firefox Profile
+- Navigate to your Firefox profile's `chrome` folder
+- (Recommended) Backup the original `userContent.css`
+
+### 2. Install Theme Files
+- Download the following from this repository:
+  - `winui-icons` folder
+  - `images` folder
+  - `custom.css`
+  - `userContent.css`
+- Place these files in your Firefox profile's `chrome` folder
+
+### 3. Configure Firefox Settings
+
+#### Required Settings
+Open `about:config` and set these boolean keys to `true`:
+- `browser.tabs.allow_transparent_browser`
+- `svg.context-properties.content.enabled`
+- `widget.transparent-windows`
+- `widget.windows.mica`
+
+#### Disable Defaults
+Set these boolean keys to `false`:
+- `browser.startup.blankWindow`
+- `uc.tweak.newtab-background`
+- `uc.tweak.revert-context-menu`
+
+### 4. Optional Customization Tweaks
+
+Enable these boolean keys for additional customizations:
+
+#### Visual Tweaks
+- `uc.winui.rounded-corners`
+- `uc.winui.transparent-urlbar`
+- `uc.winui.pill-urlbar`
+- `uc.winui.extra-acrylic`
+- `uc.winui.more-acrylic`
+- `uc.winui.taller-urlbar`
+- `uc.winui.smaller-toolbar-buttons`
+
+#### Layout Tweaks
+- `uc.winui.floating-tabs`
+- `uc.winui.extension-tray`
+
+#### Icon and Navigation Tweaks
+- `uc.winui.macos-navbar-icons`
+- `uc.winui.mac-back-forward`
+- `uc.winui.navbar-highlights`
+
+#### Experimental Tweaks
+- `uc.winui.hide-with-1-tab`
+- `uc.winui.js-animations`
+- `uc.winui.extra-animations`
+
+### 5. Restart Firefox
+
+Close and restart Firefox to apply the theme.
+
+## JS Animations
+
+For JavaScript-based animations, refer to [this guide](https://github.com/MrOtherGuy/fx-autoconfig).
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+## Credits
+
+- [bmFtZQ](https://github.com/bmFtZQ)
+- [MrOtherGuy](https://github.com/MrOtherGuy)
+- [Guerra24](https://github.com/Guerra24)
