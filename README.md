@@ -25,7 +25,7 @@ This theme integrates styling from:
 ### 2. Install Theme Files
 - Download the following from this repository:
   - `winui-icons` folder
-  - `images` folder
+  - `image` folder
   - `custom.css`
   - `userContent.css`
 - Place these files in your Firefox profile's `chrome` folder
@@ -63,7 +63,6 @@ Enable these boolean keys for additional customizations:
 - `uc.winui.extension-tray`
 
 #### Icon and Navigation Tweaks
-- `uc.winui.macos-navbar-icons`
 - `uc.winui.mac-back-forward`
 - `uc.winui.navbar-highlights`
 
