@@ -4174,54 +4174,54 @@ toolbar .toolbaritem-combined-buttons {
   }
   
   #aboutDialogContainer {
-	background-color: color-mix(in srgb, var(--commonBackground) 60%, transparent) !important;
-	color: var(--textColor) !important;
-	color-scheme: normal !important;
+    background-color: color-mix(in srgb, var(--commonBackground) 60%, transparent) !important;
+    color: var(--textColor) !important;
+    color-scheme: normal !important;
   }
 
   #rightBox {
 	 background-image: none !important;
   }
   #rightBox::before {
-	content: url("chrome://branding/content/about-wordmark.svg") !important;
-	margin-top: -38px !important;
+    content: url("chrome://branding/content/about-wordmark.svg") !important;
+    margin-top: -38px !important;
   }
   #rightBox::after {
-	content: 'WinUI';
-	font-size: 16px;
-	width: fit-content;
-	border: 2px solid var(--accentAuto);
-	border-radius: 99px;
-	padding-inline: 8px;
-	padding-block-end: 2px;
-	color: var(--accentAuto);
-	position: absolute;
-	transform: translate(348px, -27px);
-	font-weight: 600;
+    content: 'WinUI';
+    font-size: 16px;
+    width: fit-content;
+    border: 2px solid var(--accentAuto);
+    border-radius: 99px;
+    padding-inline: 8px;
+    padding-block-end: 2px;
+    color: var(--accentAuto);
+    position: absolute;
+    transform: translate(348px, -27px);
+    font-weight: 600;
   }
   
   #updateIcon {
-	&.noUpdatesFound {
-	  content: url('winui-icons/success-gradient.svg') !important;
-	}
+    &.noUpdatesFound {
+      content: url('winui-icons/success-gradient.svg') !important;
+    }
   }
 
   #bottomBox {
-	background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
-	padding: 24px 10px 24px !important;
-	border-top: 1px solid var(--footerBorder) !important;
+    background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
+    padding: 24px 10px 24px !important;
+    border-top: 1px solid var(--footerBorder) !important;
   }
   
   #updateButton {
-	box-shadow: none !important;
+	 box-shadow: none !important;
   }
   
   @media not (-moz-bool-pref: "widget.windows.mica") {
-	#aboutDialogContainer {
-	  background-color: var(--commonBackground) !important;
-	}
-	#bottomBox {
-	  background-color: var(--footer) !important;
-	}
+    #aboutDialogContainer, window#aboutDialog {
+      background-color: var(--commonBackground) !important;
+    }
+    #bottomBox {
+      background-color: var(--footer) !important;
+    }
   }
 }
