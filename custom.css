@@ -46,7 +46,12 @@
   --disabledSearchShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02)  !important;
   --disabledSearchText: light-dark(rgba(0,0,0,.3614),rgba(255,255,255,.3628)) !important;
   --searchDropdown: light-dark(#FCFCFC, #2C2C2C) !important;
+
+  --controlSecondary: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+  --controlTertiary: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326)) !important;
+  --controlQuartenary: light-dark(rgba(243,243,243,.76), rgba(255,255,255,.0605)) !important;
   --controlStrong: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
+  --controlStroke: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0698)) !important;
 
   --infoBG: light-dark(rgba(246,246,246, .5), rgba()) !important;
   --cautionBG: light-dark(#FFF4CE, #433519) !important;
@@ -60,7 +65,6 @@
   --criticalBadge: light-dark(#C42B1C,#FF99A4) !important;
 
   --segmentedBG: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
-  --segmentedBorder: light-dark(rgba0,0,0,.0578), rgba(255,255,255,.0698)) !important;
 
   --progressBar: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
 
@@ -518,7 +522,7 @@ menu::after {
   margin-left: 4px;
   color: var(--textPressed) !important;
   font-size: 10px !important;
-  font-family: 'Segoe Fluent Icons' !important;
+  font-family: 'Segoe Fluent Icons', 'Segoe MDL2 Assets' !important;
 }
 #protections-popup-mainView .subviewbutton-nav:not(.notFound), .widget-overflow-list .subviewbutton-nav, .PanelUI-subView .subviewbutton-nav {
   &::after {
@@ -1490,19 +1494,18 @@ menupopup#ContentSelectDropdownPopup {
 #urlbar-search-mode-indicator {
   height: 26px !important;
   margin-top: 1px !important;
-  color: var(--textInverse) !important;
+  color: var(--textColor) !important;
+  font-weight: 600 !important;
   padding-inline: 10px 6px !important;
   border-radius: 99px !important;
-  font-weight: 600 !important;
+  outline: 1px solid var(--controlStroke) !important;
 
-  #urlbar[focused] > .urlbar-input-container > & {
-    background-color: var(--accentAuto) !important;
-  }
-
+  #urlbar[focused] > .urlbar-input-container > &,
   #urlbar:not([focused]) > .urlbar-input-container > & {
-    background-color: var(--accentAuto) !important;
+    background-color: var(--controlQuartenary) !important;
   }
 }
+
 #urlbar-search-mode-indicator span {
   margin-bottom: 2px !important;
 }
@@ -2245,14 +2248,6 @@ h1, h2, h3 {
     color: var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
   }
 }
-:root:-moz-window-inactive #urlbar-search-mode-indicator {
-  & span {
-    color: var(--textInverse) !important;
-  }
-  & .close-button {
-    color: var(--textInverse) !important;
-  }
-}
 
 /* In address-bar icons positioning */
 :is(#urlbar-input-container, .urlbar-input-container) {
@@ -2264,7 +2259,7 @@ h1, h2, h3 {
 .identity-box-button,
 #reader-mode-button,
 #translations-button,
-#translations-button-circle-arrows {
+#translations-button-circle-arrows{
   height: 26px !important;
   border-radius: 2px !important;
 }
@@ -3019,7 +3014,7 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
   }
 
   menupopup * {
-    color: var(--textColor) !important;
+    color: rgba(0,0,0,.89) !important;
   }
 
   @-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
@@ -3868,13 +3863,17 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
     transform-origin: top right !important;
   }
 
-  #identity-popup[animate="open"] {
+  #identity-popup[animate="open"],
+  #tab-preview-panel[animate="open"] {
     animation: popIn2 .333s cubic-bezier(0, 0, 0, 1) !important;
     transform-origin: top left !important;
   }
   #identity-popup:not([animate="open"]) {
     animation: popOut2 .187s ease-in !important;
     transform-origin: top left !important;
+  }
+  #tab-preview-panel div {
+    animation: none !important;
   }
 
   @keyframes popIn {
