@@ -1021,6 +1021,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 #tab-preview-panel div {
   animation: panelContentSlide2 .24s cubic-bezier(0, 0, 0, 1) !important;
   transform-origin: top center !important;
+  color: var(--textColor) !important;
 }
 
 /* Footer */
@@ -3085,14 +3086,16 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
   margin-bottom: 0 !important;
 }
 
-/* WinUI Rounded Corners - Needs polishing */
+/* WinUI Rounded Corners */
 @media (-moz-bool-pref: "uc.winui.rounded-corners") {
-  :root:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [sizemode="maximized"]) browser {
+  :root:not([inDOMFullscreen="true"], 
+  [sizemode="fullscreen"], 
+  [sizemode="maximized"]) browser:not(.webextension-popup-browser) {
     margin: -1px 4px 4px 4px !important;
     border-radius: 8px 8px 6px 6px !important;
     border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
   }
-  :root[sizemode="maximized"] browser {
+  :root[sizemode="maximized"] browser:not(.webextension-popup-browser) {
     margin: -1px 4px 4px 4px !important;
     border-radius: 8px !important;
     border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
@@ -4013,112 +4016,92 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
 }
 
 /* Fixes for inactive Mica tweak/Windows 10 */
-@media not (-moz-bool-pref: "widget.windows.mica") {  
+@media not (-moz-bool-pref: "widget.windows.mica") {
+
   /* Browser frame color */
   * {
     --lwt-accent-color: light-dark(#e8e8e8, #202020) !important; /* Active window color */
     --lwt-accent-color-inactive: light-dark(#e8e8e8, #202020) !important; /* Inactive window color */
   }
 
-  /* Window buttons */
-  .titlebar-buttonbox {
-    height: initial !important;
-    opacity: 1 !important;
-    padding-bottom: 1px !important;
-  }
-  :root:-moz-window-inactive .titlebar-buttonbox {
-    opacity: .5 !important;
-  }
-
-  @media (-moz-bool-pref: "uc.winui.floating-tabs") {
-    /* Fix window controls */
-    .titlebar-buttonbox:not([sizemode="maximized"]) image {
-      transform: translateY(4px) !important;
+  @media not (-moz-bool-pref: "uc.winui.revert-titlebar-buttons") {
+    /* Window buttons */
+    .titlebar-buttonbox {
+      height: initial !important;
+      opacity: 1 !important;
+      padding-bottom: 1px !important;
     }
-    .titlebar-close {
-      padding-right: 19px !important;
-      margin-right: -2px !important;
+    :root:-moz-window-inactive .titlebar-buttonbox {
+      opacity: .5 !important;
     }
 
-    :root[sizemode="maximized"] .titlebar-buttonbox,
-    :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
-      transform: translate(-2px, 0) !important;
+    @media (-moz-bool-pref: "uc.winui.floating-tabs") {
+      /* Fix window controls */
+      .titlebar-buttonbox:not([sizemode="maximized"]) image {
+        transform: translateY(4px) !important;
+      }
+      .titlebar-close {
+        padding-right: 19px !important;
+        margin-right: -2px !important;
+      }
 
-      & image {
-        transform: translateY(0) !important;
+      :root[sizemode="maximized"] .titlebar-buttonbox,
+      :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
+        transform: translate(-2px, 0) !important;
+
+        & image {
+          transform: translateY(0) !important;
+        }
       }
     }
   }
 }
 
-/* Attempt to fix window controls when mica is enabled */
-@media (-moz-bool-pref: "widget.windows.mica") {  
-  :root:-moz-window-inactive .titlebar-buttonbox {
-    opacity: .5 !important;
-    height: 30px !important;
-  }
-  :root:-moz-window-inactive .titlebar-min image {
-    transform: translateX(1px) !important;
-  }
-  :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
-    height: 28px !important;
-  }
-  :root:-moz-window-inactive[sizemode="maximized"] .titlebar-button {
-    transform: translateX(-2px) !important;
-  }
-  :root:-moz-window-inactive[sizemode=maximized] .titlebar-close {
-    padding-right: 19px !important;
-    margin-right: -2px !important;
-  }
-
-  @media (-moz-bool-pref: "uc.winui.floating-tabs") {
-    :root:-moz-window-inactive:not([sizemode="maximized"]) .titlebar-buttonbox {
-      top: 9px !important;
+/* Fix window controls when mica is enabled */
+@media (-moz-bool-pref: "widget.windows.mica") {
+  @media not (-moz-bool-pref: "uc.winui.revert-titlebar-buttons") {
+    :root:-moz-window-inactive .titlebar-buttonbox {
+      opacity: .5 !important;
+      height: 30px !important;
+    }
+    :root:-moz-window-inactive .titlebar-min image {
+      transform: translateX(1px) !important;
     }
     :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
-      top: 2px !important;
+      height: 28px !important;
+    }
+    :root:-moz-window-inactive[sizemode="maximized"] .titlebar-button {
+      transform: translateX(-2px) !important;
+    }
+    :root:-moz-window-inactive[sizemode=maximized] .titlebar-close {
+      padding-right: 19px !important;
+      margin-right: -2px !important;
+    }
+
+    @media (-moz-bool-pref: "uc.winui.floating-tabs") {
+      :root:-moz-window-inactive:not([sizemode="maximized"]) .titlebar-buttonbox {
+        top: 9px !important;
+      }
+      :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
+        top: 2px !important;
+      }
     }
   }
 }
 
-/* Old experiments with window controls - Seem to need adjustment every time Firefox updates - Hacky */
-@media (-moz-bool-pref: "uc.winui.fix-window-controls") {
-  .titlebar-buttonbox {
-    height: 30px;
-  }
-  :root[sizemode="maximized"] .titlebar-buttonbox {
-    opacity: 1 !important;
-    transform: translate(-2px, -1px) !important;
-  }
-  :root:-moz-window-inactive .titlebar-buttonbox {
-    opacity: .5 !important;
-    margin-top: 0px !important;
-  }
-  :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
-    opacity: .5 !important;
-    transform: translate(-2px, -1px) !important;
-  }
-  .titlebar-min {
-    transform: translateX(1px) !important;
-  }
-  .titlebar-close {
-    padding-right: 19px !important;
-    margin-right: -2px !important;
-  }
-
-  @media (-moz-bool-pref: "uc.winui.floating-tabs") {
-    /* Fix window controls */
-    :root .titlebar-buttonbox,
-    :root:-moz-window-inactive .titlebar-buttonbox {
-      transform: translate(0, 9px) !important;
-      margin-top: -3px !important;
+@media (-moz-bool-pref: "uc.winui.revert-titlebar-buttons") {
+  @media not (-moz-bool-pref: "widget.windows.mica") {
+    :root:not(:-moz-window-inactive) .titlebar-buttonbox {
+      opacity: 1 !important;
     }
-
-    :root[sizemode="maximized"] .titlebar-buttonbox,
-    :root:-moz-window-inactive[sizemode="maximized"] .titlebar-buttonbox {
-      transform: translate(-2px, 10px) !important;
-      margin-top: -11px !important;
-    }
+  }
+  .titlebar-button {
+    appearance: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 8px 17px !important;
+    -moz-context-properties: stroke !important;
+    stroke: currentColor !important;
   }
 }
 
