@@ -8,6 +8,7 @@ This theme integrates styling from:
 - [Edge-Frfox](https://github.com/bmFtZQ/Edge-FrFox) by bmFtZQ
 - [Firefox CSS Hacks](https://github.com/MrOtherGuy/firefox-csshacks) by MrOtherGuy
 - [Firefox UWP Style](https://github.com/Guerra24/Firefox-UWP-Style) by Guerra24
+- [Shimmer](https://github.com/nuclearcodecat/shimmer) by Nuclearcodecat
 
 ![WinUI Firefox Theme Screenshot](screenshots/WinUI-Firefox.png)
 
@@ -57,6 +58,7 @@ Enable these boolean keys for additional customizations:
 - `uc.winui.more-acrylic`
 - `uc.winui.taller-urlbar`
 - `uc.winui.smaller-toolbar-buttons`
+- `uc.winui.hide-shortcuts`
 
 #### Layout Tweaks
 - `uc.winui.floating-tabs`
@@ -88,3 +90,4 @@ Contributions, issues, and feature requests are welcome.
 - [bmFtZQ](https://github.com/bmFtZQ)
 - [MrOtherGuy](https://github.com/MrOtherGuy)
 - [Guerra24](https://github.com/Guerra24)
+- [Nuclearcodecat](https://github.com/nuclearcodecat)
