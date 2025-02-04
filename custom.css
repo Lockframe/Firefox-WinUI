@@ -121,6 +121,12 @@
   font-family: 'Segoe UI Variable Text', 'Segoe UI', sans-serif !important;
 }
 
+/* Titles */
+h1, h2, h3 {
+  text-align: left !important;
+  margin-left: 12px !important;
+}
+
 /* Simple animations */
 .tab-close-button,
 .toolbarbutton-1 > .toolbarbutton-icon,
@@ -225,22 +231,20 @@
   fill: var(--accentAuto) !important;
   list-style-image: url('winui-icons/sync.svg') !important;
 }
-.panel-header > h1 > span {
+/*.panel-header > h1 > span {
   #PanelUI-helpView &::before {
     --header-image: url(icons/help.svg) !important;
     background-image: url('winui-icons/help.svg') !important;
     background-size: 7px !important;
+    z-index: 11 !important;
   }
-}
+}*/
 #appMenu-help-button2 {
-  list-style-image: unset !important;
-
-  & ::after {
-    content: url('winui-icons/help.svg');
-    width: 8px;
-    position: absolute;
-    transform: translate(-26px, -16px);
-  }
+  list-style-image: none !important;
+  background-image: url(winui-icons/help.svg) !important;
+  background-repeat: no-repeat !important;
+  background-size: 9px !important;
+  background-position: 12px 6px !important;
 }
 toolbarbutton[data-l10n-id="overflow-scroll-button-backwards"],
 toolbarbutton[data-l10n-id="overflow-scroll-button-forwards"] {
@@ -283,14 +287,24 @@ toolbarbutton[data-l10n-id="overflow-scroll-button-forwards"] {
 /* Tab spacing */
 .tabbrowser-tab{
   z-index: 1 !important;
+  margin-inline: .5px !important;
+}
+.tabbrowser-tab[pinned] {
+  margin-inline: 1px !important;
 }
 /* Unselected tabs are 1px smaller than selected tabs */
 .tab-background:not([selected]) {
-  clip-path: inset(1px round 7px 7px 0 0) !important;
+  clip-path: inset(1px 0 1px 0 round 7px 7px 0 0) !important;
 }
 /* Proper tab roundness */
 .tab-background {
   border-radius: 8px 8px 0 0 !important;
+}
+
+/* Fix pinned tab overlapping regular tabs when overflowing
+May be removed once tab sliders are re-enabled */
+#tabbrowser-tabs[overflow] .tabbrowser-tab[pinned] {
+  position: relative !important;
 }
 
 /* URL Tooltip */
@@ -362,6 +376,17 @@ toolbarbutton[data-l10n-id="overflow-scroll-button-forwards"] {
   & #TabsToolbar {
     --tab-min-height: 31px !important;
   }
+}
+
+/* Tabs should be at least 100px wide */
+#tabbrowser-tabs {
+  --tab-min-width: 100px !important;
+}
+/* Always show tab close button */
+.tab-close-button { 
+  #tabbrowser-tabs[closebuttons="activetab"][orient="horizontal"] &:not([selected],[pinned]) { 
+    display: block !important; 
+  } 
 }
 
 /* Fix for toolbar icons pinned to the tab area */
@@ -776,17 +801,23 @@ menuitem {
 
 .panel-header {
   & h1, #fxa-menu-header-description {
-    font-size: 11px !important;
-    font-weight: normal !important;
-    color: var(--textPressed) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: var(--textColor) !important;
+    margin-left: 12px !important;
 
     & span::before {
-      margin-right: 10px !important;
+      display: none;
     }
   }
 }
 #appmenu-moreTools .panel-header span {
   margin-left: -10px !important;
+}
+
+#PanelUI-fxa-menu-syncnow-button {
+  font-size: 14px !important;
+  height: 16px !important;
 }
 
 toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
@@ -914,20 +945,35 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 #clearDownloadsPanel {
   border: none !important;
 }
+/* Custom title */
+#downloadsListBox::before {
+  content: 'Downloads';
+  font-weight: 600;
+  font-size: 14px;
+  margin: 7px 0 0 11.5px;
+  color: var(--textColor);
+}
+
 /* Downloaded items */
 #downloadsListBox richlistitem {
   background-color: var(--cardBG) !important;
   outline: 1px solid var(--cardOutline) !important;
-  margin-inline: 5px !important;
-  border-radius: 4px !important;
-  margin-block: 2.5px !important;
+  margin-inline: 13px !important;
+  border-radius: 3px !important;
+  margin-block: 3px !important;
   animation: contentSlideUp .333s cubic-bezier(0, 0, 0, 1) !important;
+  line-height: 10px !important;
 }
 #downloadsListBox richlistitem:first-of-type {
-  margin-top: 5px !important;
+  margin-top: 13px !important;
 }
 #downloadsListBox richlistitem:last-of-type {
-  margin-bottom: 11px !important;
+  margin-bottom: 19px !important;
+}
+#downloadsListBox .download-state[state="1"] .downloadTypeIcon {
+  height: 24px !important;
+  width: 24px !important;
+  margin-left: -4px !important;
 }
 
 @keyframes contentSlideUp {
@@ -1163,6 +1209,30 @@ panel toolbarseparator {
 window#webextpanels-window {
   background: transparent !important;
 }
+/* Remove border */
+.sidebar-splitter {
+  --splitter-width: 1px !important;
+  border-inline-end-width: 0px !important;
+}
+#sidebar-box {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-right: 1px solid var(--footerBorder) !important;
+  background-color: var(--frameBG) !important;
+}
+#sidebar {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+#sidebar-header {
+  margin-top: -6px !important;
+}
 
 /* Fix space above tabs so that shadows can appear */
 #tabbrowser-tabs {
@@ -1275,9 +1345,11 @@ scrollbox[orient="horizontal"],
   min-width: 1px !important;
   max-width: 32px !important;
   padding: 0 3px 1px !important;
+  position: absolute !important;
+  transform: translateX(-8px) !important;
 }
 #unified-extensions-area .toolbarbutton-badge {
-  transform: translateX(4px) !important;
+  transform: translateX(8px) !important;
 }
 
 /* Remove cog icon from extensions flyout as it is the same from the context menu */
@@ -1302,7 +1374,7 @@ scrollbox[orient="horizontal"],
 
   &::after { /* Custom label */
     content: "Private";
-    margin-block: 0 3px;
+    margin-block: auto;
     margin-inline: 6px;
     color: var(--textInverse) !important;
   }
@@ -1357,33 +1429,62 @@ panel {
   min-height: 32px !important;
 }
 
-/* PopUp Window customization - Needs Polishing 
-:root[chromehidden~="toolbar"] #PanelUI-button {
-display: none !important;
-}
-:root[chromehidden~="toolbar"] {
-browser {
-margin: 4px !important;
-border-radius: 8px 8px 6px 6px !important;
-border: 1px solid light-dark(rgba(0,0,0,.08), rgba(255,255,255,.02)) !important;
-}
-.browserStack {
-background-color: light-dark(#f1f5f9, #1a2126) !important;
-}
-#navigator-toolbox {
-display: none !important;
-}
-#statuspanel-label {
-margin: 0 0 8px 8px !important;
-}
-} */
-
 /* Fix URL bar margin inside of pop up windows */
 :root[chromehidden~="toolbar"] #urlbar-container {
   margin-inline: 8px !important;
 }
 
-/* Ctrl F */
+/* Ctrl F - Adapted from Shimmer theme*/
+findbar {
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
+  background-color: light-dark(rgb(252,252,252), rgb(44,44,44)) !important;
+  background-image: url(image/accnoise256.png) !important;
+  border-top: none !important;
+  position: relative !important;
+	border-radius: 7px !important;
+	bottom: 60px !important;
+	margin-inline: auto !important;
+	width: 50rem !important;
+	height: 4rem !important;
+	display: flex !important;
+	align-items: space-evenly !important;
+	margin-top: -4rem !important;
+	transition: all 333ms ease-out !important;
+  outline: 1px solid rgba(117,117,117,.4) !important;
+}
+
+findbar[hidden]{
+	margin-bottom: 0 !important;
+	opacity: 0 !important;
+  animation: findbarIn 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+}
+
+findbar:not([hidden]) {
+	opacity: 1 !important;
+	background: var(--toolbar-bgcolor, var(--toolbar-non-lwt-bgcolor)) !important;
+	-moz-appearance: none !important;
+	appearance: none !important;
+  animation: findbarOut 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+}
+
+@keyframes findbarOut {
+  0% {
+    transform: scale(0,0);
+  }
+  100% {
+    transform: scale(1,1);
+  }
+}
+@keyframes findbarIn {
+  0% {
+    transform: scale(1,1);
+  }
+  100% {
+    transform: scale(0,0);
+  }
+}
+
 .findbar-textbox {
   height: 30px !important;
   border-radius: 4px !important;
@@ -1391,7 +1492,8 @@ margin: 0 0 8px 8px !important;
   border: 1px solid !important;
   border-color: light-dark(rgba(0,0,0,.08), rgba(255,255,255,.02)) !important;
   border-bottom-color: light-dark(rgba(0,0,0,.22), rgba(255,255,255,.02)) !important;
-  border-top-color: light-dark(rgba(0,0,0,.08), rgba(255,255,255,.045))
+  border-top-color: light-dark(rgba(0,0,0,.08), rgba(255,255,255,.045)) !important;
+  margin-top: -1px !important;
 }
 .findbar-textbox {
   :root:not([lwtheme]) & {
@@ -1401,20 +1503,88 @@ margin: 0 0 8px 8px !important;
 .findbar-textbox:hover {
   background-color: var(--searchHover) !important;
 }
-.findbar-textbox:focus {
-  outline: none !important;
+.findbar-textbox:focus-within {
   background-color: var(--searchActive) !important;
   border-color: var(--searchActiveBorder) !important;
   border-bottom: 2px solid var(--accentAuto) !important;
 }
-findbar {
-  padding-bottom: 10px !important;
-  padding-top: 10px !important;
-  background-color: light-dark(rgb(252,252,252), rgb(44,44,44)) !important;
-  background-image: url(image/accnoise256.png) !important;
+
+/* change text to icons for smaller findbar */
+.findbar-container checkbox::after {
+	height: 16px;
+	font-size: 14px;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	-moz-context-properties: fill;
+	fill: currentColor;
+	color: inherit;
 }
-.browserContainer > findbar {
-  border-top: 1px solid light-dark(rgba(0,0,0,.06),rgba(0,0,0,.2)) !important;
+.findbar-highlight::after {
+	content: '';
+	background: url(winui-icons/highlight.svg) no-repeat;
+	width: 14px;
+	height: 16px !important;
+  margin-left: 4px;
+}
+.findbar-match-diacritics::after {
+	content: 'ąâ';
+  margin-left: 4px;
+}
+.findbar-entire-word::after {
+	content: 'Abc';
+  margin-left: 4px;
+}
+.findbar-case-sensitive::after {
+	content: 'Aa';
+  margin-left: 4px;
+}
+
+/* hide all text for findbar checkboxes */
+.findbar-container checkbox > .checkbox-label-box {
+	display: none !important;
+}
+.findbar-closebutton {
+  width: 30px !important;
+  height: 22px !important;
+  margin: auto 12px auto !important;
+}
+
+/* move matched amount below main findbar */
+.found-matches {
+	position: absolute !important;
+	padding: 1.8rem 0.7rem 0.2rem 0.6rem !important;
+	top: 14px !important;
+	background: var(--toolbar-bgcolor, var(--toolbar-non-lwt-bgcolor)) !important;
+	/* border: solid var(--arrowpanel-border-color) 1px !important; */
+	left: -12px !important;
+	border-bottom-left-radius: 12px !important;
+	border-bottom-right-radius: 12px !important;
+	z-index: 9 !important;
+	box-shadow: 0 0 0px 1px var(--lwt-accent-color);
+	clip-path: inset(0 -10px -5px -5px);
+}
+.findbar-find-status {
+	display: none !important;
+}
+.found-matches::before {
+	z-index: 8 !important;
+}
+.found-matches::after {
+	position: absolute;
+	display: block;
+	content: '';
+	width: 1rem;
+	height: 1.5rem;
+	background: var(--toolbar-bgcolor, var(--toolbar-non-lwt-bgcolor)) !important;
+	right: -0.5rem;
+	top: 0.8rem;
+	transform: rotate(45deg);
+	box-shadow: 0 0 0px 1px var(--lwt-accent-color);
+	clip-path: inset(0 -0.3rem 0 0);
+}
+.findbar-textbox { 
+	z-index: 10 !important;
 }
 
 /* Dropdowns */
@@ -1429,7 +1599,7 @@ menupopup#ContentSelectDropdownPopup {
 
 /* Fix back and forward buttons hover color */
 #forward-button[disabled]:hover > .toolbarbutton-icon,
-#back-button[disabled]:hover > .toolbarbutton-icon{
+#back-button[disabled]:hover > .toolbarbutton-icon {
   background-color: transparent !important;
 }
 
@@ -2217,12 +2387,6 @@ html[windowtype="Toolkit:PictureInPicture"] {
   border-radius: 8px !important;
 }
 
-/* Titles */
-h1, h2, h3 {
-  text-align: left !important;
-  margin-left: 12px !important;
-}
-
 /* Toolbar button states */
 .toolbarbutton-1:hover > .toolbarbutton-icon,
 .toolbarbutton-1:hover > stack{
@@ -2423,7 +2587,7 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
 
   /* Hovering tab */
   .tabbrowser-tab:not([selected]):hover .tab-background {
-    background-color: rgba(255,255,255,.0605) !important;
+    background-color: var(--textButtonHover) !important;
   }
 
   /* Inactive tab text */  
@@ -2701,6 +2865,11 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
 
   menupopup * {
     color: #fff !important;
+  }
+  
+  /* Ctrl F */
+  findbar {
+    box-shadow: var(--genericShadowDark) !important;
   }
 }
 
@@ -3022,12 +3191,17 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
       filter: invert(1) !important;
     }
   }
+  
+  /* Ctrl F */
+  findbar {
+    box-shadow: var(--genericShadowLight) !important;
+  }
 }
 
 /* ======== TWEAKS ======== */
 
 /* Disables some conflicting Edge-frfox tweaks */
-#browser {
+#browser, #main-window {
   --uc-tweak-rounded-corners-padding: 0 !important;
   --uc-tweak-rounded-corners-radius: 0 !important;
   --uc-tweak-rounded-corners-shadow: unset !important;
@@ -3085,12 +3259,12 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
 @media (-moz-bool-pref: "uc.winui.rounded-corners") {
   :root:not([inDOMFullscreen="true"], 
   [sizemode="fullscreen"], 
-  [sizemode="maximized"]) browser:not(.webextension-popup-browser) {
+  [sizemode="maximized"]) browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
     margin: -1px 4px 4px 4px !important;
     border-radius: 8px 8px 6px 6px !important;
     border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
   }
-  :root[sizemode="maximized"] browser:not(.webextension-popup-browser) {
+  :root[sizemode="maximized"] browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
     margin: -1px 4px 4px 4px !important;
     border-radius: 8px !important;
     border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
@@ -3112,6 +3286,13 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
   }
   #statuspanel-label{
     margin: 0 0 9px 9px !important;
+  }
+  
+  #sidebar-box {
+    border-right: 0px !important;
+  }
+  #sidebar, #sidebar-header {
+    margin-left: 4px !important;
   }
 }
 
@@ -3572,6 +3753,7 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
     height: 25px !important;
   }
 
+  /* Needs to be 1px if the resolution is high */
   .identity-box-button {
     margin-left: 0 !important;
   }
@@ -3612,11 +3794,13 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
   }
 
   /* Enlarge button margins without moving anything - Hacky */
-  .toolbarbutton-1:hover:not([disabled="true"], #downloads-button, #PanelUI-menu-button) image:not(menuitem *) {
+  .toolbarbutton-1:hover:not([disabled="true"], 
+  #downloads-button, #PanelUI-menu-button, .unified-extensions-item-action-button) image:not(menuitem *) {
     box-shadow: 0 -.5px 0 2px var(--textButtonHover) !important;
     transition: box-shadow 0s linear !important;
   }
-  .toolbarbutton-1:active:not([disabled="true"], #downloads-button, #PanelUI-menu-button, :hover) image:not(menuitem *) {
+  .toolbarbutton-1:active:not([disabled="true"], 
+  #downloads-button, #PanelUI-menu-button, .unified-extensions-item-action-button, :hover) image:not(menuitem *) {
     box-shadow: 0 -.5px 0 2px var(--textButtonPressed) !important;
     transition: box-shadow 0s linear !important;
   }
@@ -4161,6 +4345,15 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
 
   #unified-extensions-view:is(panelview, #widget-overflow-fixed-list) .toolbaritem-combined-buttons {
     margin: 2px !important;
+  }
+}
+
+/* Hides the keyboard shortcuts inside panel lists */
+@media (-moz-bool-pref: "uc.winui.hide-shortcuts") {
+  .subviewbutton {
+    &[shortcut]:not([disabled])::after {
+      color: transparent !important;
+    }
   }
 }
 
