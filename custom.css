@@ -3201,7 +3201,7 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
 /* ======== TWEAKS ======== */
 
 /* Disables some conflicting Edge-frfox tweaks */
-#browser, #main-window {
+#browser {
   --uc-tweak-rounded-corners-padding: 0 !important;
   --uc-tweak-rounded-corners-radius: 0 !important;
   --uc-tweak-rounded-corners-shadow: unset !important;
