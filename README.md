@@ -52,26 +52,35 @@ Enable these boolean keys for additional customizations:
 
 #### Visual Tweaks
 - `uc.winui.rounded-corners`
+- `uc.winui.rounded-navbar`
 - `uc.winui.transparent-urlbar`
 - `uc.winui.pill-urlbar`
+- `uc.winui.taller-urlbar`
 - `uc.winui.extra-acrylic`
 - `uc.winui.more-acrylic`
-- `uc.winui.taller-urlbar`
 - `uc.winui.smaller-toolbar-buttons`
 - `uc.winui.hide-shortcuts`
+- `uc.winui.grayer-tabbed`
+- `uc.winui.extra-highlights`
+- `uc.winui.navbar-highlights`
+- `uc.winui.urlbar-extra-separators`
+- `uc.winui.aptos`
+- `uc.winui.centered-url`
+- `uc.winui.taller-bookmarks`
 
 #### Layout Tweaks
 - `uc.winui.floating-tabs`
 - `uc.winui.extension-tray`
+- `uc.winui.immersive-navbar`
 
 #### Icon and Navigation Tweaks
 - `uc.winui.mac-back-forward`
-- `uc.winui.navbar-highlights`
 
 #### Experimental Tweaks
 - `uc.winui.hide-with-1-tab`
 - `uc.winui.js-animations`
 - `uc.winui.extra-animations`
+- `uc.winui.revert-titlebar-buttons`
 
 ### 5. Restart Firefox
 
