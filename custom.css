@@ -1234,7 +1234,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 #downloadsListBox .download-state[state="1"] .downloadTypeIcon {
   height: 24px !important;
   width: 24px !important;
-  margin-left: -4px !important;
+  margin-right: 12px !important;
 }
 
 @keyframes contentSlideUp {
