@@ -1,4 +1,4 @@
-# Firefox WinUI Theme
+![image](https://github.com/user-attachments/assets/16c9bc7f-c896-4136-a409-2549cb6acfe7)# Firefox WinUI Theme
 
 A custom CSS addon that transforms Firefox to look native to Windows 11's design, combining elements from multiple community themes.
 
@@ -45,6 +45,8 @@ Set these boolean keys to `false`:
 - `browser.startup.blankWindow`
 - `uc.tweak.newtab-background`
 - `uc.tweak.revert-context-menu`
+- `browser.newtabpage.activity-stream.newtabLayouts.variant-a`
+- `browser.newtabpage.activity-stream.newtabLayouts.variant-b`
 
 ### 4. Optional Customization Tweaks
 
