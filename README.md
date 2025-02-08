@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/16c9bc7f-c896-4136-a409-2549cb6acfe7)# Firefox WinUI Theme
+# Firefox WinUI Theme
 
 A custom CSS addon that transforms Firefox to look native to Windows 11's design, combining elements from multiple community themes.
 
