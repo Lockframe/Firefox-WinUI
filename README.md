@@ -88,6 +88,10 @@ Enable these boolean keys for additional customizations:
 
 Close and restart Firefox to apply the theme.
 
+## Sidebery
+
+To apply this theme to the Sidebery extension, copy the content from `sidebery-WinUI.css` and paste it into Sidebery's style editor.
+
 ## JS Animations
 
 For JavaScript-based animations, refer to [this guide](https://github.com/MrOtherGuy/fx-autoconfig).
