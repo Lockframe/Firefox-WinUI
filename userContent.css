@@ -1,7 +1,6 @@
 /* Edge-Frfox */
 @import url("content/common.css");
 @import url("content/newtab.css");
-@import url("tweaks/sidebery.css") (-moz-bool-pref: "uc.tweak.theme.sidebery");
 
 /* New tab page */
 @-moz-document url-prefix("about:newtab"),
@@ -2147,9 +2146,69 @@
 		border-radius: 0 0 4px 4px !important;
 		border-color: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.2)) !important;
 		background-color: var(--button) !important;
+		font-weight: normal !important;
 	}
 	fieldset {
 		margin-inline: 24px !important;
+	}
+	
+	.editAddressForm, .editCreditCardForm {
+		padding-inline: 24px !important;
+		
+		& input, #street-address {
+			padding-left: 10px !important;
+			margin-block: auto !important;
+			height: 40px !important;
+		}
+		& .label-text {
+			font-size: 12px !important;
+			position: absolute !important;
+			transition: none !important;
+			color: var(--textPressed) !important;
+			opacity: 1 !important;
+		}
+	}
+	#country, #address-level1 {
+		border-radius: 4px !important;
+		padding-left: 10px !important;
+		height: 42px !important;
+		margin-top: -1px !important;
+	}
+	#cc-name-container .label-text {
+		margin-top: 2px !important;
+	}
+	
+	#cc-number-container > span,
+	#cc-exp-month-container > span,
+	#cc-exp-year-container > span {
+		padding-top: 6px !important;
+	}
+
+	#cc-exp-month, #cc-exp-year {
+		border-radius: 4px !important;
+		height: 42px !important;
+		margin-inline: auto !important;
+	}
+	
+	.editAddressForm .container:focus-within .label-text {
+		margin-top: 2px !important;
+		color: var(--textPressed) !important;
+		opacity: 1 !important;
+	}
+	
+	/* Tricky to be styled, can't find the active state flag and :checked only works if the window isn't in focus */
+	#addresses, #credit-cards {
+		& > option {
+			border-radius: 4px !important;
+			margin-inline: 4px !important;
+			overflow: hidden !important;
+			color: var(--textColor) !important;
+			background-color: transparent !important;
+			border: none !important;
+			height: 30px !important;
+			outline: none !important;
+			box-shadow: none !important;
+		}
 	}
 
 	/* Footer */
@@ -2167,6 +2226,11 @@
 		max-width: unset !important;
 		flex: 1 1 150px !important;
 		margin: 0 4px 0 4.5px !important;
+	}
+	/* Using display:none makes the buttons go to the left side */
+	#country-warning-message {
+		opacity: 0 !important;
+		height: 0 !important;
 	}
 
 	/* Theme specifics */
@@ -2647,161 +2711,10 @@
 
 /* Sidebery compatibility */
 @-moz-document regexp("^moz-extension://.*?/sidebar/sidebar.html") {
-	@media (-moz-bool-pref: "uc.tweak.theme.sidebery") {
-
-		:root {
-			--frameBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
-			--accentLight: color-mix(in srgb, accentColor 90%, black) !important; /* Main */
-			--accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
-			--accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent) !important; /* Pressed */
-			--accentLight4: color-mix(in srgb, accentColor 100%, transparent) !important; /* Full saturation */
-
-			--accentDark: color-mix(in srgb, accentColor 60%, white) !important; /* Main */
-			--accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent) !important; /* Hover */
-			--accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
-			--accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
-
-			--accentAuto: light-dark(var(--accentLight), var(--accentDark)) !important;
-			--textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
-			--textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
-			--textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
-
-			--textColor: light-dark(rgba(0,0,0,.89), rgb(255,255,255)) !important;
-			--textInverse: light-dark(#fff,#000) !important;
-			--textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
-			
-			--buttonShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
-			--buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
-		}
-
-		/* Top bar transparency */
-		#root {
-			--toolbar-bg: transparent !important;
-		}
-
-		/* Top bar margins, padding & radius */
-		.top-horizontal-box {
-			margin-bottom: var(--general-margin) !important;
-			& .NavigationBar.-top {
-				border-radius: 8px !important;
-				padding-block-end: var(--nav-btn-margin) !important;
-			}
-		}
-
-		/* Background transparency */
-		:root,
-		#root,
-		.TabsPanel .bottom-space,
-		.TabsPanel .new-tab-btns:after,
-		.new-tab-btns,
-		#search_bar,
-		.PinnedTabsBar {
-			background: transparent !important;
-		}
-
-		/* No theme enabled. */
-		body:not([style*="--s-frame-bg"]) {
-			--s-frame-bg: light-dark(#cecece, #1C1C1C) !important;
-			--s-frame-fg: light-dark(#000, #FFF) !important;
-			--s-toolbar-bg: light-dark(#f7f7f7, #3B3B3B) !important;
-			--s-toolbar-fg: light-dark(#252525, #fff) !important;
-			--s-act-el-bg: var(--frameBG) !important;
-			--s-act-el-fg: light-dark(#000, #fff) !important;
-			--s-act-el-border: transparent !important;
-			--s-popup-bg: light-dark(#fff, #4A4A4A) !important;
-			--s-popup-fg: light-dark(#1c1c1c, #fff) !important;
-			--s-popup-border: light-dark(#dadada, #636363) !important;
-			--s-accent: light-dark(#0078D4, #63ADE5) !important;
-		}
-
-		#root.root {
-			--frame-bg: var(--s-toolbar-bg) !important;
-			--frame-fg: var(--s-toolbar-fg) !important;
-			--general-margin: 4px !important;
-			--tabs-font: 12px system-ui !important;
-			--tabs-height: 34px !important;
-			--tabs-pinned-width: 36px !important;
-			--tabs-pinned-height: 34px !important;
-			--tabs-close-btn-margin: 8px !important;
-			--tabs-inner-gap: 12px !important;
-			--tabs-border-radius: 7px !important;
-			--general-border-radius: 4px !important;
-			--tabs-activated-shadow: 0 0 0 1px rgba(0,0,0,.0578) !important;
-			--tabs-normal-fg: var(--textColor) !important;
-			--separator-color: color-mix(in srgb, currentColor 06%, transparent) !important;
-			--nav-btn-active-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.086), inset 0 1px 3px 0 rgb(0 0 0 / 0.086) !important;
-
-			/* Light mode adjustments. */
-			&[data-frame-color-scheme="light"] {
-				color-scheme: light !important;
-				--tabs-normal-fg: var(--textColor) !important;
-				.Tab[data-active="true"] .body {
-					box-shadow: var(--buttonShadowLight) !important;
-				}
-			}
-
-			/* Dark mode adjustments. */
-			&[data-frame-color-scheme="dark"] {
-				color-scheme: dark !important;
-				--tabs-activated-shadow: 0 0 0 1px rgba(0,0,0,.1) !important;
-				--nav-btn-active-shadow: unset !important;
-				
-				.Tab[data-active="true"] .body {
-					box-shadow: var(--buttonShadowDark) !important;
-				}
-			}
-		}
-
-		.Tab[data-active="true"]::before {
-			content: '';
-			width: 3px;
-			height: 16px;
-			background-color: var(--accentAuto);
-			display: block;
-			position: absolute;
-			z-index: 1;
-			margin-top: 9px;
-			border-radius: 99px;
-			animation: selectorBar 187ms forwards;
-			margin-left: -1px !important;
-		}
-		@keyframes selectorBar {
-			0% {
-				opacity: 0;
-				transform: scale(100%, 0%);
-			}
-			100% {
-				opacity: 1;
-				transform: scale(100%, 100%);
-			}
-		}
-
+	/* This causes issues with tab drag and drop functionality - may be adapted or removed entirely
+	@media (-moz-bool-pref: "uc.winui.rounded-corners") {
 		.Tab {
-			margin-block: 2px !important;
-			
-			&[data-active="true"] .body {
-				outline: none !important;
-				background-color: var(--frameBG) !important; /* Ensure tabs use the right color */
-			}
-
-			& .close {
-				width: 30px;
-				height: 22px !important;
-				top: 6px !important;
-				margin-right: -2px !important;
-			}
-
-			&[data-pin="false"] {
-				& .fav {
-					margin: 0 8px 0 12px !important;
-				}
-			}
+			margin-block: 4px !important;
 		}
-		
-		@media (-moz-bool-pref: "uc.winui.rounded-corners") {
-			.Tab {
-				margin-block: 4px !important;
-			}
-		}
-	}
+	}*/
 }
