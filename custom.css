@@ -201,9 +201,11 @@ h1, h2, h3 {
   list-style-image: url("winui-icons/menu.svg") !important;
 }
 #identity-box[pageproxystate="valid"].verifiedDomain #identity-icon, 
-#identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon {
+#identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon,
+#identity-popup[connection^="secure"] .identity-popup-security-connection {
   list-style-image: url('winui-icons/lock.svg') !important;
 }
+
 #appMenu-zoom-controls::before {
   content: url(icons/search-glass.svg);
   margin-right: -16px;
@@ -275,6 +277,17 @@ menu::after {
 }
 #scrollbutton-down:not(.menupopup-scrollbutton) {
   background-image: url(winui-icons/caret-right.svg) !important;
+}
+
+/* Proper back icon inside panels */
+.panel-header {
+  & > .subviewbutton-back {
+    list-style-image: none !important;
+    background-image: url(icons/back.svg);
+    background-size: 14px;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
 }
 
 /* Center tab and URL text vertically */
@@ -1085,6 +1098,27 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   padding-left: 12px !important;
 }
 
+/* Clicked item opacity */
+#appMenu-popup *:active {
+  fill-opacity: 1 !important;
+  opacity: 1 !important;
+}
+#appMenu-popup toolbarbutton:active, #appMenu-popup toolbaritem:active {
+  color: var(--textPressed) !important;
+  fill-opacity: 1 !important;
+  opacity: 1 !important;
+}
+#appMenu-zoom-controls *, #appMenu-zoom-controls::before {
+  opacity: 1 !important;
+  color: var(--textColor) !important;
+}
+#appMenu-zoom-controls {
+  background-color: transparent !important;
+}
+#appMenu-zoom-controls toolbarbutton:active * {
+  color: var(--textPressed) !important;
+}
+
 /* Extension panel */
 .panel-header > h1 > span {
   #unified-extensions-panel &::before {
@@ -1347,6 +1381,18 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 .panel-footer button {
   width: -moz-available !important;
   margin-inline: 4.5px !important;
+}
+
+/* Back/forward panels */
+#back-button menupopup,
+#forward-button menupopup {
+  margin-top: -16px !important;
+}
+#back-button menupopup {
+  padding-left: 9px !important;
+}
+#forward-button menupopup {
+  padding-left: 13px !important;
 }
 
 /* Minor panel margin adjustments */
@@ -3613,6 +3659,12 @@ toolbarpaletteitem {
   #urlbar[breakout][breakout-extend][open] > #urlbar-background {
     border-radius: 16px 16px 0px 0px !important;
   }
+  #identity-icon-box {
+    border-radius: 99px 24px 24px 99px !important;
+  }
+  #star-button-box {
+    border-radius: 24px 99px 99px 24px !important;
+  }
 }
 
 @media (-moz-bool-pref: "uc.winui.aptos") {
@@ -3870,6 +3922,9 @@ toolbarpaletteitem {
   #urlbar-background {
     height: 34px !important;
     margin-top: -2px !important;
+  }
+  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
+    margin-top: 33px !important;
   }
 }
 
