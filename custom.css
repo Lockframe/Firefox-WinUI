@@ -17,7 +17,8 @@
 
   --commonBackground: light-dark(#fff,#2c2c2c) !important;
   --frameBG: light-dark(rgba(255,255,255,.7), rgba(58,58,58,.45)) !important;
-
+  --dialogSmoke: rgba(0,0,0,.3) !important;
+  
   --cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
   --cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837)) !important;
   --cardShadowLight: 0 0 0 1px rgba(0,0,0,.0605) !important;
@@ -186,7 +187,7 @@ h1, h2, h3 {
 #reader-mode-button > .urlbar-icon {
   list-style-image: url('winui-icons/read.svg') !important;
 }
-#pageAction-panel-bookmark, #star-button {
+#pageAction-panel-bookmark, #star-button, #context-bookmarkpage {
   list-style-image: url('winui-icons/star.svg') !important;
 }
 .urlbarView-type-icon {
@@ -288,6 +289,44 @@ menu::after {
     background-position: center center;
     background-repeat: no-repeat;
   }
+}
+
+/* Sidebar icon */
+#sidebar-button {
+  @media not (-moz-bool-pref: "sidebar.revamp") {
+    &:-moz-locale-dir(ltr):not([positionend]), &:-moz-locale-dir(rtl)[positionend] {
+      list-style-image: none !important;
+      background-image: url(winui-icons/dock-left.svg);
+      background-size: 16px;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
+        background-size: 15px;
+      }
+    }
+  }
+}
+#sidebar-button {
+  @media not (-moz-bool-pref: "sidebar.revamp") {
+    list-style-image: none !important;
+    background-image: url(winui-icons/dock-right.svg);
+    background-size: 16px;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
+      background-size: 15px;
+    }
+  }
+}
+/* Bookmark list icon */
+#editBMPanel_folderMenuList[selectedGuid="toolbar_____"], #editBMPanel_toolbarFolderItem {
+  list-style-image: none !important;
+  background-image: url("winui-icons/star.svg") !important;
+  background-size: 16px !important;
+  background-position: 6px center !important;
+  background-repeat: no-repeat !important;
 }
 
 /* Center tab and URL text vertically */
@@ -562,35 +601,6 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 .tabbrowser-tab:not([selected]):hover .tab-background {
   --uc-tab-corner-bg: transparent !important;
   --uc-tab-corner-outline: transparent !important;
-}
-
-/* Tab Preview Cards */
-.tab-preview-text-container {
-  padding: 12px 16px 10px 16px !important;
-  background-image: url(image/accnoise256.png) !important;
-}
-
-.tab-preview-thumbnail-container canvas {
-  /* Default */
-  /*height: 140px !important;
-  width: 280px !important;*/
-
-  background-color: transparent !important;
-  height: 126px !important;
-  width: 264px !important;
-  border-radius: 3px !important;
-  margin: 0 8px !important;
-}
-.tab-preview-thumbnail-container {
-  border: none !important;
-  background-color: var(--commonBackground) !important;
-  background-image: url(image/accnoise256.png) !important;
-  margin-bottom: -6px !important;
-}
-
-.tab-preview-title {
-  font-weight: 600 !important;
-  margin-bottom: 4px !important;
 }
 
 /* Disable title fade on the right end of the tab */
@@ -1128,6 +1138,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 
 #unified-extensions-view h1 {
   margin-top: 3px !important;
+  color: var(--textPressed) !important;
 }
 #unified-extensions-view toolbarseparator:first-of-type {
   display: none !important;
@@ -1219,10 +1230,15 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 #downloadsFooterButtons button {
   margin: 17px 17px 15px !important;
   padding-block: 7px !important;
+  height: 30px !important;
+  max-height: 30px !important;
+  height: 64px !important;
+  max-height: 64px !important;
 }
 #downloadsFooterButtons button:not(:first-of-type) {
   margin-top: -8px !important;
 }
+
 #downloadsFooterButtons .button-text,
 #emptyDownloads{
   margin-inline: auto !important;
@@ -1246,7 +1262,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   font-weight: 600;
   font-size: 14px;
   margin: 7px 0 0 11.5px;
-  color: var(--textColor);
+  color: var(--textPressed);
 }
 
 /* Downloaded items */
@@ -1265,7 +1281,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 #downloadsListBox richlistitem:last-of-type {
   margin-bottom: 19px !important;
 }
-#downloadsListBox .download-state[state="1"] .downloadTypeIcon {
+.downloadTypeIcon {
   height: 24px !important;
   width: 24px !important;
   margin-right: 12px !important;
@@ -1356,17 +1372,95 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 }
 #editBookmarkPanel {
   margin-top: -21px !important;
+  
+  & h1 {
+    font-weight: 600 !important;
+    color: var(--textPressed) !important;
+    padding-top: 12px !important;
+  }
 }
 
 /* Tab preview panel */
-#tab-preview-panel[animate="open"] {
-  animation: panelSlide2 .333s cubic-bezier(0, 0, 0, 1) !important;
-  transform-origin: top center !important;
+.tab-preview-text-container {
+  padding: 12px 16px 10px 16px !important;
+  background-image: url(image/accnoise256.png) !important;
 }
-#tab-preview-panel div {
-  animation: panelContentSlide2 .24s cubic-bezier(0, 0, 0, 1) !important;
-  transform-origin: top center !important;
-  color: var(--textColor) !important;
+
+.tab-preview-thumbnail-container canvas {
+  /* Default */
+  /*height: 140px !important;
+  width: 280px !important;*/
+
+  background-color: transparent !important;
+  height: 126px !important;
+  width: 264px !important;
+  border-radius: 3px !important;
+  margin: 0 9px 0 8px !important;
+}
+.tab-preview-thumbnail-container {
+  border: none !important;
+  background-color: var(--commonBackground) !important;
+  background-image: url(image/accnoise256.png) !important;
+  margin-bottom: -6px !important;
+}
+
+.tab-preview-title {
+  font-weight: 400 !important;
+  margin-bottom: 4px !important;
+}
+.tab-preview-uri {
+  opacity: .6 !important;
+}
+
+/* Different animation speeds for tabs with and without preview images */
+#tab-preview-panel[animate="open"] {
+  animation: panelSlide2 .9s cubic-bezier(0, 0, 0, 1) !important;
+  
+  & * {
+    color: var(--textColor) !important;
+  }
+  
+  &:not(:has(canvas)) {
+    & .tab-preview-title, .tab-preview-uri {
+      animation: extremeSlideDown .35s cubic-bezier(0, 0, 0, 1) !important;
+      transform-origin: top center !important;
+    }
+  }
+
+  &:has(canvas) {
+    animation: panelSlide2 .5s cubic-bezier(0, 0, 0, 1) !important;
+    transform-origin: top center !important;
+
+    & .tab-preview-title {
+      animation: panelContentSlide3 .35s cubic-bezier(0, 0, 0, 1) !important;
+      transform-origin: top center !important;
+    }
+    & .tab-preview-uri {
+      animation: extremeSlideDown .35s cubic-bezier(0, 0, 0, 1) !important;
+      transform-origin: top center !important;
+    }
+    & canvas {
+      animation: subtleSlideDown .3s cubic-bezier(0, 0, 0, 1) !important;
+      transform-origin: top center !important;
+    }
+  }
+}
+
+@keyframes subtleSlideDown {
+  0% {
+    transform: translateY(-45%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes extremeSlideDown {
+  0% {
+    transform: translateY(-180%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* Footer */
@@ -1445,19 +1539,66 @@ panel toolbarseparator {
 
 /* Basic animations */
 #unified-extensions-panel[animate="open"],
-#downloadsPanel[animate="open"],
 #editBookmarkPanel[animate="open"],
 #identity-popup[animate="open"] {
-  animation: panelSlide2 .333s cubic-bezier(0, 0, 0, 1) !important;
+  animation: panelSlide2 .5s cubic-bezier(0,0,0,1) !important;
   transform-origin: top center !important;
 }
 #unified-extensions-panel[animate="open"],
-#downloadsPanel[animate="open"],
-#editBookmarkPanel[animate="open"],
+#editBookmarkPanel[animate="open"] {
+  & toolbarbutton,
+  & toolbarseparator,
+  & vbox,
+  & box {
+    animation: panelContentSlide2 .34s cubic-bezier(0,0,0,1) !important;
+    transform-origin: top center !important;
+  }
+}
+
+/* Different animation speeds for empty & filled downloads panel */
+#downloadsPanel[animate="open"] {
+  animation: panelSlide2 .65s cubic-bezier(0,0,0,1) !important;
+  transform-origin: top center !important;
+  
+  & toolbarbutton,
+  & toolbarseparator,
+  & vbox,
+  & box {
+    animation: panelContentSlide2 .24s cubic-bezier(0,0,0,1) !important;
+    transform-origin: top center !important;
+  }
+}
+
+#downloadsPanel:has(richlistitem)[animate="open"] {
+  animation: panelSlide2 .7s cubic-bezier(0,0,0,1) !important;
+  
+  & toolbarbutton,
+  & toolbarseparator,
+  & vbox,
+  & box {
+    animation: panelContentSlide3 .34s cubic-bezier(0,0,0,1) !important;
+    transform-origin: top center !important;
+  }
+}
+
+#editBookmarkPanel[animate="open"] {
+  h1 {
+    animation: panelContentSlide .36s cubic-bezier(0,0,0,1) !important;
+  }
+}
+
+#unified-extensions-panel[animate="open"] {
+  & box > toolbarbutton {
+    animation: none !important;
+  }
+}
+
 #identity-popup[animate="open"] {
   & toolbarbutton,
-  & .panel-header {
-    animation: panelContentSlide2 .24s cubic-bezier(0, 0, 0, 1) !important;
+  & toolbarseparator,
+  & vbox,
+  & box {
+    animation: panelContentSlide3 .22s cubic-bezier(0,0,0,1) !important;
     transform-origin: top center !important;
   }
 }
@@ -1465,7 +1606,7 @@ panel toolbarseparator {
 @keyframes panelSlide2 {
   0% {
     clip-path: inset(0 0 100% 0);
-    transform: scaleY(.9);
+    transform: scaleY(1);
   }
   100% {
     clip-path: inset(0 -16px -16px -16px);
@@ -1474,7 +1615,15 @@ panel toolbarseparator {
 }
 @keyframes panelContentSlide2 {
   0% {
-    transform: translateY(-16px) scaleY(.9);
+    transform: translateY(-45%) scaleY(1);
+  }
+  100% {
+    transform: translateY(0px) scaleY(1);
+  }
+}
+@keyframes panelContentSlide3 {
+  0% {
+    transform: translateY(-75%) scaleY(1);
   }
   100% {
     transform: translateY(0px) scaleY(1);
@@ -1922,6 +2071,40 @@ dialog:not(#window-modal-dialog) {
   }
 }
 
+#dialogGrid {  
+  & #titleContainer {
+    font-size: 16px !important;
+    margin-top: 9px !important;
+  }
+  
+  & #infoRow {
+    margin-left: 10px !important;
+    padding-bottom: 12px !important;
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(110%,110%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(100%, 100%);
+  }
+}
+
+:root[subdialog] {
+  & dialog {
+    max-width: unset !important;
+    min-width: 500px !important;
+  }
+}
+
+.dialogOverlay, .dialogOverlay-25 {
+  animation: fadeInScale .333s ease-out !important;
+}
+
 #description {
   margin-inline: 12px !important;
   font-weight: 600 !important;
@@ -2014,6 +2197,14 @@ label[data-l10n-id="choose-other-app-description"] {
   padding-block-start: 24px !important;
   padding-block-end: 14px !important;
   padding-inline: 14px !important;
+  margin-top: 24px !important;
+  
+  & button {
+    height: 32px !important;
+    font-size: 14px !important;
+    padding-inline: auto !important;
+    overflow: visible !important;
+  }
 }
 
 #checkboxContainer {
@@ -2161,6 +2352,20 @@ tree {
   border: none !important;
 }
 
+/* In-urlbar translator button */
+#translations-button {
+  & #translations-button-locale {
+    height: 16px !important;
+    border-radius: 3px !important;
+    padding-top: 0 !important;
+    color: var(--textInverse) !important;
+  }
+  &:has(#translations-button-icon) {
+    margin-right: -2px !important;
+    width: 50px !important;
+  }
+}
+
 /* Default buttons */
 button, 
 #editBookmarkPanelRemoveButton, 
@@ -2209,7 +2414,8 @@ button:active * {
 button.primary,
 #appMenu-update-banner,
 button[data-l10n-id="choose-app-btn"],
-button[slot="primary"] {
+button[slot="primary"],
+button[dlgtype="accept"]{
   box-shadow: none !important;
   background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
   color: light-dark(#fff, #000) !important;
@@ -2716,6 +2922,7 @@ toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
     background-color: var(--buttonPressed) !important;
   }
 }
+
 /* Their titles */
 toolbarpaletteitem {
   &[place="palette"] {
@@ -2726,6 +2933,12 @@ toolbarpaletteitem {
       margin-block: auto !important;
     }
   }
+}
+
+/* Move the icons and titles */
+#customization-palette toolbarpaletteitem toolbaritem,
+#customization-palette toolbarpaletteitem toolbarbutton{
+  margin-block: auto -8px !important;
 }
 
 /* Footer */
