@@ -3,17 +3,8 @@
 /* MICA */
 * {
   --mica: transparent !important;
-  --lightborder: rgba(0,0,0,.08) 
-    rgba(0,0,0,.08) 
-    rgba(0,0,0,.22) 
-    rgba(0,0,0,.08) !important;
-  --darkborder: rgba(255,255,255,.045) 
-    rgba(255,255,255,.02) 
-    rgba(255,255,255,.02) 
-    rgba(255,255,255,.02) !important;
-  --borderAuto: 1px solid light-dark(var(--lightborder), var(--darkborder)) !important;
-  --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
   --acrylic: url(image/accnoise256.png) !important;
+  --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
 
   --commonBackground: light-dark(#fff,#2c2c2c) !important;
   --frameBG: light-dark(rgba(255,255,255,.7), rgba(58,58,58,.45)) !important;
@@ -54,6 +45,11 @@
   --controlQuartenary: light-dark(rgba(243,243,243,.76), rgba(255,255,255,.0605)) !important;
   --controlStrong: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
   --controlStroke: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0698)) !important;
+  --controlStrongStroke: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
+  --controlStrongStrokeDisabled: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+  --controlAltSecondary: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+  --controlAltTertiary: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+  --controlAltQuartenary: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698)) !important;
 
   --infoBG: light-dark(rgba(246,246,246, .5), rgba()) !important;
   --cautionBG: light-dark(#FFF4CE, #433519) !important;
@@ -81,6 +77,8 @@
   --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
 
   --accentAuto: light-dark(var(--accentLight), var(--accentDark)) !important;
+  --accentHover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  --accentPressed: light-dark(var(--accentLight3), var(--accentDark3)) !important;
   --accentDarkFilter: saturate(1.55) brightness(1.05) !important;
 
   --button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
@@ -94,6 +92,7 @@
   --textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
   --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
   --textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
+  --textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628)) !important;
 
   --inputActive: light-dark(rgb(252,252,252), rgb(30,30,30)) !important;
   --inputBarLight: 0 0 0 1px rgba(0,0,0,.0605), 0 1px 0 rgba(0,0,0,.39) !important;
@@ -108,6 +107,14 @@
 
   text-decoration: none !important;
   outline: none !important;
+  
+  /* Panel colors */
+  --arrowpanel-background: var(--searchDropdown) !important;
+  --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
+  --arrowpanel-border-color: light-dark(rgba(0,0,0,.125), rgba(0,0,0,.2)) !important;
+  --panel-item-hover-bgcolor: var(--textButtonHover) !important;
+  --panel-item-active-bgcolor: var(--textButtonPressed) !important;
+  --panel-separator-color: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0605)) !important;
   --panel-border-color: none !important; /* Panel extra border removal */
 }
 
@@ -329,6 +336,37 @@ menu::after {
   background-repeat: no-repeat !important;
 }
 
+/* End private session icon */
+#reset-pbm-toolbar-button {
+  list-style-image: url("winui-icons/fire.svg") !important;
+}
+
+/* Notification icons */
+.speaker-icon {
+  list-style-image: none !important;
+  background-image: url(winui-icons/speaker.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.drm-icon {
+  list-style-image: none !important;
+  background-image: url(winui-icons/secure.svg) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 15px !important;
+  height: 100% !important;
+}
+
+#servicesInstall-notification-icon, #default-notification-icon {
+  list-style-image: none !important;
+  background-image: url(icons/info.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100% !important;
+  background-size: 15px !important;
+}
+
 /* Center tab and URL text vertically */
 @media not (-moz-bool-pref: "uc.winui.aptos") {
   .tabbrowser-tab label, .urlbar-input-box, #identity-icon-label, .searchbar-textbox {
@@ -336,7 +374,7 @@ menu::after {
   }
 }
 
-/* active tab with semibold text */
+/* Active tab with semibold text */
 .tabbrowser-tab[selected] label { 
   font-weight: 600 !important;
 }
@@ -364,6 +402,7 @@ menu::after {
   }
 }
 
+/*** Tabs ***/
 /* Tab spacing */
 .tabbrowser-tab:not([pinned]){
   z-index: 1 !important;
@@ -451,12 +490,13 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   border-radius: 3px !important;
   padding: 5px !important;
   margin: 0 0 4px 4px !important;
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
 }
 
 /* Bottom tab corners */
-:root {
-  #TabsToolbar {
+:root,
+:root .tabbrowser-tab {
+  & #TabsToolbar {
     --tab-border-radius: 4px !important;
   }
 }
@@ -545,7 +585,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
     padding-block: 5px !important;
     width: 32px !important;
     height: 24px !important;
-    transform: translateY(-3px) !important;
+    margin-bottom: 1px !important;
   }
 }
 
@@ -594,7 +634,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 /* Change pinned one tab icon */
 .tabbrowser-tab[label="OneTab"] .tab-icon-image {
   content: url("icons/duplicate-tab.svg") !important;
-  transform:scale(94%) !important;
+  transform: scale(94%) !important;
 }
 
 /* Bottom tab corners are transparent when tab is hovered */
@@ -633,7 +673,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   @media (prefers-reduced-motion: no-preference) {
     :root[sessionrestored] & {
       &[progress]::before {
-        fill: light-dark(var(--accentLight), var(--accentDark)) !important;
+        fill: var(--accentAuto) !important;
       }
     }
   }
@@ -645,7 +685,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 }
 
 :root {
-  --tab-loading-fill: light-dark(var(--accentLight), var(--accentDark)) !important;
+  --tab-loading-fill: var(--accentAuto) !important;
 }
 
 /* Simple tab opening and closing animation */ 
@@ -679,7 +719,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 /* Close */
 .tabbrowser-tab:not([pinned],[fadein]){
   transition-duration: 187ms, 187ms !important;
-  animation: fastDismiss 187ms cubic-bezier(0, 0, 0, 1) forwards !important;
+  animation: fastDismiss 187ms ease-out !important;
 }
 
 .tabbrowser-tab:not([pinned],[fadein]){
@@ -763,8 +803,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   display: block !important;
   position: absolute !important;
   padding: 8px 1.5px !important;
-  margin-right: 12px !important;
-  margin-left: -6px !important;
+  margin-inline: -6px 12px !important;
   margin-top: 2px !important;
   animation: selectorBar 187ms forwards !important;
 }
@@ -786,7 +825,7 @@ meupopup {
   --uc-contextmenu-border-radius: 8px;
 }
 .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
 }
 /* Remove inner border from context menu */
 .menupopup-arrowscrollbox {
@@ -818,7 +857,7 @@ appMenu-empty-profiles-button {
 
 tooltip {
   -moz-appearance: none !important;
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
   border-radius: 0px !important;
 }
 
@@ -826,7 +865,7 @@ tooltip {
 .urlbarView {
   background-color: var(--searchDropdown) !important;
   border-radius: 0 0 8px 8px !important;
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
   clip-path: inset(0 -16px -24px -16px);
 }
 
@@ -851,11 +890,8 @@ tooltip {
   margin-left: -2px !important;
 }
 
-/* Open */
-#urlbar[open]>#urlbar-background {
-  border-radius: 3px 3px 8px 8px !important;
-}
-/* Results */
+/* Open URL bar & results */
+#urlbar[open]>#urlbar-background,
 #urlbar[breakout][breakout-extend][open] {
   border-radius: 3px 3px 8px 8px !important;
 }
@@ -865,6 +901,7 @@ tooltip {
   display: none !important
 }
 
+/* Right-side go button */
 #urlbar-go-button {
   transition: var(--basicBGAnimation) !important;
   height: 26px !important;
@@ -911,8 +948,7 @@ tooltip {
   animation: selectorBar 187ms forwards;
   border-radius: 99px;
   display: block;
-  margin-left: -9px;
-  margin-right: 6px;
+  margin-inline: -9px 6px;
 }
 richlistitem:active {
   color: var(--textPressed) !important;
@@ -1020,16 +1056,6 @@ menuitem {
   --urlbar-icon-border-radius: 4px !important;
 }
 
-/* Panel colors */
-* {
-  --arrowpanel-background: var(--searchDropdown) !important;
-  --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
-  --arrowpanel-border-color: light-dark(rgba(0,0,0,.125), rgba(0,0,0,.2)) !important;
-  --panel-item-hover-bgcolor: var(--textButtonHover) !important;
-  --panel-item-active-bgcolor: var(--textButtonPressed) !important;
-  --panel-separator-color: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0605)) !important;
-}
-
 #identity-icon-label {
   display: none !important;
 }
@@ -1129,6 +1155,34 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   color: var(--textPressed) !important;
 }
 
+/* App panel warning badge */
+#PanelUI-menu-button[badge-status="addon-alert"], #PanelUI-menu-button[badge-status="fxa-needs-authentication"], #fxa-toolbar-menu-button[badge-status="login_failed"] {
+  & > .toolbarbutton-badge-stack > .toolbarbutton-badge {
+    height: auto !important;
+    background-image: url(winui-icons/warning.svg) !important;
+    background-size: 10px !important;
+    background-position: center .5px !important;
+    fill: var(--textInverse) !important;
+    padding: 7px !important;
+  }
+}
+
+.addon-banner-item {
+  background-color: var(--cardBG) !important;
+  outline: 1px solid var(--cardOutline) !important;
+  font-weight: normal !important;
+  padding-left: 0 !important;
+  color: var(--textColor) !important;
+  
+  &::after {
+    background: url(winui-icons/warning.svg) no-repeat center !important;
+    width: 14px !important;
+    height: 14px !important;
+    fill: var(--cautionBadge) !important;
+    align-self: center !important;
+  }
+}
+
 /* Extension panel */
 .panel-header > h1 > span {
   #unified-extensions-panel &::before {
@@ -1154,7 +1208,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   display: none !important;
 }
 #unified-extensions-view {
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
 }
 
 #unified-extensions-view .unified-extensions-item image {
@@ -1163,7 +1217,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 
 /* Downloads panel */
 #downloadsPanel-multiView {
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
 }
 
 .downloadProgress {
@@ -1230,8 +1284,6 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 #downloadsFooterButtons button {
   margin: 17px 17px 15px !important;
   padding-block: 7px !important;
-  height: 30px !important;
-  max-height: 30px !important;
   height: 64px !important;
   max-height: 64px !important;
 }
@@ -1305,7 +1357,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 
 /* Identity panel */
 #identity-popup-mainView {
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
 }
 #identity-popup-mainView-panel-header h1 {
   margin-top: 3px !important;
@@ -1341,6 +1393,15 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 }
 #identity-popup-more-info .toolbarbutton-text {
   text-align: center !important;
+}
+
+/* DRM panel */
+#notification-popup {
+  margin-top: -22px !important;
+  
+  & * {
+    font-weight: normal !important;
+  }
 }
 
 /* Translator panel */
@@ -1383,7 +1444,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 /* Tab preview panel */
 .tab-preview-text-container {
   padding: 12px 16px 10px 16px !important;
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
 }
 
 .tab-preview-thumbnail-container canvas {
@@ -1400,7 +1461,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 .tab-preview-thumbnail-container {
   border: none !important;
   background-color: var(--commonBackground) !important;
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
   margin-bottom: -6px !important;
 }
 
@@ -1570,7 +1631,7 @@ panel toolbarseparator {
 }
 
 #downloadsPanel:has(richlistitem)[animate="open"] {
-  animation: panelSlide2 .7s cubic-bezier(0,0,0,1) !important;
+  animation: panelSlide2 .58s cubic-bezier(0,0,0,1) !important;
   
   & toolbarbutton,
   & toolbarseparator,
@@ -1658,7 +1719,7 @@ panel toolbarseparator {
 }
 
 #appMenu-multiView {
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
 }
 
 /* Sidebar */
@@ -1732,7 +1793,7 @@ window#webextpanels-window {
   color: black !important;
   margin-inline: 0 8px !important;
   padding-inline: 3px 5px !important;
-  background: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background: var(--accentAuto) !important;
   border-radius: 99px !important;
   font-weight: 400 !important;
   margin-top: 6px !important;
@@ -1772,10 +1833,72 @@ window#webextpanels-window {
   margin-left: -26px !important;
   margin-top: -32px !important;
 
+  & .autocomplete-richlistbox {
+    background-image: var(--acrylic) !important;
+  }
+
+  & .autocomplete-richlistitem {
+    margin-inline: 3px !important;
+    
+    & .labels-wrapper {
+      margin-left: -5px !important;
+    }
+
+    & .line2-label {
+      color: var(--textPressed) !important;
+    }
+    
+    & .ac-site-icon {
+      filter: grayscale(100) brightness(100)  !important;
+    }
+
+    & .ac-secondary-action {
+      appearance: none !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      width: 24px !important;
+      height: 24px !important;
+      margin-right: 0 !important;
+      
+      &:hover {
+        background-color: var(--textButtonHover) !important;
+      }
+      &:active {
+        background-color: var(--textButtonPressed) !important;
+        color: var(--textPressed) !important;
+      }
+    }
+  }
+  & .autocomplete-richlistitem:first-of-type {
+    margin-top: 1px !important;
+  }
+
   & .autocomplete-richlistitem[originaltype="loginsFooter"] {
-    height: 32px !important;
-    min-height: 32px !important;
-    margin-bottom: 0 !important;
+    height: 30px !important;
+    margin-block: 20px 16px !important;
+    margin-inline: 18px !important;
+
+    &::before {
+      margin-top: -18px !important;
+      width: 1000% !important;
+      left: -100% !important;
+      background-color: var(--dropdownSeparator) !important
+    }
+
+    & .ac-title {
+      margin-inline: auto !important;
+    }
+  }
+}
+
+#PopupAutoComplete > richlistbox > richlistitem {
+  &[originaltype="loginsFooter"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline-start: 4px;
+    width: calc(100% - 8px);
+    border-top: 1px solid var(--panel-separator-color);
   }
 }
 
@@ -1808,7 +1931,7 @@ panel {
 findbar {
   padding-bottom: 10px !important;
   padding-top: 10px !important;
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
   border-top: none !important;
   position: relative !important;
 	border-radius: 7px !important;
@@ -1990,6 +2113,11 @@ menupopup#ContentSelectDropdownPopup {
   background-color: unset !important;
 }
 
+#context-navigation .menu-iconic-left[disabled="true"] >image {
+  color: var(--textDisabled) !important;
+}
+
+/* Fix window close button having an odd background color */
 .titlebar-close:hover,
 :root:not(:-moz-window-inactive) .titlebar-close:hover,
 :root:-moz-window-inactive .titlebar-close:hover {
@@ -2226,7 +2354,7 @@ label[data-l10n-id="choose-other-app-description"] {
 }
 .dialog-button-box button[dlgtype="accept"], #customization-done-button {
   box-shadow: none !important;
-  background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background-color: var(--accentAuto) !important;
   color: light-dark(#fff, #000) !important;
   border: 1px solid rgba(255,255,255,.08) !important;
   border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
@@ -2235,18 +2363,17 @@ label[data-l10n-id="choose-other-app-description"] {
   padding-block: 8px !important;
 }
 .dialog-button-box button[dlgtype="accept"]:hover, #customization-done-button:hover {
-  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  background-color: var(--accentHover) !important;
 }
 .dialog-button-box button[dlgtype="accept"]:active, #customization-done-button:active{
-  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  background-color: var(--accentPressed) !important;
 }
 .dialog-button-box button[dlgtype="cancel"] {
-  margin-right: 10px !important;
-  margin-left: 0 !important;
+  margin-inline: 0 10px !important;
 }
 .popup-notification-learnmore-link, .text-link {
   margin-bottom: 12px !important;
-  color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  color: var(--accentAuto) !important;
 }
 .popup-notification-body :is(checkbox){
   margin-block: 8px !important;
@@ -2270,8 +2397,7 @@ label[data-l10n-id="choose-other-app-description"] {
   border-radius: 99px !important;
   position: relative !important;
   display: block !important;
-  margin-left: -10px !important;
-  margin-right: 7px !important;
+  margin-inline: -10px 7px !important;
   animation: selectorBar 187ms forwards !important;
 }
 .in-menulist menuitem[selected="true"] {
@@ -2366,6 +2492,24 @@ tree {
   }
 }
 
+/* Notification buttons */
+#notification-popup-box {
+  margin-block: auto !important;
+  border-radius: 2px !important;
+  height: 26px !important;
+
+  & image {
+    padding-inline: 16px !important;
+  }
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
 /* Default buttons */
 button, 
 #editBookmarkPanelRemoveButton, 
@@ -2374,7 +2518,8 @@ panel menulist,
 #unified-extensions-manage-extensions,
 #downloadsFooterButtons button,
 #identity-popup-clear-sitedata-button,
-#identity-popup-more-info {
+#identity-popup-more-info,
+#PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]{
   font-weight: normal !important;
   background-color: var(--button) !important;
   border-radius: 3px !important;
@@ -2387,7 +2532,8 @@ panel menulist:hover,
 #unified-extensions-manage-extensions:hover,
 #downloadsFooterButtons button:hover,
 #identity-popup-clear-sitedata-button:hover,
-#identity-popup-more-info:hover {
+#identity-popup-more-info:hover,
+#PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:hover {
   background-color: var(--buttonHover) !important;
   border-radius: 3px !important;
 }
@@ -2398,7 +2544,8 @@ panel menulist:active,
 #unified-extensions-manage-extensions:active,
 #downloadsFooterButtons button:active,
 #identity-popup-clear-sitedata-button:active,
-#identity-popup-more-info:active {
+#identity-popup-more-info:active,
+#PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:active{
   background-color: var(--buttonPressed) !important;
   border-radius: 3px !important;
 }
@@ -2417,7 +2564,7 @@ button[data-l10n-id="choose-app-btn"],
 button[slot="primary"],
 button[dlgtype="accept"]{
   box-shadow: none !important;
-  background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background-color: var(--accentAuto) !important;
   color: light-dark(#fff, #000) !important;
   border: 1px solid rgba(255,255,255,.08) !important;
   border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
@@ -2429,7 +2576,7 @@ button.primary:hover,
 #appMenu-update-banner:hover,
 button[data-l10n-id="choose-app-btn"]:hover,
 button[slot="primary"]:hover {
-  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  background-color: var(--accentHover) !important;
   box-shadow: none !important;
 }
 #editBookmarkPanelDoneButton:active,
@@ -2437,7 +2584,7 @@ button.primary:active,
 #appMenu-update-banner:active,
 button[data-l10n-id="choose-app-btn"]:active,
 button[slot="primary"]:active {
-  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  background-color: var(--accentPressed) !important;
   box-shadow: none !important;
 }
 /* Update menu button icon color */
@@ -2455,8 +2602,8 @@ checkbox {
   opacity: 1 !important;
 }
 checkbox > .checkbox-check, input[type="checkbox"] {
-  background-color: light-dark(rgba(0,0,0,.0241),rgba(0,0,0,.1)) !important;
-  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+  background-color: var(--controlAltSecondary) !important;
+  border: 1px solid var(--controlStrongStroke) !important;
   background-clip: padding-box !important;
   border-radius: 4px !important;
   -moz-context-properties: fill !important;
@@ -2469,23 +2616,23 @@ checkbox > .checkbox-check, input[type="checkbox"] {
   transition: background-color 43ms linear !important;
 }
 checkbox:hover > .checkbox-check, input[type="checkbox"]:hover {
-  background-color: light-dark(rgba(0,0,0,.0578),rgba(255,255,255,.0419)) !important;
+  background-color: var(--controlAltTertiary) !important;
 }
 checkbox:active > .checkbox-check, input[type="checkbox"]:active {
-  background-color: light-dark(rgba(0,0,0,.0924),rgba(255,255,255,.0698)) !important;
-  border-color: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+  background-color: var(--controlAltQuartenary) !important;
+  border-color: var(--controlStrongStrokeDisabled) !important;
 }
 input[type="checkbox"]:checked, checkbox[checked="true"] > .checkbox-check {
-  background: light-dark(var(--accentLight), var(--accentDark)) !important;
-  border-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background: var(--accentAuto) !important;
+  border-color: var(--accentAuto) !important;
 }
 input[type="checkbox"]:checked:hover, checkbox[checked="true"]:hover > .checkbox-check {
-  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
-  border-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  background-color: var(--accentHover) !important;
+  border-color: var(--accentHover) !important;
 }
 input[type="checkbox"]:checked:active, checkbox[checked="true"]:hover:active > .checkbox-check {
-  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
-  border-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  background-color: var(--accentPressed) !important;
+  border-color: var(--accentPressed) !important;
   fill: light-dark(rgba(255,255,255,.7), rgba(0,0,0,.5)) !important;
 }
 checkbox[checked="true"] > .checkbox-check , input[type="checkbox"]:checked {
@@ -2509,21 +2656,21 @@ checkbox[disabled="true"] > .checkbox-label-box {
 }
 checkbox[disabled="true"] > .checkbox-check {
   background-color: transparent !important;
-  border: 1px solid light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+  border: 1px solid var(--controlStrongStrokeDisabled) !important;
   fill: transparent !important;
 }
 checkbox[disabled="true"][checked="true"] > .checkbox-check, checkbox[disabled="true"][checked="true"]:is(:hover, :hover:active) > .checkbox-check  {
-  background-color: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
-  border: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
+  background-color: var(--controlStrongStrokeDisabled) !important;
+  border: var(--controlStrongStrokeDisabled) !important;
   fill: light-dark(#fff,rgba(255,255,255,.53)) !important;
 }
 
 /* Toggle Switch */
 input[type="checkbox"].toggle-button, input[type="checkbox"] + .slider, .protections-popup-tp-switch, .toggle-button {
   background-clip: padding-box !important;
-  background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+  background-color: var(--controlAltSecondary) !important;
   background-image: none !important;
-  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+  border: 1px solid var(--controlStrongStroke) !important;
   border-radius: 12px !important;
   padding: 9px !important;
   padding-right: 32px !important;
@@ -2535,21 +2682,21 @@ input[type="checkbox"].toggle-button, input[type="checkbox"] + .slider, .protect
   padding-right: 26px !important;
 }
 input[type="checkbox"].toggle-button:hover, input[type="checkbox"]:hover + .slider, .protections-popup-tp-switch:hover, .toggle-button:hover {
-  background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+  background-color: var(--controlAltTertiary) !important;
 }
 input[type="checkbox"].toggle-button:active, input[type="checkbox"]:active + .slider, .protections-popup-tp-switch:active, .toggle-button:active {
-  background-color: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698)) !important;
+  background-color: var(--controlAltQuartenary) !important;
 }
 input[type="checkbox"].toggle-button:checked, input[type="checkbox"]:checked + .slider, .protections-popup-tp-switch[enabled], .toggle-button[aria-pressed="true"] {
-  background: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background: var(--accentAuto) !important;
   border-color: transparent !important;
 }
 input[type="checkbox"].toggle-button:checked:hover, input[type="checkbox"]:checked:hover + .slider, .protections-popup-tp-switch[enabled]:hover, .toggle-button[aria-pressed="true"]:hover {
-  background: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  background: var(--accentHover) !important;
   border-color: transparent !important;
 }
 input[type="checkbox"].toggle-button:checked:active, input[type="checkbox"]:checked:active + .slider, .protections-popup-tp-switch[enabled]:active, .toggle-button[aria-pressed="true"]:active {
-  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  background-color: var(--accentPressed) !important;
   border-color: transparent !important;
 }
 input[type="checkbox"].toggle-button::before, input + .slider::before, .protections-popup-tp-switch::before, .toggle-button::before {
@@ -2600,8 +2747,8 @@ radio {
 input[type="radio"] {
   appearance: none !important;
   background-clip: border-box !important;
-  background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
-  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+  background-color: var(--controlAltSecondary) !important;
+  border: 1px solid var(--controlStrongStroke) !important;
 
   outline: none !important;
   border-radius: 100% !important;
@@ -2612,23 +2759,23 @@ input[type="radio"] {
   list-style: none !important;
 }
 input[type="radio"]:hover {
-  background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
-  border-color: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+  background-color: var(--controlAltTertiary) !important;
+  border-color: var(--controlStrongStroke) !important;
 }
 input[type="radio"]:hover:active {
-  background-color: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.698)) !important;
-  border-color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+  background-color: var(--controlAltQuartenary) !important;
+  border-color: var(--controlStrongStrokeDisabled) !important;
 }
 input[type="radio"]:checked {
-  background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background-color: var(--accentAuto) !important;
   border-color: transparent !important;
 }
 input[type="radio"]:checked:hover {
-  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  background-color: var(--accentHover) !important;
   border-color: transparent !important;
 }
 input[type="radio"]:checked:hover:active {
-  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  background-color: var(--accentPressed) !important;
   border-color: transparent !important;
 }
 input[type="radio"]::before {
@@ -2672,8 +2819,8 @@ radio > .radio-check {
   appearance: none !important;
 
   background-clip: padding-box !important;
-  background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
-  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+  background-color: var(--controlAltSecondary) !important;
+  border: 1px solid var(--controlStrongStroke) !important;
   border-radius: 100% !important;
 
   padding: 1px !important;
@@ -2683,27 +2830,27 @@ radio > .radio-check {
   height: 18px !important;
 }
 radio:hover > .radio-check {
-  background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
-  border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
+  background-color: var(--controlAltTertiary) !important;
+  border: 1px solid var(--controlStrongStroke) !important;
 }
 radio:hover:active > .radio-check {
-  background-color: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.698)) !important;
-  border: 1px solid light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+  background-color: var(--controlAltQuartenary) !important;
+  border: 1px solid var(--controlStrongStrokeDisabled) !important;
 }
 radio[selected="true"] > .radio-check {
   fill: light-dark(#fff,#000) !important;
   background-clip: border-box !important;
-  background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background-color: var(--accentAuto) !important;
   border-color: transparent !important;
 }
 radio[selected="true"]:hover > .radio-check {
   fill: light-dark(#fff,#000) !important;
-  background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  background-color: var(--accentHover) !important;
   border-color: transparent !important;
 }
 radio[selected="true"]:hover:active > .radio-check {
   fill: light-dark(#fff,#000) !important;
-  background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  background-color: var(--accentPressed) !important;
   border-color: transparent !important;
 }
 
@@ -2721,15 +2868,15 @@ radio[selected="true"]::before {
 
 /* Radio Button Disabled */
 radio[disabled="true"] > .radio-label-box {
-  color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+  color: var(--controlStrongStrokeDisabled) !important;
 }
 radio:is([disabled="true"], [disabled="true"][selected="true"]) > .radio-check {
-  background-color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
-  border: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+  background-color: var(--controlStrongStrokeDisabled) !important;
+  border: var(--controlStrongStrokeDisabled) !important;
 }
 radio:is([disabled="true"], [disabled="true"][selected="true"]):is(:hover, :hover:active) > .radio-check {
-  background-color: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
-  border: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+  background-color: var(--controlStrongStrokeDisabled) !important;
+  border: var(--controlStrongStrokeDisabled) !important;
 }
 radio > .radio-label-box {
   margin-left: 5px !important;
@@ -2739,18 +2886,18 @@ radio > .radio-label-box {
 input[type="range"] {
   -moz-appearance: none !important;
   border: none !important;
-  background: light-dark(rgba(0,0,0,.44), rgba(255,255,255,.54)) !important;
+  background: var(--controlStrong) !important;
   height: 2px !important;
 }
 input[type="range"]:hover {
-  background: light-dark(rgba(0,0,0,.44), rgba(255,255,255,.54)) !important;
+  background: var(--controlStrong) !important;
 }
 input[type="range"]::-moz-range-progress {
-  background: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background: var(--accentAuto) !important;
   height: 2px !important;
 }
 input[type="range"]::-moz-range-thumb {
-  background: light-dark(var(--accentLight), var(--accentDark)) !important;
+  background: var(--accentAuto) !important;
   border: none !important;
   width: 20px !important;
   height: 20px !important;
@@ -2957,7 +3104,7 @@ toolbarpaletteitem {
   border-radius: 8px !important;
   outline: none !important;
   border: none !important;
-  background-image: url(image/accnoise256.png) !important;
+  background-image: var(--acrylic) !important;
   background-color: light-dark(rgba(255,255,255,.7), rgba(44,44,44,.4)) !important;
   padding: 12px !important;
 }
@@ -3216,7 +3363,8 @@ toolbarpaletteitem {
   #unified-extensions-manage-extensions,
   #downloadsFooterButtons button,
   #identity-popup-clear-sitedata-button,
-  #identity-popup-more-info {
+  #identity-popup-more-info,
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"] {
     box-shadow: var(--buttonShadowDark) !important;
   }
   button:hover,  
@@ -3226,7 +3374,8 @@ toolbarpaletteitem {
   #unified-extensions-manage-extensions:hover,
   #downloadsFooterButtons button:hover,
   #identity-popup-clear-sitedata-button:hover,
-  #identity-popup-more-info:hover {
+  #identity-popup-more-info:hover,
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:hover {
     box-shadow: var(--buttonShadowDark) !important;
   }
   button:active, 
@@ -3236,7 +3385,8 @@ toolbarpaletteitem {
   #unified-extensions-manage-extensions:active,
   #downloadsFooterButtons button:active,
   #identity-popup-clear-sitedata-button:active,
-  #identity-popup-more-info:active {
+  #identity-popup-more-info:active,
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:active {
     box-shadow: var(--buttonShadowDarkPressed) !important;
   }
 
@@ -3544,7 +3694,8 @@ toolbarpaletteitem {
   #unified-extensions-manage-extensions,
   #downloadsFooterButtons button,
   #identity-popup-clear-sitedata-button,
-  #identity-popup-more-info {
+  #identity-popup-more-info,
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"] {
     box-shadow: var(--buttonShadowLight) !important;
   }
   button:hover,
@@ -3554,7 +3705,8 @@ toolbarpaletteitem {
   #unified-extensions-manage-extensions:hover,
   #downloadsFooterButtons button:hover,
   #identity-popup-clear-sitedata-button:hover,
-  #identity-popup-more-info:hover {
+  #identity-popup-more-info:hover,
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:hover {
     box-shadow: var(--buttonShadowLight) !important;
   }
   button:active,
@@ -3564,7 +3716,8 @@ toolbarpaletteitem {
   #unified-extensions-manage-extensions:active,
   #downloadsFooterButtons button:active,
   #identity-popup-clear-sitedata-button:active,
-  #identity-popup-more-info:active {
+  #identity-popup-more-info:active,
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:active {
     box-shadow: var(--buttonShadowLightPressed) !important;
   }
 
@@ -3622,6 +3775,15 @@ toolbarpaletteitem {
   /* Overflow indicator area */
   #customization-panelWrapper .panel-arrowcontent  {
     box-shadow: var(--genericShadowDark) !important;
+  }
+  
+  /* Autologin pop up */
+  #PopupAutoComplete {
+    & .autocomplete-richlistitem {
+      & .ac-site-icon {
+        filter: grayscale(100) brightness(0) !important;
+      }
+    }
   }
 }
 
@@ -4194,6 +4356,19 @@ toolbarpaletteitem {
   /* Needs to be 1px if the resolution is high */
   .identity-box-button {
     margin-left: 0 !important;
+  }
+  :root:has(.notification-anchor-icon[showing]) .identity-box-button {
+    margin-left: -1px !important;
+  }
+  
+  /* DRM & other notification icons */
+  #notification-popup-box {
+    margin-bottom: 2px !important;
+    padding-top: 1px !important;
+
+    & image {
+      padding-inline: 16px !important;
+    }
   }
 
   .toolbarbutton-1 image {
