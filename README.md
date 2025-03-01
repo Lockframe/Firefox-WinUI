@@ -47,6 +47,7 @@ Set these boolean keys to `false`:
 - `uc.tweak.revert-context-menu`
 - `browser.newtabpage.activity-stream.newtabLayouts.variant-a`
 - `browser.newtabpage.activity-stream.newtabLayouts.variant-b`
+- `browser.urlbar.groupLabels.enabled`
 
 ### 4. Optional Customization Tweaks
 
