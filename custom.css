@@ -408,6 +408,17 @@ menu::after {
   background-size: 15px !important;
 }
 
+/* Context menu AI option */
+#context-ask-chat::after {
+  content: url(winui-icons/sparkle.svg);
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  fill: var(--textColor) !important;
+  -moz-context-properties: fill !important;
+  margin-left: -28px;
+}
+
 /* Center tab and URL text vertically */
 @media not (-moz-bool-pref: "uc.winui.aptos") {
   .tabbrowser-tab label, .urlbar-input-box, #identity-icon-label, .searchbar-textbox {
@@ -694,46 +705,135 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   list-style-image: none !important;
 }
 
-/* Tab audio icon */
-.tab-icon-overlay[soundplaying] {
-  border: none !important;
-  background-color: transparent !important;
-  background-size: 14px !important;
-  background-image: url(winui-icons/speaker2.svg) !important;
-  fill: var(--textColor) !important;
-}
-.tab-icon-overlay[muted] {
-  fill: #D70022 !important;
-  border: none !important;
-  background-color: transparent !important;
-  background-size: 16px !important;
-  background-image: url(winui-icons/mute.svg) !important;
-}
-.tab-icon-overlay[activemedia-blocked] {
-  fill: #FFE900 !important;
-  border: none !important;
-  background-color: transparent !important;
-  background-size: 13px !important;
+/* Tab audio icon - from WaveFox */
+/* Pinned Tabs - Needs fixing */
+.tabbrowser-tab[pinned]:not([crashed]){
+  .tab-icon-overlay {
+    background-color: transparent !important;
+    background-image: none !important;
+    fill: var(--textColor) !important;
+    border-radius: 50px !important;
+    top: -8px !important;
+    inset-inline-end: -8px !important;
+
+    &:hover{
+      background-color: color-mix(in srgb, transparent 0%, var(--textButtonHover)) !important;
+    }
+
+    &:hover:active{
+      background-color: color-mix(in srgb, transparent 0%, var(--textButtonPressed)) !important;
+    }
+  }
+
+  &:where([soundplaying], [muted], [activemedia-blocked]) .tab-icon-stack > :not(.tab-icon-overlay) {
+    mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at right top, black 8px, transparent 9px) !important;
+    mask-size: 16px 16px !important;
+    mask-position: center center !important;
+    mask-repeat: no-repeat !important;
+    mask-composite: exclude !important;
+    mask-mode: alpha !important;
+
+    :root:-moz-locale-dir(rtl) & {
+      mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at left top, black 8px, transparent 9px) !important;
+    }
+  }
 }
 
-/* 136 fixes */
-.tab-audio-button {
-  margin-right: 4px !important;
-  margin-left: -2px !important;
+/* Regular Tabs */
+.tabbrowser-tab:not([pinned], [crashed]) {
+  .tab-icon-overlay {
+    background-color: var(--textColor) !important;
+    top: 0px !important;
+    inset-inline-end: 0px !important;
+    border-radius: 99px !important;
+    mask-image: var(--mask-overlay-background, none), var(--mask-overlay-image, none) !important;
+    mask-size: 16px 16px, 12px 12px !important;
+    mask-position: center center !important;
+    mask-repeat: no-repeat !important;
+    mask-mode: alpha !important;
+    fill: var(--textColor) !important;
+    -moz-context-properties: fill !important;
+
+    &:hover {
+      --mask-overlay-background: linear-gradient(to bottom, var(--textButtonHover), var(--textButtonHover));
+    }
+    &:hover:active {
+      --mask-overlay-background: linear-gradient(to bottom, var(--textButtonPressed), var(--textButtonPressed));
+    }
+  }
+
+  &[soundplaying] .tab-icon-overlay {
+    --mask-overlay-image: url("winui-icons/speaker2.svg");
+  }
+  &[muted] .tab-icon-overlay {
+    --mask-overlay-image: url("winui-icons/mute.svg");
+  }
+  &[activemedia-blocked] .tab-icon-overlay {
+    --mask-overlay-image: url("winui-icons/play.svg");
+    mask-size: 8px 24px !important;
+  }
+
+  &:where([busy], [image], [sharing], [pictureinpicture]) .tab-icon-overlay {
+    top: -7px !important;
+    inset-inline-end: 16px !important;
+  }
+
+  &:where([soundplaying], [muted], [activemedia-blocked]) {
+    .tab-icon-stack > :not(.tab-icon-overlay) {
+      mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at right top, black 8px, transparent 9px) !important;
+      mask-size: 16px 16px !important;
+      mask-position: center center !important;
+      mask-repeat: no-repeat !important;
+      mask-composite: exclude !important;
+      mask-mode: alpha !important;
+
+      :root:-moz-locale-dir(rtl) & {
+        mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at left top, black 8px, transparent 9px) !important;
+      }
+    }
+    .tab-icon-overlay {
+      display: revert !important;
+    }
+  }
 }
 
-/* Reduces Extra Space When Audio Button Appears */
-.tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label-container > * {
-  transform: none !important;
+.tab-icon-stack {
+  width: 22px !important;
 }
 
-.button-background:has(background-image: url("chrome://browser/skin/tabbrowser/tab-audio-playing-small.svg")) {
-  display: none !important;
+.tabbrowser-tab:not([pinned]) {
+  .tab-audio-button {
+    display: none !important;
+  }
+}
+/* --- Tab Text --- */
+.tab-label-container {
+  mask-image: none !important;
+}
+
+.tab-label {
+  width: 100% !important;
+  height: auto !important;
+  line-height: normal !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  margin-block: 0px !important;
 }
 
 .tabbrowser-tab:not([selected]) .tab-content, .tab-icon-overlay {
   color: var(--textPressed) !important;
   fill: var(--textPressed) !important;
+}
+
+#tabbrowser-tabs[closebuttons="activetab"] {
+  & .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]):not([crashed]) {
+    &:hover {
+      background-color: transparent !important;
+    }
+    &:active {
+      background-color: transparent !important;
+    }
+  }
 }
 
 /* Tab throbber */
@@ -1882,6 +1982,7 @@ window#webextpanels-window {
   }
   &:active {
     background-color: var(--buttonPressed) !important;
+    color: var(--textPressed) !important;
     
     & #sidebar-switcher-arrow {
       animation: bounceDown 167ms cubic-bezier(0, 0, 0, 1) !important;
