@@ -797,6 +797,13 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   }
 }
 
+/* Remove edge-frfox icons */
+.tab-icon-overlay[activemedia-blocked],
+.tab-icon-overlay[muted],
+.tab-icon-overlay[soundplaying]{
+  list-style-image: none !important;
+}
+
 .tab-icon-stack {
   width: 22px !important;
 }
