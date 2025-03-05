@@ -66,7 +66,7 @@
 
   --progressBar: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
 
-  --accentLight: color-mix(in srgb, accentColor 90%, black) !important; /* Main */
+  --accentLight: color-mix(in srgb, accentColor 85%, black) !important; /* Main */
   --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
   --accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent) !important; /* Pressed */
   --accentLight4: color-mix(in srgb, accentColor 100%, transparent) !important; /* Full saturation */
@@ -107,6 +107,7 @@
 
   text-decoration: none !important;
   outline: none !important;
+  color-scheme: light dark !important; /* Fix some menu items using inverted light-dark colors */
   
   /* Panel colors */
   --arrowpanel-background: var(--searchDropdown) !important;
@@ -163,6 +164,10 @@ h1, h2, h3 {
   -moz-context-properties: fill !important;
 }
 
+#context-savelink {
+  --menu-image: url("../winui-icons/downloads.svg") !important;
+}
+
 /* Make download progress circle look like a ring - Hacky */
 #downloads-indicator-progress-inner {
   width: 18px !important;
@@ -196,6 +201,17 @@ h1, h2, h3 {
 }
 #pageAction-panel-bookmark, #star-button, #context-bookmarkpage {
   list-style-image: url('winui-icons/star.svg') !important;
+}
+#pageAction-panel-bookmark[starred], #star-button[starred] {
+  list-style-image: url("winui-icons/star-filled.svg") !important;
+}
+#context_bookmarkTab, 
+#context_bookmarkSelectedTabs, 
+#toggle_PersonalToolbar, 
+#context-bookmarklink, 
+#toolbar-context-bookmarkSelectedTab, 
+#toolbar-context-bookmarkSelectedTabs {
+  --menu-image: url("../winui-icons/star.svg") !important;
 }
 .urlbarView-type-icon {
   .urlbarView-row[pinned] > .urlbarView-row-inner > .urlbarView-no-wrap > & {
@@ -248,7 +264,7 @@ h1, h2, h3 {
   list-style-image: none !important;
   background-image: url(winui-icons/help.svg) !important;
   background-repeat: no-repeat !important;
-  background-size: 9px !important;
+  background-size: 8px !important;
   background-position: 12px 6px !important;
 }
 
@@ -298,18 +314,29 @@ menu::after {
   }
 }
 
-/* Sidebar icon */
+/* Sidebar icon - Moves around*/
 #sidebar-button {
   @media not (-moz-bool-pref: "sidebar.revamp") {
     &:-moz-locale-dir(ltr):not([positionend]), &:-moz-locale-dir(rtl)[positionend] {
       list-style-image: none !important;
       background-image: url(winui-icons/dock-left.svg);
-      background-size: 16px;
-      background-position: center center;
       background-repeat: no-repeat;
+      background-position-x: center !important;
+      padding: 4px !important;
+      
+      /* WIP
+      &[checked=true] .toolbarbutton-icon {
+        background-color: var(--accentAuto) !important;
+        background-image: url(winui-icons/dock-left.svg) !important;
+        background-position: 7px center !important;
+        fill: var(--textInverse) !important;
+        border: 1px solid rgba(255,255,255,.08) !important;
+        border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+      }*/
 
       @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
         background-size: 15px;
+        padding: 3px !important;
       }
     }
   }
@@ -321,12 +348,26 @@ menu::after {
     background-size: 16px;
     background-position: center center;
     background-repeat: no-repeat;
+    padding: 3px !important;
+    
+      /*&[checked=true] .toolbarbutton-icon {
+        background-color: var(--accentAuto) !important;
+        background-image: url(winui-icons/dock-right.svg) !important;
+        background-size: 16px !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        fill: var(--textInverse) !important;
+        border: 1px solid rgba(255,255,255,.08) !important;
+        border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+      }*/
 
     @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
       background-size: 15px;
+      padding: 3px !important;
     }
   }
 }
+
 /* Bookmark list icon */
 #editBMPanel_folderMenuList[selectedGuid="toolbar_____"], #editBMPanel_toolbarFolderItem {
   list-style-image: none !important;
@@ -487,8 +528,9 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 
 /* URL Tooltip */
 #statuspanel-label{
-  border-radius: 3px !important;
-  padding: 5px !important;
+  display: block !important;
+  border-radius: 4px !important;
+  padding: 2px 7px 6px 8px !important;
   margin: 0 0 4px 4px !important;
   background-image: var(--acrylic) !important;
 }
@@ -648,24 +690,50 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   --tab-label-mask-size: 0 !important;
 }
 
+.tab-icon-overlay[soundplaying] {
+  list-style-image: none !important;
+}
+
 /* Tab audio icon */
 .tab-icon-overlay[soundplaying] {
-  fill: #FFFFFF !important;
   border: none !important;
   background-color: transparent !important;
-  background-size: 18px !important;
+  background-size: 14px !important;
+  background-image: url(winui-icons/speaker2.svg) !important;
+  fill: var(--textColor) !important;
 }
 .tab-icon-overlay[muted] {
   fill: #D70022 !important;
   border: none !important;
   background-color: transparent !important;
-  background-size: 18px !important;
+  background-size: 16px !important;
+  background-image: url(winui-icons/mute.svg) !important;
 }
 .tab-icon-overlay[activemedia-blocked] {
   fill: #FFE900 !important;
   border: none !important;
   background-color: transparent !important;
-  background-size: 18px !important;
+  background-size: 13px !important;
+}
+
+/* 136 fixes */
+.tab-audio-button {
+  margin-right: 4px !important;
+  margin-left: -2px !important;
+}
+
+/* Reduces Extra Space When Audio Button Appears */
+.tabbrowser-tab:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label-container > * {
+  transform: none !important;
+}
+
+.button-background:has(background-image: url("chrome://browser/skin/tabbrowser/tab-audio-playing-small.svg")) {
+  display: none !important;
+}
+
+.tabbrowser-tab:not([selected]) .tab-content, .tab-icon-overlay {
+  color: var(--textPressed) !important;
+  fill: var(--textPressed) !important;
 }
 
 /* Tab throbber */
@@ -1155,6 +1223,21 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   color: var(--textPressed) !important;
 }
 
+/* Panels' keyboard shortcuts - Includes unused boxed look */
+.subviewbutton {
+  &[shortcut]:not([disabled])::after {
+    color: var(--textPressed) !important;
+    opacity: 1 !important;
+    /*background-color: var(--controlSecondary) !important;
+    box-shadow: 0 0 0 1px var(--controlStrong) !important;
+    padding: 1px 5px 3px !important;
+    border-radius: 2px !important;
+    opacity: 1 !important;
+    margin-right: -6px !important;
+    margin-block: -4px !important;*/
+  }
+}
+
 /* App panel warning badge */
 #PanelUI-menu-button[badge-status="addon-alert"], #PanelUI-menu-button[badge-status="fxa-needs-authentication"], #fxa-toolbar-menu-button[badge-status="login_failed"] {
   & > .toolbarbutton-badge-stack > .toolbarbutton-badge {
@@ -1536,6 +1619,8 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 .panel-footer button {
   width: -moz-available !important;
   margin-inline: 4.5px !important;
+  padding-bottom: 8px !important;
+  font-size: 12.5px !important;
 }
 
 /* Back/forward panels */
@@ -1691,6 +1776,34 @@ panel toolbarseparator {
   }
 }
 
+/* Selectable richlist dropdown */
+#ContentSelectDropdownPopup {
+  animation: richlistSlide .333s forwards !important;
+  transform-origin: bottom !important;
+  
+  & * {
+    animation: richlistContentSlide .2s cubic-bezier(0, 0, 0, 1) !important;
+    transform-origin: top !important;
+  }
+}
+
+@keyframes richlistSlide {
+  0% {
+    clip-path: inset(0 0 50% 0);
+  }
+  100% {
+    clip-path: inset(0 -16px -20px -16px);
+  }
+}
+@keyframes richlistContentSlide {
+  0% {
+    transform: translateY(-500%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
 /* Remove fade-out close animation */
 @media not (-moz-bool-pref: "uc.winui.extra-animations") {
   #unified-extensions-panel:not([animate="open"]),
@@ -1749,6 +1862,170 @@ window#webextpanels-window {
 
 #sidebar-header {
   margin-top: -6px !important;
+  border-bottom: none !important;
+}
+
+/* Usage selector */
+#sidebar-switcher-target {
+  margin-block: 7px 1px !important;
+  margin-left: 1px !important;
+  border-radius: 3px !important;
+  transition: var(--basicBGAnimation) !important;
+  padding-inline: 8px !important;
+  padding-bottom: 3px !important;
+  background-color: var(--button) !important;
+  font-size: 14px !important;
+  height: 28px !important;
+  
+  &:hover {
+    background-color: var(--buttonHover) !important;
+  }
+  &:active {
+    background-color: var(--buttonPressed) !important;
+    
+    & #sidebar-switcher-arrow {
+      animation: bounceDown 167ms cubic-bezier(0, 0, 0, 1) !important;
+    }
+  }
+  
+  & #sidebar-switcher-arrow {
+    margin-left: 4px !important;
+  }
+}
+
+@keyframes bounceDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#sidebar-close {
+  margin-top: 6px !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 4px !important;
+  transition: var(--basicBGAnimation) !important;
+  
+  & .toolbarbutton-icon {
+    width: 12px;
+  }
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Sidebar search bar */
+#sidebar-search-container {
+  margin-inline: 8px !important;
+}
+
+.sidebar-panel:not([lwt-sidebar]) {
+  & #sidebar-search-container > #search-box {
+    background-color: var(--searchBackground) !important;
+    color: var(--textPressed) !important;
+    border: none !important;
+    border-radius: 3px !important;
+    height: 30px !important;
+    
+    &:hover {
+      background-color: var(--searchHover) !important;
+    }
+    &:focus-within {
+      background-color: var(--searchActive) !important;
+      outline: none !important;
+    }
+  }
+}
+/* This is misaligned in the sidebar synced tabs search bar */
+.textbox-search-sign, .textbox-search-icon {
+  list-style-image: url(icons/search-glass.svg) !important;
+  -moz-context-properties: fill !important;
+  height: 14px !important;
+  order: 1 !important;
+  fill: var(--textPressed) !important;
+  margin-top: 2px !important;
+}
+input[inputmode="search"] {
+  color: var(--textColor) !important;
+  font-size: 13px !important;
+  margin-bottom: 1px !important;
+}
+
+.tabsFilter {
+  margin-inline: 8px !important;
+  height: 30px !important;
+}
+
+/* Right-side dropdown button */
+.sidebar-panel:not([lwt-sidebar]) {
+  & #sidebar-search-container >  #viewButton {
+    appearance: none !important;
+    background-color: var(--button) !important;
+    color: var(--textColor) !important;
+    border: none !important;
+    border-radius: 3px !important;
+    margin-left: 8px !important;
+    font-size: 13px !important;
+    
+    &:focus-within {
+      outline: none !important;
+    }
+    
+    & menupopup {
+      margin-left: -16px !important;
+    }
+    & .box-inherit {
+      margin-top: -1px !important;
+    }
+  }
+}
+/* Dropdown arrow */
+.button-menu-dropmarker {
+  margin-left: 8px !important;
+  color: var(--textColor) !important;
+}
+button:active {
+  & .button-menu-dropmarker {
+    animation: bounceDown 167ms cubic-bezier(0, 0, 0, 1) !important;
+  }
+}
+
+/* Side panel */
+#sidebar-main {
+  background-color: var(--frameBG) !important;
+  border-right: 1px solid var(--footerBorder) !important;
+}
+
+.sidebar-panel-header {
+  margin-top: -8px !important;
+}
+
+/* Adjust settings icon bottom margin */
+button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
+  margin-bottom: 4px !important;
+}
+
+/* Icons - help wanted */
+.button-background {
+  background-color: transparent !important;
+  & img, &[type~="icon"]:not(.labelled) {
+    fill: var(--textColor) !important;
+    
+    &:hover {
+      background: var(--textButtonHover) !important;
+      transition: var(--basicBGAnimation) !important;
+    }
+  }
 }
 
 /* Remove permission icon in URL bar */
@@ -1790,7 +2067,6 @@ window#webextpanels-window {
 
 /* Private browsing indicator */
 .private-browsing-indicator-with-label {
-  color: black !important;
   margin-inline: 0 8px !important;
   padding-inline: 3px 5px !important;
   background: var(--accentAuto) !important;
@@ -1805,8 +2081,8 @@ window#webextpanels-window {
 
   &::after { /* Custom label */
     content: "Private";
-    margin-block: auto;
     margin-inline: 6px;
+    padding-bottom: .1em !important;
     color: var(--textInverse) !important;
   }
 }
@@ -1835,6 +2111,20 @@ window#webextpanels-window {
 
   & .autocomplete-richlistbox {
     background-image: var(--acrylic) !important;
+    max-height: unset !important;
+  }
+  
+  & richlistitem[originaltype="importableLogins"] {
+    padding-left: 16px !important;
+    padding-top: 5px !important;
+  }
+  & richlistitem[originaltype="importableLearnMore"] {    
+    & description {
+      margin-left: -14px !important;
+      margin-top: -3px !important;
+      padding-top: 1px !important;
+      color: var(--accentAuto) !important;
+    }
   }
 
   & .autocomplete-richlistitem {
@@ -2199,18 +2489,6 @@ dialog:not(#window-modal-dialog) {
   }
 }
 
-#dialogGrid {  
-  & #titleContainer {
-    font-size: 16px !important;
-    margin-top: 9px !important;
-  }
-  
-  & #infoRow {
-    margin-left: 10px !important;
-    padding-bottom: 12px !important;
-  }
-}
-
 @keyframes fadeInScale {
   0% {
     opacity: 0;
@@ -2233,10 +2511,18 @@ dialog:not(#window-modal-dialog) {
   animation: fadeInScale .333s ease-out !important;
 }
 
-#description {
-  margin-inline: 12px !important;
-  font-weight: 600 !important;
-  margin-top: 11px !important;
+#description-box {
+  font-size: 14px !important;
+
+  & #description {
+    margin-inline: 8px !important;
+    font-weight: 600 !important;
+    margin-top: 11px !important;
+  }
+
+  & .text-link {
+    margin-left: 7px !important;
+  }
 }
 
 #rememberContainer {
@@ -2305,14 +2591,32 @@ label[data-l10n-id="choose-other-app-description"] {
 #commonDialog[subdialog] description {
   margin-inline: 12px !important;
 }
-#infoRow {
-  margin-bottom: -10px !important;
-  padding-block: 12px !important;
+
+#dialogGrid {  
+  & #titleContainer {
+    font-size: 16px !important;
+    margin-top: 9px !important;
+  }
+  
+  & #infoRow {
+    margin-bottom: -10px !important;
+    padding-top: 12px !important;
+    margin-left: 10px !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    font-size: 14px !important;
+  }
+  
+  & #infoBody {
+    min-height: 16px !important;
+    transform: translateY(-10px) !important;
+  }
+  
+  & checkbox {
+    font-size: 14px !important;
+  }
 }
-#infoBody {
-  min-height: 16px !important;
-  transform: translateY(-10px) !important;
-}
+
 .dialog-button-box {
   background-color: var(--footer) !important;
   border-top: 1px solid var(--footerBorder) !important;
@@ -2524,31 +2828,17 @@ panel menulist,
   background-color: var(--button) !important;
   border-radius: 3px !important;
   border: none !important;
+  
+  &:hover {
+    background-color: var(--buttonHover) !important;
+    border-radius: 3px !important;
+  }
+  &:active {
+    background-color: var(--buttonPressed) !important;
+    border-radius: 3px !important;
+  }
 }
-button:hover, 
-#editBookmarkPanelRemoveButton:hover, 
-button.popup-notification-secondary-button:hover,
-panel menulist:hover,
-#unified-extensions-manage-extensions:hover,
-#downloadsFooterButtons button:hover,
-#identity-popup-clear-sitedata-button:hover,
-#identity-popup-more-info:hover,
-#PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:hover {
-  background-color: var(--buttonHover) !important;
-  border-radius: 3px !important;
-}
-button:active, 
-#editBookmarkPanelRemoveButton:active, 
-button.popup-notification-secondary-button:active,
-panel menulist:active,
-#unified-extensions-manage-extensions:active,
-#downloadsFooterButtons button:active,
-#identity-popup-clear-sitedata-button:active,
-#identity-popup-more-info:active,
-#PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:active{
-  background-color: var(--buttonPressed) !important;
-  border-radius: 3px !important;
-}
+
 button:active * {
   opacity: .768 !important;
 }
@@ -3021,6 +3311,15 @@ html[windowtype="Toolkit:PictureInPicture"] {
   margin-top: 29px;
   border-radius: 0 0 4px 4px;
 }
+/* Reposition in-url input and right-side icons in 136 */
+#urlbar-input, .urlbar-page-action {
+  margin-bottom: 1px !important;
+}
+#urlbar[breakout][breakout-extend] { 
+  & #urlbar-input, .urlbar-page-action {
+      margin-bottom: -1px !important;
+  }
+}
 
 toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
   margin-inline: 50px !important;
@@ -3118,6 +3417,77 @@ toolbarpaletteitem {
       stroke: light-dark(rgba(0,0,0,.1), rgba(0,0,0,.3)) !important;
       fill: light-dark(rgb(255,255,255), rgb(46,46,46)) !important;
     }
+  }
+}
+
+/* AI selection pop up */
+#selection-shortcut-action-panel hbox {
+  background: var(--commonBackground) !important;
+  background-image: var(--acrylic) !important;
+  border: none !important;
+  outline: none !important;
+}
+img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
+  display: none !important;
+}
+
+#ai-action-button {
+  margin: -2px !important; /* Hide shadow since the button inside #shadow-root can't be targeted */
+  padding: 2px !important;
+}
+
+#ai-action-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  background-image: url('winui-icons/sparkle.svg') !important;
+  background-size: 16px !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  fill: var(--textColor) !important;
+  -moz-context-properties: fill !important;
+  transform: translate(-50%, -50%); /* Center the pseudo-element */
+  z-index: 1;
+  pointer-events: none !important;
+  background-color: transparent !important;
+}
+
+#chat-shortcuts-options-panel {
+  margin-block: -48px !important;
+  margin-left: 0px !important;
+  
+  & toolbarbutton {
+    font-size: 14px !important;
+
+    &:last-of-type {
+      & image {
+        display: none !important;
+      }
+      & label {
+        margin-left: -13px !important;
+      }
+    }
+  }
+  
+  & .ask-chat-shortcuts-custom-prompt {
+    background-color: var(--searchBackground) !important;
+		border-radius: 3px !important;
+    border: none !important;
+    margin: 6px !important;
+    
+    &:hover {
+      background-color: var(--searchHover) !important;
+    }
+    &:focus-within {
+      background-color: var(--searchActive) !important;
+    }
+  }
+  
+  & .panel-subview-body {
+    background-image: var(--acrylic) !important;
   }
 }
 
@@ -3364,30 +3734,16 @@ toolbarpaletteitem {
   #downloadsFooterButtons button,
   #identity-popup-clear-sitedata-button,
   #identity-popup-more-info,
+  #sidebar-switcher-target,
   #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"] {
     box-shadow: var(--buttonShadowDark) !important;
-  }
-  button:hover,  
-  #editBookmarkPanelRemoveButton:hover,
-  button.popup-notification-secondary-button:hover,
-  panel menulist:hover,
-  #unified-extensions-manage-extensions:hover,
-  #downloadsFooterButtons button:hover,
-  #identity-popup-clear-sitedata-button:hover,
-  #identity-popup-more-info:hover,
-  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:hover {
-    box-shadow: var(--buttonShadowDark) !important;
-  }
-  button:active, 
-  #editBookmarkPanelRemoveButton:active,
-  button.popup-notification-secondary-button:active,
-  panel menulist:active,
-  #unified-extensions-manage-extensions:active,
-  #downloadsFooterButtons button:active,
-  #identity-popup-clear-sitedata-button:active,
-  #identity-popup-more-info:active,
-  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:active {
-    box-shadow: var(--buttonShadowDarkPressed) !important;
+    
+    &:hover {
+      box-shadow: var(--buttonShadowDark) !important;
+    }
+    &:active {
+      box-shadow: var(--buttonShadowDarkPressed) !important;
+    }
   }
 
   /* Dialog boxes */
@@ -3438,6 +3794,26 @@ toolbarpaletteitem {
   /* Overflow indicator area */
   #customization-panelWrapper .panel-arrowcontent  {
     box-shadow: var(--genericShadowDark) !important;
+  }
+  
+  /* AI panel */
+  .ask-chat-shortcuts-custom-prompt {
+    box-shadow: var(--searchShadowDark) !important;
+    
+    &:focus-within {
+      box-shadow: var(--searchActiveShadowDark) !important;
+    }
+  }
+  
+  /* Sidebar search bar */
+  .sidebar-panel:not([lwt-sidebar]) {
+    & #sidebar-search-container > #search-box {
+      box-shadow: var(--searchShadowDark) !important;
+
+      &:focus-within {
+        box-shadow: var(--searchActiveShadowDark) !important;
+      }
+    }
   }
 }
 
@@ -3695,30 +4071,16 @@ toolbarpaletteitem {
   #downloadsFooterButtons button,
   #identity-popup-clear-sitedata-button,
   #identity-popup-more-info,
+  #sidebar-switcher-target,
   #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"] {
     box-shadow: var(--buttonShadowLight) !important;
-  }
-  button:hover,
-  #editBookmarkPanelRemoveButton:hover,
-  button.popup-notification-secondary-button:hover,
-  panel menulist:hover,
-  #unified-extensions-manage-extensions:hover,
-  #downloadsFooterButtons button:hover,
-  #identity-popup-clear-sitedata-button:hover,
-  #identity-popup-more-info:hover,
-  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:hover {
-    box-shadow: var(--buttonShadowLight) !important;
-  }
-  button:active,
-  #editBookmarkPanelRemoveButton:active,
-  button.popup-notification-secondary-button:active,
-  panel menulist:active,
-  #unified-extensions-manage-extensions:active,
-  #downloadsFooterButtons button:active,
-  #identity-popup-clear-sitedata-button:active,
-  #identity-popup-more-info:active,
-  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]:active {
-    box-shadow: var(--buttonShadowLightPressed) !important;
+
+    &:hover {
+      box-shadow: var(--buttonShadowLight) !important;
+    }
+    &:active {
+      box-shadow: var(--buttonShadowLightPressed) !important;
+    }
   }
 
   /* Dialog boxes */
@@ -3782,6 +4144,26 @@ toolbarpaletteitem {
     & .autocomplete-richlistitem {
       & .ac-site-icon {
         filter: grayscale(100) brightness(0) !important;
+      }
+    }
+  }
+  
+  /* AI panel */
+  .ask-chat-shortcuts-custom-prompt {
+    box-shadow: var(--searchShadowLight) !important;
+    
+    &:focus-within {
+      box-shadow: var(--searchActiveShadowLight) !important;
+    }
+  }
+  
+  /* Sidebar search bar */
+  .sidebar-panel:not([lwt-sidebar]) {
+    & #sidebar-search-container > #search-box {
+      box-shadow: var(--searchShadowLight) !important;
+
+      &:focus-within {
+        box-shadow: var(--searchActiveShadowLight) !important;
       }
     }
   }
@@ -4742,6 +5124,11 @@ toolbarpaletteitem {
       transform: scale(0,0) translate(72px, 72px);
       opacity: 0;
     }
+  }
+  
+  /* URL Tooltip */
+  #statuspanel-label{
+    animation: findbarOut 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
   }
 
   @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
