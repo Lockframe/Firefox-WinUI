@@ -1320,6 +1320,7 @@ menuitem {
 }
 #unified-extensions-view h1, #identity-popup-mainView-panel-header-span {
   font-weight: 600 !important;
+  color: var(--textPressed) !important;
 }
 
 #PanelUI-fxa-menu-syncnow-button, #PanelUI-fxa-menu-empty-profiles-button {
@@ -2953,7 +2954,7 @@ tree {
 }
 
 /* Default buttons */
-button, 
+button:not([slot="primary"],.primary,[dlgtype="accept"],[data-l10n-id="choose-app-btn"]), 
 #editBookmarkPanelRemoveButton, 
 button.popup-notification-secondary-button,
 panel menulist,
@@ -2998,23 +2999,17 @@ button[dlgtype="accept"]{
   border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
   border-radius: 4px !important;
   font-weight: normal !important;
+  
+  &:hover {
+    background-color: var(--accentHover) !important;
+    box-shadow: none !important;
+  }
+  &:active {
+    background-color: var(--accentPressed) !important;
+    box-shadow: none !important;
+  }
 }
-#editBookmarkPanelDoneButton:hover,
-button.primary:hover,
-#appMenu-update-banner:hover,
-button[data-l10n-id="choose-app-btn"]:hover,
-button[slot="primary"]:hover {
-  background-color: var(--accentHover) !important;
-  box-shadow: none !important;
-}
-#editBookmarkPanelDoneButton:active,
-button.primary:active,
-#appMenu-update-banner:active,
-button[data-l10n-id="choose-app-btn"]:active,
-button[slot="primary"]:active {
-  background-color: var(--accentPressed) !important;
-  box-shadow: none !important;
-}
+
 /* Update menu button icon color */
 .panel-banner-item {
   &[notificationid="update-available"], &[notificationid="update-downloading"], &[notificationid="update-manual"], &[notificationid="update-other-instance"], &[notificationid="update-restart"] {
@@ -3864,7 +3859,7 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
   }
 
   /* Default buttons */
-  button,  
+  button:not([slot="primary"],.primary,[dlgtype="accept"],[data-l10n-id="choose-app-btn"]),  
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -4201,7 +4196,7 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
   }
 
   /* Default buttons */
-  button,
+  button:not([slot="primary"],.primary,[dlgtype="accept"],[data-l10n-id="choose-app-btn"]),
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -4871,6 +4866,10 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
 
   #translations-button {
     height: 25px !important;
+  }
+  
+  #urlbar:is([breakout][breakout-extend][open]) hbox[role="button"] {
+    margin-bottom: 1px !important;
   }
 
   /* Needs to be 1px if the resolution is high */
