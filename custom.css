@@ -409,8 +409,9 @@ menu::after {
 }
 
 /* Context menu AI option */
-#context-ask-chat::after {
+#context-ask-chat > label::after {
   content: url(winui-icons/sparkle.svg);
+  order: -1;
   position: absolute;
   width: 16px;
   height: 16px;
@@ -418,6 +419,8 @@ menu::after {
   -moz-context-properties: fill !important;
   margin-left: -28px;
 }
+
+/* .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu */
 
 /* Center tab and URL text vertically */
 @media not (-moz-bool-pref: "uc.winui.aptos") {
@@ -742,55 +745,62 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 /* Regular Tabs */
 .tabbrowser-tab:not([pinned], [crashed]) {
   .tab-icon-overlay {
-    background-color: var(--textColor) !important;
+    /* Basic positioning */
     top: 0px !important;
     inset-inline-end: 0px !important;
     border-radius: 99px !important;
-    mask-image: var(--mask-overlay-background, none), var(--mask-overlay-image, none) !important;
-    mask-size: 16px 16px, 12px 12px !important;
-    mask-position: center center !important;
-    mask-repeat: no-repeat !important;
-    mask-mode: alpha !important;
-    fill: var(--textColor) !important;
+    z-index: 2 !important;
+    
+    animation: findbarOut 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+    
+    /* Create solid background circle with accent color */
+    background-color: var(--accentAuto) !important;
+    
+    /* Handle the icon color */
+    fill: var(--textInverse) !important;
     -moz-context-properties: fill !important;
-
-    &:hover {
-      --mask-overlay-background: linear-gradient(to bottom, var(--textButtonHover), var(--textButtonHover));
-    }
-    &:hover:active {
-      --mask-overlay-background: linear-gradient(to bottom, var(--textButtonPressed), var(--textButtonPressed));
-    }
+    
+    /* Try to control the icon size using padding */
+    padding: 2px !important; /* Adjust this value to create more space around the icon */
   }
-
+  
+  /* Apply the correct icon for each state */
   &[soundplaying] .tab-icon-overlay {
-    --mask-overlay-image: url("winui-icons/speaker2.svg");
+    list-style-image: url("winui-icons/speaker2.svg") !important;
   }
+  
   &[muted] .tab-icon-overlay {
-    --mask-overlay-image: url("winui-icons/mute.svg");
+    list-style-image: url("winui-icons/mute.svg") !important;
   }
+  
+  /* Different treatment - Padding causes it to be cut off - Hidden by default */
   &[activemedia-blocked] .tab-icon-overlay {
-    --mask-overlay-image: url("winui-icons/play.svg");
-    mask-size: 8px 24px !important;
+    background-image: url("winui-icons/play.svg") !important;
+    background-size: 8px !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    display: none !important;
   }
-
+  
+  /* Keep positioning adjustments */
   &:where([busy], [image], [sharing], [pictureinpicture]) .tab-icon-overlay {
     top: -7px !important;
     inset-inline-end: 16px !important;
   }
-
+  
+  /* Keep mask for the icon cutout in the favicon */
   &:where([soundplaying], [muted], [activemedia-blocked]) {
-    .tab-icon-stack > :not(.tab-icon-overlay) {
+    /*.tab-icon-stack > :not(.tab-icon-overlay) {
       mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at right top, black 8px, transparent 9px) !important;
       mask-size: 16px 16px !important;
       mask-position: center center !important;
       mask-repeat: no-repeat !important;
       mask-composite: exclude !important;
       mask-mode: alpha !important;
-
       :root:-moz-locale-dir(rtl) & {
         mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at left top, black 8px, transparent 9px) !important;
       }
-    }
+    }*/
     .tab-icon-overlay {
       display: revert !important;
     }
@@ -804,6 +814,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   list-style-image: none !important;
 }
 
+/* Ensure the title won't move */
 .tab-icon-stack {
   width: 22px !important;
 }
@@ -840,6 +851,25 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
     &:active {
       background-color: transparent !important;
     }
+  }
+}
+
+/* Pinned tab 136 */
+.tabbrowser-tab[pinned] {
+  & .tab-background {
+    width: 40px !important;
+  }
+  
+  & .tab-label-container {
+    display: none !important;
+  }
+  & .tab-icon-stack {
+    left: 12px !important;
+  }
+}
+.tab-content {
+  &[pinned] {
+    padding: 0 0 !important;
   }
 }
 
