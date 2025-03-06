@@ -478,6 +478,7 @@
 
 		--textColor: light-dark(rgba(0,0,0,.89), rgb(255,255,255)) !important;
 		--textInverse: light-dark(#fff, #000) !important;
+		--textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628)) !important;
 
 		--tableOdd: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
 
@@ -629,7 +630,8 @@
 	.textbox-search-sign, .textbox-search-icon {
 		list-style-image: url('icons/search-glass.svg') !important;
 		-moz-context-properties: fill !important;
-		fill: var(--textColor) !important;
+		fill: var(--textPressed) !important;
+		order: 1 !important;
 	}
 
 	#help-button img {
@@ -673,6 +675,11 @@
 	.button-reset {
 		background-image: url("winui-icons/undo.svg") !important;
 		background-size: 12px !important;
+	}
+	#prefs > tr.locked {
+		background-image: url("winui-icons/lock.svg") !important;
+		opacity: 1 !important;
+		color: var(--textDisabled) !important;
 	}
 
 	.textbox-search-clear {
@@ -770,6 +777,7 @@
 		outline: none !important;
 		appearance: none !important;
 		border: none !important;
+		align-self: center !important;
 	}
 
 	/* Disabled input bars */
@@ -793,7 +801,7 @@
 		transform: translateX(-2px) !important;
 	}
 	.textbox-search-icon, .textbox-search-sign, .textbox-search-clear {
-		margin-inline-start: 8px !important;
+		margin-inline: 8px -12px !important;
 	}
 
 	input[type="number"][hidespinbuttons="true"] {
@@ -853,6 +861,11 @@
 			background-color: var(--buttonPressed) !important;
 		}
 	}
+	
+	.addon.card[active="false"] {
+		opacity: 1 !important;
+	}
+	
 	addon-card:not([expanded]) > .addon.card:hover {
 		background-color: var(--cardBGHover) !important; 
 	}
@@ -868,7 +881,7 @@
 	.addon-description {
 		font-size: 12px !important;
 		line-height: 16px !important;
-	}
+	}	
 
 	/* Addon page */
 	button.tab-button {
@@ -991,6 +1004,10 @@
 	/* About:config table */
 	#about-config-search {
 		margin-right: 4px !important;
+		fill: var(--textPressed) !important;
+		fill-opacity: 1 !important;
+		background-image: url(icons/search-glass.svg) !important;
+		background-position-x: calc(100% - 12px) !important;
 	}
 
 	#form-edit {
@@ -1012,9 +1029,10 @@
 		border: 1px solid black !important;
 	}
 	#prefs > tr {
-		transition: var(--textButtonHover) !important;
+		clip-path: inset(0px round 4px) !important;
 		border-radius: 4px !important;
 		transition: var(--basicBGAnimation) !important;
+		animation: resultSlideUp 333ms cubic-bezier(0,0,0,1) !important;
 	}
 	#prefs > tr:hover {
 		background-color: var(--textButtonHover) !important;
@@ -1024,6 +1042,20 @@
 	}
 	#prefs[has-visible-prefs] > .add > th, #prefs[has-visible-prefs] > .add > td {
 		padding-top: 0 !important;
+	}
+	.has-user-value {
+		font-weight: 600 !important;
+	}
+	
+	@keyframes resultSlideUp {
+		0% {
+			transform: translateY(10%);
+			opacity: 0;
+		}
+		100% {
+			transform: translateY(0%);
+			opacity: 1;
+		}
 	}
 
 	/* Other tables and trees */
@@ -1568,7 +1600,7 @@
 	}
 	/* Check Box Disabled */
 	checkbox[disabled="true"] > .checkbox-label-box {
-		color: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3614)) !important;
+		color: var(--textDisabled) !important;
 	}
 	checkbox[disabled="true"] > .checkbox-check {
 		background-color: transparent !important;
@@ -2003,6 +2035,8 @@
 	}
 	.dialog-button-box button[dlgtype="accept"] {
 		margin-left: 3px !important;
+		border: 1px solid rgba(255,255,255,.08) !important;
+    border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
 	}
 
 	/* Specific dialog pages */
@@ -2037,6 +2071,8 @@
 	#wizard-deck .buttons button.primary {
 		margin-left: 3px !important;
 		margin-right: 4.5px !important;
+		border: 1px solid rgba(255,255,255,.08) !important;
+    border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
 	}
 
 	button label {
@@ -2313,9 +2349,9 @@
 		& > option {
 			border-radius: 4px !important;
 			margin-inline: 4px !important;
+			margin-top: -3px !important;
 			overflow: hidden !important;
 			color: var(--textColor) !important;
-			background-color: transparent !important;
 			border: none !important;
 			height: 30px !important;
 			outline: none !important;
@@ -2898,6 +2934,22 @@
 		.rating-star {
 			fill: var(--textColor) !important;
 		}
+		
+		/* Add slide-up animation to all content inside main pane when a category is clicked */
+		.navigation:has(.category[current="true"]:active) ~ .main-content {
+			animation: slideUpContent .187s ease-out !important;
+		}
+
+		@keyframes slideUpContent {
+			0% {
+				opacity: 0;
+				transform: translateY(5%);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
 }
 @-moz-document url-prefix(about:preferences) {
 	.category {
@@ -2906,14 +2958,4 @@
 	#categories .category-name {
 		padding-inline-start: 10px !important;
 	}
-}
-
-/* Sidebery compatibility */
-@-moz-document regexp("^moz-extension://.*?/sidebar/sidebar.html") {
-	/* This causes issues with tab drag and drop functionality - may be adapted or removed entirely
-	@media (-moz-bool-pref: "uc.winui.rounded-corners") {
-		.Tab {
-			margin-block: 4px !important;
-		}
-	}*/
 }
