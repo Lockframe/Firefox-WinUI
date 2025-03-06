@@ -9,6 +9,7 @@ This theme integrates styling from:
 - [Firefox CSS Hacks](https://github.com/MrOtherGuy/firefox-csshacks) by MrOtherGuy
 - [Firefox UWP Style](https://github.com/Guerra24/Firefox-UWP-Style) by Guerra24
 - [Shimmer](https://github.com/nuclearcodecat/shimmer) by Nuclearcodecat
+- [WaveFox](https://github.com/QNetITQ/WaveFox/) by QNetIWQ
 
 ![WinUI Firefox Theme Screenshot](screenshots/WinUI-Firefox.png)
 
@@ -107,3 +108,4 @@ Contributions, issues, and feature requests are welcome.
 - [MrOtherGuy](https://github.com/MrOtherGuy)
 - [Guerra24](https://github.com/Guerra24)
 - [Nuclearcodecat](https://github.com/nuclearcodecat)
+- [QNetITQ](https://github.com/QNetITQ)
