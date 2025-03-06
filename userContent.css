@@ -1008,6 +1008,7 @@
 		fill-opacity: 1 !important;
 		background-image: url(icons/search-glass.svg) !important;
 		background-position-x: calc(100% - 12px) !important;
+		padding-left: 12px !important;
 	}
 
 	#form-edit {
