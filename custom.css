@@ -213,6 +213,9 @@ h1, h2, h3 {
 #toolbar-context-bookmarkSelectedTabs {
   --menu-image: url("../winui-icons/star.svg") !important;
 }
+#OtherBookmarks {
+  list-style-image: url(winui-icons/folder.svg) !important;
+}
 .urlbarView-type-icon {
   .urlbarView-row[pinned] > .urlbarView-row-inner > .urlbarView-no-wrap > & {
     transform: scaleX(-1) !important;
@@ -759,24 +762,27 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
     /* Handle the icon color */
     fill: var(--textInverse) !important;
     -moz-context-properties: fill !important;
-    
-    /* Try to control the icon size using padding */
-    padding: 2px !important; /* Adjust this value to create more space around the icon */
   }
   
   /* Apply the correct icon for each state */
   &[soundplaying] .tab-icon-overlay {
-    list-style-image: url("winui-icons/speaker2.svg") !important;
+    background-image: url("winui-icons/speaker2.svg") !important;
+    background-size: 10px !important;
+    background-repeat: no-repeat !important;
+    background-position: center 4px !important;
   }
   
   &[muted] .tab-icon-overlay {
-    list-style-image: url("winui-icons/mute.svg") !important;
+    background-image: url("winui-icons/mute.svg") !important;
+    background-size: 10px !important;
+    background-repeat: no-repeat !important;
+    background-position: center 4px !important;
   }
   
   /* Different treatment - Padding causes it to be cut off - Hidden by default */
   &[activemedia-blocked] .tab-icon-overlay {
     background-image: url("winui-icons/play.svg") !important;
-    background-size: 8px !important;
+    background-size: 10px !important;
     background-repeat: no-repeat !important;
     background-position: center center !important;
     display: none !important;
@@ -846,10 +852,10 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 #tabbrowser-tabs[closebuttons="activetab"] {
   & .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]):not([crashed]) {
     &:hover {
-      background-color: transparent !important;
+      background-color: var(--accentHover) !important;
     }
     &:active {
-      background-color: transparent !important;
+      background-color: var(--accentPressed) !important;
     }
   }
 }
@@ -917,7 +923,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 }
 
 /* Open */
-.tabbrowser-tab[fadein] {
+.tabbrowser-tab[fadein] .tab-content {
   animation: fastInvoke 187ms ease-out !important;
 }
 
@@ -1060,10 +1066,21 @@ appMenu-empty-profiles-button {
   padding-inline-end: fit-content !important;
 }
 
-tooltip {
+tooltip,
+#tabbrowser-tab-tooltip,
+#places-tooltip-insecure-icon,
+#btTooltip,
+#bhTooltip,
+#un-toolbar-tooltip,
+#tooltip,.tooltip,
+#aHTMLTooltip,
+#urlTooltip {
+  appearance: none !important;
   -moz-appearance: none !important;
   background-image: var(--acrylic) !important;
   border-radius: 0px !important;
+  padding: 4px 8px 5px 8px !important;
+  color: var(--textColor) !important;
 }
 
 /* URL bar bottom border when opened */
@@ -1112,7 +1129,7 @@ tooltip {
   height: 26px !important;
   margin-right: 1px !important;
   margin-block: auto !important;
-  border-radius: 2px !important;
+  border-radius: 4px !important;
   list-style-image: none !important;
   background-image: url(icons/forward.svg) !important;
   background-position: center center !important;
@@ -1318,6 +1335,12 @@ menuitem {
     }
   }
 }
+
+#PanelUI-fxa h1 span::before {
+  margin-right: 18px !important;
+  translate: 0 -2px !important;
+}
+
 #unified-extensions-view h1, #identity-popup-mainView-panel-header-span {
   font-weight: 600 !important;
   color: var(--textPressed) !important;
@@ -1664,7 +1687,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 
 /* Tab preview panel */
 .tab-preview-text-container {
-  padding: 12px 16px 10px 16px !important;
+  padding: 12px 16px 15px 16px !important;
   background-image: var(--acrylic) !important;
 }
 
@@ -1684,6 +1707,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   background-color: var(--commonBackground) !important;
   background-image: var(--acrylic) !important;
   margin-bottom: -6px !important;
+  margin-top: -7px !important;
 }
 
 .tab-preview-title {
@@ -2415,19 +2439,26 @@ findbar:not([hidden]) {
   border-bottom-color: light-dark(rgba(0,0,0,.22), rgba(255,255,255,.02)) !important;
   border-top-color: light-dark(rgba(0,0,0,.08), rgba(255,255,255,.045)) !important;
   margin-block: auto !important;
+  
+  &:hover {
+    background-color: var(--searchHover) !important;
+  }
+  &:focus-within {
+    background-color: var(--searchActive) !important;
+    border-color: var(--searchActiveBorder) !important;
+    border-bottom: 2px solid var(--accentAuto) !important;
+  }
+  &[status="notfound"] {
+    outline: none !important;
+    &:focus-within {
+      border-bottom: 2px solid var(--criticalBadge) !important;
+    }
+  }
 }
 .findbar-textbox {
   :root:not([lwtheme]) & {
     box-shadow: none !important;
   }
-}
-.findbar-textbox:hover {
-  background-color: var(--searchHover) !important;
-}
-.findbar-textbox:focus-within {
-  background-color: var(--searchActive) !important;
-  border-color: var(--searchActiveBorder) !important;
-  border-bottom: 2px solid var(--accentAuto) !important;
 }
 
 /* change text to icons for smaller findbar */
@@ -2607,15 +2638,39 @@ menupopup#ContentSelectDropdownPopup {
   }
 }
 #personal-toolbar-empty-description, toolbarbutton.bookmark-item:not(.subviewbutton) {
-  padding-inline: 4px !important;
+  padding-inline: 4px 6px !important;
   margin-block: 4px !important;
 }
 
-.bookmark-item:not(menu, menuitem):hover {
-  background-color: var(--textButtonHover) !important;
-}
-.bookmark-item:not(menu, menuitem):active {
-  background-color: var(--textButtonPressed) !important;
+.bookmark-item:not(menu, menuitem) {
+  &:not(#OtherBookmarks) {
+  /* Hack to change the globe icon */
+    &::before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      background-image: url(winui-icons/globe.svg);
+      background-position: center center;
+      background-size: 12px;
+      background-repeat: no-repeat;
+      -moz-context-properties: fill;
+      fill: var(--textColor);
+      display: block;
+      position: relative;
+      margin-right: -4px !important;
+    }
+
+    & > .toolbarbutton-icon {
+      width: 0 !important;
+    }
+  }
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+  }
 }
 
 /* Dialog boxes */
@@ -3370,7 +3425,7 @@ html[windowtype="Toolkit:PictureInPicture"] {
 #translations-button,
 #translations-button-circle-arrows{
   height: 26px !important;
-  border-radius: 2px !important;
+  border-radius: 4px !important;
 }
 #star-button-box {
   margin-right: 1px !important;
@@ -3385,7 +3440,7 @@ html[windowtype="Toolkit:PictureInPicture"] {
 .identity-box-button {
   margin-left: 1px !important;
   margin-top: 1px !important;
-  border-radius: 2px !important;
+  border-radius: 4px !important;
 }
 
 #urlbar[breakout][breakout-extend][open] #reader-mode-button,
@@ -3555,7 +3610,7 @@ toolbarpaletteitem {
 
 /* AI selection pop up */
 #selection-shortcut-action-panel hbox {
-  background: var(--commonBackground) !important;
+  background-color: light-dark(var(--commonBackground), color-mix(in srgb, var(--commonBackground), black 34.5%)) !important;
   background-image: var(--acrylic) !important;
   border: none !important;
   outline: none !important;
@@ -3621,6 +3676,17 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
   
   & .panel-subview-body {
     background-image: var(--acrylic) !important;
+  }
+}
+
+/* Navbar profile button */
+#fxa-toolbar-menu-button {
+  transition: transform 83ms linear !important;
+  &:hover {
+    transform: scale(calc(100% - 10%)) !important;
+  }
+  &:hover:active, :active:hover {
+    transform: scale(calc(100% - 17%)) !important;
   }
 }
 
@@ -4890,7 +4956,8 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
     }
   }
 
-  .toolbarbutton-1 image {
+  .toolbarbutton-1 image,
+  #fxa-toolbar-menu-button {
     scale: .85 !important;
   }
   
@@ -4929,7 +4996,7 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
     height: 24px !important;
     margin-right: 2px !important;
     margin-block: auto !important;
-    border-radius: 2px !important;
+    border-radius: 4px !important;
     background-size: 12px !important;
   }
   
