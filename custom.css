@@ -109,6 +109,12 @@
   outline: none !important;
   color-scheme: light dark !important; /* Fix some menu items using inverted light-dark colors */
   
+  --link-color: var(--accentAuto) !important;
+  --attention-dot-color: transparent !important; /* Remove synced tabs bottom dot */
+  --sidebar-background-color: light-dark(white, rgb(28, 27, 34));
+  --sidebar-text-color: light-dark(rgb(21, 20, 26), rgb(249, 249, 250));
+  --sidebar-border-color: light-dark(rgb(240, 240, 244), rgb(82, 82, 94));
+  
   /* Panel colors */
   --arrowpanel-background: var(--searchDropdown) !important;
   --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
@@ -923,7 +929,8 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 }
 
 /* Open */
-.tabbrowser-tab[fadein] .tab-content {
+.tabbrowser-tab[fadein] .tab-content,
+.tabbrowser-tab[fadein] .tab-background {
   animation: fastInvoke 187ms ease-out !important;
 }
 
@@ -946,6 +953,20 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 }
 .tab-label:not([fadein]){
   display: flex !important;
+}
+
+/* Tabs calling for attention */
+.tabbrowser-tab:has(.tab-content[attention=""]) {
+  & * {
+    font-weight: 400 !important;
+  }
+  & .tab-icon-overlay {
+    display: block !important;
+    background-image: url("winui-icons/sync-badge.svg") !important;
+    background-size: 8px !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+  }
 }
 
 /* Remove unnecessary outline */
@@ -2644,7 +2665,7 @@ menupopup#ContentSelectDropdownPopup {
 
 .bookmark-item:not(menu, menuitem) {
   &:not(#OtherBookmarks) {
-  /* Hack to change the globe icon */
+  /* Hack to change the globe icon 
     &::before {
       content: '';
       width: 16px;
@@ -2662,7 +2683,7 @@ menupopup#ContentSelectDropdownPopup {
 
     & > .toolbarbutton-icon {
       width: 0 !important;
-    }
+    }*/
   }
   
   &:hover {
@@ -3009,7 +3030,11 @@ tree {
 }
 
 /* Default buttons */
-button:not([slot="primary"],.primary,[dlgtype="accept"],[data-l10n-id="choose-app-btn"]), 
+button:not([slot="primary"],
+.primary,
+[dlgtype="accept"],
+[data-l10n-id="choose-app-btn"],
+.downloadButton), 
 #editBookmarkPanelRemoveButton, 
 button.popup-notification-secondary-button,
 panel menulist,
@@ -3681,7 +3706,7 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
 
 /* Navbar profile button */
 #fxa-toolbar-menu-button {
-  transition: transform 83ms linear !important;
+  transition: transform 183ms linear !important;
   &:hover {
     transform: scale(calc(100% - 10%)) !important;
   }
@@ -3925,7 +3950,11 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
   }
 
   /* Default buttons */
-  button:not([slot="primary"],.primary,[dlgtype="accept"],[data-l10n-id="choose-app-btn"]),  
+  button:not([slot="primary"],
+  .primary,
+  [dlgtype="accept"],
+  [data-l10n-id="choose-app-btn"],
+  .downloadButton), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -4262,7 +4291,11 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
   }
 
   /* Default buttons */
-  button:not([slot="primary"],.primary,[dlgtype="accept"],[data-l10n-id="choose-app-btn"]),
+  button:not([slot="primary"],
+  .primary,
+  [dlgtype="accept"],
+  [data-l10n-id="choose-app-btn"],
+  .downloadButton), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
