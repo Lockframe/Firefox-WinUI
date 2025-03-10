@@ -127,6 +127,8 @@
 
 /* Window-wide transparency */
 :root {
+  background-color: transparent !important;
+  
   & tabbox#tabbrowser-tabbox,
   & #tabbrowser-tabpanels {
     background-color: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
@@ -3266,7 +3268,6 @@ button[default="true"],
   &:active {
     background-color: var(--accentPressed) !important;
     box-shadow: none !important;
-    color: var(--textPressed) !important;
   }
 }
 
