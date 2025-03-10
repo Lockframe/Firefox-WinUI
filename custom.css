@@ -51,7 +51,7 @@
   --controlAltTertiary: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
   --controlAltQuartenary: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698)) !important;
 
-  --infoBG: light-dark(rgba(246,246,246, .5), rgba()) !important;
+  --infoBG: light-dark(rgba(246,246,246, .5), rgba(255,255,255,.0326)) !important;
   --cautionBG: light-dark(#FFF4CE, #433519) !important;
   --successBG: light-dark(#DFF6DD, #393D1B) !important;
   --criticalBG: light-dark(#FDE7E9, #442726) !important;
@@ -174,22 +174,45 @@ h1, h2, h3 {
   --menu-image: url("../winui-icons/downloads.svg") !important;
 }
 
-/* Make download progress circle look like a ring - Hacky */
+/* Make download progress circle look like a ring */
 #downloads-indicator-progress-inner {
-  width: 18px !important;
-  height: 18px !important;
+  width: 20px !important;
+  height: 20px !important;
   background: conic-gradient(
     var(--toolbarbutton-icon-fill-attention) var(--download-progress-pcent),
     transparent var(--download-progress-pcent)) !important;
   mask: radial-gradient(circle at center,
-    transparent 5.8px,
-    rgba(0, 0, 0, 0) 6.15px,
-    black 4px) !important;
+    transparent 7.6px,
+    black 7.1px) !important;
+  transform-origin: center !important;
 }
+
 /* Remove outer circle */
 #downloads-button[progress] .toolbarbutton-animatable-box {
   color: transparent !important;
 }
+
+/* Enlarge the ring */
+#downloads-button[progress="true"] {
+  background-image: url(winui-icons/downloads.svg) !important;
+  background-size: 16px !important;
+  background-repeat: no-repeat !important;
+  background-position: center center;
+  
+  & #downloads-indicator-progress-outer {
+    height: 100% !important;
+    width: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  
+  & #downloads-indicator-progress-inner {
+    position: relative !important;
+    transform: scale(1.75) !important;
+    left: -1px !important;
+  }
+}
+
 /* Remove finished download icon animation */
 #downloads-indicator-finish-image {
   --anim-frames: 0 !important;
@@ -219,8 +242,28 @@ h1, h2, h3 {
 #toolbar-context-bookmarkSelectedTabs {
   --menu-image: url("../winui-icons/star.svg") !important;
 }
-#OtherBookmarks {
+#OtherBookmarks,
+.bookmark-item[type="menu"],
+.bookmark-item[container] {
   list-style-image: url(winui-icons/folder.svg) !important;
+}
+/* Hide this button since it has the same functionality as #OtherBookmarks */
+#PlacesChevron {
+  display: none !important;
+}
+#import-button { 
+  & image {
+    list-style-image: url(winui-icons/import.svg) !important;
+    -moz-context-properties: fill !important;
+    fill: var(--textColor) !important;
+    margin-right: 6px !important;
+  }
+  & .toolbarbutton-text::before {
+    margin-bottom: 1px !important;
+  }
+}
+#PlacesToolbar .toolbarbutton-text::before {
+  margin-bottom: 1px !important;
 }
 .urlbarView-type-icon {
   .urlbarView-row[pinned] > .urlbarView-row-inner > .urlbarView-no-wrap > & {
@@ -429,7 +472,14 @@ menu::after {
   margin-left: -28px;
 }
 
-/* .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu */
+/* Download failed badge */
+#downloads-button[attention="warning"] > .toolbarbutton-badge-stack > .toolbarbutton-badge {
+  background-image: url(winui-icons/caution-badge.svg) !important;
+  background-size: 2px !important;
+  fill: var(--textInverse) !important;
+  width: 12px !important;
+  background-color: var(--cautionBG) !important;
+}
 
 /* Center tab and URL text vertically */
 @media not (-moz-bool-pref: "uc.winui.aptos") {
@@ -1506,13 +1556,165 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   border: none !important;
 }
 #downloadsSummary image{
-  margin-left: 12px !important;
+  margin-left: 25px !important;
 }
 #downloadsSummary progress {
-  margin-right: -12px !important;
+  margin-inline: 0 !important;
 }
 #downloadsSummary description {
   color: var(--textColor) !important;
+}
+#downloadsSummary[inprogress="true"] {
+  min-height: unset !important;
+}
+
+#downloadsSummary > .downloadTypeIcon {
+  list-style-image: none !important;
+
+}
+
+/* Create a new inner element for the spinner */
+#downloadsSummary::before {
+  content: "\E176";
+  font-family: "Meiryo Boot" !important;
+  font-size: 16px;
+  color: var(--accentAuto);
+  animation: spinnerAnimationComplete 2.6s ease infinite;
+  position: absolute;
+  margin-left: 26px;
+  margin-bottom: 3px;
+}
+
+@keyframes spinnerAnimationComplete {
+  0.00% { content: "\E100"; }
+  0.84% { content: "\E101"; }
+  1.68% { content: "\E102"; }
+  2.52% { content: "\E103"; }
+  3.36% { content: "\E104"; }
+  4.20% { content: "\E105"; }
+  5.04% { content: "\E106"; }
+  5.88% { content: "\E107"; }
+  6.72% { content: "\E108"; }
+  7.56% { content: "\E109"; }
+  8.40% { content: "\E10A"; }
+  9.24% { content: "\E10B"; }
+  10.08% { content: "\E10C"; }
+  10.92% { content: "\E10D"; }
+  11.76% { content: "\E10E"; }
+  12.60% { content: "\E10F"; }
+  13.44% { content: "\E110"; }
+  14.28% { content: "\E111"; }
+  15.12% { content: "\E112"; }
+  15.96% { content: "\E113"; }
+  16.80% { content: "\E114"; }
+  17.64% { content: "\E115"; }
+  18.48% { content: "\E116"; }
+  19.32% { content: "\E117"; }
+  20.16% { content: "\E118"; }
+  21.00% { content: "\E119"; }
+  21.84% { content: "\E11A"; }
+  22.68% { content: "\E11B"; }
+  23.52% { content: "\E11C"; }
+  24.36% { content: "\E11D"; }
+  25.20% { content: "\E11E"; }
+  26.04% { content: "\E11F"; }
+  26.88% { content: "\E120"; }
+  27.72% { content: "\E121"; }
+  28.56% { content: "\E122"; }
+  29.40% { content: "\E123"; }
+  30.24% { content: "\E124"; }
+  31.08% { content: "\E125"; }
+  31.92% { content: "\E126"; }
+  32.76% { content: "\E127"; }
+  33.60% { content: "\E128"; }
+  34.44% { content: "\E129"; }
+  35.28% { content: "\E12A"; }
+  36.12% { content: "\E12B"; }
+  36.96% { content: "\E12C"; }
+  37.80% { content: "\E12D"; }
+  38.64% { content: "\E12E"; }
+  39.48% { content: "\E12F"; }
+  40.32% { content: "\E130"; }
+  41.16% { content: "\E131"; }
+  42.00% { content: "\E132"; }
+  42.84% { content: "\E133"; }
+  43.68% { content: "\E134"; }
+  44.52% { content: "\E135"; }
+  45.36% { content: "\E136"; }
+  46.20% { content: "\E137"; }
+  47.04% { content: "\E138"; }
+  47.88% { content: "\E139"; }
+  48.72% { content: "\E13A"; }
+  49.56% { content: "\E13B"; }
+  50.40% { content: "\E13C"; }
+  51.24% { content: "\E13D"; }
+  52.08% { content: "\E13E"; }
+  52.92% { content: "\E13F"; }
+  53.76% { content: "\E140"; }
+  54.60% { content: "\E141"; }
+  55.44% { content: "\E142"; }
+  56.28% { content: "\E143"; }
+  57.12% { content: "\E144"; }
+  57.96% { content: "\E145"; }
+  58.80% { content: "\E146"; }
+  59.64% { content: "\E147"; }
+  60.48% { content: "\E148"; }
+  61.32% { content: "\E149"; }
+  62.16% { content: "\E14A"; }
+  63.00% { content: "\E14B"; }
+  63.84% { content: "\E14C"; }
+  64.68% { content: "\E14D"; }
+  65.52% { content: "\E14E"; }
+  66.36% { content: "\E14F"; }
+  67.20% { content: "\E150"; }
+  68.04% { content: "\E151"; }
+  68.88% { content: "\E152"; }
+  69.72% { content: "\E153"; }
+  70.56% { content: "\E154"; }
+  71.40% { content: "\E155"; }
+  72.24% { content: "\E156"; }
+  73.08% { content: "\E157"; }
+  73.92% { content: "\E158"; }
+  74.76% { content: "\E159"; }
+  75.60% { content: "\E15A"; }
+  76.44% { content: "\E15B"; }
+  77.28% { content: "\E15C"; }
+  78.12% { content: "\E15D"; }
+  78.96% { content: "\E15E"; }
+  79.80% { content: "\E15F"; }
+  80.64% { content: "\E160"; }
+  81.48% { content: "\E161"; }
+  82.32% { content: "\E162"; }
+  83.16% { content: "\E163"; }
+  84.00% { content: "\E164"; }
+  84.84% { content: "\E165"; }
+  85.68% { content: "\E166"; }
+  86.52% { content: "\E167"; }
+  87.36% { content: "\E168"; }
+  88.20% { content: "\E169"; }
+  89.04% { content: "\E16A"; }
+  89.88% { content: "\E16B"; }
+  90.72% { content: "\E16C"; }
+  91.56% { content: "\E16D"; }
+  92.40% { content: "\E16E"; }
+  93.24% { content: "\E16F"; }
+  94.08% { content: "\E170"; }
+  94.92% { content: "\E171"; }
+  95.76% { content: "\E172"; }
+  96.60% { content: "\E173"; }
+  97.44% { content: "\E174"; }
+  98.28% { content: "\E175"; }
+  99.16% { content: "\E176"; }
+  100% { content: "\E176"; }
+}
+
+.downloadProgress:indeterminate::-moz-progress-bar {
+  width: calc(100% + 2px);
+  background-color: var(--download-progress-fill-color);
+  background-image: linear-gradient(90deg, transparent 0%, var(--download-progress-flare-color) 25%, transparent 50%, var(--download-progress-flare-color) 75%, transparent 100%);
+  background-blend-mode: normal;
+  background-size: 200% 100%;
+  animation: downloadProgressSlideX 1.5s linear infinite;
 }
 
 #downloadsPanel-blockedSubview {
@@ -1549,8 +1751,8 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 #downloadsFooterButtons button {
   margin: 17px 17px 15px !important;
   padding-block: 7px !important;
-  height: 64px !important;
-  max-height: 64px !important;
+  height: 30px !important;
+  max-height: 30px !important;
 }
 #downloadsFooterButtons button:not(:first-of-type) {
   margin-top: -8px !important;
@@ -1566,6 +1768,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 #emptyDownloads {
   color: var(--textPressed) !important;
 }
+
 /* Remove double border when using clear downloads button JS */
 #downloadsFooterButtons > toolbarseparator {
   display: none !important;
@@ -2872,21 +3075,10 @@ label[data-l10n-id="choose-other-app-description"] {
   background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
 }
 .dialog-button-box button[dlgtype="accept"], #customization-done-button {
-  box-shadow: none !important;
-  background-color: var(--accentAuto) !important;
-  color: light-dark(#fff, #000) !important;
-  border: 1px solid rgba(255,255,255,.08) !important;
-  border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
   margin-left: 10px !important;
-  border-radius: 4px !important;
   padding-block: 8px !important;
 }
-.dialog-button-box button[dlgtype="accept"]:hover, #customization-done-button:hover {
-  background-color: var(--accentHover) !important;
-}
-.dialog-button-box button[dlgtype="accept"]:active, #customization-done-button:active{
-  background-color: var(--accentPressed) !important;
-}
+
 .dialog-button-box button[dlgtype="cancel"] {
   margin-inline: 0 10px !important;
 }
@@ -2955,7 +3147,7 @@ tree {
   margin-block: 2px !important;
 }
 
-/* In-url toolbar buttons */
+/* In-url toolbar & other subtle buttons */
 .toolbarbutton-1 > .toolbarbutton-icon,
 .toolbarbutton-1 > .toolbarbutton-text,
 .toolbarbutton-1 > .toolbarbutton-badge-stack,
@@ -2963,38 +3155,19 @@ tree {
 .urlbar-page-action,
 .identity-box-button,
 #tracking-protection-icon-container,
-.downloadButton {
+.downloadButton,
+button[title="Close"]{
   background-color: transparent !important;
   box-shadow: none !important;
   border: none !important;
-}
-
-.toolbarbutton-1 > .toolbarbutton-icon:hover,
-.toolbarbutton-1 > .toolbarbutton-text:hover,
-.toolbarbutton-1 > .toolbarbutton-badge-stack:hover,
-:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem):hover,
-.urlbar-page-action:hover,
-.identity-box-button:hover,
-#tracking-protection-icon-container:hover,
-.downloadButton:hover {
-  background-color: var(--textButtonHover) !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-:is(
-.toolbarbutton-1 > .toolbarbutton-icon,
-.toolbarbutton-1 > .toolbarbutton-text,
-.toolbarbutton-1 > .toolbarbutton-badge-stack,
-:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
-.urlbar-page-action,
-.identity-box-button,
-#tracking-protection-icon-container,
-.downloadButton
-):is(:active, [open="true"]) {
-  background-color: var(--textButtonPressed) !important;
-  box-shadow: none !important;
-  border: none !important;
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+    color: var(--textPressed) !important;
+  }
 }
 
 /* In-urlbar translator button */
@@ -3034,7 +3207,9 @@ button:not([slot="primary"],
 .primary,
 [dlgtype="accept"],
 [data-l10n-id="choose-app-btn"],
-.downloadButton), 
+.downloadButton,
+[default="true"],
+[title="Close"]), 
 #editBookmarkPanelRemoveButton, 
 button.popup-notification-secondary-button,
 panel menulist,
@@ -3047,6 +3222,7 @@ panel menulist,
   background-color: var(--button) !important;
   border-radius: 3px !important;
   border: none !important;
+  appearance: none !important;
   
   &:hover {
     background-color: var(--buttonHover) !important;
@@ -3071,14 +3247,17 @@ button.primary,
 #appMenu-update-banner,
 button[data-l10n-id="choose-app-btn"],
 button[slot="primary"],
-button[dlgtype="accept"]{
+button[dlgtype="accept"],
+button[default="true"],
+.dialog-button-box button[dlgtype="accept"] {
   box-shadow: none !important;
   background-color: var(--accentAuto) !important;
-  color: light-dark(#fff, #000) !important;
+  color: var(--textInverse) !important;
   border: 1px solid rgba(255,255,255,.08) !important;
   border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
   border-radius: 4px !important;
   font-weight: normal !important;
+  appearance: none !important;
   
   &:hover {
     background-color: var(--accentHover) !important;
@@ -3087,6 +3266,7 @@ button[dlgtype="accept"]{
   &:active {
     background-color: var(--accentPressed) !important;
     box-shadow: none !important;
+    color: var(--textPressed) !important;
   }
 }
 
@@ -3713,6 +3893,96 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
   &:hover:active, :active:hover {
     transform: scale(calc(100% - 17%)) !important;
   }
+  
+  /* Remove login badge */
+  .toolbarbutton-badge {
+    &.feature-callout {
+      display: none !important;
+    }
+  }
+}
+
+/* Logged out account image */
+:root[fxastatus="not_configured"] #fxa-avatar-image {
+  list-style-image: none !important;
+  background-color: var(--controlAltQuartenary) !important;
+  background-image: url("./winui-icons/contact.svg");
+  background-size: 9px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -moz-context-properties: fill;
+  fill: var(--textButton);
+}
+#fxa-avatar-image {
+  box-shadow: 0 0 0 1px var(--footerBorder) inset !important;
+}
+
+/* Browser notification bar */
+#notifications-toolbar {
+  background-color: var(--frameBG) !important;
+}
+
+#notifications-toolbar notification-message {
+  background-color: var(--infoBG) !important;
+  padding-bottom: 10px !important;
+  border: none !important;
+  outline: 1px solid var(--footerBorder) !important;
+  border-radius: 4px !important;
+}
+
+strong {
+  font-weight: normal !important;
+}
+
+/* Remove gradient left-side border */
+notification-message::before {
+  background-image: none !important;
+}
+
+/* Links */
+a,
+.text-link,
+button.text-link:is(:not([disabled="true"]), :enabled),
+::part(support-link) {
+  border-radius: 4px !important;
+  transition: var(--basicBGAnimation) !important;
+  position: relative;
+
+  &::after {
+    content: '';
+    width: calc(100% + 8px);
+    height: 100%;
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    left: -4px;
+    border-radius: 4px;
+    padding-bottom: 2px;
+    transition: var(--basicBGAnimation) !important;
+  }
+  
+  &:hover::after {
+    background-color: var(--textButtonHover);
+  }
+
+  &:active {
+    color: var(--accentLight4) !important;
+  }
+  &:active::after {
+    background-color: var(--textButtonPressed) !important;
+  }
+  
+}
+
+/* Hack to prevent close button in #shadow-root from losing its glyph when hovered */
+button[title="Close"] {
+  background-image: url(icons/close.svg) !important;
+  background-size: 16px !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  border-radius: 4px !important;
+  -moz-context-properties: fill !important;
+  fill: var(--textColor) !important;
 }
 
 /* ============= DARK ================== */
@@ -3954,7 +4224,9 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
   .primary,
   [dlgtype="accept"],
   [data-l10n-id="choose-app-btn"],
-  .downloadButton), 
+  .downloadButton,
+  [default="true"],
+  [title="Close"]), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -4295,7 +4567,9 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
   .primary,
   [dlgtype="accept"],
   [data-l10n-id="choose-app-btn"],
-  .downloadButton), 
+  .downloadButton,
+  [default="true"],
+  [title="Close"]), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -5055,7 +5329,7 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
     scale: 1 !important;
   }
 
-  /* Enlarge button margins without moving anything - Hacky */
+  /* Enlarge button margins without moving anything - Hack */
   .toolbarbutton-1:hover:not([disabled="true"], 
   #downloads-button, #PanelUI-menu-button, .unified-extensions-item-action-button, #TabsToolbar *) image:not(menuitem *) {
     box-shadow: 0 -.5px 0 2px var(--textButtonHover) !important;
@@ -5069,6 +5343,27 @@ img[src="chrome://mozapps/skin/extensions/category-discover.svg"] {
 
   #nav-bar .toolbarbutton-1 > .toolbarbutton-badge-stack {
     padding: 8px !important;
+  }
+  
+  /* Download ring */
+  #downloads-indicator-progress-inner {
+    width: 21px !important;
+    height: 20px !important;
+    background: conic-gradient(
+      var(--toolbarbutton-icon-fill-attention) var(--download-progress-pcent),
+      transparent var(--download-progress-pcent)) !important;
+    mask: radial-gradient(circle at center,
+      transparent 8px,
+      rgba(0, 0, 0, 0) 8.6px,
+      black 1px) !important;
+  }
+  /* Enlarge the ring */
+  #downloads-button[progress="true"] {
+    background-size: 14px !important;
+
+    & #downloads-indicator-progress-inner {
+      transform: scale(1.5) !important;
+    }
   }
 }
 
