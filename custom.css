@@ -182,7 +182,7 @@ h1, h2, h3 {
   height: 20px !important;
   background: conic-gradient(
     var(--toolbarbutton-icon-fill-attention) var(--download-progress-pcent),
-    transparent var(--download-progress-pcent)) !important;
+    color-mix(in srgb, var(--progressBar), transparent 93%) var(--download-progress-pcent)) !important;
   mask: radial-gradient(circle at center,
     transparent 7.6px,
     black 7.1px) !important;
@@ -451,6 +451,7 @@ menu::after {
   background-position: center center !important;
   background-size: 15px !important;
   height: 100% !important;
+  fill-opacity: 1 !important;
 }
 
 #servicesInstall-notification-icon, #default-notification-icon {
@@ -480,7 +481,17 @@ menu::after {
   background-size: 2px !important;
   fill: var(--textInverse) !important;
   width: 12px !important;
-  background-color: var(--cautionBG) !important;
+  background-color: var(--cautionBadge) !important;
+}
+
+/* Password icons */
+#password-notification-icon {
+  list-style-image: none !important;
+  background-image: url(icons/passwords.svg) !important;
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100%;
 }
 
 /* Center tab and URL text vertically */
@@ -599,15 +610,6 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 
 #scrollbutton-up:not(.menupopup-scrollbutton) {
   left: 4px !important;
-}
-
-/* URL Tooltip */
-#statuspanel-label{
-  display: block !important;
-  border-radius: 4px !important;
-  padding: 2px 7px 6px 8px !important;
-  margin: 0 0 4px 4px !important;
-  background-image: var(--acrylic) !important;
 }
 
 /* Bottom tab corners */
@@ -854,17 +856,6 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   
   /* Keep mask for the icon cutout in the favicon */
   &:where([soundplaying], [muted], [activemedia-blocked]) {
-    /*.tab-icon-stack > :not(.tab-icon-overlay) {
-      mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at right top, black 8px, transparent 9px) !important;
-      mask-size: 16px 16px !important;
-      mask-position: center center !important;
-      mask-repeat: no-repeat !important;
-      mask-composite: exclude !important;
-      mask-mode: alpha !important;
-      :root:-moz-locale-dir(rtl) & {
-        mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at left top, black 8px, transparent 9px) !important;
-      }
-    }*/
     .tab-icon-overlay {
       display: revert !important;
     }
@@ -1019,6 +1010,15 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
     background-repeat: no-repeat !important;
     background-position: center center !important;
   }
+}
+
+/* URL Tooltip */
+#statuspanel-label{
+  display: block !important;
+  border-radius: 4px !important;
+  padding: 2px 7px 6px 8px !important;
+  margin: 0 0 4px 4px !important;
+  background-image: var(--acrylic) !important;
 }
 
 /* Remove unnecessary outline */
@@ -1325,7 +1325,7 @@ moz-input-box > menupopup .context-menu-add-engine > .menu-iconic-left::after {
   transform: translateY(8px) !important;
 }
 #urlbar[breakout][breakout-extend] > #urlbar-background {
-  border-radius: 3px 3px 0px 0px !important;
+  border-radius: 3px 3px 0 0 !important;
   border-bottom: 1px transparent !important;
 }
 
@@ -1432,6 +1432,21 @@ menuitem {
   }
 }
 
+/* Remove account panel ads area */
+#PanelUI-fxa-cta-menu, #cta-menu-header-description {
+  display: none !important;
+}
+/* 'my services' title */
+#PanelUI-fxa-menu-services-header {
+  margin-left: 14px !important;
+}
+/* Align services items */
+.fxa-cta-button {
+  height: 20px !important;
+  margin-inline: 4px !important;
+  margin-block: 2px !important;
+}
+
 toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   padding-left: 12px !important;
 }
@@ -1476,27 +1491,31 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 #PanelUI-menu-button[badge-status="addon-alert"], #PanelUI-menu-button[badge-status="fxa-needs-authentication"], #fxa-toolbar-menu-button[badge-status="login_failed"] {
   & > .toolbarbutton-badge-stack > .toolbarbutton-badge {
     height: auto !important;
-    background-image: url(winui-icons/warning.svg) !important;
-    background-size: 10px !important;
-    background-position: center .5px !important;
+    background-image: url(winui-icons/caution-badge.svg) !important;
+    background-color: var(--cautionBadge) !important;
+    background-size: 2px !important;
+    background-position: center center !important;
     fill: var(--textInverse) !important;
     padding: 7px !important;
   }
 }
 
 .addon-banner-item {
-  background-color: var(--cardBG) !important;
-  outline: 1px solid var(--cardOutline) !important;
+  background-color: var(--cautionBG) !important;
+  outline: 1px solid var(--controlStroke) !important;
   font-weight: normal !important;
   padding-left: 0 !important;
   color: var(--textColor) !important;
   
   &::after {
-    background: url(winui-icons/warning.svg) no-repeat center !important;
+    background: url(winui-icons/caution-badge.svg) no-repeat center center !important;
     width: 14px !important;
     height: 14px !important;
-    fill: var(--cautionBadge) !important;
+    background-size: 2px !important;
+    fill: var(--textInverse) !important;
     align-self: center !important;
+    background-color: var(--cautionBadge) !important;
+    border-radius: 99px !important;
   }
 }
 
@@ -1911,6 +1930,87 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   }
 }
 
+/* General notification panels positioning */
+.popup-notification-panel {
+  padding-top: 2px !important;
+  
+  & .popup-notification-description {
+    font-weight: 600 !important; /* Doesn't work */
+    color: var(--textPressed) !important;
+  }
+  
+  & .popup-notification-footer-container {
+    margin-top: 16px !important;
+    
+    & .button-text {
+      padding: 20px !important;
+    }
+  }
+  
+  & input {
+    outline: none !important;
+    border: none !important;
+    border-radius: 3px !important;
+    background-color: var(--button) !important;
+    
+    &:hover {
+      background-color: var(--searchHover) !important;
+    }
+    &:active {
+      background-color: var(--buttonPressed) !important;
+    }
+    &:focus-within {
+      background-color: var(--searchActive) !important;
+    }
+  }
+}
+
+/* Password panel */
+#password-notification {
+  & h3 {
+    color: red !important;
+  }
+  
+  /*& #password-notification-username, #password-notification-password {
+    outline: none !important;
+    border: none !important;
+    border-radius: 3px !important;
+    background-color: var(--button) !important;
+    
+    &:hover {
+      background-color: var(--searchHover) !important;
+    }
+    &:active {
+      background-color: var(--buttonPressed) !important;
+    }
+    &:focus-within {
+      background-color: var(--searchActive) !important;
+    }
+  }*/
+}
+
+/* Move the reveal password button */
+#password-notification-password {
+  padding-right: 10px !important;
+}
+
+#notification-popup-box {
+  &:hover:active, &[open] {
+    background-color: var(--textButtonHover) !important;
+  }
+}
+
+
+.footer-button {
+  &[type="menu"] > .button-box > .button-menu-dropmarker {
+    content: url(winui-icons/chevron-down.svg) !important;
+    fill: var(--textColor) !important;
+    margin-left: 0px !important;
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+
 /* Tab preview panel */
 .tab-preview-text-container {
   padding: 12px 16px 15px 16px !important;
@@ -2007,7 +2107,7 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 .panel-footer button {
   width: -moz-available !important;
   margin-inline: 4.5px !important;
-  padding-bottom: 8px !important;
+  padding-bottom: auto !important;
   font-size: 12.5px !important;
 }
 
@@ -2868,29 +2968,7 @@ menupopup#ContentSelectDropdownPopup {
   margin-block: 4px !important;
 }
 
-.bookmark-item:not(menu, menuitem) {
-  &:not(#OtherBookmarks) {
-  /* Hack to change the globe icon 
-    &::before {
-      content: '';
-      width: 16px;
-      height: 16px;
-      background-image: url(winui-icons/globe.svg);
-      background-position: center center;
-      background-size: 12px;
-      background-repeat: no-repeat;
-      -moz-context-properties: fill;
-      fill: var(--textColor);
-      display: block;
-      position: relative;
-      margin-right: -4px !important;
-    }
-
-    & > .toolbarbutton-icon {
-      width: 0 !important;
-    }*/
-  }
-  
+.bookmark-item:not(menu, menuitem) {  
   &:hover {
     background-color: var(--textButtonHover) !important;
   }
@@ -3059,6 +3137,15 @@ label[data-l10n-id="choose-other-app-description"] {
   }
 }
 
+#reset-pbm-panel-header description {
+  font-weight: 400 !important;
+}
+
+/* Fix end private session dialog footer */
+#reset-pbm-panel-footer {
+  margin-inline: -16px !important;
+}
+
 #checkboxContainer {
   margin-left: 8px !important;
   margin-top: 5px !important;
@@ -3189,7 +3276,7 @@ button[title="Close"]{
 /* Notification buttons */
 #notification-popup-box {
   margin-block: auto !important;
-  border-radius: 2px !important;
+  border-radius: 4px !important;
   height: 26px !important;
 
   & image {
@@ -3592,6 +3679,15 @@ input[type="range"]::-moz-range-thumb {
 html[windowtype="Toolkit:PictureInPicture"] { 
   border-radius: 8px !important;
 }
+#picture-in-picture-button {
+  height: 24px !important;
+  
+  & .urlbar-icon {
+    margin-top: -24px !important;
+    list-style-image: none !important;
+    background: url("chrome://global/skin/media/picture-in-picture-open.svg") no-repeat center -2px !important;
+  }
+}
 
 /* Toolbar button states */
 .toolbarbutton-1:hover > .toolbarbutton-icon,
@@ -3603,6 +3699,18 @@ html[windowtype="Toolkit:PictureInPicture"] {
 #downloads-button:active .toolbarbutton-badge-stack{
   background-color: var(--textButtonPressed) !important;
   fill: var(--textPressed) !important;
+}
+
+/* URL bar icons and notification icons color */
+.urlbar-icon:not(#translations-button-circle-arrows, #star-button[starred]),
+#identity-box {
+  fill-opacity: 1 !important;
+  fill: var(--textPressed) !important;
+}
+.notification-anchor-icon {
+  fill-opacity: 1 !important;
+  width: 32px !important;
+  fill: var(--textPressed);
 }
 
 /* Inactive window text colors */
@@ -3989,7 +4097,7 @@ button[title="Close"] {
 /* ============= DARK ================== */
 
 @media (prefers-color-scheme: dark) {
-  /* Active tab shadows. */
+  /* Active tab shadows */
   #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
   #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
     box-shadow: 0 0 1px 0 rgba(0,0,0,.35), 0 -1px 0 0 rgba(255,255,255,.005) inset !important;
@@ -4261,6 +4369,27 @@ button[title="Close"] {
   }
   #editBMPanel_namePicker:focus-within {
     box-shadow: var(--inputBarFocusDark) !important;
+  }
+  /* Password panel 
+  #password-notification {
+    & #password-notification-username, #password-notification-password {
+      box-shadow: var(--inputBarDark) !important;
+      
+      &:focus-within {
+        box-shadow: var(--inputBarFocusDark) !important;
+      }
+    }
+  }*/
+  
+  /* General notification panels */
+  .popup-notification-panel {
+    & input {
+      box-shadow: var(--inputBarDark) !important;
+      
+      &:focus-within {
+        box-shadow: var(--inputBarFocusDark) !important;
+      }
+    }
   }
 
   /* Active button opacity*/
@@ -4604,6 +4733,28 @@ button[title="Close"] {
   }
   #editBMPanel_namePicker:focus-within {
     box-shadow: var(--inputBarFocusLight) !important;
+  }
+  
+  /* Password panel 
+  #password-notification {
+    & #password-notification-username, #password-notification-password {
+      box-shadow: var(--inputBarLight) !important;
+      
+      &:focus-within {
+        box-shadow: var(--inputBarFocusLight) !important;
+      }
+    }
+  }*/
+  
+  /* General notification panels */
+  .popup-notification-panel {
+    & input {
+      box-shadow: var(--inputBarLight) !important;
+      
+      &:focus-within {
+        box-shadow: var(--inputBarFocusLight) !important;
+      }
+    }
   }
 
   /* Active button opacity */
@@ -5352,10 +5503,10 @@ button[title="Close"] {
     height: 20px !important;
     background: conic-gradient(
       var(--toolbarbutton-icon-fill-attention) var(--download-progress-pcent),
-      transparent var(--download-progress-pcent)) !important;
+      color-mix(in srgb, var(--progressBar), transparent 93%) var(--download-progress-pcent)) !important;
     mask: radial-gradient(circle at center,
       transparent 8px,
-      rgba(0, 0, 0, 0) 8.6px,
+      rgba(0, 0, 0, 0) 8.4px,
       black 1px) !important;
   }
   /* Enlarge the ring */
@@ -5894,4 +6045,153 @@ button[title="Close"] {
       background-color: var(--footer) !important;
     }
   }
+}
+
+
+/* Vertical tabs compatibility */
+@media (-moz-bool-pref: "sidebar.verticalTabs") {
+  #vertical-tabs {
+    margin-top: 7px !important;
+    margin-left: 4px !important;
+    padding: 0 !important;
+  }
+  
+  #tabbrowser-tabs[overflow] {
+    
+    & .tabbrowser-tab:not([pinned]) {
+    margin-inline: -8px -4px !important;
+    }
+  }
+
+  /* Tab spacing */
+  .tabbrowser-tab:not([pinned]),
+  .tabbrowser-tab[pinned]{
+    margin-inline: 0px !important;
+  }
+
+  #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned]:first-of-type {
+    padding-left: 0 !important;
+  }
+
+  /* Unselected tabs are 1px smaller than selected tabs */
+  .tab-background:not([selected]),
+  .tabbrowser-tab[pinned]:not([selected]) .tab-background{
+    clip-path: inset(1px round 7px) !important;
+  }
+
+  /* Proper tab roundness */
+  .tab-background {
+    border-radius: 8px !important;
+  }
+
+  /* Fix space above tabs so that shadows can appear */
+  #tabbrowser-tabs, .tab-stack {
+    margin-top: 0 !important;
+  }
+
+  /* Bottom tab corners */
+  .tab-background:is([selected], [multiselected]):-moz-window-inactive::before,
+  .tab-background:is([selected], [multiselected]):-moz-window-inactive::after,
+  .tab-background:not([selected], [multiselected])::before,
+  .tab-background:not([selected], [multiselected])::after,
+  .tab-background:is([selected], [multiselected]){
+    --uc-tab-corner-bg: transparent !important;
+    --uc-tab-corner-outline: transparent !important;
+  }
+
+  /* Space between tab icons and the tab titles. */
+  .tab-throbber:not([pinned]),
+  .tab-icon-pending:not([pinned]),
+  .tab-icon-image:not([pinned]),
+  .tab-sharing-icon-overlay:not([pinned]) {
+    margin-inline: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* Fix tab height */
+  :root {
+    --tab-min-height: 32px !important;
+
+    & #TabsToolbar {
+      --tab-min-height: 31px !important;
+    }
+
+    &[uidensity=compact] {
+      --tab-min-height: unset !important;
+    }
+
+    &[uidensity=touch] {
+      --tab-min-height: 31px !important;
+    }
+  }
+  :root[sizemode="maximized"] {
+    --tab-min-height: 22px !important;
+  }
+  
+  /* Set separator color */
+  .tabbrowser-tab:not([selected], [multiselected], :hover) {
+    & .tab-stack::before,
+    &:nth-last-child(1 of .tabbrowser-tab:not([hidden])) .tab-stack::after,
+    #tabbrowser-tabs[overflow] &:nth-last-child(1 of .tabbrowser-tab[pinned]:not([hidden])) .tab-stack::after {
+      border: none !important;
+    }
+  }
+
+  /* Tabs should be at least 100px wide */
+  #tabbrowser-tabs {
+    --tab-min-width: -moz-available !important;
+  }
+
+  /* Tab close button */
+  .tab-close-button {
+    margin-right: 14px !important;
+  }
+
+  /* Disable title fade on the right end of the tab */
+  .tabbrowser-tab {
+    --tab-label-mask-size: 0 !important;
+  }
+
+  /* Ensure the title won't move */
+  .tab-icon-stack {
+    width: 23px !important;
+    margin-left: 18px !important;
+  }
+
+  /* Pinned tab 136 */
+  .tabbrowser-tab[pinned] {
+    height: 46px !important;
+    
+    & .tab-background {
+      width: -moz-available !important;
+    }
+
+    & .tab-icon-stack {
+      left: unset !important;
+      margin: 0 !important;
+    }
+  }
+  .tab-content {
+    &[pinned] {
+      padding: 0 0 !important;
+    }
+  }
+
+  /* Tab opening animation */ 
+  @keyframes fastInvoke {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Open */
+  .tabbrowser-tab[fadein] .tab-content,
+  .tabbrowser-tab[fadein] .tab-background {
+    animation: fastInvoke .5s cubic-bezier(0.55, 0.55, 0, 1) !important;
+  }  
 }
