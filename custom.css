@@ -126,13 +126,15 @@
   --panel-border-color: none !important; /* Panel extra border removal */
 }
 
-/* Window-wide transparency */
-:root {
-  background-color: transparent !important;
-  
-  & tabbox#tabbrowser-tabbox,
-  & #tabbrowser-tabpanels {
-    background-color: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
+@media (-moz-bool-pref: "widget.windows.mica") {
+  /* Window-wide transparency */
+  :root {
+    background-color: transparent !important;
+
+    & tabbox#tabbrowser-tabbox,
+    & #tabbrowser-tabpanels {
+      background-color: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
+    }
   }
 }
 
@@ -5141,7 +5143,7 @@ button[title="Close"] {
     --tab-min-height: 36px !important;
   }
 
-  /* New tab button */
+  /* New tab button - seems to have different effects in 23h2 and 24h2 */
   #TabsToolbar #tabs-newtab-button>.toolbarbutton-icon {
     margin-bottom: -4px !important;
   }
@@ -5186,6 +5188,17 @@ button[title="Close"] {
     & #tabs-newtab-button {
       padding-top: 9px !important;
     }
+  }
+  
+  /* Tab scroll buttons */
+  #scrollbutton-up:not(.menupopup-scrollbutton),
+  #scrollbutton-down:not(.menupopup-scrollbutton) {
+    bottom: 4px !important;
+  }
+  
+  /* Fix window control glyphs alignment in windowed mode */
+  :root:not([sizemode=maximized]) .titlebar-button .toolbarbutton-icon {
+    margin-top: 8px !important;
   }
 }
 
