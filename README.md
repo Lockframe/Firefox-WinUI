@@ -71,6 +71,7 @@ Enable these boolean keys for additional customizations:
 - `uc.winui.aptos`
 - `uc.winui.centered-url`
 - `uc.winui.taller-bookmarks`
+- `uc.winui.acrylic-menus`
 
 #### Layout Tweaks
 - `uc.winui.floating-tabs`
