@@ -6656,6 +6656,22 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   menupopup {
     --panel-shadow-margin: 0px !important;
   }
+  
+  .in-menulist {
+    padding-inline: 2px 0 !important;
+  }
+  
+  .in-menulist menuitem[selected="true"]::before {
+    margin-inline: -6px 7px !important;
+  }
+  .in-menulist menuitem[selected="true"] {    
+    & label {
+      transform: translate(0, 0) !important;
+    }
+  }
+  .in-menulist menuitem:not([selected="true"]) label {
+    transform: translateX(-23px) !important;
+  }
 }
 
 /* Chrome pages */
