@@ -2969,7 +2969,11 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
   }
 
   & .autocomplete-richlistitem {
-    margin-inline: 3px !important;
+    margin-inline: 10px !important;
+    border-radius: 4px !important;
+    padding-inline: 11px 0 !important;
+    padding-block: 1px !important;
+    margin-block: 2px !important;
     
     & .labels-wrapper {
       margin-left: -5px !important;
@@ -2989,7 +2993,7 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
       box-shadow: none !important;
       width: 24px !important;
       height: 24px !important;
-      margin-right: 0 !important;
+      margin-right: 6px !important;
       
       &:hover {
         background-color: var(--textButtonHover) !important;
@@ -3001,12 +3005,12 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
     }
   }
   & .autocomplete-richlistitem:first-of-type {
-    margin-top: 1px !important;
+    margin-top: 8px !important;
   }
 
   & .autocomplete-richlistitem[originaltype="loginsFooter"] {
     height: 30px !important;
-    margin-block: 20px 16px !important;
+    margin-block: 24px 16px !important;
     margin-inline: 18px !important;
 
     &::before {
