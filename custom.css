@@ -1182,8 +1182,12 @@ menupopup menu:not(.menu-iconic, .menuitem-iconic)::before{
   background-position: center center !important;
 }
 
-menuitem[disabled]::before,
-menu[disabled]::before {
+menupopup menu:not(.menu-iconic, .menuitem-iconic)::before{
+  margin-inline: -1px 12px !important;
+}
+
+menuitem[disabled][disabled="true"]::before,
+menu[disabled][disabled="true"]::before {
   fill: var(--textDisabled) !important;
 }
 
@@ -1226,6 +1230,7 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
 #toggle_PersonalToolbar::before {
   background-image: url(winui-icons/star.svg);
 }
+
 #context-savelink::before {
   background-image: url(winui-icons/downloads.svg);
 }
@@ -1333,6 +1338,8 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
 #context_toggleMuteSelectedTabs[muted]::before {
   background-image: url(icons/media-unmute.svg);
 }
+
+/* 138 specific 
 #context-media-playbackrate {
   padding-left: 34px !important;
   background-image: url(icons/media-speed.svg);
@@ -1340,7 +1347,11 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
   fill: var(--textPrimary);
   background-repeat: no-repeat;
   background-position: 8px center;
+}*/
+#context-media-playbackrate::before {
+  background-image: url(icons/media-speed.svg);
 }
+
 #context-video-fullscreen::before {
   background-image: url(icons/fullscreen.svg);
 }
@@ -1417,6 +1428,9 @@ menu[id="placesContext_openContainer:tabs"]::before{
 #frame::before {
   background-image: url(winui-icons/tiles.svg);
 }
+#context-video-pictureinpicture::before {
+  background-image: url(icons/media-pip.svg);
+}
 
 menupopup[needsgutter] menu:not([icon], 
 .menu-iconic), 
@@ -1426,7 +1440,7 @@ menupopup[needsgutter] menuitem:not([checked="true"],
 }
 menu {
   padding-inline: 10px 11px !important;
-  margin-inline: 5px !important;
+  margin-inline: 5px 4px !important;
   font-size: 12.5px !important;
   margin-block: 2px !important;
   padding-block: 0 !important;
@@ -1434,6 +1448,7 @@ menu {
   border-radius: 4px !important;
 }
 
+/* 138 specific 
 menuitem[type="radio"][checked="true"]::before{
   margin-left: -30px !important;
 }
@@ -1445,6 +1460,19 @@ menuitem[type="checkbox"][checked="true"]::before {
 }
 menuitem[type="checkbox"][checked=true] image {
   margin-left: -8px !important;
+}*/
+
+
+menuitem[type="checkbox"][checked="true"] {
+  margin-left: 4px !important;
+  padding-left: 0 !important;
+  
+  & image {
+    margin-inline: -32px 0 !important;
+  }
+  & label {
+    margin-left: -13px !important;
+  }
 }
 
 /* Change profile button in settings menu */
