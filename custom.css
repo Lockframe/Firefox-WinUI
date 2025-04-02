@@ -1211,6 +1211,15 @@ menu[disabled][disabled="true"]::before {
   margin-right: 6px !important;
 }
 
+/* Custom margins for menu labels that are not inside the main context menu */
+#contentAreaContextMenu:has(#context-media-pause:not([hidden="true"])) menu label {
+  margin-left: -2px !important;
+}
+
+#tabContextMenu menu::before {
+  margin-left: 2px !important;
+}
+
 #context-openlinkintab::before,
 #new-tab-button::before,
 #context-openlinkincontainertab::before,
@@ -1227,8 +1236,13 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
   background-image: url(icons/private-window.svg);
 }
 #context-bookmarklink::before,
-#toggle_PersonalToolbar::before {
+#toggle_PersonalToolbar::before,
+#context_bookmarkTab::before {
   background-image: url(winui-icons/star.svg);
+}
+
+#context-openlinkincurrent::before {
+  background-image: url(winui-icons/open-window.svg);
 }
 
 #context-savelink::before {
@@ -1249,6 +1263,9 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
 }
 #context-searchselect::before {
   background-image: url(icons/search-glass.svg);
+}
+#context-searchselect-private::before {
+  background-image: url(icons/private-window.svg);
 }
 #context-translate-selection::before {
   background-image: url(icons/translate.svg);
@@ -1276,6 +1293,9 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
 #context-sendvideo::before,
 #context-sendaudio::before {
   background-image: url(icons/mail.svg);
+}
+#context-viewimageinfo::before {
+  background-image: url(icons/info.svg);
 }
 #context-copyimage::before,
 #context-copyvideourl::before,
@@ -1350,6 +1370,11 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
 }*/
 #context-media-playbackrate::before {
   background-image: url(icons/media-speed.svg);
+  margin-inline: -3px 15px !important;
+}
+
+#context-media-loop::before {
+  background-image: url(icons/media-loop.svg);
 }
 
 #context-video-fullscreen::before {
@@ -1422,6 +1447,18 @@ menu[id="placesContext_open:newcontainertab"]::before,
 menu[id="placesContext_openContainer:tabs"]::before{
   background-image: url(icons/container-tab.svg);
 }
+
+#context_moveTabOptions::before {
+  background-image: url(icons/move-tab.svg);
+}
+
+#context_unloadTab::before {
+  background-image: url(winui-icons/moon.svg);
+}
+.share-tab-url-item::before {
+  background-image: url(icons/share.svg);
+}
+
 #context-print-selection::before {
   background-image: url(icons/print.svg);
 }
@@ -1464,7 +1501,7 @@ menuitem[type="checkbox"][checked=true] image {
 
 
 menuitem[type="checkbox"][checked="true"] {
-  margin-left: 4px !important;
+  margin-left: 5px !important;
   padding-left: 0 !important;
   
   & image {
@@ -1472,6 +1509,18 @@ menuitem[type="checkbox"][checked="true"] {
   }
   & label {
     margin-left: -13px !important;
+  }
+}
+
+menuitem[type="radio"][checked="true"] {
+  margin-left: 5px !important;
+  padding-left: 0 !important;
+  
+  & image {
+    margin-inline: -36px 0 !important;
+  }
+  & label {
+    transform: translateX(-14px) !important;
   }
 }
 
