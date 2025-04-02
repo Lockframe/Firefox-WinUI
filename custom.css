@@ -4618,7 +4618,7 @@ button[title="Close"] {
 }
 
 /* Gap between pinned extension buttons */
-.unified-extensions-item-row-wrapper {
+#nav-bar .unified-extensions-item-row-wrapper {
   margin-inline: -4px !important;
 }
 
