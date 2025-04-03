@@ -246,6 +246,7 @@ h1, h2, h3 {
 #toolbar-context-bookmarkSelectedTab, 
 #toolbar-context-bookmarkSelectedTabs {
   --menu-image: url("../winui-icons/star.svg") !important;
+  font-size: 13px !important;
 }
 #OtherBookmarks,
 .bookmark-item[type="menu"],
@@ -1198,6 +1199,9 @@ menu[disabled][disabled="true"]::before {
 .menuitem-iconic > .menu-iconic-left {
   margin-left: -3px !important;
 }
+.menu-iconic-text {
+  margin-left: 3px !important;
+}
 
 #context-navigation menuitem > .menu-iconic-left {
   margin-left: 2px !important;
@@ -1229,10 +1233,12 @@ menuitem[id="placesContext_openBookmarkLinks:tabs"]::before,
 menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
   background-image: url(icons/tab.svg);
 }
-#context-openlink::before {
+#context-openlink::before,
+menuitem[data-l10n-id="places-open-in-window"]::before {
   background-image: url(icons/window.svg);
 }
-#context-openlinkprivate::before {
+#context-openlinkprivate::before,
+menuitem[data-l10n-id="places-open-in-private-window"]::before {
   background-image: url(icons/private-window.svg);
 }
 #context-bookmarklink::before,
@@ -1241,8 +1247,11 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
   background-image: url(winui-icons/star.svg);
 }
 
-#context-openlinkincurrent::before {
+#context-openlinkincurrent::before,
+.downloadOpenReferrerMenuItem::before,
+#paste-and-go::before {
   background-image: url(winui-icons/open-window.svg);
+  background-size: 14px;
 }
 
 #context-savelink::before {
@@ -1294,12 +1303,16 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
 #context-sendaudio::before {
   background-image: url(icons/mail.svg);
 }
-#context-viewimageinfo::before {
+#context-viewimageinfo::before,
+menuitem[data-l10n-id="origin-controls-no-access"]::before,
+menuitem[data-l10n-id="origin-controls-options"]::before {
   background-image: url(icons/info.svg);
 }
 #context-copyimage::before,
 #context-copyvideourl::before,
-#context-copylink::before {
+#context-copylink::before,
+.downloadCopyLocationMenuItem::before,
+#PanelUI-fxa-menu-connect-device-button::before {
   background-image: url(icons/link.svg);
 }
 #context-setDesktopBackground::before,
@@ -1332,7 +1345,8 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
 }
 #context-sendlinktodevice::before,
 #context_sendTabToDevice::before,
-#context-sendpagetodevice::before {
+#context-sendpagetodevice::before,
+#PanelUI-fxa-menu-sendtab-button::before {
   background-image: url(icons/send-to-device.svg);
 }
 #context_openANewTab::before,
@@ -1346,7 +1360,8 @@ menuitem[id="placesContext_openBookmarkContainer:tabs"]::before{
   background-size: 12px;
 }
 #context-media-pause::before {
-  background-image: url(icons/media-pause.svg);
+  background-image: url(winui-icons/pause.svg);
+  background-size: 14px;
 }
 #context-media-mute::before,
 #context_toggleMuteTab::before,
@@ -1391,7 +1406,8 @@ menuitem[contexttype="fullscreen"][label*="Exit"] {
 #context_pinTab::before,
 #context_unpinTab::before,
 #context_pinSelectedTabs::before,
-#context_unpinSelectedTabs::before {
+#context_unpinSelectedTabs::before,
+#unified-extensions-context-menu-pin-to-toolbar::before{
   background-image: url(icons/pin.svg);
 }
 #context-undo::before,
@@ -1411,7 +1427,8 @@ menuitem[contexttype="fullscreen"][label*="Exit"] {
 }
 #context-paste::before,
 .textbox-contextmenu menuitem[cmd*="paste"]::before,
-#placesContext_paste_group::before {
+#placesContext_paste_group::before,
+#placesContext_paste::before {
   background-image: url(icons/edit-paste.svg);
 }
 #context-cut::before,
@@ -1427,14 +1444,16 @@ menuitem[id="placesContext_deleteBookmark"]::before,
 menuitem[id="placesContext_deleteFolder"]::before,
 menuitem[id="placesContext_delete"]::before,
 menuitem[id="placesContext_delete_history"]::before,
-menuitem[id="placesContext_deleteHost"]::before {
+menuitem[id="placesContext_deleteHost"]::before,
+.downloadDeleteFileMenuItem::before {
   background-image: url(icons/edit-delete.svg);
 }
 #context_duplicateTab::before,
 #context_duplicateTabs::before {
   background-image: url(icons/duplicate-tab.svg);
 }
-#context_closeTab::before {
+#context_closeTab::before,
+.downloadRemoveFromHistoryMenuItem::before {
   background-image: url(icons/close.svg);
 }
 .customize-context-reportExtension::before,
@@ -1455,6 +1474,13 @@ menu[id="placesContext_openContainer:tabs"]::before{
 #context_unloadTab::before {
   background-image: url(winui-icons/moon.svg);
 }
+toolbarbutton[itemtype="showinactivebutton"]::before {
+  background-image: url(winui-icons/moon.svg);
+  margin-inline: -4px 16 !important;
+  background-position: 0 -.5px !important;
+  background-size: 15px !important;
+}
+
 .share-tab-url-item::before {
   background-image: url(icons/share.svg);
 }
@@ -1467,6 +1493,53 @@ menu[id="placesContext_openContainer:tabs"]::before{
 }
 #context-video-pictureinpicture::before {
   background-image: url(icons/media-pip.svg);
+}
+
+.downloadShowMenuItem::before {
+  background-image: url(winui-icons/open-folder.svg);
+}
+menuitem[command="downloadsCmd_clearList"]::before {
+  background-image: url(winui-icons/broom.svg);
+}
+
+#unified-extensions-context-menu-manage-extension::before,
+#fxa-manage-account-button::before,
+#placesContext_showAllBookmarks::before {
+  background-image: url(winui-icons/repair.svg);
+}
+
+#unified-extensions-context-menu-move-widget-up::before {
+  background-image: url(winui-icons/up.svg);
+}
+#unified-extensions-context-menu-move-widget-down::before {
+  background-image: url(winui-icons/down.svg);
+}
+
+/* Make a placeholder space for icons inside the account panel 
+#PanelUI-fxa-menu toolbarbutton::before {
+  content: '';
+  display: block;
+  position: relative;
+  height: 16px;
+  width: 16px;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-right: -16px;
+}*/
+
+#PanelUI-fxa-menu-syncnow-button::before {
+  background-image: url(winui-icons/sync.svg);
+}
+#PanelUI-fxa-menu-sync-prefs-button::before {
+  background-image: url(winui-icons/menu.svg);
+}
+#PanelUI-fxa-menu-account-signout-button::before {
+  background-image: url(winui-icons/logout.svg);
+}
+
+menuitem[data-l10n-id="places-edit-bookmark"]::before {
+  background-image: url(icons/edit.svg);
 }
 
 menupopup[needsgutter] menu:not([icon], 
@@ -1508,7 +1581,10 @@ menuitem[type="checkbox"][checked="true"] {
     margin-inline: -32px 0 !important;
   }
   & label {
-    margin-left: -13px !important;
+    margin-left: -14px !important;
+  }
+  &::before {
+    opacity: 0 !important;
   }
 }
 
@@ -1637,6 +1713,10 @@ tooltip,
 }
 richlistitem:active {
   color: var(--textSecondary) !important;
+}
+
+.textbox-contextmenu .context-menu-add-engine label {
+  margin-left: 6px !important;
 }
 
 /* Restyle the 'add search engine' overlay icon */
@@ -1835,10 +1915,21 @@ menuitem {
   height: 20px !important;
   margin-inline: 4px !important;
   margin-block: 2px !important;
+  
+  & image {
+    margin-inline: 1px 7px !important;
+  }
 }
 
 toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   padding-left: 12px !important;
+}
+
+/* Standardize font size */
+#PanelUI-fxa-menu-syncnow-button label,
+menu[data-l10n-id="places-open-in-container-tab"],
+#contentAreaContextMenu label {
+  font-size: 13px !important;
 }
 
 /* Clicked item opacity */
@@ -4505,7 +4596,9 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
 
 /* Navbar profile button */
 #fxa-toolbar-menu-button {
+  scale: 90%;
   transition: transform 183ms linear !important;
+  
   &:hover {
     transform: scale(calc(100% - 10%)) !important;
   }
@@ -4631,6 +4724,43 @@ button[title="Close"] {
 /* Inactive tabs label */
 toolbarbutton[itemtype="showinactivebutton"] label {
   margin-left: -1px !important;
+}
+
+@keyframes drawLeft {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Download finished icon and animation */
+#downloads-button[attention="success"]::before {
+  content: '';
+  height: 16px;
+  width: 16px;
+  background-color: var(--successBadge);
+  display: block;
+  position: absolute;
+  border-radius: 99px;
+  animation: findbarOut 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+}
+#downloads-button[attention="success"]::after {
+  content: '';
+  -moz-context-properties: fill;
+  height: 22px;
+  width: 22px;
+  background-image: url(winui-icons/checkmark.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 8px;
+  fill: var(--textInverse);
+  z-index: 9;
+  display: block;
+  position: absolute;
+  animation: drawLeft 1s cubic-bezier(0.55, 0.55, 0, 1);
 }
 
 /* ============= DARK ================== */
@@ -4800,10 +4930,13 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   > #downloads-indicator-icon {
     fill: rgb(108, 203, 95) !important;
     list-style-image: url(winui-icons/success-dark.svg) !important;
+    list-style-image: none !important;
   }
+  
   /* Remove download finished icon animation */
   #downloads-indicator-finish-image {
     list-style-image: url('winui-icons/success-dark.svg') !important;
+    list-style-image: none !important;
   }
   #downloads-button {
     --toolbarbutton-icon-fill-attention: rgb(108, 203, 95) !important;
@@ -4906,16 +5039,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #editBMPanel_namePicker:focus-within {
     box-shadow: var(--inputBarFocusDark) !important;
   }
-  /* Password panel 
-  #password-notification {
-    & #password-notification-username, #password-notification-password {
-      box-shadow: var(--inputBarDark) !important;
-      
-      &:focus-within {
-        box-shadow: var(--inputBarFocusDark) !important;
-      }
-    }
-  }*/
   
   /* General notification panels */
   .popup-notification-panel {
@@ -5164,10 +5287,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   > #downloads-indicator-icon {
     fill: rgb(15, 123, 15) !important;
     list-style-image: url(winui-icons/success-light.svg) !important;
+    list-style-image: none !important;
   }
   /* Remove download finished icon animation */
   #downloads-indicator-finish-image {
     list-style-image: url('winui-icons/success-light.svg') !important;
+    list-style-image: none !important;
   }
   #downloads-button {
     --toolbarbutton-icon-fill-attention: rgb(15, 123, 15) !important;
@@ -5268,17 +5393,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #editBMPanel_namePicker:focus-within {
     box-shadow: var(--inputBarFocusLight) !important;
   }
-  
-  /* Password panel 
-  #password-notification {
-    & #password-notification-username, #password-notification-password {
-      box-shadow: var(--inputBarLight) !important;
-      
-      &:focus-within {
-        box-shadow: var(--inputBarFocusLight) !important;
-      }
-    }
-  }*/
   
   /* General notification panels */
   .popup-notification-panel {
@@ -5621,9 +5735,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     font-family: 'Aptos', sans-serif !important;
     font-size-adjust:.5 !important;
   }
-
-  .urlbar-input-box, #identity-icon-label  {
-    margin-bottom: 2px !important;
+  
+  .bookmark-item .toolbarbutton-text{
+    transform: translateY(2px) !important;
+  }
+  .menu-text{
+    transform: translateY(0px) !important;
   }
 }
 
@@ -6752,6 +6869,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
   .in-menulist menuitem:not([selected="true"]) label {
     transform: translateX(-23px) !important;
+  }
+}
+
+@media -moz-pref("uc.winui.borderless-bookmarks-bar") {
+  #nav-bar {
+    box-shadow: unset !important;
   }
 }
 
