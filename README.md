@@ -73,6 +73,7 @@ Enable these boolean keys for additional customizations:
 - `uc.winui.taller-bookmarks`
 - `uc.winui.acrylic-menus`
 - `widget.windows.mica.popups`
+- `uc.winui.borderless-bookmarks-bar`
 
 #### Layout Tweaks
 - `uc.winui.floating-tabs`
