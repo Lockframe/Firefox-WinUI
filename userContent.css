@@ -313,7 +313,7 @@
 				transform: none !important;
 			}
 
-			@media (-moz-bool-pref: "uc.winui.extra-animations") {
+			@media -moz-pref("uc.winui.extra-animations") {
 				.top-site-outer {
 					box-shadow: var(--buttonShadowLight),
 						0 2px 4px rgba(0,0,0,.04) !important;
@@ -353,7 +353,7 @@
 				box-shadow: var(--buttonShadowDarkPressed) !important;
 			}
 
-			@media (-moz-bool-pref: "uc.winui.extra-animations") {
+			@media -moz-pref("uc.winui.extra-animations") {
 				.top-site-outer:hover {
 					box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 -1px 0 rgba(255,255,255,.03),
 						0 2px 4px rgba(0,0,0,.26) !important;
@@ -531,7 +531,7 @@
 	}
 
 	/* Background colors */
-	@media not (-moz-bool-pref: "browser.tabs.allow_transparent_browser") {
+	@media not -moz-pref("browser.tabs.allow_transparent_browser") {
 		body {
 			background-color: light-dark(#fff, #2c2c2c)!important;
 		}
@@ -795,10 +795,10 @@
 	}
 
 	.textbox-search-sign {
-		margin-right: 8px !important;
+		margin-right: 0 !important;
 		height: 15px !important;
 		align-self: center !important;
-		transform: translateX(-2px) !important;
+		transform: translateX(-16px) !important;
 	}
 	.textbox-search-icon, .textbox-search-sign, .textbox-search-clear {
 		margin-inline: 8px -12px !important;
