@@ -191,7 +191,6 @@
 			border-radius: 4px !important;
 			transition: var(--basicBGAnimation) !important;
 			border: none !important;
-			padding-block: 19px !important;
 			font-size: 14px !important;
 			color: var(--textPressed) !important;
 
@@ -205,6 +204,12 @@
 					background-color: var(--searchActive) !important;
 				}
 			}
+		}
+		
+		.fake-editable {
+			padding-block: 22px !important;
+			border-radius: 4px !important;
+			background-position-x: 12px !important;
 		}
 
 		.search-inner-wrapper {

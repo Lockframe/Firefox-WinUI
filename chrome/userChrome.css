@@ -593,6 +593,13 @@ menu::after {
   height: 100%;
 }
 
+menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
+  content: 'A';
+  position: absolute;
+  transform: translate(-25px, 0);
+  fill: var(--textPrimary);
+}
+
 /* Center tab and URL text vertically */
 @media not -moz-pref("uc.winui.aptos") {
   .tabbrowser-tab label, .urlbar-input-box, #identity-icon-label, .searchbar-textbox {
@@ -6505,6 +6512,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
 /* Dedicated flag to enable acrylic context menu support due to CSS limitations regarding integer prefs */
 @media -moz-pref("uc.winui.acrylic-menus") {
+  /* Acrylic menus */
   .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
     background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
     box-shadow: none !important;
@@ -6518,6 +6526,64 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   menupopup menu{
     margin-inline: 3px !important;
   }
+  
+  /* Fix other bookmarks panel not having acrylic */
+  #OtherBookmarksPopup {
+    -moz-default-appearance: menupopup !important;
+    appearance: auto !important;
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+  }
+  
+  /* Alignment */
+  #back-button menupopup {
+    margin-top: -8px !important;
+    margin-left: 8px !important;
+  }
+  #forward-button menupopup {
+    margin-top: -8px !important;
+    margin-left: 4px !important;
+  }
+  menupopup menupopup[hasbeenopened="true"] {
+    margin-top: 2px !important;
+    margin-inline: 0 !important;
+  }
+  
+  /* Acrylic panels */
+  * {
+    /* Panel colors */
+    --arrowpanel-background: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+    --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
+    --arrowpanel-border-color: none !important;
+  }
+  panel {
+    appearance: auto !important;
+    box-shadow: none !important;
+    --panel-shadow-margin: 0 !important;
+  }
+  
+  /* Move misaligned panels */
+  #unified-extensions-panel {
+    margin-top: 2px !important;
+  }
+  #identity-popup {
+    margin-top: 4px !important;
+  }
+  
+  /* Acrylic tooltips */
+  tooltip,
+  #tabbrowser-tab-tooltip,
+  #places-tooltip-insecure-icon,
+  #btTooltip,
+  #bhTooltip,
+  #un-toolbar-tooltip,
+  #tooltip,.tooltip,
+  #aHTMLTooltip,
+  #urlTooltip {
+    appearance: auto !important;
+    -moz-default-appearance: menupopup;
+    box-shadow: none !important;
+  }  
 }
 
 @media -moz-pref("uc.winui.borderless-bookmarks-bar") {
