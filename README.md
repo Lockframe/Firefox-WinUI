@@ -1,6 +1,6 @@
 # Firefox WinUI Theme
 
-A custom CSS addon that transforms Firefox to look native to Windows 11's design, combining elements from multiple community themes.
+A custom CSS theme that transforms Firefox to seamlessly integrate with Windows 11's design language.
 
 ## Overview
 
@@ -15,37 +15,34 @@ This theme integrates styling from:
 
 ## Prerequisites
 
-- Firefox browser
-- Edge-Frfox theme installed
+- Firefox browser from the stable branch
 
 ## Installation
 
 ### 1. Prepare Firefox Profile
-- Navigate to your Firefox profile's `chrome` folder
-- (Recommended) Backup the original `userContent.css`
+
+- Navigate to your Firefox profile's folder
 
 ### 2. Install Theme Files
-- Download the following from this repository:
-  - `winui-icons` folder
-  - `image` folder
-  - `custom.css`
-  - `userContent.css`
-- Place these files in your Firefox profile's `chrome` folder
+
+- Download the files in this repository
+- Move the content from the `chrome` folder into your Firefox profile's folder 
 
 ### 3. Configure Firefox Settings
 
 #### Required Settings
+
 Open `about:config` and set these boolean keys to `true`:
 - `browser.tabs.allow_transparent_browser`
 - `svg.context-properties.content.enabled`
 - `widget.transparent-windows`
 - `widget.windows.mica`
+- `widget.windows.mica.popups` (Optional. If you want to use acrylic context menus)
 
 #### Disable Defaults
+
 Set these boolean keys to `false`:
 - `browser.startup.blankWindow`
-- `uc.tweak.newtab-background`
-- `uc.tweak.revert-context-menu`
 - `browser.newtabpage.activity-stream.newtabLayouts.variant-a`
 - `browser.newtabpage.activity-stream.newtabLayouts.variant-b`
 - `browser.urlbar.groupLabels.enabled`
@@ -71,8 +68,7 @@ Enable these boolean keys for additional customizations:
 - `uc.winui.aptos`
 - `uc.winui.centered-url`
 - `uc.winui.taller-bookmarks`
-- `uc.winui.acrylic-menus`
-- `widget.windows.mica.popups`
+- `uc.winui.acrylic-menus` (Requires `widget.windows.mica.popups` to be set to `true`)
 - `uc.winui.borderless-bookmarks-bar`
 
 #### Layout Tweaks
