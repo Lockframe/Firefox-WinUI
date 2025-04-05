@@ -26,6 +26,7 @@ This theme integrates styling from:
 ### 2. Install Theme Files
 
 - Download the files in this repository
+- Install the `spinner-font.tff` font on your system
 - Move the content from the `chrome` folder into your Firefox profile's folder 
 
 ### 3. Configure Firefox Settings
