@@ -27,30 +27,18 @@ This theme integrates styling from:
 
 - Download the files in this repository
 - Install the `spinner-font.tff` font on your system
-- Move the content from the `chrome` folder into your Firefox profile's folder 
+- Move the `chrome` folder and `user.js` file into your Firefox profile's folder
 
-### 3. Configure Firefox Settings
+### 3. Optional Extended Transparency
 
-#### Required Settings
-
-Open `about:config` and set these boolean keys to `true`:
-- `browser.tabs.allow_transparent_browser`
-- `svg.context-properties.content.enabled`
-- `widget.transparent-windows`
+Enable the following boolean keys in `about:config` to enable the mica backdrop and acrylic context menus:
 - `widget.windows.mica`
-- `widget.windows.mica.popups` (Optional. If you want to use acrylic context menus)
+- `widget.windows.mica.popups` (⚠️ Acrylic context menus. Requires `uc.winui.acrylic-menus` to be set to `true`)
+- `browser.tabs.allow_transparent_browser` (⚠️ New tab page translucent. Can cause issues in some web pages)
 
-#### Disable Defaults
+### 4. Tweaks
 
-Set these boolean keys to `false`:
-- `browser.startup.blankWindow`
-- `browser.newtabpage.activity-stream.newtabLayouts.variant-a`
-- `browser.newtabpage.activity-stream.newtabLayouts.variant-b`
-- `browser.urlbar.groupLabels.enabled`
-
-### 4. Optional Customization Tweaks
-
-Enable these boolean keys for additional customizations:
+Create these boolean keys for additional customizations:
 
 #### Visual Tweaks
 - `uc.winui.rounded-corners`
@@ -92,7 +80,7 @@ Close and restart Firefox to apply the theme.
 
 ## Sidebery
 
-To apply this theme to the Sidebery extension, copy the content from `sidebery-WinUI.css` and paste it into Sidebery's style editor.
+To apply this theme to the Sidebery extension, copy the content from `sidebery-WinUI.css` and paste it into Sidebery's internal style editor.
 
 ## JS Animations
 
