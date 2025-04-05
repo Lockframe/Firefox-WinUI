@@ -341,9 +341,18 @@ h1, h2, h3 {
   background-position: 12px 6px !important;
 }
 
-.customize-context-removeFromToolbar .menu-text::after {
+/* Create space for icons */
+.customize-context-removeFromToolbar .menu-text::after,
+menuitem[command="downloadsCmd_clearList"] .menu-text::after,
+#context-searchselect-private .menu-text::after,
+#placesContext_paste .menu-text::after,
+.downloadUseSystemDefaultMenuItem .menu-text::after,
+.downloadShowMenuItem .menu-text::after,
+.downloadOpenReferrerMenuItem .menu-text::after,
+.downloadCopyLocationMenuItem .menu-text::after,
+.downloadDeleteFileMenuItem .menu-text::after,
+.downloadRemoveFromHistoryMenuItem .menu-text::after {
   content: '';
-  background-image: url(icons/close.svg);
   background-repeat: no-repeat;
   background-position: center center;
   width: 16px;
@@ -354,24 +363,44 @@ h1, h2, h3 {
   position: absolute;
   order: -1;
   transform: translate(-28px, 2px);
+}
+
+#placesContext_paste .menu-text::after {
+  background-image: url(icons/edit-paste.svg);
+}
+
+.customize-context-removeFromToolbar .menu-text::after,
+.downloadRemoveFromHistoryMenuItem .menu-text::after {
+  background-image: url(icons/close.svg);
 }
 #context-searchselect-private .menu-text::after {
-  content: '';
   background-image: url(icons/privateBrowsing.svg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 16px;
-  height: 16px;
-  -moz-context-properties: fill;
-  fill: var(--textPrimary);
-  display: block;
-  position: absolute;
-  order: -1;
-  transform: translate(-28px, 2px);
 }
-#spell-check-enabled .menu-iconic-text::after {
+
+/* Iconize downloads panel context menu */
+.downloadUseSystemDefaultMenuItem .menu-text::after {
+  background-image: url(icons/open-window.svg);
+  background-size: 14px;
+}
+.downloadShowMenuItem .menu-text::after {
+  background-image: url(icons/open-folder.svg);
+}
+.downloadOpenReferrerMenuItem .menu-text::after {
+  background-image: url(icons/window.svg);
+}
+.downloadCopyLocationMenuItem .menu-text::after {
+  background-image: url(icons/link.svg);
+}
+.downloadDeleteFileMenuItem .menu-text::after {
+  background-image: url(icons/edit-delete.svg);
+}
+menuitem[command="downloadsCmd_clearList"] .menu-text::after {
+  background-image: url(icons/broom.svg);
+}
+
+#spell-check-enabled .menu-iconic-text::after,
+#context-viewimageinfo .menu-text::after {
   content: '';
-  background-image: url(icons/spelling.svg);
   background-repeat: no-repeat;
   background-position: center center;
   width: 16px;
@@ -384,20 +413,13 @@ h1, h2, h3 {
   transform: translate(-28px, 1px);
 }
 
-#context-viewimageinfo .menu-text::after {
-  content: '';
-  background-image: url(icons/info.svg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 16px;
-  height: 16px;
-  -moz-context-properties: fill;
-  fill: var(--textPrimary);
-  display: block;
-  position: absolute;
-  order: -1;
-  transform: translate(-28px, 1px);
+#spell-check-enabled .menu-iconic-text::after {
+  background-image: url(icons/spelling.svg);
 }
+#context-viewimageinfo .menu-text::after {
+  background-image: url(icons/info.svg);
+}
+
 
 /* Right arrow */
 .menu-right {

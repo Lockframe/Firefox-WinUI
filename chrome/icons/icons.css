@@ -591,7 +591,11 @@
 
   /* Context Menu Icons */
   menupopup > menuitem:is([checked="true"], [selected="true"]) .menu-iconic-icon {
-    list-style-image: url("checkmark.svg") !important;
+    list-style-image: none !important;
+    background-image: url(checkmark.svg);
+    background-size: 14px;
+    background-repeat: no-repeat;
+    background-position: center center;
 
     @media (-moz-platform: linux) {
       list-style-image: none !important;
