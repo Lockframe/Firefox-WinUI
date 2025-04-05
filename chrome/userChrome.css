@@ -351,7 +351,9 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after,
 .downloadOpenReferrerMenuItem .menu-text::after,
 .downloadCopyLocationMenuItem .menu-text::after,
 .downloadDeleteFileMenuItem .menu-text::after,
-.downloadRemoveFromHistoryMenuItem .menu-text::after {
+.downloadRemoveFromHistoryMenuItem .menu-text::after,
+#BMB_searchBookmarks .menu-text::after,
+#BMB_viewBookmarksSidebar .menu-text::after {
   content: '';
   background-repeat: no-repeat;
   background-position: center center;
@@ -375,6 +377,13 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after,
 }
 #context-searchselect-private .menu-text::after {
   background-image: url(icons/privateBrowsing.svg);
+}
+
+#BMB_searchBookmarks .menu-text::after {
+  background-image: url(icons/search-glass.svg);
+}
+#BMB_viewBookmarksSidebar .menu-text::after {
+  background-image: url(icons/dock-left.svg);
 }
 
 /* Iconize downloads panel context menu */
@@ -420,7 +429,6 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after {
   background-image: url(icons/info.svg);
 }
 
-
 /* Right arrow */
 .menu-right {
   opacity: 0 !important;
@@ -442,6 +450,13 @@ menu::after {
     margin-top: -8px !important;
     font-family: 'Segoe Fluent Icons', 'Segoe MDL2 Assets' !important;
   }
+}
+
+#BMB_bookmarksPopup menu[container=true]{
+  background-image: url(icons/chevron-right.svg);
+  background-repeat: no-repeat;
+  background-size: 4.5px;
+  background-position: 94.5% 50%;
 }
 
 /* Tab scroll icons */
@@ -1477,15 +1492,15 @@ menuitem {
 @media (-moz-panel-animations) and (prefers-reduced-motion: no-preference) {
   .animatable-menupopup, panel[type="arrow"] {
     &:is([animate="false"], [animate="open"]) {
-      transition-timing-function: none !important;
+      transition-timing-function: unset !important;
     }
     &:not([animate="false"]) {
-      transition-duration: none !important;
+      transition-duration: unset !important;
     }
   }
 }
 
-#appMenu {animation: none !important; transition: none !important;}
+#appMenu {animation: unset !important; transition: unset !important;}
 
 #appMenu-popup[animate="open"] {
   animation: panelSlide .48s cubic-bezier(0, 0, 0, 1) !important;
@@ -5812,7 +5827,10 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
   /* Enlarge button margins without moving anything - Hack */
   .toolbarbutton-1:hover:not([disabled="true"], 
-  #downloads-button, #PanelUI-menu-button, .unified-extensions-item-action-button, #TabsToolbar *) image:not(menuitem *) {
+  #downloads-button, 
+  #PanelUI-menu-button, 
+  .unified-extensions-item-action-button, 
+  #TabsToolbar *) image:not(menuitem *, #BMB_bookmarksPopup *) {
     box-shadow: 0 -.5px 0 2px var(--textButtonHover) !important;
     transition: box-shadow 0s linear !important;
   }
@@ -6528,7 +6546,10 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
   
   /* Fix other bookmarks panel not having acrylic */
-  #OtherBookmarksPopup {
+  #OtherBookmarksPopup,
+  #OtherBookmarksPopup menupopup,
+  #BMB_bookmarksPopup,
+  #BMB_bookmarksPopup menupopup{
     -moz-default-appearance: menupopup !important;
     appearance: auto !important;
     margin-top: 0px !important;
@@ -6547,6 +6568,10 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   menupopup menupopup[hasbeenopened="true"] {
     margin-top: 2px !important;
     margin-inline: 0 !important;
+  }
+  #BMB_bookmarksPopup {
+    margin-top: 2px !important;
+    margin-inline: -1px !important;
   }
   
   /* Acrylic panels */
