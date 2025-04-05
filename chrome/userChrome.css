@@ -1,0 +1,6571 @@
+/* Edge-Frfox files */
+@import url("icons/icons.css");
+@import url("toolbar/tabbar.css");
+@import url("toolbar/navbar.css");
+@import url("toolbar/personalbar.css");
+@import url("toolbar/findbar.css");
+@import url("toolbar/urlbar.css");
+@import url("global/colors.css");
+@import url("global/popup.css");
+@import url("global/browser.css");
+@import url("global/tree.css");
+
+/*Import custom stylesheet instead of modifying Edge-Frfox theme files.*/
+@import url("custom.css");
+
+/* ========== Firefox-WinUI GLOBAL ========== */
+
+/* MICA */
+* {
+  --mica: transparent !important;
+  --acrylic: url(global/accnoise256.png) !important;
+  --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
+
+  --commonBackground: light-dark(#fff,#2c2c2c) !important;
+  --frameBG: light-dark(rgba(255,255,255,.7), rgba(58,58,58,.45)) !important;
+  --dialogSmoke: rgba(0,0,0,.3) !important;
+  
+  --cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
+  --cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837)) !important;
+  --cardShadowLight: 0 0 0 1px rgba(0,0,0,.0605) !important;
+  --cardOutline: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.14)) !important;
+  --cardShadowLightHover: 0 0 0 1px rgba(0,0,0,.06), 0 4px 8px rgba(0,0,0,.03) !important;
+  --cardShadowDark: 0 0 0 1px rgba(0,0,0,.14) !important;
+  --cardShadowDarkHover: 0 0 0 1px rgba(255,255,255,.1), 0 -1px 0 rgba(255,255,255,.035), 0 4px 8px rgba(0,0,0,.1) !important;
+
+  --footer: light-dark(#f3f3f3, #202020) !important;
+  --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1)) !important;
+  --footerBorder2: light-dark(#dddddd,#1d1d1d) !important;
+  --dropdownSeparator: light-dark(rgba(0,0,0,.0803), rgba(255,255,255,.0837)) !important;
+  
+  --textPrimary: light-dark(rgba(0,0,0,.8956), rgb(255,255,255)) !important;
+  --textTertiary: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
+  --textSecondary: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.786)) !important;
+  --textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628)) !important;
+  --textInverse: light-dark(#fff,#000) !important;
+
+  --searchBackground: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
+  --searchHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+  --searchActive: light-dark(#fff, rgba(30,30,30,.7)) !important;
+  --searchActiveBorder: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0698)) !important;
+  --searchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.41) !important;
+  --searchShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.46) !important;
+  --searchActiveShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset !important;
+  --searchActiveShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset !important;
+  --disabledSearch: light-dark(rgba(249,249,249,.3),rgba(255,255,255,.0419)) !important;
+  --disabledSearchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+  --disabledSearchShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02)  !important;
+  --disabledSearchText: light-dark(rgba(0,0,0,.3614),rgba(255,255,255,.3628)) !important;
+  --searchDropdown: light-dark(#FCFCFC, #2C2C2C) !important;
+
+  --controlSecondary: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+  --controlTertiary: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326)) !important;
+  --controlQuartenary: light-dark(rgba(243,243,243,.76), rgba(255,255,255,.0605)) !important;
+  --controlStrong: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
+  --controlStroke: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0698)) !important;
+  --controlStrongStroke: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
+  --controlStrongStrokeDisabled: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+  --controlAltSecondary: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+  --controlAltTertiary: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+  --controlAltQuartenary: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698)) !important;
+
+  --infoBG: light-dark(rgba(246,246,246, .5), rgba(255,255,255,.0326)) !important;
+  --cautionBG: light-dark(#FFF4CE, #433519) !important;
+  --successBG: light-dark(#DFF6DD, #393D1B) !important;
+  --criticalBG: light-dark(#FDE7E9, #442726) !important;
+  --infoOutline: 0 0 0 1px var(--footerBorder) !important;
+
+  --infoBadge: light-dark(#005FB7, #60CDFF) !important;
+  --cautionBadge: light-dark(#9D5D00,#FCE100) !important;
+  --successBadge: light-dark(#0F7B0F,#6CCB5F) !important;
+  --criticalBadge: light-dark(#C42B1C,#FF99A4) !important;
+
+  --segmentedBG: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+
+  --progressBar: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
+
+  --accentLight: color-mix(in srgb, accentColor 85%, black) !important; /* Main */
+  --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
+  --accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent) !important; /* Pressed */
+  --accentLight4: color-mix(in srgb, accentColor 100%, transparent) !important; /* Full saturation */
+
+  --accentDark: color-mix(in srgb, accentColor 60%, white) !important; /* Main */
+  --accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent) !important; /* Hover */
+  --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
+  --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
+
+  --accentAuto: light-dark(var(--accentLight), var(--accentDark)) !important;
+  --accentHover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+  --accentPressed: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+  --accentDarkFilter: saturate(1.55) brightness(1.05) !important;
+
+  --button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+  --buttonHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+  --buttonPressed: light-dark(rgba(255,255,255,.3), rgba(255,255,255,.0326)) !important;
+  --buttonShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+  --buttonShadowLightPressed: 0 0 0 1px rgba(0,0,0,.0578) !important;
+  --buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
+  --buttonShadowDarkPressed: 0 0 0 1px rgba(255,255,255,.0698) !important;
+  
+  --textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+  --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+
+  --inputActive: light-dark(rgb(252,252,252), rgb(30,30,30)) !important;
+  --inputBarLight: 0 0 0 1px rgba(0,0,0,.0605), 0 1px 0 rgba(0,0,0,.39) !important;
+  --inputBarFocusLight: 0 0 0 1px rgba(0,0,0,.0578), 0 1px 0 var(--accentLight), 0 -1px 0 var(--accentLight) inset !important;
+  --inputBarDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(0,0,0,.46) !important;
+  --inputBarFocusDark: 0 0 0 1px rgba(255,255,255,.0698), 0 1px 0 var(--accentDark), 0 -1px 0 var(--accentDark) inset !important;
+
+  --genericShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
+  --genericShadowDark: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26) !important;
+
+  --basicBGAnimation: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear !important;
+
+  text-decoration: none !important;
+  outline: none !important;
+  color-scheme: light dark !important; /* Fix some menu items using inverted light-dark colors */
+  
+  --link-color: var(--accentAuto) !important;
+  --attention-dot-color: transparent !important; /* Remove synced tabs bottom dot */
+  --sidebar-background-color: light-dark(white, rgb(28, 27, 34));
+  --sidebar-text-color: light-dark(rgb(21, 20, 26), rgb(249, 249, 250));
+  --sidebar-border-color: light-dark(rgb(240, 240, 244), rgb(82, 82, 94));
+  
+  /* Panel colors */
+  --arrowpanel-background: var(--searchDropdown) !important;
+  --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
+  --arrowpanel-border-color: light-dark(rgba(0,0,0,.125), rgba(0,0,0,.2)) !important;
+  --panel-item-hover-bgcolor: var(--textButtonHover) !important;
+  --panel-item-active-bgcolor: var(--textButtonPressed) !important;
+  --panel-separator-color: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0605)) !important;
+  --panel-border-color: none !important; /* Panel extra border removal */
+}
+
+@media -moz-pref("widget.windows.mica") {
+  /* Window-wide transparency */
+  :root {
+    background-color: transparent !important;
+
+    & tabbox#tabbrowser-tabbox,
+    & #tabbrowser-tabpanels {
+      background-color: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
+    }
+  }
+}
+
+/* Font change */
+* {
+  font-family: 'Segoe UI Variable Text', 'Segoe UI', sans-serif !important;
+}
+
+/* Titles */
+h1, h2, h3 {
+  text-align: left !important;
+  margin-left: 12px !important;
+}
+
+/* Simple animations */
+.toolbarbutton-1 > .toolbarbutton-icon,
+.toolbarbutton-1 > stack,
+.toolbarbutton-1 > .toolbarbutton-icon,
+.toolbarbutton-1 > .toolbarbutton-text,
+.toolbarbutton-1 > .toolbarbutton-badge-stack,
+:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+.urlbar-page-action,
+.identity-box-button,
+#tracking-protection-icon-container,
+.dialog-button-box button {
+  transition: var(--basicBGAnimation) !important;
+}
+#PersonalToolbar {
+  transition: all 183ms ease-in-out !important;
+}
+
+/* Proper downloads and menu icon */
+#downloads-button,
+#downloads-indicator-anchor,
+#appMenu-downloads-button,
+#appMenu-library-downloads-button {
+  list-style-image: url("icons/downloads.svg") !important;
+  -moz-context-properties: fill !important;
+}
+
+#context-savelink {
+  --menu-image: url("../icons/downloads.svg") !important;
+}
+
+/* Make download progress circle look like a ring */
+#downloads-indicator-progress-inner {
+  width: 20px !important;
+  height: 20px !important;
+  background: conic-gradient(
+    var(--toolbarbutton-icon-fill-attention) var(--download-progress-pcent),
+    color-mix(in srgb, var(--progressBar), transparent 93%) var(--download-progress-pcent)) !important;
+  mask: radial-gradient(circle at center,
+    transparent 7.6px,
+    black 7.1px) !important;
+  transform-origin: center !important;
+}
+
+/* Remove outer circle */
+#downloads-button[progress] .toolbarbutton-animatable-box {
+  color: transparent !important;
+}
+
+/* Enlarge the ring */
+#downloads-button[progress="true"] {
+  background-image: url(icons/downloads.svg) !important;
+  background-size: 16px !important;
+  background-repeat: no-repeat !important;
+  background-position: center center;
+  
+  & #downloads-indicator-progress-outer {
+    height: 100% !important;
+    width: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  
+  & #downloads-indicator-progress-inner {
+    position: relative !important;
+    transform: scale(1.75) !important;
+    left: -1px !important;
+  }
+}
+
+/* Remove finished download icon animation */
+#downloads-indicator-finish-image {
+  --anim-frames: 0 !important;
+  --anim-steps: 0 !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* More fluent icons */
+.downloadIconShow > .button-box > .button-icon {
+  list-style-image: url('icons/open-folder.svg') !important;
+}
+#reader-mode-button > .urlbar-icon {
+  list-style-image: url('icons/read.svg') !important;
+}
+#pageAction-panel-bookmark, #star-button, #context-bookmarkpage {
+  list-style-image: url('icons/star.svg') !important;
+}
+#pageAction-panel-bookmark[starred], #star-button[starred] {
+  list-style-image: url("icons/star-filled.svg") !important;
+}
+#context_bookmarkTab, 
+#context_bookmarkSelectedTabs, 
+#toggle_PersonalToolbar, 
+#context-bookmarklink, 
+#toolbar-context-bookmarkSelectedTab, 
+#toolbar-context-bookmarkSelectedTabs {
+  --menu-image: url("../icons/star.svg") !important;
+  font-size: 13px !important;
+}
+#OtherBookmarks,
+.bookmark-item[type="menu"],
+.bookmark-item[container] {
+  list-style-image: url(icons/folder.svg) !important;
+}
+/* Hide this button since it has the same functionality as #OtherBookmarks */
+#PlacesChevron {
+  display: none !important;
+}
+#import-button { 
+  & image {
+    list-style-image: url(icons/import.svg) !important;
+    -moz-context-properties: fill !important;
+    fill: var(--textPrimary) !important;
+    margin-right: 6px !important;
+  }
+  & .toolbarbutton-text::before {
+    margin-bottom: 1px !important;
+  }
+}
+#PlacesToolbar .toolbarbutton-text::before {
+  margin-bottom: 1px !important;
+}
+.urlbarView-type-icon {
+  .urlbarView-row[pinned] > .urlbarView-row-inner > .urlbarView-no-wrap > & {
+    transform: scaleX(-1) !important;
+    stroke: transparent !important;
+  }
+}
+#PanelUI-menu-button,
+#appMenu-more-button2,
+.unified-extensions-item-menu-button {
+  list-style-image: url("icons/cog.svg") !important;
+}
+#identity-box[pageproxystate="valid"].verifiedDomain #identity-icon, 
+#identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon,
+#identity-popup[connection^="secure"] .identity-popup-security-connection {
+  list-style-image: url('icons/lock.svg') !important;
+}
+
+#appMenu-zoom-controls::before {
+  content: url(icons/search-glass.svg);
+  margin-right: -16px;
+}
+#appMenu-quit-button2::before {
+  content: url(icons/close.svg);
+  margin-right: -16px;
+}
+#appMenu-more-button2 {
+  list-style-image: none !important;
+}
+#appMenu-more-button2::before {
+  content: url(icons/repair.svg);
+  width: 15px;
+  height: 15px;
+  margin-right: -15px;
+}
+.downloadIconRetry > .button-box > .button-icon {
+  list-style-image: url('icons/reload.svg') !important;
+}
+.sendToDevice-device {
+  &[clientType="phone"] {
+    list-style-image: url('icons/phone.svg') !important;
+  }
+}
+.syncNowBtn {
+  fill: var(--accentAuto) !important;
+  list-style-image: url('icons/sync.svg') !important;
+}
+
+#appMenu-help-button2 {
+  list-style-image: none !important;
+  background-image: url(icons/help.svg) !important;
+  background-repeat: no-repeat !important;
+  background-size: 8px !important;
+  background-position: 12px 6px !important;
+}
+
+.customize-context-removeFromToolbar .menu-text::after {
+  content: '';
+  background-image: url(icons/close.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 16px;
+  height: 16px;
+  -moz-context-properties: fill;
+  fill: var(--textPrimary);
+  display: block;
+  position: absolute;
+  order: -1;
+  transform: translate(-28px, 2px);
+}
+#context-searchselect-private .menu-text::after {
+  content: '';
+  background-image: url(icons/privateBrowsing.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 16px;
+  height: 16px;
+  -moz-context-properties: fill;
+  fill: var(--textPrimary);
+  display: block;
+  position: absolute;
+  order: -1;
+  transform: translate(-28px, 2px);
+}
+#spell-check-enabled .menu-iconic-text::after {
+  content: '';
+  background-image: url(icons/spelling.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 16px;
+  height: 16px;
+  -moz-context-properties: fill;
+  fill: var(--textPrimary);
+  display: block;
+  position: absolute;
+  order: -1;
+  transform: translate(-28px, 1px);
+}
+
+#context-viewimageinfo .menu-text::after {
+  content: '';
+  background-image: url(icons/info.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 16px;
+  height: 16px;
+  -moz-context-properties: fill;
+  fill: var(--textPrimary);
+  display: block;
+  position: absolute;
+  order: -1;
+  transform: translate(-28px, 1px);
+}
+
+/* Right arrow */
+.menu-right {
+  opacity: 0 !important;
+}
+menu::after {
+  content: "";
+  margin-left: 4px;
+  color: var(--textSecondary) !important;
+  font-size: 10px !important;
+  font-family: 'Segoe Fluent Icons', 'Segoe MDL2 Assets' !important;
+}
+#protections-popup-mainView .subviewbutton-nav:not(.notFound), .widget-overflow-list .subviewbutton-nav, .PanelUI-subView .subviewbutton-nav {
+  &::after {
+    content: "" !important;
+    color: var(--textSecondary) !important;
+    opacity: 1 !important;
+    font-size: 13px !important;
+    margin-bottom: -8px !important;
+    margin-top: -8px !important;
+    font-family: 'Segoe Fluent Icons', 'Segoe MDL2 Assets' !important;
+  }
+}
+
+/* Tab scroll icons */
+#scrollbutton-up:not(.menupopup-scrollbutton), #scrollbutton-down:not(.menupopup-scrollbutton) {
+  list-style-image: none !important;
+  background-image: url(icons/caret-left.svg) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 8px !important;
+}
+#scrollbutton-down:not(.menupopup-scrollbutton) {
+  background-image: url(icons/caret-right.svg) !important;
+}
+
+/* Proper back icon inside panels */
+.panel-header {
+  & > .subviewbutton-back {
+    list-style-image: none !important;
+    background-image: url(icons/back.svg);
+    background-size: 14px;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}
+
+/* Sidebar icon - Moves around*/
+#sidebar-button {
+ @media not -moz-pref("sidebar.revamp") {
+    &:-moz-locale-dir(ltr):not([positionend]), &:-moz-locale-dir(rtl)[positionend] {
+      list-style-image: none !important;
+      background-image: url(icons/dock-left.svg);
+      background-repeat: no-repeat;
+      background-position-x: center !important;
+      padding: 4px !important;
+      
+      /* WIP
+      &[checked=true] .toolbarbutton-icon {
+        background-color: var(--accentAuto) !important;
+        background-image: url(icons/dock-left.svg) !important;
+        background-position: 7px center !important;
+        fill: var(--textInverse) !important;
+        border: 1px solid rgba(255,255,255,.08) !important;
+        border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+      }*/
+
+      @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
+        background-size: 15px;
+        padding: 3px !important;
+      }
+    }
+  }
+}
+#sidebar-button {
+  @media not -moz-pref("sidebar.revamp") {
+    list-style-image: none !important;
+    background-image: url(icons/dock-right.svg);
+    background-size: 16px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 3px !important;
+    
+      /*&[checked=true] .toolbarbutton-icon {
+        background-color: var(--accentAuto) !important;
+        background-image: url(icons/dock-right.svg) !important;
+        background-size: 16px !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        fill: var(--textInverse) !important;
+        border: 1px solid rgba(255,255,255,.08) !important;
+        border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+      }*/
+
+    @media -moz-pref("uc.winui.smaller-toolbar-buttons") {
+      background-size: 15px;
+      padding: 3px !important;
+    }
+  }
+}
+
+/* Bookmark list icon */
+#editBMPanel_folderMenuList[selectedGuid="toolbar_____"], #editBMPanel_toolbarFolderItem {
+  list-style-image: none !important;
+  background-image: url("icons/star.svg") !important;
+  background-size: 16px !important;
+  background-position: 6px center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* End private session icon */
+#reset-pbm-toolbar-button {
+  list-style-image: url("icons/fire.svg") !important;
+}
+
+/* Notification icons */
+.speaker-icon {
+  list-style-image: none !important;
+  background-image: url(icons/speaker.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.drm-icon {
+  list-style-image: none !important;
+  background-image: url(icons/secure.svg) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 15px !important;
+  height: 100% !important;
+  fill-opacity: 1 !important;
+}
+
+#servicesInstall-notification-icon, #default-notification-icon {
+  list-style-image: none !important;
+  background-image: url(icons/info.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100% !important;
+  background-size: 15px !important;
+}
+
+/* Context menu AI option */
+#context-ask-chat > label::after {
+  content: url(icons/sparkle.svg);
+  order: -1;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  fill: var(--textPrimary) !important;
+  -moz-context-properties: fill !important;
+  margin-left: -28px;
+}
+
+/* Download failed badge */
+#downloads-button[attention="warning"] > .toolbarbutton-badge-stack > .toolbarbutton-badge {
+  background-image: url(icons/caution-badge.svg) !important;
+  background-size: 2px !important;
+  fill: var(--textInverse) !important;
+  width: 12px !important;
+  background-color: var(--cautionBadge) !important;
+}
+
+/* Password icons */
+#password-notification-icon {
+  list-style-image: none !important;
+  background-image: url(icons/passwords.svg) !important;
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100%;
+}
+
+/* Center tab and URL text vertically */
+@media not -moz-pref("uc.winui.aptos") {
+  .tabbrowser-tab label, .urlbar-input-box, #identity-icon-label, .searchbar-textbox {
+    margin-bottom: 2px !important;
+  }
+}
+
+/* Active tab with semibold text */
+.tabbrowser-tab[selected] label { 
+  font-weight: 600 !important;
+}
+
+/* Remove autoplay button in newly opened video tabs */
+.tab-icon-overlay[activemedia-blocked]:not([crashed]) {
+  display: none !important;
+}
+
+/* Left and top margin between tabs and window */
+:root[sizemode="normal"] #toolbar-menubar,
+:root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{ 
+  padding-top: 0 !important;
+  padding-left: 9px !important;
+}
+/* Maximized version of the one above */
+:root[sizemode="maximized"] #toolbar-menubar,
+:root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{ 
+  padding-left: 9px !important;
+}
+/* Ensure overflowing tabs with pinned tabs won't have incorrect left margin */
+:root[sizemode="maximized"]:has(#tabbrowser-tabs[overflow] .tabbrowser-tab[pinned]:first-of-type) {
+  #toolbar-menubar[autohide="true"][inactive="true"] + toolbar {
+    padding-left: 7px !important;
+  }
+}
+
+/*** Tabs ***/
+/* Tab spacing */
+.tabbrowser-tab:not([pinned]){
+  z-index: 1 !important;
+  margin-inline: .5px !important;
+}
+#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned] {
+  margin-inline: 1px !important;
+}
+#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned]:first-of-type {
+  padding-left: 7px !important;
+}
+
+/* Unselected tabs are 1px smaller than selected tabs */
+.tab-background:not([selected]) {
+  clip-path: inset(1px 0 1px 0 round 7px 7px 0 0) !important;
+}
+.tabbrowser-tab[pinned]:not([selected]) .tab-background {
+  clip-path: inset(1px round 7px 7px 0 0) !important;
+}
+
+/* Proper tab roundness */
+.tab-background {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+/* Fix space above tabs so that shadows can appear */
+#tabbrowser-tabs {
+  margin-top: 0 !important;
+}
+.tab-stack {
+  margin-top: 9px !important;
+}
+:root[sizemode="maximized"] .tab-stack {
+  margin-top: 1px !important;
+}
+
+/* Fix new tab button top margin w tab shadow fix */
+#TabsToolbar .toolbarbutton-1>.toolbarbutton-icon {
+  margin-top: 11px !important;
+}
+:root[sizemode="maximized"] #TabsToolbar .toolbarbutton-1>.toolbarbutton-icon {
+  margin-top: 3px !important;
+}
+
+/* Tab scroll buttons. */
+/* Remove the shadow separator */
+spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
+  display: none !important;
+}
+
+#scrollbutton-up:not(.menupopup-scrollbutton),
+#scrollbutton-down:not(.menupopup-scrollbutton) {
+  border-radius: 7px !important;
+  padding: 0 2px !important;
+  min-width: 35px !important;
+  max-width: 35px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  margin-top: auto !important;
+  bottom: 2px !important;
+  margin-left: -1px !important;
+  fill: var(--controlStrong) !important;
+  fill-opacity: 1 !important;
+  transition-duration: 83ms !important;
+  
+  &:hover:not([disabled]) {
+    background-color: var(--textButtonHover) !important;
+    fill: var(--textSecondary) !important;
+  }
+  &:active:not([disabled]) {
+    background-color: var(--textButtonPressed) !important;
+    fill: var(--textSecondary) !important;
+  }
+  &[disabled] {
+    fill: var(--disabledSearchText) !important;
+  }
+}
+
+#scrollbutton-up:not(.menupopup-scrollbutton) {
+  left: 4px !important;
+}
+
+/* Bottom tab corners */
+:root,
+:root .tabbrowser-tab {
+  & #TabsToolbar {
+    --tab-border-radius: 4px !important;
+  }
+}
+
+/* Active tab bottom corners when the window is inactive */
+.tab-background:is([selected], [multiselected]):-moz-window-inactive::before,
+.tab-background:is([selected], [multiselected]):-moz-window-inactive::after {
+  --uc-tab-corner-bg: light-dark(rgba(255,255,255,.95),rgba(255, 255, 255, .095)) !important;
+}
+/* Ensure they won't appear elsewhere */
+.tab-background:not([selected], [multiselected]):-moz-window-inactive::before,
+.tab-background:not([selected], [multiselected]):-moz-window-inactive::after,
+.tab-background:not([selected], [multiselected])::before,
+.tab-background:not([selected], [multiselected])::after {
+  --uc-tab-corner-bg: transparent !important;
+}
+
+/* Remove all tabs button */
+#alltabs-button {
+  display: none !important;
+}
+
+/* Navbar height*/
+#nav-bar,
+#PersonalToolbar {
+  height: 48px !important;
+}
+
+/* Space between tab icons and the tab titles. */
+.tab-throbber:not([pinned]),
+.tab-icon-pending:not([pinned]),
+.tab-icon-image:not([pinned]),
+.tab-sharing-icon-overlay:not([pinned]) {
+  margin-inline-end: 7px !important;
+  margin-inline-start: -2px !important;
+  border-radius: 2px !important;
+}
+
+/* Fix tab height */
+:root {
+  --tab-min-height: 32px !important;
+  
+  & #TabsToolbar {
+    --tab-min-height: 31px !important;
+  }
+
+  &[uidensity=compact] {
+    --tab-min-height: unset !important;
+  }
+
+  &[uidensity=touch] {
+    --tab-min-height: 31px !important;
+  }
+}
+:root[sizemode="maximized"] {
+  --tab-min-height: 22px !important;
+}
+
+/* Tabs should be at least 100px wide */
+#tabbrowser-tabs {
+  --tab-min-width: 100px !important;
+}
+
+/* Fix for toolbar icons pinned to the tab area */
+#TabsToolbar .toolbarbutton-1 {
+  margin-bottom: -1px !important;
+}
+
+/* New tab button */
+#TabsToolbar #tabs-newtab-button>.toolbarbutton-icon,
+#TabsToolbar #alltabs-button>.toolbarbutton-badge-stack,
+#TabsToolbar #tabbrowser-tabs[hasadjacentnewtabbutton][overflow="true"]~#new-tab-button>.toolbarbutton-icon {
+  width: 32px !important;
+  height: 24px !important;
+  padding-inline: 9px !important;
+  padding-block: 5px !important;
+  border-radius: 4px !important;
+  margin-bottom: 4px !important;
+  fill: var(--textPrimary) !important;
+}
+
+/* Overflowing tabs */
+#TabsToolbar {
+  & #tabbrowser-tabs[hasadjacentnewtabbutton][overflow] ~ #new-tab-button > .toolbarbutton-icon {
+    padding-inline: 9px !important;
+    padding-block: 5px !important;
+    width: 32px !important;
+    height: 24px !important;
+    margin-bottom: 1px !important;
+  }
+}
+
+/* Tab close button */
+.tab-close-button {
+  height: 24px !important;
+  width: 32px !important;
+  margin-bottom: 1px !important;
+  margin-right: 3px !important;
+  border-radius: 5px !important;
+  padding-inline: 11.5px !important;
+  padding-block: 7.5px !important;
+  fill: var(--textPrimary) !important;
+  list-style-image: none !important;
+  background-image: url(icons/chrome-close.svg) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 8px !important;
+  
+  &:active {
+    fill: var(--textSecondary) !important;
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Always show tab close button */
+.tab-close-button { 
+  #tabbrowser-tabs[closebuttons="activetab"][orient="horizontal"] &:not([selected],[pinned]) { 
+    display: block !important;
+    fill: var(--textSecondary) !important;
+  }
+}
+
+/* Set separator color */
+.tabbrowser-tab:not([selected], [multiselected], :hover) {
+  /* All tabs. */
+  & .tab-stack::before,
+  /* Last visible tab. */
+  &:nth-last-child(1 of .tabbrowser-tab:not([hidden])) .tab-stack::after,
+  /* Last visible pinned tab when overflowed. */
+  #tabbrowser-tabs[overflow] &:nth-last-child(1 of .tabbrowser-tab[pinned]:not([hidden])) .tab-stack::after {
+    border-color: color-mix(in srgb, currentColor 06%, transparent);
+  }
+}
+
+/* Change pinned one tab icon */
+.tabbrowser-tab[label="OneTab"] .tab-icon-image {
+  content: url("icons/duplicate-tab.svg") !important;
+  transform: scale(94%) !important;
+}
+
+/* Bottom tab corners are transparent when tab is hovered */
+.tabbrowser-tab:not([selected]):hover .tab-background {
+  --uc-tab-corner-bg: transparent !important;
+  --uc-tab-corner-outline: transparent !important;
+}
+
+/* Disable title fade on the right end of the tab */
+.tabbrowser-tab {
+  --tab-label-mask-size: 0 !important;
+}
+
+.tab-icon-overlay[soundplaying] {
+  list-style-image: none !important;
+}
+
+/* Tab audio icon - from WaveFox */
+/* Pinned Tabs - Needs fixing */
+.tabbrowser-tab[pinned]:not([crashed]){
+  .tab-icon-overlay {
+    background-color: transparent !important;
+    background-image: none !important;
+    fill: var(--textPrimary) !important;
+    border-radius: 50px !important;
+    top: -8px !important;
+    inset-inline-end: -8px !important;
+
+    &:hover{
+      background-color: color-mix(in srgb, transparent 0%, var(--textButtonHover)) !important;
+    }
+
+    &:hover:active{
+      background-color: color-mix(in srgb, transparent 0%, var(--textButtonPressed)) !important;
+    }
+  }
+
+  &:where([soundplaying], [muted], [activemedia-blocked]) .tab-icon-stack > :not(.tab-icon-overlay) {
+    mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at right top, black 8px, transparent 9px) !important;
+    mask-size: 16px 16px !important;
+    mask-position: center center !important;
+    mask-repeat: no-repeat !important;
+    mask-composite: exclude !important;
+    mask-mode: alpha !important;
+
+    :root:-moz-locale-dir(rtl) & {
+      mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at left top, black 8px, transparent 9px) !important;
+    }
+  }
+}
+
+/* Regular Tabs */
+.tabbrowser-tab:not([pinned], [crashed]) {
+  .tab-icon-overlay {
+    /* Basic positioning */
+    top: 0px !important;
+    inset-inline-end: 0px !important;
+    border-radius: 99px !important;
+    z-index: 2 !important;
+    
+    animation: findbarOut 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+    
+    /* Create solid background circle with accent color */
+    background-color: var(--accentAuto) !important;
+    
+    /* Handle the icon color */
+    fill: var(--textInverse) !important;
+    -moz-context-properties: fill !important;
+  }
+  
+  /* Apply the correct icon for each state */
+  &[soundplaying] .tab-icon-overlay {
+    background-image: url("icons/speaker2.svg") !important;
+    background-size: 10px !important;
+    background-repeat: no-repeat !important;
+    background-position: center 4px !important;
+  }
+  
+  &[muted] .tab-icon-overlay {
+    background-image: url("icons/mute.svg") !important;
+    background-size: 10px !important;
+    background-repeat: no-repeat !important;
+    background-position: center 4px !important;
+  }
+  
+  /* Different treatment - Padding causes it to be cut off - Hidden by default */
+  &[activemedia-blocked] .tab-icon-overlay {
+    background-image: url("icons/play.svg") !important;
+    background-size: 10px !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    display: none !important;
+  }
+  
+  /* Keep positioning adjustments */
+  &:where([busy], [image], [sharing], [pictureinpicture]) .tab-icon-overlay {
+    top: -7px !important;
+    inset-inline-end: 16px !important;
+  }
+  
+  /* Keep mask for the icon cutout in the favicon */
+  &:where([soundplaying], [muted], [activemedia-blocked]) {
+    .tab-icon-overlay {
+      display: revert !important;
+    }
+  }
+}
+
+/* Remove edge-frfox icons */
+.tab-icon-overlay[activemedia-blocked],
+.tab-icon-overlay[muted],
+.tab-icon-overlay[soundplaying]{
+  list-style-image: none !important;
+}
+
+/* Ensure the title won't move */
+.tab-icon-stack {
+  width: 22px !important;
+}
+
+.tabbrowser-tab:not([pinned]) {
+  .tab-audio-button {
+    display: none !important;
+  }
+}
+/* --- Tab Text --- */
+.tab-label-container {
+  mask-image: none !important;
+}
+
+.tab-label {
+  width: 100% !important;
+  height: auto !important;
+  line-height: normal !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  margin-block: 0px !important;
+}
+
+.tabbrowser-tab:not([selected]) .tab-content, .tab-icon-overlay {
+  color: var(--textSecondary) !important;
+  fill: var(--textSecondary) !important;
+}
+
+#tabbrowser-tabs[closebuttons="activetab"] {
+  & .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]):not([crashed]) {
+    &:hover {
+      background-color: var(--accentHover) !important;
+    }
+    &:active {
+      background-color: var(--accentPressed) !important;
+    }
+  }
+}
+
+/* Pinned tab 136 */
+.tabbrowser-tab[pinned] {
+  & .tab-background {
+    width: 40px !important;
+  }
+  
+  & .tab-label-container {
+    display: none !important;
+  }
+  & .tab-icon-stack {
+    left: 12px !important;
+  }
+}
+.tab-content {
+  &[pinned] {
+    padding: 0 0 !important;
+  }
+}
+
+/* Tab throbber */
+.tab-throbber {
+  @media (prefers-reduced-motion: no-preference) {
+    :root[sessionrestored] & {
+      &[progress]::before {
+        fill: var(--accentAuto) !important;
+      }
+    }
+  }
+}
+
+/* Disable tab burst animation */
+.tab-loading-burst { 
+  display: none !important; 
+}
+
+:root {
+  --tab-loading-fill: var(--accentAuto) !important;
+}
+
+/* Simple tab opening and closing animation */ 
+@keyframes fastInvoke {
+  0% {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fastDismiss {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+}
+
+/* Open */
+.tabbrowser-tab[fadein] .tab-content,
+.tabbrowser-tab[fadein] .tab-background {
+  animation: fastInvoke 187ms ease-out !important;
+}
+
+/* Close */
+.tabbrowser-tab:not([pinned],[fadein]){
+  transition-duration: 187ms, 187ms !important;
+  animation: fastDismiss 187ms ease-out !important;
+}
+
+.tabbrowser-tab:not([pinned],[fadein]){
+  transition-duration: 187ms, 187ms !important;
+  transition-timing-function: ease-out, ease-out !important;
+  visibility: visible !important;
+}
+.tab-content:not([fadein],[pinned])
+.tab-icon-pending:not([fadein]),
+.tab-icon-image:not([fadein]),
+.tab-label:not([fadein]){
+  visibility: visible !important;
+}
+.tab-label:not([fadein]){
+  display: flex !important;
+}
+
+/* Tabs calling for attention */
+.tabbrowser-tab:has(.tab-content[attention=""]) {
+  & * {
+    font-weight: 400 !important;
+  }
+  & .tab-icon-overlay {
+    display: block !important;
+    background-image: url("icons/sync-badge.svg") !important;
+    background-size: 8px !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+  }
+}
+
+/* URL Tooltip */
+#statuspanel-label{
+  display: block !important;
+  border-radius: 4px !important;
+  padding: 2px 7px 6px 8px !important;
+  margin: 0 0 4px 4px !important;
+  background-image: var(--acrylic) !important;
+}
+
+/* Remove unnecessary outline */
+#urlbar-background, #searchbar {
+  #urlbar[open] & {
+    :root:not([lwtheme]) & {
+      outline-color: transparent !important;
+    }
+  }
+}
+
+/* Border below the nav bar */
+#navigator-toolbox {
+  border-bottom: none !important;
+}
+
+/* Changes some default values */
+:root {
+  --uc-titlebar-shadow: none !important;
+  --uc-tab-shadow: none !important;
+  --toolbarbutton-border-radius: 4px !important;
+  --uc-toolbarbutton-inner-inline-padding: 8.5px !important;
+  --toolbarbutton-outer-padding: 4px !important;
+  --toolbarbutton-inner-padding: 8.5px !important;
+}
+
+/* URL breakout results */
+.urlbarView-row {
+  margin-inline: 4px !important;
+  margin-block: 4px !important;
+  border-radius: 4px !important;
+  background-color: transparent !important;
+}
+.urlbarView-row:first-of-type {
+  margin-top: 5px !important;
+}
+.urlbarView-row:last-of-type {
+  margin-bottom: 0 !important;
+}
+
+/* URL breakout results hover*/
+.urlbarView-row:hover {
+  border-radius: 4px !important;
+}
+.urlbarView-row:active {
+  background-color: var(--buttonPressed) !important;
+  color: var(--textSecondary) !important;
+}
+
+/* URL breakout result */
+.urlbarView-row:not([type="tip"], [type="dynamic"])[selected]>.urlbarView-row-inner,
+.urlbarView-row-inner[selected] {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+.urlbarView-row[selected=""]:hover {
+  background-color: var(--textButtonPressed) !important;
+}
+
+/* WinUI blue border on the left of URL bar result */
+.urlbarView-row[selected] .urlbarView-row-inner {
+  padding-left: 6.5px !important;
+  position: relative !important;
+  padding-right: 18px !important;
+}
+.urlbarView-row[selected] .urlbarView-row-inner::before {
+  content: "";
+  border-radius: 16px !important;
+  display: block !important;
+  position: absolute !important;
+  padding: 8px 1.5px !important;
+  margin-inline: -6px 12px !important;
+  margin-top: 2px !important;
+  animation: selectorBar 187ms forwards !important;
+}
+.urlbarView-row[selected] .urlbarView-no-wrap, .urlbarView-results[wrap] .urlbarView-row[selected] .urlbarView-url {
+  padding-left: 8px !important;
+}
+/* Remove ... button since it's the same as right clicking on the result */
+.urlbarView-button, .urlbarView-button-menu {
+  display: none !important;
+}
+
+/* SVG icons inside the url bar results */
+.urlbarView-type-icon {
+  fill: var(--accentAuto) !important;
+}
+
+/* Context menu */
+meupopup {
+  --uc-contextmenu-border-radius: 8px;
+}
+.menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+  background-image: var(--acrylic) !important;
+  background-color: var(--commonBackground) !important;
+  border-radius: 8px !important;
+}
+/* Remove inner border from context menu */
+.menupopup-arrowscrollbox {
+  border: none !important;
+}
+/* Separators */
+menuseparator {
+  border-top: 1px solid var(--dropdownSeparator) !important;
+}
+
+.subviewbutton {
+  box-shadow: none !important;
+}
+.subviewbutton:active {
+  background-color: var(--textButtonPressed) !important;
+}
+.subviewbutton:active * {
+  opacity: .6 !important;
+}
+
+menuitem[disabled="true"] label {
+  color: var(--textDisabled) !important;
+}
+
+/* Change profile button in settings menu */
+appMenu-empty-profiles-button {
+  padding-inline-end: fit-content !important;
+}
+
+tooltip,
+#tabbrowser-tab-tooltip,
+#places-tooltip-insecure-icon,
+#btTooltip,
+#bhTooltip,
+#un-toolbar-tooltip,
+#tooltip,.tooltip,
+#aHTMLTooltip,
+#urlTooltip {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background-image: var(--acrylic) !important;
+  border-radius: 0px !important;
+  padding: 4px 8px 5px 8px !important;
+  color: var(--textPrimary) !important;
+}
+
+/* URL bar bottom border when opened */
+.urlbarView {
+  background-color: var(--searchDropdown) !important;
+  border-radius: 0 0 8px 8px !important;
+  background-image: var(--acrylic) !important;
+  clip-path: inset(0 -16px -24px -16px);
+}
+
+.urlbarView-body-outer {
+  margin-top: -2px !important;
+  padding-top: 1px !important;
+}
+.urlbarView-row:first-of-type {
+  margin-top: 5px !important;
+}
+
+/* URL bar customization */
+#urlbar-background {
+  outline: none !important;
+  border: none !important;
+  height: 30px !important;
+  transform: translateY(1px) !important;
+  border-radius: 3px !important;
+  transition: none !important;
+}
+.urlbar-input {
+  margin-left: -2px !important;
+}
+
+/* Open URL bar & results */
+#urlbar[open]>#urlbar-background,
+#urlbar[breakout][breakout-extend][open] {
+  border-radius: 3px 3px 8px 8px !important;
+}
+
+/* Zoom percentage in the URL bar */
+#urlbar-zoom-button {
+  display: none !important
+}
+
+/* Right-side go button */
+#urlbar-go-button {
+  transition: var(--basicBGAnimation) !important;
+  height: 26px !important;
+  margin-right: 1px !important;
+  margin-block: auto !important;
+  border-radius: 4px !important;
+  list-style-image: none !important;
+  background-image: url(icons/forward.svg) !important;
+  background-position: center center !important;
+  background-size: 14px !important;
+  background-repeat: no-repeat !important;
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:pressed {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Search bar customization */
+#searchbar {
+  outline: none !important;
+  border: none !important;
+  height: 30px !important;
+  border-radius: 3px !important;
+  transition: none !important;
+}
+.searchbar-textbox{
+  margin-left: 6px !important;
+}
+.searchbar-separator {
+  display: none !important;
+}
+.search-panel-header,
+#PopupSearchAutoComplete .autocomplete-richlistitem {
+  height: 40px !important;
+}
+#PopupSearchAutoComplete richlistitem[selected="true"]::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background-color: var(--accentAuto);
+  animation: selectorBar 187ms forwards;
+  border-radius: 99px;
+  display: block;
+  margin-inline: -9px 6px;
+}
+richlistitem:active {
+  color: var(--textSecondary) !important;
+}
+
+.textbox-contextmenu .context-menu-add-engine label {
+  margin-left: 6px !important;
+}
+
+/* Restyle the 'add search engine' overlay icon */
+.searchbar-search-icon-overlay {
+  .searchbar-search-button[addengines="true"] > & {
+    list-style-image: none !important;
+    -moz-context-properties: fill !important;
+    fill: var(--textInverse) !important;
+    background-image: url(icons/plus.svg) !important;
+    background-position: 2px 2px !important;
+    background-color: var(--accentAuto) !important;
+    border-radius: 99px !important;
+    background-repeat: no-repeat !important;
+    background-size: 8px !important;
+  }
+}
+.searchbar-engine-one-off-add-engine > .button-box::after, 
+moz-input-box > menupopup .context-menu-add-engine > .menu-iconic-left::after {
+  background: url(icons/plus.svg) no-repeat 2px 2px !important;
+  background-size: 8px !important;
+  fill: var(--textInverse) !important;
+  margin-inline: -6px -5px !important;
+  margin-top: -16px !important;
+  background-color: var(--accentAuto) !important;
+  border-radius: 99px !important;
+}
+
+/* Proper bg color for the go button */
+.search-go-button {
+  transition: var(--basicBGAnimation) !important;
+  list-style-image: none !important;
+  background-image: url(icons/forward.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 14px;
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:pressed {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Move search icon to the right */
+.searchbar-search-button {
+  order: 1 !important;
+}
+
+/* Try to vertically center 'search with' text in the search dropdown */
+.searchbar-engine-name {
+  margin-bottom: .25em !important;
+}
+
+/* Remove 'this time search with' text */
+.search-panel-one-offs-header {
+  display: none !important;
+}
+
+/* Separator for add search dropdown footer */
+.search-panel-one-offs {
+  padding-top: 7px !important;
+}
+.search-one-offs {
+  border-top: 1px solid var(--dropdownSeparator) !important;
+}
+
+/* Fix incorrect margin for the add search engine button */
+.search-panel-one-offs button:first-of-type {
+  margin-left: 6px !important;
+}
+
+/* Prevent URL bar from growing outwards when opened */
+#urlbar[breakout][breakout-extend] {
+  height: 30px !important;
+  transform: translateY(8px) !important;
+}
+#urlbar[breakout][breakout-extend] > #urlbar-background {
+  border-radius: 3px 3px 0 0 !important;
+  border-bottom: 1px transparent !important;
+}
+
+#urlbar[breakout][breakout-extend] > .urlbarView {
+  transform: translateY(-8px) !important;
+}
+#urlbar[breakout][breakout-extend] > .urlbar-input-container {
+  transform: translateY(-5px) !important;
+}
+
+#urlbar, #urlbar-background, .urlbar-input-container {
+  animation: none !important;
+}
+
+/* Fix for drop downs that have a weird background color for each item */
+menu,
+menuitem {
+  background-color: transparent !important;
+}
+
+/* URL bar icons radius */
+:root {
+  --urlbar-icon-border-radius: 4px !important;
+}
+
+#identity-icon-label {
+  display: none !important;
+}
+
+/* Panel customization */
+/* App menu/cog panel */
+/* Remove default animations and transitions */
+@media (-moz-panel-animations) and (prefers-reduced-motion: no-preference) {
+  .animatable-menupopup, panel[type="arrow"] {
+    &:is([animate="false"], [animate="open"]) {
+      transition-timing-function: none !important;
+    }
+    &:not([animate="false"]) {
+      transition-duration: none !important;
+    }
+  }
+}
+
+#appMenu {animation: none !important; transition: none !important;}
+
+#appMenu-popup[animate="open"] {
+  animation: panelSlide .48s cubic-bezier(0, 0, 0, 1) !important;
+}
+
+#appMenu-popup .panel-subview-body:first-child{
+  animation: panelContentSlide .333s cubic-bezier(0, 0, 0, 1) !important;
+}
+
+@keyframes panelContentSlide {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@keyframes panelSlide {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  100% {
+    clip-path: inset(0 -16px -16px -16px);
+  }
+}
+
+.panel-header {
+  & h1, #fxa-menu-header-description {
+    font-size: 14px !important;
+    font-weight: normal !important;
+    color: var(--textPrimary) !important;
+    margin-left: 12px !important;
+
+    & span::before {
+      display: none;
+    }
+  }
+}
+
+#PanelUI-fxa h1 span::before {
+  margin-right: 18px !important;
+  translate: 0 -2px !important;
+}
+
+#unified-extensions-view h1, #identity-popup-mainView-panel-header-span {
+  font-weight: 600 !important;
+  color: var(--textSecondary) !important;
+}
+
+#PanelUI-fxa-menu-syncnow-button, #PanelUI-fxa-menu-empty-profiles-button {
+  font-size: 14px !important;
+  height: 16px !important;
+}
+#PanelUI-fxa-menu-empty-profiles-button {
+  padding-left: 40px !important;
+  display: flex !important;
+  
+  &::after {
+    margin-left: auto !important;
+  }
+}
+
+/* Remove account panel ads area */
+#PanelUI-fxa-cta-menu, #cta-menu-header-description {
+  display: none !important;
+}
+/* 'my services' title */
+#PanelUI-fxa-menu-services-header {
+  margin-left: 14px !important;
+}
+/* Align services items */
+.fxa-cta-button {
+  height: 20px !important;
+  margin-inline: 4px !important;
+  margin-block: 2px !important;
+  
+  & image {
+    margin-inline: 1px 7px !important;
+  }
+}
+
+toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
+  padding-left: 12px !important;
+}
+
+/* Standardize font size */
+#PanelUI-fxa-menu-syncnow-button label,
+menu[data-l10n-id="places-open-in-container-tab"],
+#contentAreaContextMenu label {
+  font-size: 13px !important;
+}
+
+/* Clicked item opacity */
+#appMenu-popup *:active {
+  fill-opacity: 1 !important;
+  opacity: 1 !important;
+}
+#appMenu-popup toolbarbutton:active, #appMenu-popup toolbaritem:active {
+  color: var(--textSecondary) !important;
+  fill-opacity: 1 !important;
+  opacity: 1 !important;
+}
+#appMenu-zoom-controls *, #appMenu-zoom-controls::before {
+  opacity: 1 !important;
+  color: var(--textPrimary) !important;
+}
+#appMenu-zoom-controls {
+  background-color: transparent !important;
+}
+#appMenu-zoom-controls toolbarbutton:active * {
+  color: var(--textSecondary) !important;
+}
+
+/* Fix 137 changing the background color of hovered/clicked items inside panels */
+panel toolbarbutton:not([disabled]) {
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Panels' keyboard shortcuts - Includes unused boxed look */
+.subviewbutton {
+  &[shortcut]:not([disabled])::after {
+    color: var(--textSecondary) !important;
+    opacity: 1 !important;
+    /*background-color: var(--controlSecondary) !important;
+    box-shadow: 0 0 0 1px var(--controlStrong) !important;
+    padding: 1px 5px 3px !important;
+    border-radius: 2px !important;
+    opacity: 1 !important;
+    margin-right: -6px !important;
+    margin-block: -4px !important;*/
+  }
+}
+.menu-iconic-accel {
+  color: var(--textSecondary) !important;
+}
+
+/* App panel warning badge */
+#PanelUI-menu-button[badge-status="addon-alert"], #PanelUI-menu-button[badge-status="fxa-needs-authentication"], #fxa-toolbar-menu-button[badge-status="login_failed"] {
+  & > .toolbarbutton-badge-stack > .toolbarbutton-badge {
+    height: auto !important;
+    background-image: url(icons/caution-badge.svg) !important;
+    background-color: var(--cautionBadge) !important;
+    background-size: 2px !important;
+    background-position: center center !important;
+    fill: var(--textInverse) !important;
+    padding: 7px !important;
+  }
+}
+
+/* Update badge */
+#PanelUI-menu-button {
+  &[badge-status="update-available"], &[badge-status="update-downloading"], &[badge-status="update-manual"], &[badge-status="update-restart"], &[badge-status="update-unsupported"] {
+    & > .toolbarbutton-badge-stack > .toolbarbutton-badge {
+      -moz-context-properties: fill;
+      padding: 4px 6px !important;
+      background-image: url(icons/sync-badge.svg) !important;
+      fill: var(--textInverse) !important;
+      background-size: auto;
+      background-size: 8px !important;
+    }
+  }
+}
+.panel-banner-item {
+  &[notificationid="update-available"], &[notificationid="update-downloading"], &[notificationid="update-manual"], &[notificationid="update-restart"] {
+    margin-bottom: 2px !important;
+    
+    & > .toolbarbutton-icon {
+      background-image: url(icons/sync.svg) !important;
+      background-size: 16px !important;
+      order: -1 !important;
+      padding-inline: 25px 0px !important;
+    }
+    & .toolbarbutton-text {
+      margin-left: -3px !important;
+    }
+  }
+}
+#PanelUI-menu-button {
+  &[badge-status] > .toolbarbutton-badge-stack > .toolbarbutton-badge {
+    &:-moz-window-inactive {
+      filter: none !important;
+    }
+  }
+}
+
+.addon-banner-item {
+  background-color: var(--cautionBG) !important;
+  outline: 1px solid var(--controlStroke) !important;
+  font-weight: normal !important;
+  padding-left: 0 !important;
+  color: var(--textPrimary) !important;
+  
+  &::after {
+    background: url(icons/caution-badge.svg) no-repeat center center !important;
+    width: 14px !important;
+    height: 14px !important;
+    background-size: 2px !important;
+    fill: var(--textInverse) !important;
+    align-self: center !important;
+    background-color: var(--cautionBadge) !important;
+    border-radius: 99px !important;
+  }
+}
+
+/* Extension panel */
+.panel-header > h1 > span {
+  #unified-extensions-panel &::before {
+    --uc-enabled: 0;
+  }
+}
+
+#unified-extensions-view h1 {
+  margin-top: 3px !important;
+  color: var(--textSecondary) !important;
+}
+#unified-extensions-view toolbarseparator:first-of-type {
+  display: none !important;
+}
+#unified-extensions-manage-extensions {
+  margin: 15px 17px 17px !important;
+  height: 30px !important;
+}
+#unified-extensions-manage-extensions label {
+  text-align: center !important;
+}
+#unified-extensions-manage-extensions image {
+  display: none !important;
+}
+#unified-extensions-view {
+  background-image: var(--acrylic) !important;
+}
+
+#unified-extensions-view .unified-extensions-item image {
+  margin-inline: -2px -6px !important;
+}
+
+/* Downloads panel */
+#downloadsPanel-multiView {
+  background-image: var(--acrylic) !important;
+}
+
+.downloadProgress {
+  margin-right: -8px !important;
+}
+.downloadButton image {
+  margin-right: 2px !important;
+}
+.download-state {
+  margin-bottom: 4px !important;
+}
+.download-state:last-of-type {
+  margin-bottom: 6px !important;
+}
+
+#downloadsSummary {
+  margin-inline: 4px !important;
+  margin-block: 2px !important;
+  border-radius: 4px !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+#downloadsSummary image{
+  margin-left: 25px !important;
+}
+#downloadsSummary progress {
+  margin-inline: 0 !important;
+}
+#downloadsSummary description {
+  color: var(--textPrimary) !important;
+}
+#downloadsSummary[inprogress="true"] {
+  min-height: unset !important;
+}
+
+#downloadsSummary > .downloadTypeIcon {
+  list-style-image: none !important;
+
+}
+
+/* Create a new inner element for the spinner */
+#downloadsSummary::before {
+  content: "\E176";
+  font-family: "Meiryo Boot" !important;
+  font-size: 16px;
+  color: var(--accentAuto);
+  animation: spinnerAnimationComplete 2.6s ease infinite;
+  position: absolute;
+  margin-left: 26px;
+  margin-bottom: 3px;
+}
+
+@keyframes spinnerAnimationComplete {
+  0.00% { content: "\E100"; }
+  0.84% { content: "\E101"; }
+  1.68% { content: "\E102"; }
+  2.52% { content: "\E103"; }
+  3.36% { content: "\E104"; }
+  4.20% { content: "\E105"; }
+  5.04% { content: "\E106"; }
+  5.88% { content: "\E107"; }
+  6.72% { content: "\E108"; }
+  7.56% { content: "\E109"; }
+  8.40% { content: "\E10A"; }
+  9.24% { content: "\E10B"; }
+  10.08% { content: "\E10C"; }
+  10.92% { content: "\E10D"; }
+  11.76% { content: "\E10E"; }
+  12.60% { content: "\E10F"; }
+  13.44% { content: "\E110"; }
+  14.28% { content: "\E111"; }
+  15.12% { content: "\E112"; }
+  15.96% { content: "\E113"; }
+  16.80% { content: "\E114"; }
+  17.64% { content: "\E115"; }
+  18.48% { content: "\E116"; }
+  19.32% { content: "\E117"; }
+  20.16% { content: "\E118"; }
+  21.00% { content: "\E119"; }
+  21.84% { content: "\E11A"; }
+  22.68% { content: "\E11B"; }
+  23.52% { content: "\E11C"; }
+  24.36% { content: "\E11D"; }
+  25.20% { content: "\E11E"; }
+  26.04% { content: "\E11F"; }
+  26.88% { content: "\E120"; }
+  27.72% { content: "\E121"; }
+  28.56% { content: "\E122"; }
+  29.40% { content: "\E123"; }
+  30.24% { content: "\E124"; }
+  31.08% { content: "\E125"; }
+  31.92% { content: "\E126"; }
+  32.76% { content: "\E127"; }
+  33.60% { content: "\E128"; }
+  34.44% { content: "\E129"; }
+  35.28% { content: "\E12A"; }
+  36.12% { content: "\E12B"; }
+  36.96% { content: "\E12C"; }
+  37.80% { content: "\E12D"; }
+  38.64% { content: "\E12E"; }
+  39.48% { content: "\E12F"; }
+  40.32% { content: "\E130"; }
+  41.16% { content: "\E131"; }
+  42.00% { content: "\E132"; }
+  42.84% { content: "\E133"; }
+  43.68% { content: "\E134"; }
+  44.52% { content: "\E135"; }
+  45.36% { content: "\E136"; }
+  46.20% { content: "\E137"; }
+  47.04% { content: "\E138"; }
+  47.88% { content: "\E139"; }
+  48.72% { content: "\E13A"; }
+  49.56% { content: "\E13B"; }
+  50.40% { content: "\E13C"; }
+  51.24% { content: "\E13D"; }
+  52.08% { content: "\E13E"; }
+  52.92% { content: "\E13F"; }
+  53.76% { content: "\E140"; }
+  54.60% { content: "\E141"; }
+  55.44% { content: "\E142"; }
+  56.28% { content: "\E143"; }
+  57.12% { content: "\E144"; }
+  57.96% { content: "\E145"; }
+  58.80% { content: "\E146"; }
+  59.64% { content: "\E147"; }
+  60.48% { content: "\E148"; }
+  61.32% { content: "\E149"; }
+  62.16% { content: "\E14A"; }
+  63.00% { content: "\E14B"; }
+  63.84% { content: "\E14C"; }
+  64.68% { content: "\E14D"; }
+  65.52% { content: "\E14E"; }
+  66.36% { content: "\E14F"; }
+  67.20% { content: "\E150"; }
+  68.04% { content: "\E151"; }
+  68.88% { content: "\E152"; }
+  69.72% { content: "\E153"; }
+  70.56% { content: "\E154"; }
+  71.40% { content: "\E155"; }
+  72.24% { content: "\E156"; }
+  73.08% { content: "\E157"; }
+  73.92% { content: "\E158"; }
+  74.76% { content: "\E159"; }
+  75.60% { content: "\E15A"; }
+  76.44% { content: "\E15B"; }
+  77.28% { content: "\E15C"; }
+  78.12% { content: "\E15D"; }
+  78.96% { content: "\E15E"; }
+  79.80% { content: "\E15F"; }
+  80.64% { content: "\E160"; }
+  81.48% { content: "\E161"; }
+  82.32% { content: "\E162"; }
+  83.16% { content: "\E163"; }
+  84.00% { content: "\E164"; }
+  84.84% { content: "\E165"; }
+  85.68% { content: "\E166"; }
+  86.52% { content: "\E167"; }
+  87.36% { content: "\E168"; }
+  88.20% { content: "\E169"; }
+  89.04% { content: "\E16A"; }
+  89.88% { content: "\E16B"; }
+  90.72% { content: "\E16C"; }
+  91.56% { content: "\E16D"; }
+  92.40% { content: "\E16E"; }
+  93.24% { content: "\E16F"; }
+  94.08% { content: "\E170"; }
+  94.92% { content: "\E171"; }
+  95.76% { content: "\E172"; }
+  96.60% { content: "\E173"; }
+  97.44% { content: "\E174"; }
+  98.28% { content: "\E175"; }
+  99.16% { content: "\E176"; }
+  100% { content: "\E176"; }
+}
+
+.downloadProgress:indeterminate::-moz-progress-bar {
+  width: calc(100% + 2px);
+  background-color: var(--download-progress-fill-color);
+  background-image: linear-gradient(90deg, transparent 0%, var(--download-progress-flare-color) 25%, transparent 50%, var(--download-progress-flare-color) 75%, transparent 100%);
+  background-blend-mode: normal;
+  background-size: 200% 100%;
+  animation: downloadProgressSlideX 1.5s linear infinite;
+}
+
+#downloadsPanel-blockedSubview {
+  padding-bottom: 0px !important;
+
+  & h1 {
+    font-weight: normal !important;
+    color: var(--textSecondary) !important;
+    font-size: 12px !important;
+  }
+
+  & toolbarseparator {
+    display: none !important;
+  }
+
+  & description {
+    padding-inline: 10px !important;
+  }
+
+  & #downloadsPanel-blockedSubview-title {
+    margin-top: -10px !important;
+  }
+
+  & #downloadsPanel-blockedSubview-details2 {
+    margin-bottom: 9px !important;
+  }
+}
+
+#downloadsFooter {
+  border-top: 1px solid var(--dropdownSeparator) !important;
+  margin-top: -4px !important;
+}
+
+#downloadsFooterButtons button {
+  margin: 17px 17px 15px !important;
+  padding-block: 7px !important;
+  height: 30px !important;
+  max-height: 30px !important;
+}
+#downloadsFooterButtons button:not(:first-of-type) {
+  margin-top: -8px !important;
+}
+
+#downloadsFooterButtons .button-text,
+#emptyDownloads{
+  margin-inline: auto !important;
+}
+#downloadsFooterButtons .button-icon {
+  display: none !important;
+}
+#emptyDownloads {
+  color: var(--textSecondary) !important;
+}
+
+/* Remove double border when using clear downloads button JS */
+#downloadsFooterButtons > toolbarseparator {
+  display: none !important;
+}
+#clearDownloadsPanel {
+  border: none !important;
+}
+/* Custom title */
+#downloadsListBox::before {
+  content: 'Downloads';
+  font-weight: 600;
+  font-size: 14px;
+  margin: 7px 0 0 11.5px;
+  color: var(--textSecondary);
+}
+
+/* Downloaded items */
+#downloadsListBox richlistitem {
+  background-color: var(--cardBG) !important;
+  outline: 1px solid var(--cardOutline) !important;
+  margin-inline: 13px !important;
+  border-radius: 3px !important;
+  margin-block: 3px !important;
+  animation: contentSlideUp .333s cubic-bezier(0, 0, 0, 1) !important;
+  line-height: 10px !important;
+}
+#downloadsListBox richlistitem:first-of-type {
+  margin-top: 13px !important;
+}
+#downloadsListBox richlistitem:last-of-type {
+  margin-bottom: 19px !important;
+}
+.downloadTypeIcon {
+  height: 24px !important;
+  width: 24px !important;
+  margin-right: 12px !important;
+}
+
+@keyframes contentSlideUp {
+  0% {
+    transform: translateY(150%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Unfilled progress bar should be thinner - Hack */
+.downloadProgress {
+  height: 3px !important;
+  background-color: transparent !important;
+  background-image: linear-gradient(to bottom, transparent 25%, var(--progressBar) 50%, transparent 75%) !important;
+}
+
+/* Identity panel */
+#identity-popup-mainView {
+  background-image: var(--acrylic) !important;
+}
+#identity-popup-mainView-panel-header h1 {
+  margin-top: 3px !important;
+}
+#identity-popup-mainView toolbarseparator:not(:first-child) {
+  display: none !important;
+}
+#identity-popup-mainView .panel-subview-body image {
+  margin-inline: -2px -6px !important;
+}
+#identity-popup-clear-sitedata-button {
+  margin: 15px 17px 13px !important;
+  height: 30px !important;
+}
+
+#identity-popup {
+  margin-top: -20px !important;
+}
+
+/* Security panel */
+#identity-popup-securityView h1 {
+  margin-left: 4px !important;
+}
+#identity-popup-securityView toolbarseparator:not(:first-child) {
+  display: none !important;
+}
+#identity-popup-more-info {
+  margin: 15px 17px 17px !important;
+  height: 30px !important;
+}
+#identity-popup-more-info .toolbarbutton-icon {
+  display: none !important;
+}
+#identity-popup-more-info .toolbarbutton-text {
+  text-align: center !important;
+}
+
+/* DRM panel */
+#notification-popup {
+  margin-top: -22px !important;
+  
+  & * {
+    font-weight: normal !important;
+  }
+}
+
+/* Translator panel */
+.translations-panel-header-wrapper {
+  margin-top: 15px !important;
+}
+.translations-panel-beta-icon {
+  display: none !important;
+}
+
+/* Bookmark panel */
+#editBMPanel_namePicker {
+  outline: none !important;
+  border: none !important;
+  border-radius: 3px !important;
+  background-color: var(--button) !important;
+}
+#editBMPanel_namePicker:hover {
+  background-color: var(--searchHover) !important;
+}
+#editBMPanel_namePicker:active {
+  background-color: var(--buttonPressed) !important;
+} 
+#editBMPanel_namePicker:focus-within {
+  background-color: var(--searchActive) !important;
+}
+#editBookmarkHeaderSeparator {
+  display: none !important;
+}
+#editBookmarkPanel {
+  margin-top: -21px !important;
+  
+  & h1 {
+    font-weight: 600 !important;
+    color: var(--textSecondary) !important;
+    padding-top: 12px !important;
+  }
+}
+
+/* General notification panels positioning */
+.popup-notification-panel {
+  padding-top: 2px !important;
+  
+  & .popup-notification-description {
+    font-weight: 600 !important; /* Doesn't work */
+    color: var(--textSecondary) !important;
+  }
+  
+  & .popup-notification-footer-container {
+    margin-top: 16px !important;
+    
+    & .button-text {
+      padding: 20px !important;
+    }
+  }
+  
+  & input {
+    outline: none !important;
+    border: none !important;
+    border-radius: 3px !important;
+    background-color: var(--button) !important;
+    
+    &:hover {
+      background-color: var(--searchHover) !important;
+    }
+    &:active {
+      background-color: var(--buttonPressed) !important;
+    }
+    &:focus-within {
+      background-color: var(--searchActive) !important;
+    }
+  }
+}
+
+/* Password panel */
+#password-notification {
+  & h3 {
+    color: red !important;
+  }
+  
+  /*& #password-notification-username, #password-notification-password {
+    outline: none !important;
+    border: none !important;
+    border-radius: 3px !important;
+    background-color: var(--button) !important;
+    
+    &:hover {
+      background-color: var(--searchHover) !important;
+    }
+    &:active {
+      background-color: var(--buttonPressed) !important;
+    }
+    &:focus-within {
+      background-color: var(--searchActive) !important;
+    }
+  }*/
+}
+
+/* Move the reveal password button */
+#password-notification-password {
+  padding-right: 10px !important;
+}
+
+#notification-popup-box {
+  &:hover:active, &[open] {
+    background-color: var(--textButtonHover) !important;
+  }
+}
+
+.footer-button {
+  &[type="menu"] > .button-box > .button-menu-dropmarker {
+    content: url(icons/chevron-down.svg) !important;
+    fill: var(--textPrimary) !important;
+    margin-left: 0px !important;
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+
+/* Tab preview panel */
+.tab-preview-text-container {
+  padding: 12px 16px 15px 16px !important;
+  background-image: var(--acrylic) !important;
+}
+
+.tab-preview-thumbnail-container canvas {
+  /* Default */
+  /*height: 140px !important;
+  width: 280px !important;*/
+
+  background-color: transparent !important;
+  height: 126px !important;
+  width: 264px !important;
+  border-radius: 3px !important;
+  margin: 0 9px 0 8px !important;
+}
+.tab-preview-thumbnail-container {
+  border: none !important;
+  background-color: var(--commonBackground) !important;
+  background-image: var(--acrylic) !important;
+  margin-bottom: -6px !important;
+  margin-top: -7px !important;
+}
+
+.tab-preview-title {
+  font-weight: 400 !important;
+  margin-bottom: 4px !important;
+}
+.tab-preview-uri {
+  opacity: .6 !important;
+}
+
+/* Different animation speeds for tabs with and without preview images */
+#tab-preview-panel[animate="open"] {
+  animation: panelSlide2 .9s cubic-bezier(0, 0, 0, 1) !important;
+  
+  & * {
+    color: var(--textPrimary) !important;
+  }
+  
+  &:not(:has(canvas)) {
+    & .tab-preview-title, .tab-preview-uri {
+      animation: extremeSlideDown .35s cubic-bezier(0, 0, 0, 1) !important;
+      transform-origin: top center !important;
+    }
+  }
+
+  &:has(canvas) {
+    animation: panelSlide2 .5s cubic-bezier(0, 0, 0, 1) !important;
+    transform-origin: top center !important;
+
+    & .tab-preview-title {
+      animation: panelContentSlide3 .35s cubic-bezier(0, 0, 0, 1) !important;
+      transform-origin: top center !important;
+    }
+    & .tab-preview-uri {
+      animation: extremeSlideDown .35s cubic-bezier(0, 0, 0, 1) !important;
+      transform-origin: top center !important;
+    }
+    & canvas {
+      animation: subtleSlideDown .3s cubic-bezier(0, 0, 0, 1) !important;
+      transform-origin: top center !important;
+    }
+  }
+}
+
+@keyframes subtleSlideDown {
+  0% {
+    transform: translateY(-45%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes extremeSlideDown {
+  0% {
+    transform: translateY(-180%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Footer */
+.panel-footer {
+  background-color: var(--footer) !important;
+  border-top: 1px solid var(--footerBorder) !important;
+  margin: 4px 0 0 0 !important;
+  padding-block: 16px !important;
+  padding-inline: 10px 12px !important;
+}
+
+.panel-footer button {
+  width: -moz-available !important;
+  margin-inline: 4.5px !important;
+  padding-bottom: auto !important;
+  font-size: 12.5px !important;
+}
+
+/* Back/forward panels */
+#back-button menupopup,
+#forward-button menupopup {
+  margin-top: -16px !important;
+}
+#back-button menupopup {
+  padding-left: 9px !important;
+}
+#forward-button menupopup {
+  padding-left: 13px !important;
+}
+
+/* Minor panel margin adjustments */
+.panel-header {
+  margin-block: 2px -2px !important;
+  padding-top: 0 !important;
+}
+/* Ensure all panels have the same margin from the top of the screen when opened */
+#unified-extensions-panel {
+  margin-top: -22px !important;
+}
+#editBookmarkPanel {
+  margin-top: -20px !important;
+}
+#identity-popup {
+  margin-top: -19px !important;
+}
+
+.PanelUI-remotetabs-clientcontainer {
+  margin-block: 2px !important;
+}
+label[itemtype="client"] {
+  margin-left: 14px !important;
+  margin-bottom: 8px !important;
+}
+.PanelUI-tabitem-container .subviewbutton-iconic {
+  margin-left: -4px !important;
+}
+#appMenu-fxa-status2 .subviewbutton,
+#appMenu-empty-profiles-button,
+#appMenu-quit-button2 {
+  height: 28px !important;
+}
+#appMenu-fxa-status2 {
+  background: transparent !important;
+}
+#appMenu-quit-button2::before {
+  margin-block: auto !important;
+}
+/* Fix close remote tab button */
+.remote-tabs-close-button {
+  width: 30px !important;
+  padding-inline: 7px !important;
+  margin-inline: 0 -4px !important;
+}
+
+panel toolbarseparator {
+  border-color: var(--dropdownSeparator) !important;
+}
+
+/* Basic animations */
+#unified-extensions-panel[animate="open"],
+#editBookmarkPanel[animate="open"],
+#identity-popup[animate="open"] {
+  animation: panelSlide2 .5s cubic-bezier(0,0,0,1) !important;
+  transform-origin: top center !important;
+}
+#unified-extensions-panel[animate="open"],
+#editBookmarkPanel[animate="open"] {
+  & toolbarbutton,
+  & toolbarseparator,
+  & vbox,
+  & box {
+    animation: panelContentSlide2 .34s cubic-bezier(0,0,0,1) !important;
+    transform-origin: top center !important;
+  }
+}
+
+/* Different animation speeds for empty & filled downloads panel */
+#downloadsPanel[animate="open"] {
+  animation: panelSlide2 .65s cubic-bezier(0,0,0,1) !important;
+  transform-origin: top center !important;
+  
+  & toolbarbutton,
+  & toolbarseparator,
+  & vbox,
+  & box {
+    animation: panelContentSlide2 .24s cubic-bezier(0,0,0,1) !important;
+    transform-origin: top center !important;
+  }
+}
+
+#downloadsPanel:has(richlistitem)[animate="open"] {
+  animation: panelSlide2 .58s cubic-bezier(0,0,0,1) !important;
+  
+  & toolbarbutton,
+  & toolbarseparator,
+  & vbox,
+  & box {
+    animation: panelContentSlide3 .34s cubic-bezier(0,0,0,1) !important;
+    transform-origin: top center !important;
+  }
+}
+
+#editBookmarkPanel[animate="open"] {
+  h1 {
+    animation: panelContentSlide .36s cubic-bezier(0,0,0,1) !important;
+  }
+}
+
+#unified-extensions-panel[animate="open"] {
+  & box > toolbarbutton {
+    animation: none !important;
+  }
+}
+
+#identity-popup[animate="open"] {
+  & toolbarbutton,
+  & toolbarseparator,
+  & vbox,
+  & box {
+    animation: panelContentSlide3 .22s cubic-bezier(0,0,0,1) !important;
+    transform-origin: top center !important;
+  }
+}
+
+@keyframes panelSlide2 {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    transform: scaleY(1);
+  }
+  100% {
+    clip-path: inset(0 -16px -16px -16px);
+    transform: scaleY(1);
+  }
+}
+@keyframes panelContentSlide2 {
+  0% {
+    transform: translateY(-45%) scaleY(1);
+  }
+  100% {
+    transform: translateY(0px) scaleY(1);
+  }
+}
+@keyframes panelContentSlide3 {
+  0% {
+    transform: translateY(-75%) scaleY(1);
+  }
+  100% {
+    transform: translateY(0px) scaleY(1);
+  }
+}
+
+/* Selectable richlist dropdown */
+#ContentSelectDropdownPopup {
+  animation: richlistSlide .333s forwards !important;
+  transform-origin: bottom !important;
+  
+  & * {
+    animation: richlistContentSlide .2s cubic-bezier(0, 0, 0, 1) !important;
+    transform-origin: top !important;
+  }
+}
+
+@keyframes richlistSlide {
+  0% {
+    clip-path: inset(0 0 50% 0);
+  }
+  100% {
+    clip-path: inset(0 -16px -20px -16px);
+  }
+}
+@keyframes richlistContentSlide {
+  0% {
+    transform: translateY(-500%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* Remove fade-out close animation */
+@media not -moz-pref("uc.winui.extra-animations") {
+  #unified-extensions-panel:not([animate="open"]),
+  #downloadsPanel:not([animate="open"]),
+  #editBookmarkPanel:not([animate="open"]),
+  #identity-popup:not([animate="open"]),
+  #appMenu-popup:not([animate="open"]),
+  #tab-preview-panel:not([animate="open"]) {
+    transition: none !important;
+  }
+}
+
+#appMenu-fxa-status2[fxastatus] > #appMenu-fxa-label2 > vbox > #appMenu-header-description, 
+#appMenu-fxa-text {
+  font-weight: normal !important;
+}
+
+#appMenu-multiView {
+  background-image: var(--acrylic) !important;
+  font-size: 13px !important;
+}
+
+/* Sidebar */
+window#webextpanels-window {
+  background: transparent !important;
+}
+/* Remove border */
+.sidebar-splitter {
+  --splitter-width: 1px !important;
+  border-inline-end-width: 0px !important;
+}
+#sidebar-box {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-right: 1px solid var(--footerBorder) !important;
+  background-color: var(--frameBG) !important;
+}
+#sidebar {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+#sidebar-header {
+  margin-top: -6px !important;
+  border-bottom: none !important;
+}
+
+/* Usage selector */
+#sidebar-switcher-target {
+  margin-block: 7px 1px !important;
+  margin-left: 1px !important;
+  border-radius: 3px !important;
+  transition: var(--basicBGAnimation) !important;
+  padding-inline: 8px !important;
+  padding-bottom: 3px !important;
+  background-color: var(--button) !important;
+  font-size: 14px !important;
+  height: 28px !important;
+  
+  &:hover {
+    background-color: var(--buttonHover) !important;
+  }
+  &:active {
+    background-color: var(--buttonPressed) !important;
+    color: var(--textSecondary) !important;
+    
+    & #sidebar-switcher-arrow {
+      animation: bounceDown 167ms cubic-bezier(0, 0, 0, 1) !important;
+    }
+  }
+  
+  & #sidebar-switcher-arrow {
+    margin-left: 4px !important;
+  }
+}
+
+@keyframes bounceDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#sidebar-close {
+  margin-top: 6px !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 4px !important;
+  transition: var(--basicBGAnimation) !important;
+  
+  & .toolbarbutton-icon {
+    width: 12px;
+  }
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Sidebar search bar */
+#sidebar-search-container {
+  margin-inline: 8px !important;
+}
+
+.sidebar-panel:not([lwt-sidebar]) {
+  & #sidebar-search-container > #search-box {
+    background-color: var(--searchBackground) !important;
+    color: var(--textSecondary) !important;
+    border: none !important;
+    border-radius: 3px !important;
+    height: 30px !important;
+    
+    &:hover {
+      background-color: var(--searchHover) !important;
+    }
+    &:focus-within {
+      background-color: var(--searchActive) !important;
+      outline: none !important;
+    }
+  }
+}
+/* This is misaligned in the sidebar synced tabs search bar */
+.textbox-search-sign, .textbox-search-icon {
+  list-style-image: url(icons/search-glass.svg) !important;
+  -moz-context-properties: fill !important;
+  height: 14px !important;
+  order: 1 !important;
+  fill: var(--textSecondary) !important;
+  margin-top: 2px !important;
+}
+input[inputmode="search"] {
+  color: var(--textPrimary) !important;
+  font-size: 13px !important;
+  margin-bottom: 1px !important;
+}
+
+.tabsFilter {
+  margin-inline: 8px !important;
+  height: 30px !important;
+}
+
+/* Right-side dropdown button */
+.sidebar-panel:not([lwt-sidebar]) {
+  & #sidebar-search-container >  #viewButton {
+    appearance: none !important;
+    background-color: var(--button) !important;
+    color: var(--textPrimary) !important;
+    border: none !important;
+    border-radius: 3px !important;
+    margin-left: 8px !important;
+    font-size: 13px !important;
+    
+    &:focus-within {
+      outline: none !important;
+    }
+    
+    & menupopup {
+      margin-left: -16px !important;
+    }
+    & .box-inherit {
+      margin-top: -1px !important;
+    }
+  }
+}
+/* Dropdown arrow */
+.button-menu-dropmarker {
+  margin-left: 8px !important;
+  color: var(--textPrimary) !important;
+}
+button:active {
+  & .button-menu-dropmarker {
+    animation: bounceDown 167ms cubic-bezier(0, 0, 0, 1) !important;
+  }
+}
+
+/* Side panel */
+#sidebar-main {
+  background-color: var(--frameBG) !important;
+  border-right: 1px solid var(--footerBorder) !important;
+}
+
+.sidebar-panel-header {
+  margin-top: -8px !important;
+}
+
+/* Adjust settings icon bottom margin */
+button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
+  margin-bottom: 4px !important;
+}
+
+/* Icons - help wanted */
+.button-background {
+  background-color: transparent !important;
+  & img, &[type~="icon"]:not(.labelled) {
+    fill: var(--textPrimary) !important;
+    
+    &:hover {
+      background: var(--textButtonHover) !important;
+      transition: var(--basicBGAnimation) !important;
+    }
+  }
+}
+
+/* Remove permission icon in URL bar */
+#identity-permission-box {
+  display: none !important;
+}
+
+/* Hide tracking protection icon */
+#tracking-protection-icon-container {
+  display: none !important;
+}
+
+/* Remove extension page label in URL bar */
+#identity-box.extensionPage #identity-icon-label {
+  display: none !important;
+}
+
+/* Extension badges */
+.toolbarbutton-badge {
+  background-color: var(--accentAuto) !important;
+  font-weight: normal !important;
+  box-shadow: none !important;
+  color: var(--textInverse) !important;
+  border-radius: 99px !important;
+  min-width: 1px !important;
+  max-width: 32px !important;
+  padding: 0 3px 1px !important;
+  position: absolute !important;
+  transform: translateX(-8px) !important;
+}
+#unified-extensions-area .toolbarbutton-badge {
+  transform: translateX(8px) !important;
+}
+
+/* Remove cog icon from extensions flyout as it is the same from the context menu */
+#unified-extensions-view .unified-extensions-item-menu-button {
+  display: none !important;
+}
+
+/* Private browsing indicator */
+.private-browsing-indicator-with-label {
+  margin-inline: 0 8px !important;
+  padding-inline: 3px 5px !important;
+  background: var(--accentAuto) !important;
+  border-radius: 99px !important;
+  font-weight: 400 !important;
+  margin-top: 6px !important;
+  height: 28px !important;
+
+  & > label { /* Original label */
+    display: none;
+  }
+
+  &::after { /* Custom label */
+    content: "Private";
+    margin-inline: 6px;
+    padding-bottom: .1em !important;
+    color: var(--textInverse) !important;
+  }
+}
+
+.private-browsing-indicator-icon {
+  height: 22px !important;
+  width: 22px !important;
+}
+
+:root[sizemode="maximized"] .private-browsing-indicator-with-label {
+  margin-top: 2px !important;
+}
+
+/* Fix 2px extra padding in some areas */
+#PopupAutoComplete {
+  & > .autocomplete-richlistbox {
+    margin-block: -2px !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* Autologin pop up */
+#PopupAutoComplete {
+  margin-left: -26px !important;
+  margin-top: -32px !important;
+
+  & .autocomplete-richlistbox {
+    background-image: var(--acrylic) !important;
+    max-height: unset !important;
+  }
+  
+  & richlistitem[originaltype="importableLogins"] {
+    padding-left: 16px !important;
+    padding-top: 5px !important;
+  }
+  & richlistitem[originaltype="importableLearnMore"] {    
+    & description {
+      margin-left: -14px !important;
+      margin-top: -3px !important;
+      padding-top: 1px !important;
+      color: var(--accentAuto) !important;
+    }
+  }
+
+  & .autocomplete-richlistitem {
+    margin-inline: 10px !important;
+    border-radius: 4px !important;
+    padding-inline: 11px 0 !important;
+    padding-block: 1px !important;
+    margin-block: 2px !important;
+    
+    & .labels-wrapper {
+      margin-left: -5px !important;
+    }
+
+    & .line2-label {
+      color: var(--textSecondary) !important;
+    }
+    
+    & .ac-site-icon {
+      filter: grayscale(100) brightness(100)  !important;
+    }
+
+    & .ac-secondary-action {
+      appearance: none !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      width: 24px !important;
+      height: 24px !important;
+      margin-right: 6px !important;
+      
+      &:hover {
+        background-color: var(--textButtonHover) !important;
+      }
+      &:active {
+        background-color: var(--textButtonPressed) !important;
+        color: var(--textSecondary) !important;
+      }
+    }
+  }
+  & .autocomplete-richlistitem:first-of-type {
+    margin-top: 8px !important;
+  }
+
+  & .autocomplete-richlistitem[originaltype="loginsFooter"] {
+    height: 30px !important;
+    margin-block: 24px 16px !important;
+    margin-inline: 18px !important;
+
+    &::before {
+      margin-top: -18px !important;
+      width: 1000% !important;
+      left: -100% !important;
+      background-color: var(--dropdownSeparator) !important
+    }
+
+    & .ac-title {
+      margin-inline: auto !important;
+    }
+  }
+}
+
+#PopupAutoComplete > richlistbox > richlistitem {
+  &[originaltype="loginsFooter"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline-start: 4px;
+    width: calc(100% - 8px);
+    border-top: 1px solid var(--panel-separator-color);
+  }
+}
+
+menupopup, panel {
+  &::part(content) {
+    border-radius: 8px;
+  }
+}
+
+/* Space for panel shadows */
+panel {
+  --panel-shadow-margin: 24px !important;
+}
+menupopup {
+  --panel-shadow-margin: 0 !important;
+}
+
+#PopupSearchAutoComplete {
+  --panel-border-radius: 0 0 8px 8px !important;
+  --panel-border-color: transparent !important;
+}
+
+#PopupAutoComplete > richlistbox > richlistitem {
+  min-height: 32px !important;
+}
+
+/* Fix URL bar margin inside of pop up windows */
+:root[chromehidden~="toolbar"] #urlbar-container {
+  margin-inline: 8px !important;
+}
+
+/* Ctrl F - Adapted from Shimmer theme*/
+findbar {
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
+  background-image: var(--acrylic) !important;
+  border-top: none !important;
+  position: relative !important;
+	border-radius: 7px !important;
+	bottom: 60px !important;
+	margin-inline: auto !important;
+	width: 47.5rem !important;
+	height: 4rem !important;
+	display: flex !important;
+	align-items: space-evenly !important;
+	margin-top: -4rem !important;
+	transition: all 333ms ease-out !important;
+  outline: 1px solid rgba(117,117,117,.4) !important;
+}
+
+findbar[hidden]{
+	margin-bottom: 0 !important;
+	opacity: 0 !important;
+  animation: findbarIn 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+}
+
+findbar:not([hidden]) {
+	opacity: 1 !important;
+	background: light-dark(rgb(252,252,252), rgb(44,44,44)) !important;
+	-moz-appearance: none !important;
+	appearance: none !important;
+  animation: findbarOut 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+}
+
+@keyframes findbarOut {
+  0% {
+    transform: scale(0,0);
+  }
+  100% {
+    transform: scale(1,1);
+  }
+}
+@keyframes findbarIn {
+  0% {
+    transform: scale(1,1);
+  }
+  100% {
+    transform: scale(0,0);
+  }
+}
+
+.findbar-textbox {
+  height: 30px !important;
+  border-radius: 4px !important;
+  background-color: var(--button) !important;
+  border: 1px solid !important;
+  border-color: light-dark(rgba(0,0,0,.08), rgba(255,255,255,.02)) !important;
+  border-bottom-color: light-dark(rgba(0,0,0,.22), rgba(255,255,255,.02)) !important;
+  border-top-color: light-dark(rgba(0,0,0,.08), rgba(255,255,255,.045)) !important;
+  margin-block: auto !important;
+  
+  &:hover {
+    background-color: var(--searchHover) !important;
+  }
+  &:focus-within {
+    background-color: var(--searchActive) !important;
+    border-color: var(--searchActiveBorder) !important;
+    border-bottom: 2px solid var(--accentAuto) !important;
+  }
+  &[status="notfound"] {
+    outline: none !important;
+    &:focus-within {
+      border-bottom: 2px solid var(--criticalBadge) !important;
+    }
+  }
+}
+.findbar-textbox {
+  :root:not([lwtheme]) & {
+    box-shadow: none !important;
+  }
+}
+
+/* change text to icons for smaller findbar */
+.findbar-container checkbox::after {
+	height: 16px;
+	font-size: 14px;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	-moz-context-properties: fill;
+	fill: currentColor;
+	color: inherit;
+}
+.findbar-highlight::after {
+	content: 'Aa';
+	width: 14px;
+	height: 16px !important;
+  margin-left: 4px;
+  border: 1px solid var(--textTertiary);
+  padding: 0 6px 1px 4px;
+  border-radius: 2px;
+}
+.findbar-match-diacritics::after {
+	content: 'ąâ';
+  margin-left: 4px;
+}
+.findbar-entire-word::after {
+	content: 'Abc';
+  margin-left: 4px;
+}
+.findbar-case-sensitive::after {
+	content: 'Aa';
+  margin-left: 4px;
+}
+
+/* hide all text for findbar checkboxes */
+.findbar-container checkbox > .checkbox-label-box {
+	display: none !important;
+}
+.findbar-closebutton {
+  width: 26px !important;
+  height: 26px !important;
+  margin: auto 10px auto auto !important;
+}
+
+/* hide matched amount */
+.findbar-find-status, .found-matches {
+	display: none !important;
+}
+.found-matches::before {
+	z-index: 8 !important;
+}
+.found-matches::after {
+	position: absolute;
+	display: block;
+	content: '';
+	width: 1rem;
+	height: 1.5rem;
+	background: var(--toolbar-bgcolor, var(--toolbar-non-lwt-bgcolor)) !important;
+	right: -0.5rem;
+	top: 0.8rem;
+	transform: rotate(45deg);
+	box-shadow: 0 0 0px 1px var(--lwt-accent-color);
+	clip-path: inset(0 -0.3rem 0 0);
+}
+.findbar-textbox { 
+	z-index: 10 !important;
+}
+
+/* Dropdowns */
+menupopup#ContentSelectDropdownPopup {
+  margin-left: -14px !important;
+  color: var(--textPrimary) !important;
+}
+
+#ContentSelectDropdown > menupopup > menuitem > .menu-iconic-text {
+  margin-inline-start: -16px !important;
+}
+
+/* Fix back and forward buttons hover color */
+#forward-button[disabled]:hover > .toolbarbutton-icon,
+#back-button[disabled]:hover > .toolbarbutton-icon {
+  background-color: transparent !important;
+}
+
+/* Back/forward/refresh/add to favorites as listed options in context menu */
+#context-navigation:not([hidden]) {
+  display: flex;
+  flex-direction: column !important;
+  --menuitem-min-width: unset !important;
+  min-width: unset !important;
+  padding-bottom: 0px !important;
+}
+
+:is(#context-back,#context-forward,#context-reload,#context-stop,#context-bookmarkpage):after {
+  content: attr(aria-label) !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+#context-navigation > .menuitem-iconic {
+  -moz-box-pack: start !important; /* can not be replaced with box-pack yet */
+  flex: unset !important;
+  justify-content: unset !important;
+}
+
+#context-navigation :is(menu, menuitem, menucaption),
+:is(#context-back,#context-forward,#context-reload,#context-stop,#context-bookmarkpage) {
+  appearance: none !important;
+  min-height: unset !important;
+}
+#context-navigation > .menuitem-iconic[_moz-menuactive="true"]:not([disabled="true"]) > .menu-iconic-left > .menu-iconic-icon,
+#context-navigation > .menuitem-iconic[_moz-menuactive="true"][disabled="true"] > .menu-iconic-left > .menu-iconic-icon {
+  background-color: unset !important;
+}
+
+#context-navigation .menu-iconic-left[disabled="true"] >image {
+  color: var(--textDisabled) !important;
+}
+
+/* Fix window close button having an odd background color */
+.titlebar-close:hover,
+:root:not(:-moz-window-inactive) .titlebar-close:hover,
+:root:-moz-window-inactive .titlebar-close:hover {
+  background-color: #c42b1c !important;
+}
+
+/* Urlbar search mode indicator */
+#urlbar-search-mode-indicator {
+  height: 26px !important;
+  margin-top: 1px !important;
+  color: var(--textPrimary) !important;
+  font-weight: 600 !important;
+  padding-inline: 10px 6px !important;
+  border-radius: 99px !important;
+  outline: 1px solid var(--controlStroke) !important;
+
+  #urlbar[focused] > .urlbar-input-container > &,
+  #urlbar:not([focused]) > .urlbar-input-container > & {
+    background-color: var(--controlQuartenary) !important;
+  }
+}
+
+#urlbar-search-mode-indicator span {
+  margin-bottom: 2px !important;
+}
+
+#urlbar[breakout][breakout-extend][open] #urlbar-search-mode-indicator {
+  margin-top: 2px !important;
+}
+
+#urlbar-search-mode-indicator-close,
+#searchmode-switcher-close {
+  margin-left: 2px !important;
+  border-radius: 99px !important;
+
+  @media (prefers-contrast) {
+    fill-opacity: 1.0;
+  }
+
+  &:hover {
+    background-color: var(--urlbar-box-hover-bgcolor);
+
+    &:active {
+      background-color: rgba(0,0,0,.1) !important;
+    }
+  }
+}
+
+/* Bookmarks bar */
+#PersonalToolbar {
+  height: 32px !important;
+  padding-inline: 6px !important;
+  padding-block: 0 !important;
+
+  /* Fix arrow vertical position */
+  & .toolbarbutton-1 {
+    align-items: center !important;
+  }
+}
+#personal-toolbar-empty-description, toolbarbutton.bookmark-item:not(.subviewbutton) {
+  padding-inline: 4px 6px !important;
+  margin-block: 4px !important;
+}
+
+.bookmark-item:not(menu, menuitem) {  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Dialog boxes */
+dialog:not(#window-modal-dialog) {
+  background-color: var(--commonBackground) !important;
+  & #titleContainer {
+    & #titleText {
+      font-weight: 600 !important;
+    }
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(110%,110%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(100%, 100%);
+  }
+}
+
+:root[subdialog] {
+  & dialog {
+    max-width: unset !important;
+    min-width: 500px !important;
+  }
+}
+
+.dialogOverlay, .dialogOverlay-25 {
+  animation: fadeInScale .333s ease-out !important;
+}
+
+#description-box {
+  font-size: 14px !important;
+
+  & #description {
+    margin-inline: 8px !important;
+    font-weight: 600 !important;
+    margin-top: 11px !important;
+  }
+
+  & .text-link {
+    margin-left: 7px !important;
+  }
+}
+
+#rememberContainer {
+  margin-left: 12px !important;
+  margin-top: -6px !important;
+}
+#remember-text {
+  margin-block: 8px 17px !important;
+}
+
+#items {
+  margin-inline: 4.5px 5px !important;
+  border: none !important;
+  background: transparent !important;
+  border-radius: 8px !important;
+}
+#items richlistitem {
+  color: var(--textPrimary) !important;
+  margin: 4px 3px 2px !important;
+  border-radius: 4px !important;
+}
+#items richlistitem[selected="true"] {
+  background: var(--buttonHover) !important;
+  color: var(--textPrimary) !important;
+}
+#items richlistitem[selected="true"]::before {
+  content: '';
+  height: 16px;
+  background-color: var(--accentAuto);
+  width: 3px;
+  position: absolute;
+  border-radius: 99px;
+  animation: selectorBar 187ms forwards;
+}
+
+.name {
+  font-weight: normal !important;
+  margin-left: -16px !important;
+}
+label[data-l10n-id="choose-other-app-description"] {
+  margin-left: 15px !important;
+}
+
+#titleContainer {
+  margin-left: 12px !important;
+  margin-top: 13px !important;
+  margin-bottom: 10px !important;
+  text-transform: capitalize !important;
+}
+
+#commonDialog, #commonDialogWindow {
+  background-color: var(--commonBackground) !important;
+  border-radius: 8px !important;
+}
+.titleIcon {
+  background-color: var(--commonBackground) !important;
+  display: none !important;
+}
+.dialogBox:not(.spotlightBox) {
+  outline: 1px solid rgba(117,117,117,.4) !important;
+}
+/* Causes some dialogues to take 100% of vh - Needs fixing
+.dialogBox {
+  min-height: calc(100% + 21px) !important;
+}*/
+#commonDialog[subdialog] description {
+  margin-inline: 12px !important;
+}
+
+#dialogGrid {  
+  & #titleContainer {
+    font-size: 16px !important;
+    margin-top: 9px !important;
+  }
+  
+  & #infoRow {
+    margin-bottom: -10px !important;
+    padding-top: 12px !important;
+    margin-left: 10px !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    font-size: 14px !important;
+  }
+  
+  & #infoBody {
+    min-height: 16px !important;
+    transform: translateY(-10px) !important;
+  }
+  
+  & checkbox {
+    font-size: 14px !important;
+  }
+}
+
+.dialog-button-box {
+  background-color: var(--footer) !important;
+  border-top: 1px solid var(--footerBorder) !important;
+  margin-inline: -12px !important;
+  margin-block-end: -16px !important;
+  padding-block-start: 10px !important;
+  min-width:  unset !important;
+
+  margin-block-start: -12px !important;
+  padding-block-start: 24px !important;
+  padding-block-end: 14px !important;
+  padding-inline: 14px !important;
+  margin-top: 24px !important;
+  
+  & button {
+    height: 32px !important;
+    font-size: 14px !important;
+    padding-inline: auto !important;
+    overflow: visible !important;
+  }
+}
+
+#reset-pbm-panel-header description {
+  font-weight: 400 !important;
+}
+
+/* Fix end private session dialog footer */
+#reset-pbm-panel-footer {
+  margin-inline: -16px !important;
+}
+
+#checkboxContainer {
+  margin-left: 8px !important;
+  margin-top: 5px !important;
+  margin-bottom: 11px !important;
+}
+
+.dialog-button-box button {
+  margin-bottom: 10px !important;
+  width: -moz-available !important;
+  font-weight: normal !important;
+  background-color: var(--button) !important;
+  margin-inline: 8px !important;
+}
+
+.dialog-button-box button:not([dlgtype="accept"]):hover {
+  background-color: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+}
+.dialog-button-box button[dlgtype="accept"], #customization-done-button {
+  margin-left: 10px !important;
+  padding-block: 8px !important;
+}
+
+.dialog-button-box button[dlgtype="cancel"] {
+  margin-inline: 0 10px !important;
+}
+.popup-notification-learnmore-link, .text-link {
+  margin-bottom: 12px !important;
+  color: var(--accentAuto) !important;
+}
+.popup-notification-body :is(checkbox){
+  margin-block: 8px !important;
+}
+
+.panel-info-button {
+  transform: translate(-11px, 9px) !important;
+}
+
+
+.in-menulist menuitem label {
+  padding-left: 16px !important;
+}
+
+.in-menulist menuitem[selected="true"]::before {
+  content: '' !important;
+  width: 3px !important;
+  height: 16px !important;
+  border-radius: 99px !important;
+  position: relative !important;
+  display: block !important;
+  margin-inline: -10px 7px !important;
+  animation: selectorBar 187ms forwards !important;
+}
+.in-menulist menuitem[selected="true"] {
+  background-color: var(--textButtonPressed) !important;
+  
+  & label {
+    transform: translate(0, 0) !important;
+  }
+}
+
+@keyframes selectorBar {
+  0% {
+    opacity: 0;
+    transform: scale(100%,0%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(100%,100%);
+  }
+}
+@keyframes selectorBar2 {
+  0% {
+    opacity: 0;
+    transform: scale(0%,100%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(100%,100%);
+  }
+}
+
+#label-box {
+  margin-left: -8px !important;
+  font-weight: 400 !important;
+}
+
+tree {
+  background-color: var(--commonBackground) !important;
+  border: none !important;
+  margin-block: 2px !important;
+}
+
+/* In-url toolbar & other subtle buttons */
+.toolbarbutton-1 > .toolbarbutton-icon,
+.toolbarbutton-1 > .toolbarbutton-text,
+.toolbarbutton-1 > .toolbarbutton-badge-stack,
+:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+.urlbar-page-action,
+.identity-box-button,
+#tracking-protection-icon-container,
+.downloadButton,
+button[title="Close"]{
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+    color: var(--textSecondary) !important;
+  }
+}
+
+/* In-urlbar translator button */
+#translations-button {
+  & #translations-button-locale {
+    height: 16px !important;
+    border-radius: 3px !important;
+    padding-top: 0 !important;
+    color: var(--textInverse) !important;
+  }
+  &:has(#translations-button-icon) {
+    margin-right: -2px !important;
+    width: 50px !important;
+  }
+}
+
+/* Notification buttons */
+#notification-popup-box {
+  margin-block: auto !important;
+  border-radius: 4px !important;
+  height: 26px !important;
+
+  & image {
+    padding-inline: 16px !important;
+  }
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Default buttons */
+button:not([slot="primary"],
+.primary,
+[dlgtype="accept"],
+[data-l10n-id="choose-app-btn"],
+.downloadButton,
+[default="true"],
+[title="Close"]), 
+#editBookmarkPanelRemoveButton, 
+button.popup-notification-secondary-button,
+panel menulist,
+#unified-extensions-manage-extensions,
+#downloadsFooterButtons button,
+#identity-popup-clear-sitedata-button,
+#identity-popup-more-info,
+#PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]{
+  font-weight: normal !important;
+  background-color: var(--button) !important;
+  border-radius: 3px !important;
+  border: none !important;
+  appearance: none !important;
+  
+  &:hover {
+    background-color: var(--buttonHover) !important;
+    border-radius: 3px !important;
+  }
+  &:active {
+    background-color: var(--buttonPressed) !important;
+    border-radius: 3px !important;
+  }
+}
+
+button:active * {
+  opacity: .768 !important;
+}
+#editBMPanel_foldersExpander {
+  margin-left: 8px !important;
+}
+
+/* Accent color buttons */
+#editBookmarkPanelDoneButton,
+button.primary,
+#appMenu-update-banner,
+button[data-l10n-id="choose-app-btn"],
+button[slot="primary"],
+button[dlgtype="accept"],
+button[default="true"],
+.dialog-button-box button[dlgtype="accept"] {
+  box-shadow: none !important;
+  background-color: var(--accentAuto) !important;
+  color: var(--textInverse) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+  border-radius: 4px !important;
+  font-weight: normal !important;
+  appearance: none !important;
+  
+  &:hover {
+    background-color: var(--accentHover) !important;
+    box-shadow: none !important;
+  }
+  &:active {
+    background-color: var(--accentPressed) !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Panel login button */
+#appMenu-fxa-label2 label {
+  font-size: 13px !important;
+  font-weight: normal !important;
+  margin-bottom: 1px !important;
+}
+
+/* Update menu button icon color */
+.panel-banner-item {
+  &[notificationid="update-available"], &[notificationid="update-downloading"], &[notificationid="update-manual"], &[notificationid="update-other-instance"], &[notificationid="update-restart"] {
+    & > .toolbarbutton-icon {
+      fill: light-dark(white,black) !important;
+      margin: auto !important;
+    }
+  }
+}
+
+/* Check Box - Adapted from Firefox UWP */
+checkbox {
+  opacity: 1 !important;
+}
+checkbox > .checkbox-check, input[type="checkbox"] {
+  background-color: var(--controlAltSecondary) !important;
+  border: 1px solid var(--controlStrongStroke) !important;
+  background-clip: padding-box !important;
+  border-radius: 4px !important;
+  -moz-context-properties: fill !important;
+  fill: light-dark(#fff,#000) !important;
+  -moz-appearance: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0px !important;
+  box-shadow: none !important;
+  transition: background-color 43ms linear !important;
+}
+checkbox:hover > .checkbox-check, input[type="checkbox"]:hover {
+  background-color: var(--controlAltTertiary) !important;
+}
+checkbox:active > .checkbox-check, input[type="checkbox"]:active {
+  background-color: var(--controlAltQuartenary) !important;
+  border-color: var(--controlStrongStrokeDisabled) !important;
+}
+input[type="checkbox"]:checked, checkbox[checked="true"] > .checkbox-check {
+  background: var(--accentAuto) !important;
+  border-color: var(--accentAuto) !important;
+}
+input[type="checkbox"]:checked:hover, checkbox[checked="true"]:hover > .checkbox-check {
+  background-color: var(--accentHover) !important;
+  border-color: var(--accentHover) !important;
+}
+input[type="checkbox"]:checked:active, checkbox[checked="true"]:hover:active > .checkbox-check {
+  background-color: var(--accentPressed) !important;
+  border-color: var(--accentPressed) !important;
+  fill: light-dark(rgba(255,255,255,.7), rgba(0,0,0,.5)) !important;
+}
+checkbox[checked="true"] > .checkbox-check , input[type="checkbox"]:checked {
+  background-image: url("chrome://global/skin/icons/check.svg") !important;
+  background-repeat: no-repeat !important;
+  background-size: 12px !important;
+  background-position: center center !important;
+}
+input[type="checkbox"] {
+  margin-right: 10px !important;
+}
+input[type="checkbox"]:-moz-focusring {
+  outline: none !important;
+}
+.checkbox-label-box {
+  margin-left: 10px !important;
+}
+/* Check Box Disabled */
+checkbox[disabled="true"] > .checkbox-label-box {
+  color: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3614)) !important;
+}
+checkbox[disabled="true"] > .checkbox-check {
+  background-color: transparent !important;
+  border: 1px solid var(--controlStrongStrokeDisabled) !important;
+  fill: transparent !important;
+}
+checkbox[disabled="true"][checked="true"] > .checkbox-check, checkbox[disabled="true"][checked="true"]:is(:hover, :hover:active) > .checkbox-check  {
+  background-color: var(--controlStrongStrokeDisabled) !important;
+  border: var(--controlStrongStrokeDisabled) !important;
+  fill: light-dark(#fff,rgba(255,255,255,.53)) !important;
+}
+
+/* Toggle Switch */
+input[type="checkbox"].toggle-button, input[type="checkbox"] + .slider, .protections-popup-tp-switch, .toggle-button {
+  background-clip: padding-box !important;
+  background-color: var(--controlAltSecondary) !important;
+  background-image: none !important;
+  border: 1px solid var(--controlStrongStroke) !important;
+  border-radius: 12px !important;
+  padding: 9px !important;
+  padding-right: 32px !important;
+  width: 38px !important;
+  height: 18px;
+}
+.protections-popup-tp-switch {
+  padding: 3px !important;
+  padding-right: 26px !important;
+}
+input[type="checkbox"].toggle-button:hover, input[type="checkbox"]:hover + .slider, .protections-popup-tp-switch:hover, .toggle-button:hover {
+  background-color: var(--controlAltTertiary) !important;
+}
+input[type="checkbox"].toggle-button:active, input[type="checkbox"]:active + .slider, .protections-popup-tp-switch:active, .toggle-button:active {
+  background-color: var(--controlAltQuartenary) !important;
+}
+input[type="checkbox"].toggle-button:checked, input[type="checkbox"]:checked + .slider, .protections-popup-tp-switch[enabled], .toggle-button[aria-pressed="true"] {
+  background: var(--accentAuto) !important;
+  border-color: transparent !important;
+}
+input[type="checkbox"].toggle-button:checked:hover, input[type="checkbox"]:checked:hover + .slider, .protections-popup-tp-switch[enabled]:hover, .toggle-button[aria-pressed="true"]:hover {
+  background: var(--accentHover) !important;
+  border-color: transparent !important;
+}
+input[type="checkbox"].toggle-button:checked:active, input[type="checkbox"]:checked:active + .slider, .protections-popup-tp-switch[enabled]:active, .toggle-button[aria-pressed="true"]:active {
+  background-color: var(--accentPressed) !important;
+  border-color: transparent !important;
+}
+input[type="checkbox"].toggle-button::before, input + .slider::before, .protections-popup-tp-switch::before, .toggle-button::before {
+  background: var(--textSecondary) !important;
+  height: 12px !important;
+  width: 12px !important;
+  outline: none !important;
+  margin: 0px !important;
+  transition: transform 200ms, height 83ms linear, width 83ms linear !important;
+  transform: translateX(-6px) translateY(-6px) !important;
+}
+.protections-popup-tp-switch::before {
+  transform: none !important;
+}
+input[type="checkbox"].toggle-button:hover::before, input:hover + .slider::before, .protections-popup-tp-switch:hover::before, .toggle-button:hover::before {
+  height: 14px !important;
+  width: 14px !important;
+  transform: translateX(-7px) translateY(-7px) !important;
+}
+input[type="checkbox"].toggle-button:checked::before, input:checked + .slider::before, .protections-popup-tp-switch[enabled]::before, .toggle-button[aria-pressed="true"]::before {
+  background: light-dark(white,black) !important;
+  transform: translateX(-3px) translateY(-6px) !important;
+}
+input[type="checkbox"].toggle-button:checked:hover::before, input:hover:checked + .slider:hover::before, .protections-popup-tp-switch[enabled]:hover::before, .toggle-button[aria-pressed="true"]:hover::before {
+  transform: translateX(-4px) translateY(-7px) !important;
+}
+.protections-popup-tp-switch[enabled]::before {
+  transform: translateX(23px) !important;
+}
+input[type="checkbox"].toggle-button:checked:hover::before, input:hover:checked + .slider::before, .protections-popup-tp-switch[enabled]:hover::before {
+  background: AccentColorText !important;
+}
+.slider::before {
+  bottom: 0px !important;
+  inset-inline-start: 0px !important;
+}
+input[type="checkbox"] + .slider::before {
+  transform: translateX(2px) translateY(-3px) !important;
+}
+input[type="checkbox"]:checked + .slider::before {
+  transform: translateX(27px) translateY(-3px) !important;
+}
+
+/* Radio Button */
+radio {
+  opacity: 1 !important;
+}
+input[type="radio"] {
+  appearance: none !important;
+  background-clip: border-box !important;
+  background-color: var(--controlAltSecondary) !important;
+  border: 1px solid var(--controlStrongStroke) !important;
+
+  outline: none !important;
+  border-radius: 100% !important;
+  margin-right: 5px !important;
+  box-shadow: none !important;
+  width: auto !important;
+  height: auto !important;
+  list-style: none !important;
+}
+input[type="radio"]:hover {
+  background-color: var(--controlAltTertiary) !important;
+  border-color: var(--controlStrongStroke) !important;
+}
+input[type="radio"]:hover:active {
+  background-color: var(--controlAltQuartenary) !important;
+  border-color: var(--controlStrongStrokeDisabled) !important;
+}
+input[type="radio"]:checked {
+  background-color: var(--accentAuto) !important;
+  border-color: transparent !important;
+}
+input[type="radio"]:checked:hover {
+  background-color: var(--accentHover) !important;
+  border-color: transparent !important;
+}
+input[type="radio"]:checked:hover:active {
+  background-color: var(--accentPressed) !important;
+  border-color: transparent !important;
+}
+input[type="radio"]::before {
+  display: block !important;
+  content: "" !important;
+  background: transparent !important;
+  height: 8px !important;
+  width: 8px !important;
+  margin: 4px !important;
+  border-radius: 100% !important;
+  transition: all 43ms linear !important;
+}
+input[type="radio"]:hover::before {
+  height: 10px !important;
+  width: 10px !important;
+  margin: 3px !important;
+}
+input[type="radio"]:hover:active::before {
+  background: light-dark(#fff,#000) !important;
+}
+input[type="radio"]:checked::before {
+  background: light-dark(#fff,#000) !important;
+}
+input[type="radio"]:checked:hover::before {
+  background: light-dark(#fff,#000) !important;
+}
+input[type="radio"]:checked:hover:active::before {
+  background: Alight-dark(#fff,#000) !important;
+}
+input[type="radio"] + span {
+  position: relative !important;
+  bottom: 0px !important;
+}
+
+/* Old radio buttons */
+radio {
+  position: relative !important;
+}
+radio > .radio-check {
+  -moz-context-properties: fill !important;
+  appearance: none !important;
+
+  background-clip: padding-box !important;
+  background-color: var(--controlAltSecondary) !important;
+  border: 1px solid var(--controlStrongStroke) !important;
+  border-radius: 100% !important;
+
+  padding: 1px !important;
+  margin-right: 5px !important;
+  box-shadow: none !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+radio:hover > .radio-check {
+  background-color: var(--controlAltTertiary) !important;
+  border: 1px solid var(--controlStrongStroke) !important;
+}
+radio:hover:active > .radio-check {
+  background-color: var(--controlAltQuartenary) !important;
+  border: 1px solid var(--controlStrongStrokeDisabled) !important;
+}
+radio[selected="true"] > .radio-check {
+  fill: light-dark(#fff,#000) !important;
+  background-clip: border-box !important;
+  background-color: var(--accentAuto) !important;
+  border-color: transparent !important;
+}
+radio[selected="true"]:hover > .radio-check {
+  fill: light-dark(#fff,#000) !important;
+  background-color: var(--accentHover) !important;
+  border-color: transparent !important;
+}
+radio[selected="true"]:hover:active > .radio-check {
+  fill: light-dark(#fff,#000) !important;
+  background-color: var(--accentPressed) !important;
+  border-color: transparent !important;
+}
+
+radio[selected="true"]::before {
+  position: absolute !important;
+  left: 5px !important;
+  display: block !important;
+  content: "" !important;
+  background: light-dark(#fff,#000) !important;
+  height: 8px !important;
+  width: 8px !important;
+  border-radius: 100% !important;
+  transition: all 43ms linear !important;
+}
+
+/* Radio Button Disabled */
+radio[disabled="true"] > .radio-label-box {
+  color: var(--controlStrongStrokeDisabled) !important;
+}
+radio:is([disabled="true"], [disabled="true"][selected="true"]) > .radio-check {
+  background-color: var(--controlStrongStrokeDisabled) !important;
+  border: var(--controlStrongStrokeDisabled) !important;
+}
+radio:is([disabled="true"], [disabled="true"][selected="true"]):is(:hover, :hover:active) > .radio-check {
+  background-color: var(--controlStrongStrokeDisabled) !important;
+  border: var(--controlStrongStrokeDisabled) !important;
+}
+radio > .radio-label-box {
+  margin-left: 5px !important;
+  outline: none !important;
+}
+
+input[type="range"] {
+  -moz-appearance: none !important;
+  border: none !important;
+  background: var(--controlStrong) !important;
+  height: 2px !important;
+}
+input[type="range"]:hover {
+  background: var(--controlStrong) !important;
+}
+input[type="range"]::-moz-range-progress {
+  background: var(--accentAuto) !important;
+  height: 2px !important;
+}
+input[type="range"]::-moz-range-thumb {
+  background: var(--accentAuto) !important;
+  border: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+}
+
+/* Picture in Picture */
+html[windowtype="Toolkit:PictureInPicture"] { 
+  border-radius: 8px !important;
+}
+#picture-in-picture-button {
+  height: 24px !important;
+  
+  & .urlbar-icon {
+    margin-top: -24px !important;
+    list-style-image: none !important;
+    background: url("chrome://global/skin/media/picture-in-picture-open.svg") no-repeat center -2px !important;
+  }
+}
+
+/* Toolbar button states */
+.toolbarbutton-1:hover > .toolbarbutton-icon,
+.toolbarbutton-1:hover > stack{
+  background-color: var(--textButtonHover) !important;
+}
+.toolbarbutton-1:active > .toolbarbutton-icon,
+.toolbarbutton-1:active > stack,
+#downloads-button:active .toolbarbutton-badge-stack{
+  background-color: var(--textButtonPressed) !important;
+  fill: var(--textSecondary) !important;
+}
+
+/* Inactive window text colors */
+:root body {
+  --toolbar-color: var(--textPrimary) !important;
+  --toolbarbutton-icon-fill: var(--textPrimary) !important;
+
+  &:-moz-window-inactive {
+    --toolbar-color: var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
+    --toolbarbutton-icon-fill:  var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
+  }
+  #urlbar:-moz-window-inactive * {
+    color: var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
+  }
+}
+
+/* In address-bar icons positioning */
+:is(#urlbar-input-container, .urlbar-input-container) {
+  padding-inline: unset !important;
+}
+
+#star-button-box,
+#permissions-granted-icon,
+.identity-box-button,
+#reader-mode-button,
+#translations-button,
+#translations-button-circle-arrows{
+  height: 26px !important;
+  border-radius: 4px !important;
+}
+#star-button-box {
+  margin-right: 1px !important;
+}
+#star-button,
+#reader-mode-button-icon,
+#translations-button-icon,
+#translations-button-circle-arrows {
+  transform: translate(0, -2px) !important;
+}
+
+.identity-box-button {
+  margin-left: 1px !important;
+  margin-top: 1px !important;
+  border-radius: 4px !important;
+}
+
+#urlbar[breakout][breakout-extend][open] #reader-mode-button,
+#urlbar[breakout][breakout-extend][open] #star-button-box,
+#urlbar[breakout][breakout-extend][open] #identity-box,
+#urlbar[breakout][breakout-extend][open] #permissions-granted-icon {
+  margin-top: 1px !important;
+}
+
+/* Search website revert to address bar button */
+.urlbar-revert-button {
+  list-style-image: none !important;
+  background-image: url(icons/globe.svg);
+  background-size: 14px !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  height: 22px !important;
+  margin-top: 3px !important;
+  margin-right: 3px !important;
+}
+
+.urlbar-icon {
+  transition: var(--basicBGAnimation) !important;
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+#urlbar-searchmode-switcher {
+  height: 22px !important;
+  margin-top: 3px !important;
+  margin-inline: 3px 8px !important;
+  background-color: transparent !important;
+  transition: var(--basicBGAnimation) !important;
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+    & .toolbarbutton-combined-buttons-dropmarker {
+      fill: var(--textSecondary) !important;
+    }
+  }
+}
+
+/* Animate cog icon */
+#PanelUI-menu-button:hover > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+  transform: rotate(-15deg) !important;
+  transition: transform ease-in-out .33s !important;
+}
+#PanelUI-menu-button:active > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+  transform: rotate(360deg) !important;
+  transition: transform ease-in-out .92s !important;
+}
+#PanelUI-menu-button > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+  transition: transform linear 0s !important;
+}
+
+/* Basic WinUI URL results slide-up animation like in native apps */
+#urlbar-results {
+  animation: resultSlideUp 333ms cubic-bezier(0,0,0,1) !important;
+}
+
+@keyframes resultSlideUp {
+  0% {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+/* Prevent URL bar dropdown from showing if the user hasn't typed anything yet */
+#urlbar:not([usertyping]) .urlbarView {
+  display: none !important;
+}
+
+/* Accurate implementation of the bottom accent border when url bar is focused */
+#urlbar[breakout][breakout-extend]:not([usertyping]) > #urlbar-background,
+#urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background {
+  border-radius: 3px !important;
+}
+#urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background-color: var(--accentAuto);
+  position: absolute;
+  display: inline;
+  margin-top: 29px;
+  border-radius: 0 0 4px 4px;
+}
+/* Reposition in-url input and right-side icons in 136 and 137 */
+#urlbar-input, .urlbar-page-action {
+  margin-bottom: 1px !important;
+}
+#urlbar[breakout][breakout-extend] { 
+  & #urlbar-input, .urlbar-page-action {
+      margin-bottom: -1px !important;
+  }
+  & .urlbar-icon, #urlbar-searchmode-switcher {
+    margin-top: 4px !important;
+  }
+}
+
+/* Prevent in-url glyphs having a background color */
+#page-action-buttons image {
+  background-color: transparent !important;
+  
+  &:hover,:active {
+    background-color: transparent !important;
+  }
+}
+
+/* URL bar icons and notification icons color */
+.urlbar-icon:not(#translations-button-circle-arrows, #star-button[starred]),
+#identity-box {
+  fill-opacity: 1 !important;
+  fill: var(--textSecondary) !important;
+}
+.notification-anchor-icon {
+  fill-opacity: 1 !important;
+  width: 32px !important;
+  fill: var(--textSecondary);
+}
+
+/* 'Search with *' button inside the urlbar */
+.urlbarView-row[dynamicType="actions"] {
+  width: -moz-available !important;
+  height: 34px !important;
+  margin-block: 0 !important;
+  
+  & .urlbarView-action-btn {
+    background-color: transparent !important;
+    font-size: 13px !important;
+    font-weight: normal !important;
+    padding-left: 12px !important;
+    
+    & span {
+      margin-left: 8px !important;
+    }
+  }
+}
+
+toolbar .toolbaritem-combined-buttons:not(.unified-extensions-item) {
+  margin-inline: 50px !important;
+}
+
+/* Makes the urlbar dropdown scrollable - By MrOtherGuy */
+/* Modify the pref browser.urlbar.maxRichResults to set how many results should be shown */
+#urlbar-results{
+  max-height: 401px; /* Extra 1px to make the margins symmetrical */
+  overflow-y: auto;
+  scrollbar-color: var(--controlStrong) transparent;
+  scrollbar-width: thin;
+}
+.urlbarView-no-wrap{
+  position: relative;
+}
+
+/* Customize toolbar icons customization */
+#customization-container {
+  background-color: var(--frameBG) !important;
+  
+  & button {
+    min-width: 116px !important;
+  }
+}
+/* Minor change to customize toolbar header */
+#customization-header {
+  font-weight: normal !important;
+  font-size: 14px !important;
+}
+/* Icon buttons */
+#customization-palette toolbarpaletteitem {
+  background-color: var(--button) !important;
+  border-radius: 3px !important;
+  min-height: 96px !important;
+  width: 96px !important;
+  max-width: unset !important;
+  margin-block: 0 10px !important;
+  margin-inline: 0 10px !important;
+  transition: var(--basicBGAnimation) !important;
+  
+  &:hover {
+    background-color: var(--buttonHover) !important;
+  }
+  &:active {
+    background-color: var(--buttonPressed) !important;
+  }
+}
+
+/* Their titles */
+toolbarpaletteitem {
+  &[place="palette"] {
+    &::after {
+      content: attr(title);
+      display: block;
+      text-align: center;
+      margin-block: auto !important;
+    }
+  }
+}
+
+/* Move the icons and titles */
+#customization-palette toolbarpaletteitem toolbaritem,
+#customization-palette toolbarpaletteitem toolbarbutton{
+  margin-block: auto -8px !important;
+}
+
+/* Footer */
+#customization-footer {
+  background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
+  padding: 24px 24px 24px !important;
+  border-top: 1px solid var(--footerBorder) !important;
+}
+/* Move the 'manage themes' link when customizing the toolbar icons */
+#customization-lwtheme-link {
+  margin-block: auto !important;
+  margin-left: 16px !important;
+}
+/* Overflow indicator area */
+#customization-panelWrapper .panel-arrowcontent  {
+  border-radius: 8px !important;
+  outline: none !important;
+  border: none !important;
+  background-image: var(--acrylic) !important;
+  background-color: light-dark(rgba(255,255,255,.7), rgba(44,44,44,.4)) !important;
+  padding: 12px !important;
+}
+#customization-panelWrapper > .panel-arrowbox {
+  & > .panel-arrow[side="top"] {
+    fill: light-dark(rgba(255,255,255,.7), rgba(44,44,44,.75)) !important;
+    stroke: light-dark(rgba(0,0,0,.1), rgba(0,0,0,.2)) !important;
+    margin-top: -1px !important;
+    
+    &:-moz-window-inactive {
+      stroke: light-dark(rgba(0,0,0,.1), rgba(0,0,0,.3)) !important;
+      fill: light-dark(rgb(255,255,255), rgb(46,46,46)) !important;
+    }
+  }
+}
+
+/* AI selection pop up */
+#selection-shortcut-action-panel hbox {
+  background-color: light-dark(var(--commonBackground), color-mix(in srgb, var(--commonBackground), black 34.5%)) !important;
+  background-image: var(--acrylic) !important;
+  border: none !important;
+  outline: none !important;
+}
+img[src="chrome://global/skin/icons/highlights.svg"] {
+  display: none !important;
+}
+
+#ai-action-button {
+  margin: -2px !important; /* Hide shadow since the button inside #shadow-root can't be targeted */
+  padding: 2px !important;
+}
+
+#ai-action-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  background-image: url('icons/sparkle.svg') !important;
+  background-size: 16px !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  fill: var(--textPrimary) !important;
+  -moz-context-properties: fill !important;
+  transform: translate(-50%, -50%); /* Center the pseudo-element */
+  z-index: 1;
+  pointer-events: none !important;
+  background-color: transparent !important;
+}
+
+#chat-shortcuts-options-panel {
+  margin-block: -48px !important;
+  margin-left: 0px !important;
+  
+  & toolbarbutton {
+    font-size: 14px !important;
+
+    &:last-of-type {
+      & image {
+        display: none !important;
+      }
+      & label {
+        margin-left: -13px !important;
+      }
+    }
+  }
+  
+  & .ask-chat-shortcuts-custom-prompt {
+    background-color: var(--searchBackground) !important;
+		border-radius: 3px !important;
+    border: none !important;
+    margin: 6px !important;
+    
+    &:hover {
+      background-color: var(--searchHover) !important;
+    }
+    &:focus-within {
+      background-color: var(--searchActive) !important;
+    }
+  }
+  
+  & .panel-subview-body {
+    background-image: var(--acrylic) !important;
+  }
+}
+
+/* Navbar profile button */
+#fxa-toolbar-menu-button {
+  scale: 90%;
+  transition: transform 183ms linear !important;
+  
+  &:hover {
+    transform: scale(calc(100% - 10%)) !important;
+  }
+  &:hover:active, :active:hover {
+    transform: scale(calc(100% - 17%)) !important;
+  }
+  
+  /* Remove login badge */
+  .toolbarbutton-badge {
+    &.feature-callout {
+      display: none !important;
+    }
+  }
+}
+
+/* Logged out account image */
+#fxa-avatar-image[fxastatus="not_configured"] {
+  list-style-image: none !important;
+  background-color: var(--controlAltQuartenary) !important;
+  background-image: url("./icons/contact.svg");
+  background-size: 9px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -moz-context-properties: fill;
+  fill: var(--textButton);
+}
+
+#appMenu-empty-profiles-button .toolbarbutton-icon {
+  list-style-image: url(icons/contact.svg);
+  height: 16px;
+}
+
+#appMenu-fxa-label2[fxastatus="not_configured"] {
+  padding-left: 0 !important;
+  
+  &::before {
+    display: none !important;
+  }
+}
+
+#fxa-avatar-image {
+  box-shadow: 0 0 0 1px var(--footerBorder) inset !important;
+}
+
+/* Browser notification bar */
+#notifications-toolbar {
+  background-color: var(--frameBG) !important;
+}
+
+#notifications-toolbar notification-message {
+  background-color: var(--infoBG) !important;
+  padding-bottom: 10px !important;
+  border: none !important;
+  outline: 1px solid var(--footerBorder) !important;
+  border-radius: 4px !important;
+}
+
+strong {
+  font-weight: normal !important;
+}
+
+/* Remove gradient left-side border */
+notification-message::before {
+  background-image: none !important;
+}
+
+/* Links */
+a,
+.text-link,
+button.text-link:is(:not([disabled="true"]), :enabled),
+::part(support-link) {
+  border-radius: 4px !important;
+  transition: var(--basicBGAnimation) !important;
+  position: relative;
+
+  &::after {
+    content: '';
+    width: calc(100% + 8px);
+    height: 100%;
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    left: -4px;
+    border-radius: 4px;
+    padding-bottom: 2px;
+    transition: var(--basicBGAnimation) !important;
+  }
+  
+  &:hover::after {
+    background-color: var(--textButtonHover);
+  }
+
+  &:active {
+    color: var(--accentLight4) !important;
+  }
+  &:active::after {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Hack to prevent close button in #shadow-root from losing its glyph when hovered */
+button[title="Close"] {
+  background-image: url(icons/close.svg) !important;
+  background-size: 16px !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  border-radius: 4px !important;
+  -moz-context-properties: fill !important;
+  fill: var(--textPrimary) !important;
+}
+
+/* Gap between pinned extension buttons */
+#nav-bar .unified-extensions-item-row-wrapper {
+  margin-inline: -4px !important;
+}
+
+/* Remove duplicated profiles button inside accounts panel and colorful border */
+#PanelUI-fxa #PanelUI-fxa-menu-empty-profiles-button,
+#PanelUI-fxa-menu-profiles-separator {
+  display: none !important;
+}
+
+/* Inactive tabs label */
+toolbarbutton[itemtype="showinactivebutton"] label {
+  margin-left: -1px !important;
+}
+
+@keyframes drawLeft {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Download finished icon and animation */
+#downloads-button[attention="success"]::before {
+  content: '';
+  height: 16px;
+  width: 16px;
+  background-color: var(--successBadge);
+  display: block;
+  position: absolute;
+  border-radius: 99px;
+  animation: findbarOut 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+}
+#downloads-button[attention="success"]::after {
+  content: '';
+  -moz-context-properties: fill;
+  height: 22px;
+  width: 22px;
+  background-image: url(icons/checkmark.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 8px;
+  fill: var(--textInverse);
+  z-index: 9;
+  display: block;
+  position: absolute;
+  animation: drawLeft 1s cubic-bezier(0.55, 0.55, 0, 1);
+}
+
+/* ============= DARK ================== */
+
+@media (prefers-color-scheme: dark) {
+  /* Active tab shadows */
+  #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
+  #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.35), 0 -1px 0 0 rgba(255,255,255,.005) inset !important;
+  }
+
+  /* Active tab */
+  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background {
+    background: var(--frameBG) !important;
+  }
+
+  /* Bottom corners */
+  .tab-background:is([selected], [multiselected]) {
+    --uc-tab-corner-bg: var(--frameBG);
+    --uc-tab-corner-outline: rgba(0,0,0,.1);
+  }
+
+  /* Hovering tab */
+  .tabbrowser-tab:not([selected]):hover .tab-background {
+    background-color: var(--textButtonHover) !important;
+  }
+
+  /* Inactive tab text */  
+  .tabbrowser-tab:not([selected]) .tab-content{
+    color: var(--textSecondary) !important;
+  }
+
+  /* Active tab text */
+  .tabbrowser-tab[selected] .tab-content{
+    color: var(--textPrimary) !important;
+  }
+
+  /* Color the navbar/toolbar & add shadow*/
+  #nav-bar,
+  #PersonalToolbar,
+  #sidebar-box {
+    background-color: var(--frameBG) !important;
+    box-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset !important;
+  }
+
+  :root, :root .tabbrowser-tab {
+    & [brighttext], & [brighttext] .tabbrowser-tab {
+      --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset;
+    }
+  }
+
+  /* URL bar and search bar customization */
+  #urlbar-background, #searchbar {
+    background-color: rgb(255, 255, 255, .0605) !important;
+    box-shadow: var(--buttonShadowDark) !important;
+  }
+  /* Hover */
+  #urlbar:hover>#urlbar-background, #searchbar:hover {
+    background-color: rgba(255,255,255,.0837) !important;
+  }
+  /* Open */
+  #urlbar[open]>#urlbar-background, #searchbar:focus-within {
+    background-color: var(--inputActive) !important;
+    box-shadow: var(--buttonShadowDarkPressed) !important;
+  }
+  #searchbar:focus-within {
+    box-shadow: 0 0 0 1px rgba(255,255,255,.0698), 0 -2px 0 var(--accentDark) inset !important;
+    border-radius: 3px 3px 0 0 !important;
+    background-color: var(--searchActive) !important;
+    transform: translateY(1px) !important;
+    height: 32px !important;
+    padding-bottom: 2px !important;
+  }
+  #PopupSearchAutoComplete {
+    --panel-background: rgb(44,44,44) !important;
+    transform: translateY(1px) !important;
+  }
+  /* Panel shadows */
+  menupopup, panel {
+    --panel-shadow: var(--genericShadowDark) !important;
+  }
+
+  /* URL bar bottom border when opened */
+  .urlbarView {
+    box-shadow: 0 2px 0 0 var(--accentDark) inset, var(--genericShadowDark) !important;
+    margin-top: -3px !important;
+  }
+  /* URL breakout results */
+  .urlbarView-row {
+    color: var(--textPrimary);
+    --urlbar-popup-url-color: var(--accentDark) !important;
+    background-color: transparent !important;
+  }
+  /* URL breakout results hover*/
+  .urlbarView-row:hover,
+  #PopupSearchAutoComplete .autocomplete-richlistitem:hover {
+    --urlbar-popup-url-color: transparent !important;
+    background-color: var(--textButtonHover) !important;
+  }
+  /* URL breakout result */
+  .urlbarView-row:not([type="tip"], [type="dynamic"])[selected]>.urlbarView-row-inner,
+  .urlbarView-row-inner[selected] {
+    background-color: var(--textButtonHover) !important;
+  }
+  /* WinUI blue border on the left of URL bar result */
+  .urlbarView-row[selected] .urlbarView-row-inner::before {
+    background-color: var(--accentDark) !important;
+  }
+  /* Links */
+  .urlbarView-url {
+    color: var(--accentDark) !important;;
+  }
+
+  /* URL tooltip */
+  #statuspanel-label{
+    background-color: var(--commonBackground) !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.26) !important;
+    outline: 1px solid rgba(0,0,0,.2) !important;
+  }  
+
+  /* toolbar buttons hover */
+  .toolbarbutton-1:hover > .toolbarbutton-icon,
+  .toolbarbutton-1:hover > stack {
+    background-color: var(--textButtonHover) !important;
+  }
+
+  /* New tab hover */
+  #TabsToolbar .toolbarbutton-1:hover>.toolbarbutton-icon {
+    background-color: var(--textButtonHover) !important;
+  }
+
+  .tab-close-button:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+
+  /* Context menu */
+  .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+    box-shadow: var(--genericShadowDark) !important;
+  }
+  /* Hovered menu item */
+  menupopup menu:hover:not([disabled=true]),
+  menupopup menuitem:hover:not([disabled=true]),
+  menupopup menu[_moz-menuactive]:not([disabled=true]),
+  menupopup menuitem[_moz-menuactive]:not([disabled=true]) {
+    background-color: rgba(255,255,255,.0605) !important;
+  }
+  /* Active/Clicked menu item */
+  menupopup menuitem:hover:active:not([disabled=true]),
+  menupopup menu:hover:active:not([disabled=true]) {
+    background-color: rgba(255,255,255,.04) !important;
+    color: var(--textSecondary) !important;
+  }
+
+  .in-menulist menuitem[selected="true"]::before {
+    background-color: var(--accentDark) !important;
+  }
+
+  tooltip {
+    background: var(--commonBackground) !important;
+    border: 1px solid rgba(0,0,0,.2) !important;
+  }
+
+  /* Downloads button colors */
+  #downloads-button[attention="success"]
+  > .toolbarbutton-badge-stack
+  > #downloads-indicator-anchor
+  > #downloads-indicator-icon {
+    fill: rgb(108, 203, 95) !important;
+    list-style-image: url(icons/success-dark.svg) !important;
+    list-style-image: none !important;
+  }
+  
+  /* Remove download finished icon animation */
+  #downloads-indicator-finish-image {
+    list-style-image: url('icons/success-dark.svg') !important;
+    list-style-image: none !important;
+  }
+  #downloads-button {
+    --toolbarbutton-icon-fill-attention: rgb(108, 203, 95) !important;
+  }
+  #downloads-button[progress] {
+    --downloads-progress-fill: var(--accentDark) !important;
+  }
+
+  /* Changes color of download progress circle but it's weird w green */
+  #downloads-indicator-progress-inner{
+    --toolbarbutton-icon-fill-attention: var(--accentDark) !important;
+  }
+  .downloadProgress::-moz-progress-bar {
+    background-color: var(--accentDark) !important;
+  }
+
+  /* Tabs toolbar background color */
+  * {
+    --lwt-accent-color: var(--mica) !important; /* Active window color */
+    --lwt-accent-color-inactive: var(--mica) !important; /* Inactive window color */
+  }
+
+  /* Colors when window is inactive */
+  .tabbrowser-tab[selected]:-moz-window-inactive .tab-background,
+  .tab-background:is([selected], [multiselected]):-moz-window-inactive,
+  #nav-bar:-moz-window-inactive,
+  #PersonalToolbar:-moz-window-inactive,
+  #sidebar-box:-moz-window-inactive {
+    background-color: rgba(58,58,58,.45)  !important;
+    --uc-tab-corner-bg: rgba(58,58,58,.45) !important;
+  }
+  /* Active tab */
+  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive {
+    background-color: rgba(58,58,58,.6)  !important;
+  }
+
+  /* Tab Preview Cards */
+  .tab-preview-text-container {
+    color: rgba(255,255,255,.5) !important;
+  }
+
+  .tab-preview-title {
+    color: var(--textAuto) !important;
+  }
+
+  /* Translator buttons */
+  #select-translations-panel-from,
+  #select-translations-panel-to,
+  #select-translations-panel-translate-full-page-button {
+    border: 1px solid rgba(255,255,255,.04) !important;
+    border-top: 1px solid rgba(255,255,255,.06) !important;
+    background: rgba(255,255,255,.0605) !important;
+  }
+
+  #select-translations-panel-done-button-primary {
+    background: var(--accentDark) !important;
+    color: black !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -1px 0 rgba(0,0,0,.14) inset !important;
+  }
+
+  /* Default buttons */
+  button:not([slot="primary"],
+  .primary,
+  [dlgtype="accept"],
+  [data-l10n-id="choose-app-btn"],
+  .downloadButton,
+  [default="true"],
+  [title="Close"]), 
+  #editBookmarkPanelRemoveButton,
+  button.popup-notification-secondary-button,
+  panel menulist,
+  #unified-extensions-manage-extensions,
+  #downloadsFooterButtons button,
+  #identity-popup-clear-sitedata-button,
+  #identity-popup-more-info,
+  #sidebar-switcher-target,
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"] {
+    box-shadow: var(--buttonShadowDark) !important;
+    
+    &:hover {
+      box-shadow: var(--buttonShadowDark) !important;
+    }
+    &:active {
+      box-shadow: var(--buttonShadowDarkPressed) !important;
+    }
+  }
+
+  /* Dialog boxes */
+  .dialog-button-box button:not([dlgtype="accept"]) {
+    box-shadow: 0 0 0 1px rgba(255,255,255,.0605), 0 -1px 0 rgba(255,255,255,.03) !important;
+  }
+  .dialogBox:not(.spotlightBox) {
+    box-shadow: 0 32px 64px 0 rgba(0,0,0,.37), 0 2px 21px rgba(0,0,0,.37) !important;
+  }
+
+  /* Save bookmark panel */
+  #editBMPanel_namePicker {
+    box-shadow: var(--inputBarDark) !important;
+  }
+  #editBMPanel_namePicker:focus-within {
+    box-shadow: var(--inputBarFocusDark) !important;
+  }
+  
+  /* General notification panels */
+  .popup-notification-panel {
+    & input {
+      box-shadow: var(--inputBarDark) !important;
+      
+      &:focus-within {
+        box-shadow: var(--inputBarFocusDark) !important;
+      }
+    }
+  }
+
+  /* Active button opacity*/
+  :is(
+  .toolbarbutton-1 > .toolbarbutton-icon,
+  .toolbarbutton-1 > .toolbarbutton-text,
+  .toolbarbutton-1 > .toolbarbutton-badge-stack,
+  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+  .urlbar-page-action,
+  .identity-box-button,
+  #tracking-protection-icon-container,
+  panel button,
+  panel menulist,
+  button
+  ):active > * {
+    opacity: .786 !important;
+  }
+
+  menupopup * {
+    color: #fff !important;
+  }
+  
+  /* Ctrl F */
+  findbar {
+    box-shadow: var(--genericShadowDark) !important;
+  }
+  
+  /* Buttons inside the customize toolbar area */
+  #customization-palette toolbarpaletteitem {
+    box-shadow: var(--buttonShadowDark) !important;
+  }
+  /* Overflow indicator area */
+  #customization-panelWrapper .panel-arrowcontent  {
+    box-shadow: var(--genericShadowDark) !important;
+  }
+  
+  /* AI panel */
+  .ask-chat-shortcuts-custom-prompt {
+    box-shadow: var(--searchShadowDark) !important;
+    
+    &:focus-within {
+      box-shadow: var(--searchActiveShadowDark) !important;
+    }
+  }
+  
+  /* Sidebar search bar */
+  .sidebar-panel:not([lwt-sidebar]) {
+    & #sidebar-search-container > #search-box {
+      box-shadow: var(--searchShadowDark) !important;
+
+      &:focus-within {
+        box-shadow: var(--searchActiveShadowDark) !important;
+      }
+    }
+  }
+}
+
+/* ============= LIGHT ================== */
+
+@media (prefers-color-scheme: light) {
+  /* Active tab shadows. */
+  #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
+  #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.175), 
+      0 -1px 0 0 rgba(255,255,255,.3) inset !important;
+  }
+
+  /* Active tab */
+  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background {
+    background: var(--frameBG) !important;
+  }
+  /* Fix active tab color in inactive window 133 */
+  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive {
+    background: rgb(253,253,253) !important;
+  }
+
+  /* Bottom corners */
+  .tab-background:is([selected], [multiselected]) {
+    --uc-tab-corner-bg: var(--frameBG);
+    --uc-tab-corner-outline: rgba(0,0,0,.0405);
+  }
+
+  /* Hovering tab */
+  .tab-background {
+    .tabbrowser-tab:hover &:not([selected], [multiselected]) {
+      #TabsToolbar:not([brighttext]) & {
+        background-color: var(--textButtonHover) !important;
+      }
+    }
+  }
+
+  /* Inactive tab text */  
+  .tabbrowser-tab:not([selected]) .tab-content {
+    color: var(--textSecondary) !important;
+  }
+  /* Active tab text */
+  .tabbrowser-tab[selected] .tab-content {
+    color: var(--textPrimary) !important;
+  }
+
+  /* Color the navbar/toolbar & add bottom shadow*/
+  #nav-bar,
+  #PersonalToolbar {
+    background-color: var(--frameBG) !important;
+    box-shadow: 0 -1px 0 0 rgba(0,0,0,.0578) inset !important;
+  }
+
+  /* Alternate way to set navbar upper shadow */
+  * {
+    --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.0578) inset;
+  }
+
+  /* URL bar customization */
+  #urlbar-background, #searchbar {
+    background-color: var(--searchBackground) !important;
+    box-shadow: var(--buttonShadowLight) !important;
+  }
+  /* Hover */
+  #urlbar:hover>#urlbar-background, #searchbar:hover {
+    background-color: var(--searchHover) !important;
+  }
+  /* Open */
+  #urlbar[open]>#urlbar-background {
+    box-shadow: var(--buttonShadowLightPressed) !important;
+    background-color: var(--searchActive) !important;
+  }
+  #searchbar:focus-within {
+    box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 -2px 0 var(--accentLight) inset !important;
+    border-radius: 3px 3px 0 0 !important;
+    background-color: var(--searchActive) !important;
+    transform: translateY(1px) !important;
+    height: 32px !important;
+    padding-bottom: 2px !important;
+  }
+  #PopupSearchAutoComplete {
+    --panel-background: var(--searchDropdown) !important;
+    --panel-border-color: rgba(0,0,0,.125) !important;
+    transform: translateY(1px) !important;
+  }
+  /* Panel shadows */
+  menupopup, panel {
+    --panel-shadow: var(--genericShadowLight) !important;
+  }
+  /* Results */
+  #urlbar[breakout][breakout-extend][open] {
+    border-radius: 3px 3px 8px 8px !important;
+  }
+  /* URL bar bottom border when opened */
+  .urlbarView {
+    box-shadow: 0 2px 0 0 var(--accentLight) inset, var(--genericShadowLight) !important;
+    margin-top: -3px !important;
+  }
+  /* URL breakout results */
+  .urlbarView-row {
+    color: var(--textPrimary);
+    --urlbar-popup-url-color: rgb(0,62,146);
+    background-color: transparent !important;
+  }
+  /* URL breakout results hover*/
+  .urlbarView-row:hover,
+  #PopupSearchAutoComplete .autocomplete-richlistitem:hover {
+    --urlbar-popup-url-color: rgb(0,62,146);
+    background-color: var(--textButtonHover) !important;
+  }
+  /* URL breakout result */
+  .urlbarView-row:not([type="tip"], [type="dynamic"])[selected]>.urlbarView-row-inner,
+  .urlbarView-row-inner[selected] {
+    background-color: var(--textButtonHover) !important;
+  }
+  /* WinUI blue border on the left of URL bar result */
+  .urlbarView-row[selected] .urlbarView-row-inner::before {
+    background-color: var(--accentLight) !important;
+  }
+  /* Links */
+  .urlbarView-url {
+    color: var(--accentLight) !important;
+  }
+
+  /* URL tooltip */
+  #statuspanel-label{
+    background-color: var(--commonBackground) !important;
+    outline: 1px solid rgba(0,0,0,.0578) !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.14) !important;
+  }  
+
+  /* toolbar buttons hover */
+  .toolbarbutton-1:hover > .toolbarbutton-icon,
+  .toolbarbutton-1:hover > stack {
+    background-color: var(--textButtonHover) !important;
+  }
+
+  /* New tab hover */
+  #TabsToolbar .toolbarbutton-1:hover>.toolbarbutton-icon {
+    background-color: var(--textButtonHover) !important;
+  }
+
+  .tab-close-button:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+
+  /* Context menu */
+  .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+    box-shadow: var(--genericShadowLight) !important;
+  }
+  /* Hovered menu item */
+  menupopup menu:hover:not([disabled=true]),
+  menupopup menuitem:hover:not([disabled=true]),
+  menupopup menu[_moz-menuactive]:hover:not([disabled=true]),
+  menupopup menuitem[_moz-menuactive]:hover:not([disabled=true]) {
+    background-color: var(--textButtonHover) !important;
+  }
+  /* Active/Clicked menu item */
+  menupopup menuitem:hover:active:not([disabled=true]),
+  menupopup menu:hover:active:not([disabled=true]) {
+    background-color: rgba(0,0,0,.02) !important;
+    color: var(--textSecondary) !important;
+  }
+  menupopup menuitem:hover:active:not([disabled=true]) *,
+  menupopup menu:hover:active:not([disabled=true]) * {
+    opacity: .6 !important;
+  }
+
+  .in-menulist menuitem[selected="true"]::before {
+    background-color: var(--accentLight) !important;
+  }
+
+  tooltip {
+    background: var(--commonBackground) !important;
+    border: 1px solid rgba(0,0,0,.2) !important;
+  }
+
+  /* Downloads button colors */
+  #downloads-button[attention="success"]
+  > .toolbarbutton-badge-stack
+  > #downloads-indicator-anchor
+  > #downloads-indicator-icon {
+    fill: rgb(15, 123, 15) !important;
+    list-style-image: url(icons/success-light.svg) !important;
+    list-style-image: none !important;
+  }
+  /* Remove download finished icon animation */
+  #downloads-indicator-finish-image {
+    list-style-image: url('icons/success-light.svg') !important;
+    list-style-image: none !important;
+  }
+  #downloads-button {
+    --toolbarbutton-icon-fill-attention: rgb(15, 123, 15) !important;
+  }
+  #downloads-button[progress] {
+    --downloads-progress-fill: var(--accentLight) !important;
+  }
+  /* Changes color of download progress circle but it's weird w green */
+  #downloads-indicator-progress-inner {
+    --toolbarbutton-icon-fill-attention: var(--accentLight) !important;
+  }
+  .downloadProgress::-moz-progress-bar {
+    background-color: var(--accentLight) !important;
+  }
+
+  /* Tabs toolbar background color */
+  * {
+    --lwt-accent-color: rgb(218, 218, 218) !important; /* Active window color */
+    --lwt-accent-color-inactive: rgb(232, 232, 232) !important; /* Inactive window color */
+
+    --lwt-accent-color: var(--mica) !important;
+  }
+
+  /* Colors when window is inactive */
+  .tabbrowser-tab[selected]:-moz-window-inactive .tab-background,
+  .tab-background:is([selected], [multiselected]):-moz-window-inactive,
+  #nav-bar:-moz-window-inactive,
+  #PersonalToolbar:-moz-window-inactive,
+  #sidebar-box:-moz-window-inactive {
+    background-color: rgb(248, 248, 248) !important;
+  }
+
+  .tab-background:is([selected], [multiselected]):-moz-window-inactive {
+    --uc-tab-corner-bg: rgb(248, 248, 248) !important;
+  }
+
+  /* Tab Preview Cards */
+  .tab-preview-text-container {
+    color: rgba(0,0,0,.5) !important;
+  }
+
+  .tab-preview-title {
+    color: var(--textPrimary) !important;
+  }
+
+  /* Translator buttons */
+  #select-translations-panel-from,
+  #select-translations-panel-to,
+  #select-translations-panel-translate-full-page-button {
+    box-shadow: 0 1px 0 rgba(0,0,0,.06) inset, 0 -1px 0 rgba(0,0,0,.16) inset !important;
+    background: rgba(255,255,255,.7) !important;
+  }
+
+  #select-translations-panel-done-button-primary {
+    background: #005fb8 !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -1px 0 rgba(0,0,0,.4) inset !important;
+  }
+
+  /* Default buttons */
+  button:not([slot="primary"],
+  .primary,
+  [dlgtype="accept"],
+  [data-l10n-id="choose-app-btn"],
+  .downloadButton,
+  [default="true"],
+  [title="Close"]), 
+  #editBookmarkPanelRemoveButton,
+  button.popup-notification-secondary-button,
+  panel menulist,
+  #unified-extensions-manage-extensions,
+  #downloadsFooterButtons button,
+  #identity-popup-clear-sitedata-button,
+  #identity-popup-more-info,
+  #sidebar-switcher-target,
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"] {
+    box-shadow: var(--buttonShadowLight) !important;
+
+    &:hover {
+      box-shadow: var(--buttonShadowLight) !important;
+    }
+    &:active {
+      box-shadow: var(--buttonShadowLightPressed) !important;
+    }
+  }
+
+  /* Dialog boxes */
+  .dialog-button-box button:not([dlgtype="accept"]) {
+    box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+  }
+  .dialogBox:not(.spotlightBox) {
+    box-shadow: 0 32px 64px 0 rgba(0,0,0,.19), 0 2px 21px rgba(0,0,0,.15) !important;
+  }
+
+  /* Save bookmark panel */
+  #editBMPanel_namePicker {
+    box-shadow: var(--inputBarLight) !important;
+  }
+  #editBMPanel_namePicker:focus-within {
+    box-shadow: var(--inputBarFocusLight) !important;
+  }
+  
+  /* General notification panels */
+  .popup-notification-panel {
+    & input {
+      box-shadow: var(--inputBarLight) !important;
+      
+      &:focus-within {
+        box-shadow: var(--inputBarFocusLight) !important;
+      }
+    }
+  }
+
+  /* Active button opacity */
+  :is(
+  .toolbarbutton-1 > .toolbarbutton-icon,
+  .toolbarbutton-1 > .toolbarbutton-text,
+  .toolbarbutton-1 > .toolbarbutton-badge-stack,
+  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+  .urlbar-page-action,
+  .identity-box-button,
+  #tracking-protection-icon-container,
+  panel button,
+  panel menulist,
+  button
+  ):active > * {
+    opacity: .6 !important;
+  }
+
+  menupopup * {
+    color: rgba(0,0,0,.89) !important;
+  }
+
+  @-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
+    #rightBox::before {
+      filter: invert(1) !important;
+    }
+  }
+  
+  /* Ctrl F */
+  findbar {
+    box-shadow: var(--genericShadowLight) !important;
+  }
+  
+  /* Buttons inside the customize toolbar area */
+  #customization-palette toolbarpaletteitem {
+    box-shadow: var(--buttonShadowLight) !important;
+  }
+  /* Overflow indicator area */
+  #customization-panelWrapper .panel-arrowcontent  {
+    box-shadow: var(--genericShadowDark) !important;
+  }
+  
+  /* Autologin pop up */
+  #PopupAutoComplete {
+    & .autocomplete-richlistitem {
+      & .ac-site-icon {
+        filter: grayscale(100) brightness(0) !important;
+      }
+    }
+  }
+  
+  /* AI panel */
+  .ask-chat-shortcuts-custom-prompt {
+    box-shadow: var(--searchShadowLight) !important;
+    
+    &:focus-within {
+      box-shadow: var(--searchActiveShadowLight) !important;
+    }
+  }
+  
+  /* Sidebar search bar */
+  .sidebar-panel:not([lwt-sidebar]) {
+    & #sidebar-search-container > #search-box {
+      box-shadow: var(--searchShadowLight) !important;
+
+      &:focus-within {
+        box-shadow: var(--searchActiveShadowLight) !important;
+      }
+    }
+  }
+}
+
+/* ======== TWEAKS ======== */
+
+/* Disables some conflicting Edge-frfox tweaks */
+#browser {
+  --uc-tweak-rounded-corners-padding: 0 !important;
+  --uc-tweak-rounded-corners-radius: 0 !important;
+  --uc-tweak-rounded-corners-shadow: unset !important;
+  --lwt-tab-line-color: unset !important;
+  background: none !important;
+}
+
+#tabbrowser-tabbox .browserStack {
+  background: none !important;
+}
+
+* {
+  --uc-toolbarbutton-tab-gap: 0 !important;
+}
+
+:root:not([lwtheme]),
+:root[privatebrowsingmode="temporary"]:where([style*="--lwt-accent-color: rgb(28, 27, 34)"]:not([style*="--newtab-background-color-secondary: rgb(66, 65, 77)"])) {
+  --lwt-tab-line-color: unset !important;
+}
+
+.tab-background {
+  &::before,
+  &::after {
+    display: block !important;
+  }
+}
+
+.tab-background[selected] {
+  border: unset !important;
+  outline: unset !important;
+}
+
+:root,
+:root .tabbrowser-tab {
+  & #TabsToolbar {
+    --tab-border-radius: 4px !important;
+  }
+}
+
+#tabbrowser-tabs {
+  & .tabbrowser-tab,
+  & #tabs-newtab-button {
+    padding-top: 0 !important;
+  }
+}
+#tabbrowser-arrowscrollbox,
+#tabbrowser-arrowscrollbox > *,
+#scrollbutton-up:not(.menupopup-scrollbutton),
+#scrollbutton-up:not(.menupopup-scrollbutton) ~ spacer,
+#scrollbutton-down:not(.menupopup-scrollbutton) {
+  margin-bottom: 0 !important;
+}
+
+@media (-moz-platform: windows) and (not (-moz-windows-accent-color-in-titlebar)) {
+  :root[sizemode="normal"][customtitlebar]:not([inFullscreen]) #navigator-toolbox {
+    padding-top: 0 !important;
+  }
+}
+@media (-moz-platform: windows) and (not (-moz-windows-accent-color-in-titlebar)) {
+  :root[sizemode="maximized"]:not([inFullscreen]) #navigator-toolbox {
+    margin-top: -1px !important;
+  }
+}
+
+/* WinUI Rounded Corners */
+@media -moz-pref("uc.winui.rounded-corners") {
+  :root:not([inDOMFullscreen="true"], 
+  [sizemode="fullscreen"], 
+  [sizemode="maximized"]) browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
+    margin: -1px 4px 4px 4px !important;
+    border-radius: 8px 8px 6px 6px !important;
+    border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
+  }
+  :root[sizemode="maximized"] browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
+    margin: -1px 4px 4px 4px !important;
+    border-radius: 8px !important;
+    border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
+  }
+  :root {
+    & tabbox#tabbrowser-tabbox,
+    & #tabbrowser-tabpanels {
+      background-color: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
+    }
+
+    &:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [sizemode="maximized"], [chromehidden*="toolbar"], [chromehidden*="menubar"]) tabbox#tabbrowser-tabbox browser {
+      border-radius: 8px;
+      clip-path: circle(100%);
+    }
+  }
+  #nav-bar,
+  #PersonalToolbar {
+    box-shadow: 0 -1px 0 0 rgba(0,0,0,.0) inset !important;
+  }
+  #statuspanel-label{
+    margin: 0 0 9px 9px !important;
+  }
+  
+  #sidebar-box {
+    border-right: 0px !important;
+  }
+  #sidebar, #sidebar-header {
+    margin-left: 4px !important;
+  }
+}
+
+/* Safari-style centered URL links unless active */
+@media -moz-pref("uc.winui.centered-url") {
+  #urlbar-input {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    text-align: center !important;
+    transform: translateX(50%);
+    transition: transform 0.3s cubic-bezier(0, 0.7, 0.3, 1);
+  }
+  #urlbar[focused] #urlbar-input {
+    transform: translateX(0);
+    width: 100%;
+    text-align: left !important;
+  }
+  #urlbar[breakout][breakout-extend] #urlbar-input {
+    margin-top: 1px !important;
+  }
+}
+
+/* Hide tab bar with 1 tab - Needs polishing - Best without mica */
+@media -moz-pref("uc.winui.hide-with-1-tab") {
+  :root[sizemode="normal"] #nav-bar{ --uc-window-drag-space-width: 20px }
+
+  #titlebar{ -moz-appearance: none !important; }
+  #TabsToolbar{ min-height: 0 !important; margin-top: -1px !important; }
+
+  #tabbrowser-tabs,
+  #tabbrowser-arrowscrollbox{ min-height: 0 !important; }
+
+  .accessibility-indicator,
+  .private-browsing-indicator{ 
+    height: unset !important;
+  }
+  .accessibility-indicator > hbox{ padding-block: 0 !important }
+
+  .tabbrowser-tab:only-of-type,
+  .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]{
+    visibility: collapse !important;
+    min-height: 0 !important;
+    height: 0;
+  }
+  /* Fix window controls not being clickable */
+  :root[tabsintitlebar] #toolbar-menubar[autohide="true"][inactive]{
+    transition: height 0ms steps(1) 80ms;
+  }
+  :where(#nav-bar){
+    border-inline: var(--uc-window-drag-space-width,0) solid var(--toolbar-bgcolor);
+  }
+
+  #tabbrowser-arrowscrollbox-periphery,
+  #private-browsing-indicator-with-label,
+  #TabsToolbar > .titlebar-buttonbox-container {
+    contain: strict;
+    contain-intrinsic-height: 0;
+  }
+  #tabbrowser-arrowscrollbox-periphery{
+    contain-intrinsic-width: 36px;
+    padding-inline-end: 4px;
+  }
+  #private-browsing-indicator-with-label{
+    contain-intrinsic-width: 116px;
+  }
+  #TabsToolbar > .titlebar-buttonbox-container{
+    contain-intrinsic-width: var(--uc-window-control-width,138px);
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Fix Sidebar revamp causing a weird line to appear below the nav bar */
+@media -moz-pref("sidebar.revamp") {
+  #tabbrowser-tabbox {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Mac-like back/forward buttons */
+@media -moz-pref("uc.winui.mac-back-forward") {
+  #back-button {
+    list-style-image: url("icons/back-mac.svg") !important;
+  }
+
+  #forward-button {
+    list-style-image: url("icons/forward-mac.svg") !important;
+  }
+}
+
+/* Extra highlights like MacOS */
+@media -moz-pref("uc.winui.extra-highlights") {
+  @media (prefers-color-scheme: dark) {
+    #tabbrowser-tabs .tab-background:is([selected], 
+    [multiselected]), #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+      box-shadow: 0 0 1px 0 rgba(0,0,0,.35), 
+        0 -1px 0 0 rgba(255,255,255,.005) inset,
+        0 1px 0 rgba(255,255,255,.0605) inset !important;
+    }
+    .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+      background-color: rgb(33,33,33) !important;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.25), 
+        0 8px 16px 0 rgba(0,0,0,.26),
+        0 0 0 1px rgba(255,255,255,.0605) inset,
+        0 1px 0 rgba(255,255,255,.1) inset !important;
+      border: none !important;
+      background-image: var(--extraacrylic) !important;
+    }
+    .panel-viewstack {
+      background-color: rgb(33,33,33) !important;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.0605) inset,
+        0 1px 0 rgba(255,255,255,.1) inset !important;
+      border-radius: 8px !important;
+      background-image: var(--extraacrylic) !important;
+    }
+    * {
+      --arrowpanel-border-color: rgba(0,0,0,.4) !important;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
+    #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+      box-shadow: 0 0 1px 0 rgba(0,0,0,.175), 
+        0 -1px 0 0 rgba(255,255,255,.3) inset,
+        0 1px 0 rgba(255,255,255,.85) inset !important;
+    }
+    .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.06),
+        0 8px 16px 0 rgba(0,0,0,.14),
+        0 1px 0 rgba(255,255,255,.85) inset !important;
+      border: none !important;
+      background-image: var(--extraacrylic) !important;
+    }
+    .panel-viewstack {
+      box-shadow: 0 0 0 1px rgba(255,255,255,.7) inset,
+        0 1px 0 rgba(255,255,255,.85) inset !important;
+      border-radius: 8px !important;
+      background-image: var(--extraacrylic) !important;
+    }
+  }
+}
+
+@media -moz-pref("uc.winui.pill-urlbar") {
+  #urlbar-background {
+    border-radius: 99px !important;
+  }
+  #urlbar[breakout][breakout-extend][open],
+  #urlbar[breakout][breakout-extend][open] > #urlbar-background {
+    border-radius: 16px 16px 0px 0px !important;
+  }
+  #identity-icon-box {
+    border-radius: 99px 24px 24px 99px !important;
+  }
+  #star-button-box {
+    border-radius: 24px 99px 99px 24px !important;
+  }
+}
+
+@media -moz-pref("uc.winui.aptos") {
+  * {
+    font-family: 'Aptos', sans-serif !important;
+    font-size-adjust:.5 !important;
+  }
+  
+  .bookmark-item .toolbarbutton-text{
+    transform: translateY(2px) !important;
+  }
+  .menu-text{
+    transform: translateY(0px) !important;
+  }
+}
+
+@media -moz-pref("uc.winui.transparent-urlbar") {
+  #urlbar-background {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+@media -moz-pref("uc.winui.rounded-navbar") {
+  #nav-bar,
+  #PersonalToolbar {
+    border-radius: 8px 8px 0 0 !important;
+  }
+}
+
+@media -moz-pref("uc.winui.floating-tabs") {
+  .tab-background:not([selected]) {
+    clip-path: inset(1px round 7px) !important;
+  }
+
+  /* Fix alignment of private window label */
+  .private-browsing-indicator-with-label {
+    margin-top: 17px !important;
+  }
+  :root[sizemode="maximized"] .private-browsing-indicator-with-label {
+    margin-top: 9px !important;
+  }
+
+  /* Tab roundness */
+  .tab-background {
+    border-radius: 8px !important;
+  }
+
+  /* Bottom tab corners */
+  .tab-background:is([selected], [multiselected])::before,
+  .tab-background:is([selected], [multiselected])::after {
+    --uc-tab-corner-bg: transparent !important;
+    --uc-tab-corner-outline: none !important;
+  }
+
+  /* Tab height */
+  :root {
+    --tab-min-height: 46px !important;
+  }
+  :root[sizemode="maximized"] {
+    --tab-min-height: 36px !important;
+  }
+
+  /* New tab button - seems to have different effects in 23h2 and 24h2 */
+  #TabsToolbar #tabs-newtab-button>.toolbarbutton-icon {
+    margin-bottom: -4px !important;
+  }
+
+  /* Tab close button */
+  .tab-close-button {
+    margin-top: 2px !important;
+    margin-right: 4px !important;
+  }
+
+  /* Toolbar icons pinned to the tab area */
+  #TabsToolbar .toolbarbutton-1 {
+    margin-bottom: 6px !important;
+  }
+
+  /* Tab gap up and down */
+  :root[sizemode="normal"] #toolbar-menubar,
+  :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
+    padding-left: 5px !important;
+    margin-top: -5px !important;
+  }
+  :root[sizemode="maximized"] #toolbar-menubar,
+  :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
+    padding-left: 6px !important;
+    margin-top: -1px !important;
+  }
+  #tabbrowser-arrowscrollbox,
+  #tabbrowser-arrowscrollbox > * {
+    margin-bottom: 3px !important;
+    margin-top: 3px !important;
+  }
+  .tab-content {
+    margin-bottom: 1px !important;
+    margin-left: -1px !important;
+  }
+
+  /* Select tab by clicking on the empty space above it */
+  #tabbrowser-tabs {
+    margin-top: -9px !important;
+
+    & .tabbrowser-tab,
+    & #tabs-newtab-button {
+      padding-top: 9px !important;
+    }
+  }
+  
+  /* Tab scroll buttons */
+  #scrollbutton-up:not(.menupopup-scrollbutton),
+  #scrollbutton-down:not(.menupopup-scrollbutton) {
+    bottom: 4px !important;
+  }
+  
+  /* Fix window control glyphs alignment in windowed mode */
+  :root:not([sizemode=maximized]) .titlebar-button .toolbarbutton-icon {
+    margin-top: 8px !important;
+  }
+}
+
+@media -moz-pref("uc.winui.navbar-highlights") {
+  @media (prefers-color-scheme: light) {
+    #nav-bar,
+    #PersonalToolbar {
+      box-shadow: 0 -1px 0 0 rgba(0,0,0,.0578) inset,
+        0 1px 0 rgba(255,255,255,.85) inset,
+        0 -1px 0 rgba(0,0,0,.1) !important;
+    }
+
+    @media -moz-pref("uc.winui.rounded-corners") {
+      #nav-bar,
+      #PersonalToolbar {
+        box-shadow: 0 1px 0 rgba(255,255,255,.85) inset,
+          0 -1px 0 rgba(0,0,0,.1) !important;
+      }
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    #nav-bar,
+    #PersonalToolbar {
+      box-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset,
+        0 1px 0 rgba(255,255,255,.0605) inset,
+        0 -1px 0 rgba(0,0,0,.1) !important;
+    }
+
+    @media -moz-pref("uc.winui.rounded-corners") {
+      #nav-bar,
+      #PersonalToolbar {
+        box-shadow: 0 1px 0 rgba(255,255,255,.0605) inset,
+          0 -1px 0 rgba(0,0,0,.1) !important;
+      }
+    }
+  }
+}
+
+/* URL bar separators */
+@media -moz-pref("uc.winui.urlbar-extra-separators") {
+  #urlbar-input {
+    margin-bottom: 1px !important;
+  }
+
+  #urlbar[breakout][breakout-extend] #urlbar-input {
+    margin-bottom: -1px !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    #urlbar-container {
+      box-shadow: 1px 0 0 rgba(255,255,255,.0605),
+        -1px 0 0 rgba(255,255,255,.0605),
+        2px 0 0 rgba(0,0,0,.15),
+        -2px 0 0 rgba(0,0,0,.15) !important;
+    }
+  }
+  @media (prefers-color-scheme: light) {
+    #urlbar-container {
+      box-shadow: 1px 0 0 rgba(0,0,0,.1),
+        -1px 0 0 rgba(0,0,0,.1),
+        2px 0 0 rgba(255,255,255,.85),
+        -2px 0 0 rgba(255,255,255,.85) !important;
+      margin-bottom: 0px !important;
+    }
+    #urlbar {
+      transform: translateY(0px) !important;
+    }
+  }
+}
+
+@media -moz-pref("uc.winui.immersive-navbar") {
+  #urlbar[breakout][breakout-extend] {
+    transform: translateY(8px) !important;
+  }
+  #identity-box, #star-button-box, #reader-mode-button{
+    margin-bottom: 0px !important;
+  }
+  #urlbar {
+    margin-bottom: 1px !important;
+  }
+
+  #nav-bar,
+  #PersonalToolbar {
+    margin-inline: 5px !important;
+    height: 49px !important;
+  }
+  /* Animated refresh icon */
+  .toolbarbutton-animatable-box {
+    transform: scale(85%) !important;
+    margin-left: -2px !important;
+    margin-top: -1px !important;
+  }
+ @media -moz-pref("uc.winui.rounded-corners") {
+    :root:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [sizemode="maximized"]) browser {
+      margin: 0 4px 4px 4px !important;
+      border-radius: 0 0 6px 6px !important;
+      border: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
+      border-top: none !important;
+    }
+    :root[sizemode="maximized"] browser {
+      margin: 0 4px 4px 4px !important;
+      border-radius: 0 0 8px 8px !important;
+      border: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
+      border-top: none !important;
+    }
+    :root {   
+      & tabbox#tabbrowser-tabbox,
+      & #tabbrowser-tabpanels {
+        background-color: transparent !important;
+      }
+
+      &:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [sizemode="maximized"], [chromehidden*="toolbar"], [chromehidden*="menubar"]) tabbox#tabbrowser-tabbox browser {
+        border-radius: 8px;
+        clip-path: circle(100%);
+      }
+    }
+  }
+  @media -moz-pref("uc.winui.navbar-highlights") {
+    @media (prefers-color-scheme: light) {
+      #nav-bar,
+      #PersonalToolbar {
+        box-shadow: 0 1px 0 rgba(255,255,255,.85) inset,
+          1px 0 0 rgba(0,0,0,.0605), -1px 0 0 rgba(0,0,0,.0605), 0 -1px 0 rgba(0,0,0,.0605),
+          0 -1px 0 rgba(0,0,0,.0805) inset !important;
+      }
+    }
+    @media (prefers-color-scheme: dark) {
+      #nav-bar,
+      #PersonalToolbar {
+        box-shadow: 0 1px 0 rgba(255,255,255,.0605) inset,
+          1px 0 0 rgba(0,0,0,.25), -1px 0 0 rgba(0,0,0,.25), 0 -1px 0 rgba(0,0,0,.25),
+          0 -2px 0 rgba(0,0,0,.1) inset, 0 -1px 0 rgba(255,255,255,.0605) inset !important;
+      }
+    }
+  }
+}
+
+@media -moz-pref("uc.winui.extra-acrylic") {
+  #nav-bar,
+  #PersonalToolbar,
+  #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
+  #sidebar-box {
+    background-image: var(--extraacrylic), var(--acrylic) !important;
+    background-repeat: repeat !important;
+  }
+}
+
+@media -moz-pref("uc.winui.taller-urlbar") {
+  #urlbar-background {
+    height: 34px !important;
+    margin-top: -2px !important;
+  }
+  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
+    margin-top: 33px !important;
+  }
+}
+
+@media -moz-pref("uc.winui.more-acrylic") {
+  #nav-bar,
+  #PersonalToolbar,
+  #tabbrowser-tabs .tab-background:is([selected], [multiselected]){
+    background-image: var(--acrylic) !important;
+    background-repeat: repeat !important;
+  }
+}
+
+@media -moz-pref("uc.winui.grayer-tabbed") {
+  @media (prefers-color-scheme: dark) {
+    #tabbrowser-tabbox:not(:-moz-window-inactive),
+    #navigator-toolbox:not(:-moz-window-inactive) {
+      background-image: linear-gradient(to bottom, 
+        rgba(127.5,127.5,127.5,.1), 
+        rgba(127.5,127.5,127.5,.1)) !important;
+    }
+  }
+}
+
+@media -moz-pref("uc.winui.smaller-toolbar-buttons") {
+  #star-button-box,
+  #reader-mode-button,
+  #translations-button,
+  #translations-button-circle-arrows {
+    height: 24px !important;
+  }
+  #star-button-box {
+    margin-right: 3px !important;
+  }
+  #star-button,
+  #reader-mode-button-icon,
+  #translations-button-icon,
+  #translations-button-circle-arrows {
+    transform: translate(0, -3px) !important;
+  }
+
+  #star-button-box,
+  #identity-box,
+  #reader-mode-button {
+    scale: .9 !important;
+  }
+  #urlbar:not(.searchButton) > :is(#urlbar-input-container, .urlbar-input-container) > #identity-box[pageproxystate="invalid"] #identity-icon {
+    scale: .94 !important;
+  }
+
+  #translations-button {
+    height: 25px !important;
+  }
+  
+  #urlbar:is([breakout][breakout-extend][open]) hbox[role="button"] {
+    transform: translateY(-1px) !important;
+    
+    & image {
+      transform: translateY(-7px) !important;
+    }
+  }
+  
+  .identity-box-button {
+    margin-left: 1px !important;
+    margin-top: 1.5px !important;
+  }
+  :root:has(.notification-anchor-icon[showing]) .identity-box-button {
+    margin-left: -1px !important;
+  }
+  
+  /* DRM & other notification icons */
+  #notification-popup-box {
+    margin-bottom: 2px !important;
+    padding-top: 1px !important;
+
+    & image {
+      padding-inline: 16px !important;
+    }
+  }
+
+  .toolbarbutton-1 image,
+  #fxa-toolbar-menu-button {
+    scale: .85 !important;
+  }
+  
+  /* New tab button and buttons pinned to the tab area */
+  #TabsToolbar .toolbarbutton-1>.toolbarbutton-icon,
+  #TabsToolbar .toolbarbutton-1>.toolbarbutton-badge-stack {
+    scale: 1 !important;
+  }
+
+  .toolbarbutton-1:not(#downloadsFooterButtons *) {
+    margin-inline: -1px !important;
+  }
+  #unified-extensions-button {
+    margin-right: 0 !important;
+  }
+  #downloads-button, #PanelUI-button {
+    margin-right: 1px !important;
+  }
+  /* Fix URL bar margin */
+  #urlbar-container{
+    margin-inline: 5px !important;
+  }
+  .urlbar-input {
+    margin-left: -4px !important;
+  }
+
+  /* Overflowing tabs new tab button */
+  #TabsToolbar {
+    & #tabbrowser-tabs[hasadjacentnewtabbutton][overflow] ~ #new-tab-button > .toolbarbutton-icon {
+      transform: translateY(-4px) !important;
+    }
+  }
+  
+  #urlbar-go-button {
+    transition: var(--basicBGAnimation) !important;
+    height: 22px !important;
+    margin-right: 3px !important;
+    margin-block: auto !important;
+    border-radius: 4px !important;
+    background-size: 12px !important;
+  }
+  
+  .search-go-button {
+    background-size: 12px;
+  }
+  .searchbar-search-button {
+    background-image: url(icons/search-glass.svg) !important;
+    background-position: center center !important;
+    background-size: 14px !important;
+    background-repeat: no-repeat !important;
+    -moz-context-properties: fill !important;
+    fill: var(--lwt-text-color-inactive, var(--lwt-text-color)) !important;
+  }
+  .searchbar-search-icon{
+    list-style-image: none !important;
+  }
+
+  /* These move around but I haven't found a way to fix this yet */
+  #reload-button > .toolbarbutton-animatable-box > .toolbarbutton-animatable-image,
+  #stop-button > .toolbarbutton-animatable-box > .toolbarbutton-animatable-image,
+  .toolbarbutton-animatable-box image {
+    scale: 1 !important;
+  }
+
+  /* Enlarge button margins without moving anything - Hack */
+  .toolbarbutton-1:hover:not([disabled="true"], 
+  #downloads-button, #PanelUI-menu-button, .unified-extensions-item-action-button, #TabsToolbar *) image:not(menuitem *) {
+    box-shadow: 0 -.5px 0 2px var(--textButtonHover) !important;
+    transition: box-shadow 0s linear !important;
+  }
+  .toolbarbutton-1:active:not([disabled="true"], 
+  #downloads-button, #PanelUI-menu-button, .unified-extensions-item-action-button, #TabsToolbar *, :hover) image:not(menuitem *) {
+    box-shadow: 0 -.5px 0 2px var(--textButtonPressed) !important;
+    transition: box-shadow 0s linear !important;
+  }
+
+  #nav-bar .toolbarbutton-1 > .toolbarbutton-badge-stack {
+    padding: 8px !important;
+  }
+  
+  /* Download ring */
+  #downloads-indicator-progress-inner {
+    width: 21px !important;
+    height: 20px !important;
+    background: conic-gradient(
+      var(--toolbarbutton-icon-fill-attention) var(--download-progress-pcent),
+      color-mix(in srgb, var(--progressBar), transparent 93%) var(--download-progress-pcent)) !important;
+    mask: radial-gradient(circle at center,
+      transparent 8px,
+      rgba(0, 0, 0, 0) 8.4px,
+      black 1px) !important;
+  }
+  /* Enlarge the ring */
+  #downloads-button[progress="true"] {
+    background-size: 14px !important;
+
+    & #downloads-indicator-progress-inner {
+      transform: scale(1.5) !important;
+    }
+  }
+}
+
+@media -moz-pref("uc.winui.extra-animations") {
+  /* Simple animations extras */
+  .tab-close-button,
+  #TabsToolbar .toolbarbutton-1>.toolbarbutton-icon,
+  panel button,
+  panel menulist,
+  toolbarbutton,
+  menupopup menu:hover:not([disabled=true]),
+  menupopup menuitem:hover:not([disabled=true]),
+  menupopup menu[_moz-menuactive]:not([disabled=true]),
+  menupopup menuitem[_moz-menuactive]:not([disabled=true]),
+  menupopup menu:not([disabled=true]),
+  menupopup menuitem:not([disabled=true]),
+  #urlbar-background,
+  #searchbar,
+  .download-state {
+    transition: var(--basicBGAnimation) !important;
+  }
+
+  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
+    animation: selectorBar2 187ms forwards;
+  }
+
+  #urlbar[breakout][breakout-extend][open],
+  #urlbar[open]>#urlbar-background {
+    transition: none !important;
+  }
+
+  /* Active tab text */
+  .tabbrowser-tab[selected] label, .tabbrowser-tab:not([selected]) label { 
+    transition: font-weight 83ms ease-in-out !important;
+  }
+
+  /* New tab button and close tab button click animations */
+  .tabbrowser-tab .tab-close-button:active{
+    width: 28px !important;
+    height: 20px !important;
+  }
+  #TabsToolbar #tabs-newtab-button:active>.toolbarbutton-icon {
+    padding-inline: 10px !important;
+    padding-block: 6px !important;
+    transition: all 83ms cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  }
+  #TabsToolbar #tabs-newtab-button>.toolbarbutton-icon {
+    transition: all 83ms cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  }
+
+  /* Tab moving animation - Breaks tab opening/closing animation - messes with click animation
+  #tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+    .tabbrowser-tab[tab-grouping],
+    .tabbrowser-tab[tabdrop-samewindow] {
+    opacity: .6 !important;
+    scale: .95 !important;
+    transition: transform 200ms cubic-bezier(0, .75, .25, 1), opacity 183ms linear, scale 187ms linear !important;
+  }
+    #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+    .tabbrowser-tab:not([tab-grouping]) {
+    opacity: 1 !important;
+    scale: 1 !important;
+    transition: transform 200ms cubic-bezier(0, .75, .25, 1), opacity 187ms linear, scale 187ms linear !important;
+  } */
+
+  /* Tab click zoom animation */
+  .tabbrowser-tab:active .tab-content {
+    opacity: 40% !important;
+    transform: scale(96%) !important;
+  }
+  .tabbrowser-tab .tab-content {
+    transition: transform .1s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  }
+
+  /* Back/forward button bounce animations */
+  #back-button, #forward-button {
+    list-style-image: none !important;
+  }
+
+  #back-button::after {
+    content: url('icons/back.svg') !important;
+    position: absolute !important;
+    margin-top: 4px !important;
+    transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
+  }
+  #back-button:not([disabled="true"]):active::after {
+    animation: bounceLeft 187ms ease-out !important;
+    animation: bounceLeft2 .5s cubic-bezier(0.55, 0.55, 0, 1) !important;
+  }
+
+  @keyframes bounceLeft {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateX(-3px);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes bounceLeft2 {
+    0% {
+      transform: scaleX(1);
+      transform-origin: right;
+    }
+    30% {
+      transform: scaleX(0.7);
+      transform-origin: right;
+    }
+    60% {
+      transform: scaleX(1.1);
+      transform-origin: right;
+    }
+    80% {
+      transform: scaleX(0.98);
+      transform-origin: right;
+    }
+    100% {
+      transform: scaleX(1);
+      transform-origin: right;
+    }
+  }
+
+  #forward-button::after {
+    content: url('icons/forward.svg') !important;
+    position: absolute !important;
+    margin-top: 4px !important;
+    transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
+  }
+  #forward-button:not([disabled="true"]):active::after {
+    animation: bounceRight 187ms ease-out !important;
+    animation: bounceRight2 .5s cubic-bezier(0.55, 0.55, 0, 1) !important;
+  }
+
+  @keyframes bounceRight {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateX(3px);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes bounceRight2 {
+    0% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    30% {
+      transform: scaleX(0.7);
+      transform-origin: left;
+    }
+    60% {
+      transform: scaleX(1.1);
+      transform-origin: left;
+    }
+    80% {
+      transform: scaleX(0.98);
+      transform-origin: left;
+    }
+    100% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  /* Alternate urlbar dropdown animation */
+  .urlbarView {
+    animation: urlSlide 333ms cubic-bezier(0, 0, 0, 1) !important;
+  }
+
+  @keyframes urlSlide {
+    0% {
+      clip-path: inset(0 0 125% 0);
+    }
+    100% {
+      clip-path: inset(0 -16px -20px -16px);
+    }
+  }
+
+  #urlbar-results {
+    animation: resultSlide 270ms cubic-bezier(0, 0, 0, 1) !important;
+  }
+
+  @keyframes resultSlide {
+    0% {
+      transform: translateY(-75%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+
+  /* Recreate the bouncy result animation from the Microsoft Store */
+  .urlbarView-row {
+    animation: resultBounce 450ms cubic-bezier(.5, 0, 0, 0) !important;
+  }
+
+  @keyframes resultBounce {
+    0% {
+      opacity: 0;
+      translate: 0 -15%;
+    }
+    40% {
+      opacity: 60%;
+      translate: 0 0;
+    }
+    70% {
+      opacity: 100%;
+      translate: 0 5%;
+    }
+    100% {
+      opacity: 100%;
+      translate: 0 0;
+    }
+  }
+
+  /* Other panel animations, require manual user editing if the buttons are placed differently in the toolbar */
+  #unified-extensions-panel[animate="open"],
+  #downloadsPanel[animate="open"],
+  #editBookmarkPanel[animate="open"] {
+    animation: popIn .333s cubic-bezier(0, 0, 0, 1) !important;
+    transform-origin: top right !important;
+  }
+
+  #unified-extensions-panel:not([animate="open"]),
+  #downloadsPanel:not([animate="open"]),
+  #editBookmarkPanel:not([animate="open"]) {
+    animation: popOut .187s ease-in !important;
+    transform-origin: top right !important;
+  }
+
+  #identity-popup[animate="open"],
+  #tab-preview-panel[animate="open"] {
+    animation: popIn2 .333s cubic-bezier(0, 0, 0, 1) !important;
+    transform-origin: top left !important;
+  }
+  #identity-popup:not([animate="open"]) {
+    animation: popOut2 .187s ease-in !important;
+    transform-origin: top left !important;
+  }
+  #tab-preview-panel div {
+    animation: none !important;
+  }
+
+  @keyframes popIn {
+    0% {
+      transform: scale(0,0) translate(-20px, 20px);
+    }
+    100% {
+      transform: scale(1,1);
+    }
+  }
+
+  @keyframes popOut {
+    0% {
+      transform: scale(1,1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0,0) translate(-32px, 24px);
+      opacity: 0
+    }
+  }
+
+  @keyframes popIn2 {
+    0% {
+      transform: scale(0,0) translate(40px, 20px);
+    }
+    100% {
+      transform: scale(1,1);
+    }
+  }
+
+  @keyframes popOut2 {
+    0% {
+      transform: scale(1,1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0,0) translate(72px, 72px);
+      opacity: 0;
+    }
+  }
+  
+  /* URL Tooltip */
+  #statuspanel-label{
+    animation: findbarOut 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+  }
+
+  @media -moz-pref("uc.winui.smaller-toolbar-buttons") {
+    #forward-button::after, #back-button::after {
+      scale: .85 !important;
+    }
+  }
+  @media -moz-pref("uc.winui.mac-back-forward") {
+    #forward-button::after {
+      content: url('icons/forward-mac.svg') !important;
+    }
+    #back-button::after {
+      content: url('icons/back-mac.svg') !important;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    /* Hovering tab animated */
+    .tabbrowser-tab:not([selected]) .tab-background {
+      background-color: transparent !important;
+      box-shadow: 0 -000001px 0 rgba(255,255,255,.0000000000000000000000000001) inset !important;
+      transition: box-shadow ease-in-out 83ms !important;
+    }
+    .tabbrowser-tab:not([selected]):hover .tab-background {
+      background-color: transparent !important;
+      box-shadow: 0 -36px 0 rgba(255,255,255,.0605) inset !important;
+      transition: box-shadow ease-out 183ms !important;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    /* Hovering tab */
+    .tab-background {
+      .tabbrowser-tab:hover &:not([selected], [multiselected]) {
+        #TabsToolbar:not([brighttext]) & {
+          background-color: transparent !important;
+        }
+      }
+    }
+
+    /* Hovering tab animated */
+    .tabbrowser-tab:not([selected]) .tab-background {
+      background-color: transparent !important;
+      box-shadow: 0 -000001px 0 rgba(0,0,0,.000000000000000001) inset !important;
+      transition: box-shadow ease-in-out 83ms !important;
+    }
+
+    .tabbrowser-tab:not([selected]):hover .tab-background {
+      background-color: transparent !important;
+      box-shadow: 0 -36px 0 rgba(0,0,0,.03) inset !important;
+      transition: box-shadow ease-out 183ms !important;
+    }
+  }
+}
+
+@media -moz-pref("uc.winui.taller-bookmarks") {
+  #PersonalToolbar {
+    height: 42px !important;
+    padding-inline: 6px !important;
+    padding-block: 2px !important;
+  }
+  #personal-toolbar-empty-description, toolbarbutton.bookmark-item:not(.subviewbutton) {
+    padding-inline: 7px !important;
+    margin-block: 4px !important;
+    margin-inline: 3px !important;
+  }
+}
+
+@media -moz-pref("uc.winui.js-animations") {
+  #back-button, #forward-button {
+    list-style-image: none !important;
+  }
+
+  #back-button::after {
+    content: url('icons/back.svg') !important;
+    position: absolute !important;
+    margin-top: 4px !important;
+    transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
+  }
+
+  #forward-button::after {
+    content: url('icons/forward.svg') !important;
+    position: absolute !important;
+    margin-top: 4px !important;
+    transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
+  }
+
+  @media -moz-pref("uc.winui.smaller-toolbar-buttons") {
+    #back-button::after, #forward-button::after {
+      scale: .85 !important;
+    }
+    #back-button:not([disabled="true"]):hover image, #forward-button:not([disabled="true"]):hover image {
+      box-shadow: 0 -.5px 0 2px var(--textByuttonHover) !important;
+    }
+    #back-button:not([disabled="true"]):active image, #forward-button:not([disabled="true"]):active image  {
+      box-shadow: 0 -.5px 0 2px var(--textButtonPressed) !important;
+    }
+  }
+}
+
+/* Fixes for inactive Mica tweak/Windows 10 */
+@media not -moz-pref("widget.windows.mica") {
+  /* Browser frame color */
+  * {
+    --lwt-accent-color: light-dark(#e8e8e8, #202020) !important; /* Active window color */
+    --lwt-accent-color-inactive: light-dark(#e8e8e8, #202020) !important; /* Inactive window color */
+  }
+}
+
+@media -moz-pref("uc.winui.extension-tray") {
+  /*  From Firefox-Mod-Blur */
+  #unified-extensions-panel #unified-extensions-view {
+    width: 100% !important;
+  }
+
+  #unified-extensions-view{
+    --uei-icon-size: 16px;
+    --firefoxcss-number-of-extensions-in-a-row: 5;
+  }
+
+  #unified-extensions-view .panel-header,
+  #unified-extensions-view .panel-header + toolbarseparator,
+  #unified-extensions-view .panel-subview-body + toolbarseparator,
+  #unified-extensions-view #unified-extensions-manage-extensions,
+  #unified-extensions-view .unified-extensions-item-menu-button.subviewbutton,
+  #unified-extensions-view .unified-extensions-item-action-button .unified-extensions-item-contents{
+    display:none !important;
+  }
+
+  #unified-extensions-view .panel-subview-body {
+    padding: 2px !important;
+  }
+
+  #unified-extensions-view .unified-extensions-item .toolbarbutton-badge-stack {
+    margin-inline: -4px !important;
+    padding: 5px !important;
+  }
+  #unified-extensions-view .unified-extensions-item .unified-extensions-item-icon{
+    padding: 0 !important;
+  }
+
+  #unified-extensions-view #overflowed-extensions-list,
+  #unified-extensions-view #unified-extensions-area,
+  #unified-extensions-view .unified-extensions-list {
+    display: grid !important;
+    grid-template-columns: repeat(var(--firefoxcss-number-of-extensions-in-a-row),auto);
+    justify-items: left !important;
+    align-items: left !important;
+  }
+
+  #unified-extensions-view .unified-extensions-list .unified-extensions-item,
+  #unified-extensions-view .unified-extensions-list{
+    max-width: max-content;
+  }
+
+  #unified-extensions-view #unified-extensions-area {
+    padding-bottom: 2px !important;
+    border-bottom: 1px solid var(--footerBorder) !important;
+  }
+
+  #unified-extensions-view:is(panelview, #widget-overflow-fixed-list) .toolbaritem-combined-buttons {
+    margin: 2px !important;
+  }
+}
+
+/* Hides the keyboard shortcuts inside panel lists */
+@media -moz-pref("uc.winui.hide-shortcuts") {
+  .subviewbutton {
+    &[shortcut]:not([disabled])::after {
+      color: transparent !important;
+    }
+  }
+}
+
+/* Vertical tabs compatibility */
+@media -moz-pref("sidebar.verticalTabs") {
+  #vertical-tabs {
+    margin-top: 7px !important;
+    margin-inline: -3px !important;
+    padding: 0 !important;
+  }
+  
+  #tabbrowser-tabs[overflow] {
+    & .tabbrowser-tab:not([pinned]) {
+      margin-inline: 0 !important;
+    }
+  }
+
+  /* Tab spacing */
+  .tabbrowser-tab:not([pinned]),
+  .tabbrowser-tab[pinned]{
+    margin-inline: 0px !important;
+  }
+
+  #tabbrowser-tabs {
+    &:not([overflow]) {
+      & :where(#tabbrowser-arrowscrollbox .tabbrowser-tab:nth-child(1 of .tabbrowser-tab:not([hidden]))) {
+        margin-inline-start: 0 !important;
+      }
+    }
+  }
+  
+  #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned]:first-of-type {
+    padding-left: 0 !important;
+  }
+
+  /* Unselected tabs are 1px smaller than selected tabs */
+  .tab-background:not([selected]),
+  .tabbrowser-tab[pinned]:not([selected]) .tab-background{
+    clip-path: inset(1px round 7px) !important;
+  }
+
+  /* Proper tab roundness */
+  .tab-background {
+    border-radius: 4px !important;
+  }
+
+  /* Fix space above tabs so that shadows can appear */
+  #tabbrowser-tabs, .tab-stack {
+    margin-top: 0 !important;
+  }
+
+  /* Remove bottom tab corners */
+  .tab-background:is([selected], [multiselected]):-moz-window-inactive::before,
+  .tab-background:is([selected], [multiselected]):-moz-window-inactive::after,
+  .tab-background:not([selected], [multiselected])::before,
+  .tab-background:not([selected], [multiselected])::after,
+  .tab-background:is([selected], [multiselected]){
+    --uc-tab-corner-bg: transparent !important;
+    --uc-tab-corner-outline: transparent !important;
+  }
+  
+  /* Active tab */
+  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background,
+  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive{
+    background: var(--textButtonPressed) !important;
+  }
+  /* Active tab shadows */
+  #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
+  #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+    box-shadow: none !important;
+  }
+  
+  /* Indicator */
+  .tabbrowser-tab:is([selected], [multiselected]):not([pinned])::before {
+    content: '';
+    width: 3px;
+    height: 16px;
+    margin-left: 10px;
+    margin-top: -73px;
+    background-color: var(--accentAuto);
+    position: absolute;
+    display: block;
+    border-radius: 99px;
+    z-index: 1;
+    animation: selectorBar 187ms forwards !important;
+  }
+
+  /* Space between tab icons and the tab titles. */
+  .tab-throbber:not([pinned]),
+  .tab-icon-pending:not([pinned]),
+  .tab-icon-image:not([pinned]),
+  .tab-sharing-icon-overlay:not([pinned]) {
+    margin-inline: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* Fix tab height */
+  :root[sizemode="maximized"], :root {
+    --tab-min-height: 32px !important;
+  }
+  
+  /* Set separator color */
+  .tabbrowser-tab:not([selected], [multiselected], :hover) {
+    & .tab-stack::before,
+    &:nth-last-child(1 of .tabbrowser-tab:not([hidden])) .tab-stack::after,
+    #tabbrowser-tabs[overflow] &:nth-last-child(1 of .tabbrowser-tab[pinned]:not([hidden])) .tab-stack::after {
+      border: none !important;
+    }
+  }
+
+  /* Tab width and label fix */
+  #tabbrowser-tabs {
+    --tab-min-width: -moz-available !important;
+    
+    & .tabbrowser-tab:not([selected], :hover) .tab-label {
+      clip-path: inset(0 16px 0 0) !important;
+    }
+  }
+
+  /* Tab close button */
+  .tab-close-button {
+    margin-right: 14px !important;
+  }
+  
+  /* New tab button */
+  #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button {
+    margin-inline: 10px !important;
+    border-radius: 4px !important;
+    
+    &:hover {
+      background-color: var(--textButtonHover) !important;
+    }
+    &:active {
+      background-color: var(--textButtonPressed) !important;
+    }
+    
+    & .toolbarbutton-icon {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
+  }
+
+  /* Ensure the title won't move */
+  .tab-icon-stack {
+    width: 23px !important;
+    margin-left: 18px !important;
+  }
+
+  /* Pinned tab */
+  .tabbrowser-tab[pinned] {
+    height: 48px !important;
+    
+    & .tab-background {
+      width: -moz-available !important;
+      background-color: var(--textButtonPressed) !important;
+      
+      &:hover {
+        background-color: var(--textButtonHover) !important;
+      }
+    }
+
+    & .tab-icon-stack {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      width: initial !important;
+      left: auto !important;
+    }
+  }
+  
+  #vertical-pinned-tabs-container .tab-background:not([selected]),
+  .tabbrowser-tab:hover .tab-background {
+    clip-path: inset(1px round 3px) !important;
+  }
+  
+  #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned] {
+    margin-inline: 0 !important;
+  }
+
+  /* Tab opening animation */ 
+  @keyframes fastInvoke {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Open */
+  .tabbrowser-tab[fadein] .tab-content,
+  .tabbrowser-tab[fadein] .tab-background {
+    animation: fastInvoke .5s cubic-bezier(0.55, 0.55, 0, 1) !important;
+  }  
+}
+
+/* Dedicated flag to enable acrylic context menu support due to CSS limitations regarding integer prefs */
+@media -moz-pref("uc.winui.acrylic-menus") {
+  .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+    background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+    box-shadow: none !important;
+    margin: -3px -12px -19px !important;
+    border-radius: 0 !important;
+  }
+  
+  #contentAreaContextMenu menuitem,
+  #contentAreaContextMenu menu,
+  menupopup menuitem,
+  menupopup menu{
+    margin-inline: 3px !important;
+  }
+}
+
+@media -moz-pref("uc.winui.borderless-bookmarks-bar") {
+  #nav-bar {
+    box-shadow: unset !important;
+  }
+}
+
+/* Chrome pages */
+@-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
+  window#aboutDialog {
+    background-color: transparent !important;
+  }
+
+  #aboutDialogContainer {
+    background-color: color-mix(in srgb, var(--commonBackground) 60%, transparent) !important;
+    color: var(--textPrimary) !important;
+    color-scheme: normal !important;
+    font-size: 13px !important;
+  }
+
+  #rightBox {
+    background-image: none !important;
+  }
+  #rightBox::before {
+    content: url("chrome://branding/content/about-wordmark.svg") !important;
+    margin-top: -38px !important;
+  }
+  #leftBox::after {
+    content: 'WinUI';
+    font-size: 26px;
+    width: fit-content;
+    background-color: var(--accentAuto);
+    border-radius: 4px;
+    padding-inline: 8px;
+    padding-block: 1px 3px;
+    color: var(--textInverse);
+    position: absolute;
+    transform: translate(105px, 195px);
+    font-weight: 600;
+  }
+
+  #updateIcon {
+    &.noUpdatesFound {
+      content: url('icons/success-gradient.svg') !important;
+    }
+  }
+
+  #bottomBox {
+    background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
+    padding: 19px 10px 11px !important;
+    border-top: 1px solid var(--footerBorder) !important;
+    
+    & description {
+      color: var(--textTertiary) !important;
+    }
+  }
+
+  #updateButton {
+    box-shadow: none !important;
+    appearance: none !important;
+    -moz-appearance: none !important;
+  }
+
+  @media not -moz-pref("widget.windows.mica") {
+    #aboutDialogContainer, window#aboutDialog {
+      background-color: var(--commonBackground) !important;
+    }
+    #bottomBox {
+      background-color: var(--footer) !important;
+    }
+  }
+}

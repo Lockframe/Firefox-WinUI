@@ -1,0 +1,18 @@
+Tabbar.css
+
+  /* Tab hover background colour. - DISABLED DUE TO INCOMPAT ITH WINUI THEME 
+  .tabbrowser-tab:hover &:not([selected], [multiselected]) {
+    background-color: color-mix(in srgb, currentColor 8%, transparent) !important;
+    --uc-tab-corner-bg: color-mix(in srgb, currentColor 8%, transparent) !important;
+
+    /* When in light mode, the hover colour should be white. 
+    #TabsToolbar:not([brighttext]) & {
+      background-color: rgb(255 255 255 / .3) !important;
+      --uc-tab-corner-bg: rgb(255 255 255 / .3) !important;
+
+      @media (-moz-bool-pref: "uc.tweak.floating-tabs") {
+        background-color: var(--toolbar-bgcolor) !important;
+        --uc-tab-corner-bg: var(--toolbar-bgcolor) !important;
+      }
+    }
+  } */
