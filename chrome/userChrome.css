@@ -58,6 +58,7 @@
   --disabledSearchText: light-dark(rgba(0,0,0,.3614),rgba(255,255,255,.3628)) !important;
   --searchDropdown: light-dark(#FCFCFC, #2C2C2C) !important;
 
+  --controlSolid: light-dark(#ffffff,#454545) !important;
   --controlSecondary: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
   --controlTertiary: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326)) !important;
   --controlQuartenary: light-dark(rgba(243,243,243,.76), rgba(255,255,255,.0605)) !important;
@@ -353,7 +354,9 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after,
 .downloadDeleteFileMenuItem .menu-text::after,
 .downloadRemoveFromHistoryMenuItem .menu-text::after,
 #BMB_searchBookmarks .menu-text::after,
-#BMB_viewBookmarksSidebar .menu-text::after {
+#BMB_viewBookmarksSidebar .menu-text::after,
+#context_unloadTab .menu-text::after,
+#context_unpinTab .menu-text::after {
   content: '';
   background-repeat: no-repeat;
   background-position: center center;
@@ -427,6 +430,43 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after {
 }
 #context-viewimageinfo .menu-text::after {
   background-image: url(icons/info.svg);
+}
+
+#context_unloadTab .menu-text::after {
+  background-image: url(icons/moon.svg);
+}
+
+#controls:not(.playing) #playpause {
+  background-image: url(icons/play.svg) !important;
+  background-size: 16px !important;
+}
+#controls.playing #playpause {
+  background-image: url(icons/pause.svg) !important;
+  background-size: 16px !important;
+}
+#controls:not(.muted) #audio {
+  background-image: url(icons/speaker.svg) !important;
+  background-size: 16px !important;
+}
+#closed-caption {
+  background-image: url(icons/subtitles.svg) !important;
+  background-size: 19px !important;
+}
+body:not(:fullscreen) #fullscreen {
+  background-image: url(icons/fullscreen.svg) !important;
+  background-size: 16px !important;
+}
+body:fullscreen #fullscreen {
+  background-image: url(icons/fullscreen-exit.svg) !important;
+  background-size: 16px !important;
+}
+
+#context_unpinTab {
+  --menu-image: unset !important;
+  
+  & .menu-text::after {
+    background-image: url(icons/unpin.svg) !important;
+  }
 }
 
 /* Right arrow */
@@ -896,38 +936,25 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 /* Pinned Tabs - Needs fixing */
 .tabbrowser-tab[pinned]:not([crashed]){
   .tab-icon-overlay {
-    background-color: transparent !important;
+    background-color: var(--accentAuto) !important;
     background-image: none !important;
-    fill: var(--textPrimary) !important;
+    fill: var(--textInverse) !important;
     border-radius: 50px !important;
     top: -8px !important;
     inset-inline-end: -8px !important;
 
     &:hover{
-      background-color: color-mix(in srgb, transparent 0%, var(--textButtonHover)) !important;
+      background-color: var(--accentHover) !important;
     }
 
     &:hover:active{
-      background-color: color-mix(in srgb, transparent 0%, var(--textButtonPressed)) !important;
-    }
-  }
-
-  &:where([soundplaying], [muted], [activemedia-blocked]) .tab-icon-stack > :not(.tab-icon-overlay) {
-    mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at right top, black 8px, transparent 9px) !important;
-    mask-size: 16px 16px !important;
-    mask-position: center center !important;
-    mask-repeat: no-repeat !important;
-    mask-composite: exclude !important;
-    mask-mode: alpha !important;
-
-    :root:-moz-locale-dir(rtl) & {
-      mask-image: linear-gradient(to bottom, black, black), radial-gradient(circle at left top, black 8px, transparent 9px) !important;
+      background-color: var(--accentPressed) !important;
     }
   }
 }
 
 /* Regular Tabs */
-.tabbrowser-tab:not([pinned], [crashed]) {
+.tabbrowser-tab:not([crashed]) {
   .tab-icon-overlay {
     /* Basic positioning */
     top: 0px !important;
@@ -1782,7 +1809,6 @@ panel toolbarbutton:not([disabled]) {
 
 #downloadsSummary > .downloadTypeIcon {
   list-style-image: none !important;
-
 }
 
 /* Create a new inner element for the spinner */
@@ -2159,25 +2185,8 @@ panel toolbarbutton:not([disabled]) {
 /* Password panel */
 #password-notification {
   & h3 {
-    color: red !important;
+    color: var(--TextPrimary) !important;
   }
-  
-  /*& #password-notification-username, #password-notification-password {
-    outline: none !important;
-    border: none !important;
-    border-radius: 3px !important;
-    background-color: var(--button) !important;
-    
-    &:hover {
-      background-color: var(--searchHover) !important;
-    }
-    &:active {
-      background-color: var(--buttonPressed) !important;
-    }
-    &:focus-within {
-      background-color: var(--searchActive) !important;
-    }
-  }*/
 }
 
 /* Move the reveal password button */
@@ -2364,12 +2373,13 @@ panel toolbarseparator {
 /* Basic animations */
 #unified-extensions-panel[animate="open"],
 #editBookmarkPanel[animate="open"],
-#identity-popup[animate="open"] {
+#identity-popup[animate="open"],
+#BMB_bookmarksPopup[animate="open"]{
   animation: panelSlide2 .5s cubic-bezier(0,0,0,1) !important;
   transform-origin: top center !important;
 }
 #unified-extensions-panel[animate="open"],
-#editBookmarkPanel[animate="open"] {
+#editBookmarkPanel[animate="open"]{
   & toolbarbutton,
   & toolbarseparator,
   & vbox,
@@ -2423,6 +2433,15 @@ panel toolbarseparator {
   & vbox,
   & box {
     animation: panelContentSlide3 .22s cubic-bezier(0,0,0,1) !important;
+    transform-origin: top center !important;
+  }
+}
+
+#BMB_bookmarksPopup[animate="open"] {
+  & menuitem,
+  & menu,
+  & menuseparator {
+    animation: richlistContentSlide .35s cubic-bezier(0,0,0,1) !important;
     transform-origin: top center !important;
   }
 }
@@ -3454,16 +3473,17 @@ button[title="Close"]{
 /* In-urlbar translator button */
 #translations-button {
   & #translations-button-locale {
-    height: 16px !important;
-    border-radius: 3px !important;
-    padding-top: 0 !important;
-    color: var(--textInverse) !important;
+    display: none !important;
   }
-  &:has(#translations-button-icon) {
-    margin-right: -2px !important;
-    width: 50px !important;
+  &[translationsactive="true"] {
+    background-color: var(--accentAuto) !important;
+    
+    & * {
+      fill: var(--textInverse) !important;
+    }
   }
 }
+
 
 /* Notification buttons */
 #notification-popup-box {
@@ -3490,7 +3510,8 @@ button:not([slot="primary"],
 [data-l10n-id="choose-app-btn"],
 .downloadButton,
 [default="true"],
-[title="Close"]), 
+[title="Close"]),
+button:has(.button-background)), 
 #editBookmarkPanelRemoveButton, 
 button.popup-notification-secondary-button,
 panel menulist,
@@ -3856,22 +3877,20 @@ radio > .radio-label-box {
 input[type="range"] {
   -moz-appearance: none !important;
   border: none !important;
-  background: var(--controlStrong) !important;
+  background: transparent !important;
   height: 2px !important;
-}
-input[type="range"]:hover {
-  background: var(--controlStrong) !important;
 }
 input[type="range"]::-moz-range-progress {
   background: var(--accentAuto) !important;
-  height: 2px !important;
+  height: 4px !important;
 }
 input[type="range"]::-moz-range-thumb {
   background: var(--accentAuto) !important;
   border: none !important;
-  width: 20px !important;
-  height: 20px !important;
+  width: 12px !important;
+  height: 12px !important;
   border-radius: 50% !important;
+  outline: 4px solid var(--controlSolid) !important;
 }
 
 /* Picture in Picture */
@@ -3886,6 +3905,25 @@ html[windowtype="Toolkit:PictureInPicture"] {
     list-style-image: none !important;
     background: url("chrome://global/skin/media/picture-in-picture-open.svg") no-repeat center -2px !important;
   }
+}
+
+#unpip, #close {
+  background-image: url(icons/unpip.svg) !important;
+  -moz-context-properties: fill !important;
+  fill: var(--textPrimary) !important;
+  background-size: 16px !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+#close {
+  background-image: url(icons/close.svg) !important;
+}
+
+.controls-bottom-lower button {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border: none !important;
 }
 
 /* Toolbar button states */
@@ -4063,7 +4101,9 @@ html[windowtype="Toolkit:PictureInPicture"] {
 }
 
 /* URL bar icons and notification icons color */
-.urlbar-icon:not(#translations-button-circle-arrows, #star-button[starred]),
+.urlbar-icon:not(#translations-button-circle-arrows, 
+#star-button[starred], 
+#translations-button[translationsactive="true"] *),
 #identity-box {
   fill-opacity: 1 !important;
   fill: var(--textSecondary) !important;
@@ -4431,6 +4471,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   animation: drawLeft 1s cubic-bezier(0.55, 0.55, 0, 1);
 }
 
+/* Make selected text use the accent color*/
+*::-moz-selection {
+  background-color: var(--accentAuto) !important;
+  color: var(--textInverse) !important;
+}
+
 /* ============= DARK ================== */
 
 @media (prefers-color-scheme: dark) {
@@ -4672,7 +4718,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   [data-l10n-id="choose-app-btn"],
   .downloadButton,
   [default="true"],
-  [title="Close"]), 
+  [title="Close"],
+  .controls-bottom-lower button,
+  button:has(.button-background)), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -5026,7 +5074,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   [data-l10n-id="choose-app-btn"],
   .downloadButton,
   [default="true"],
-  [title="Close"]), 
+  [title="Close"],
+  .controls-bottom-lower button),
+  button:has(.button-background)), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -5711,7 +5761,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     height: 24px !important;
   }
   #star-button-box {
-    margin-right: 3px !important;
+    margin-right: 1px !important;
   }
   #star-button,
   #reader-mode-button-icon,
@@ -5730,7 +5780,13 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
 
   #translations-button {
-    height: 25px !important;
+    height: 22px !important;
+    
+    & image {
+      height: 14px !important;
+      width: 14px !important;
+      margin: auto !important;
+    }
   }
   
   #urlbar:is([breakout][breakout-extend][open]) hbox[role="button"] {
@@ -5744,6 +5800,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   .identity-box-button {
     margin-left: 1px !important;
     margin-top: 1.5px !important;
+    height: 25px !important;
   }
   :root:has(.notification-anchor-icon[showing]) .identity-box-button {
     margin-left: -1px !important;
@@ -6541,7 +6598,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #contentAreaContextMenu menuitem,
   #contentAreaContextMenu menu,
   menupopup menuitem,
-  menupopup menu{
+  menupopup menu,
+  #context-navigation{
     margin-inline: 3px !important;
   }
   
@@ -6572,6 +6630,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #BMB_bookmarksPopup {
     margin-top: 2px !important;
     margin-inline: -1px !important;
+  }
+  #PopupAutoComplete, #chat-shortcuts-options-panel {
+    margin: 0 !important;
+  }
+  #selection-shortcut-action-panel hbox {
+    background-color: transparent !important;
   }
   
   /* Acrylic panels */
@@ -6608,7 +6672,101 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     appearance: auto !important;
     -moz-default-appearance: menupopup;
     box-shadow: none !important;
-  }  
+  }
+  
+  #editBookmarkPanel {
+    margin-top: 5px !important;
+  }
+  #full-page-translations-panel {
+    margin-top: 3px !important;
+  }
+  .panel-footer {
+    background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
+  }
+  
+  /* Tab preview panel */
+  .tab-preview-thumbnail-container {
+    background-color: transparent !important;
+  }
+  
+  /* Disable animations by modifying them into being blank */
+  @media not -moz-pref("uc.winui.acrylic-animations") {
+    @keyframes panelContentSlide {
+      0% {
+        transform: unset !important;
+      }
+      100% {
+        transform: unset !important;
+      }
+    }
+    @keyframes panelSlide {
+      0% {
+        transform: unset !important;
+      }
+      100% {
+        transform: unset !important;
+      }
+    }
+    @keyframes subtleSlideDown {
+      0% {
+        transform: unset !important;
+      }
+      100% {
+        transform: unset !important;
+      }
+    }
+    @keyframes extremeSlideDown {
+      0% {
+        transform: unset !important;
+      }
+      100% {
+        transform: unset !important;
+      }
+    }
+    @keyframes panelSlide2 {
+      0% {
+        transform: unset !important;
+      }
+      100% {
+        transform: unset !important;
+      }
+    }
+    @keyframes panelContentSlide2 {
+      0% {
+        transform: unset !important;
+      }
+      100% {
+        transform: unset !important;
+      }
+    }
+    @keyframes panelContentSlide3 {
+      0% {
+        transform: unset !important;
+      }
+      100% {
+        transform: unset !important;
+      }
+    }
+    @keyframes richlistSlide {
+      0% {
+        transform: unset !important;
+      }
+      100% {
+        transform: unset !important;
+      }
+    }
+    @keyframes richlistContentSlide {
+      0% {
+        transform: unset !important;
+      }
+      100% {
+        transform: unset !important;
+      }
+    }
+    :root[animate-menupopups] :not(menulist) > menupopup:not([position], [type="arrow"])[animate][animate="open"] {
+      transition-duration: 0s !important;
+    }
+  }
 }
 
 @media -moz-pref("uc.winui.borderless-bookmarks-bar") {

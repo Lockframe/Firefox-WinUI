@@ -1,4 +1,4 @@
-# Firefox WinUI Theme
+# Firefox-WinUI Theme
 
 A custom CSS theme that transforms Firefox to seamlessly integrate with Windows 11's design language.
 
@@ -54,7 +54,7 @@ Create these boolean keys for additional customizations:
 - `uc.winui.extra-highlights`
 - `uc.winui.navbar-highlights`
 - `uc.winui.urlbar-extra-separators`
-- `uc.winui.aptos`
+- `uc.winui.aptos` (Download the font [here](https://www.microsoft.com/en-us/download/details.aspx?id=106087))
 - `uc.winui.centered-url`
 - `uc.winui.taller-bookmarks`
 - `uc.winui.acrylic-menus` (Requires `widget.windows.mica.popups` to be set to `true`)
@@ -69,6 +69,7 @@ Create these boolean keys for additional customizations:
 - `uc.winui.mac-back-forward`
 
 #### Experimental Tweaks
+- `uc.winui.acrylic-animations`
 - `uc.winui.hide-with-1-tab`
 - `uc.winui.js-animations`
 - `uc.winui.extra-animations`

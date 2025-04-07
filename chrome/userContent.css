@@ -115,11 +115,28 @@
 			align-items: center !important;
 			justify-items: center !important;
 		}
+		.modal-overlay {
+			background-color: var(--dialogSmoke) !important;
+			animation: fadeInScale .333s ease-out !important;
+		}
 		.modal {
-			top: auto !important;
 			width: 500px !important;
 			max-width: unset !important;
 			min-width: 500px !important;
+			background-color: var(--commonBackground) !important;
+			outline: 1px solid var(--dialogBorder) !important;
+			border: unset !important;
+			animation: fadeInScale .333s ease-out !important;
+			
+			& button {
+				appearance: none !important;
+				height: 32px !important;
+        padding: unset !important;
+				border-radius: 3px !important;
+			}
+			& .done {
+				background-color: a !important;
+			}
 		}
 		
 		.topsite-form {
@@ -175,8 +192,6 @@
 					display: grid !important;
 				}
 			}
-			
-			
 		}
 		.edit-topsites-wrapper .top-site-inner > .top-site-button > .tile {
 			border: none !important;
@@ -307,6 +322,59 @@
 			border: none !important;
 			box-shadow: var(--buttonShadowDark) !important;
 		}
+		
+		/* Recent activity */
+		
+		.collapsible-section:not(.top-sites) {
+			background-color: transparent !important;
+		}
+		.section-top-bar {
+			transform: translateY(-12px);
+		}
+		.card-outer {
+			background-color: var(--button) !important;
+			border-radius: 3px !important;
+			--uc-border-radius: 3px !important;
+			padding-inline: 0 !important;
+			
+			& a {
+				border-radius: 3px !important;
+				width: 100% !important;
+			}
+			& .card-title {
+				font-weight: normal !important;
+			}
+			
+			& .card, & .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+				box-shadow: none !important;
+			}
+			
+			& .card-context {
+				background-color: transparent !important;
+				clip-path: none !important;
+				transform: translate(10px, 22px) !important;
+				& * {
+					fill: var(--textColor) !important;
+				}
+			}
+			
+			.context-menu-button {
+				background-color: var(--commonBackground) !important;
+				outline: 1px solid rgba(0,0,0,.1) !important;
+				background-image: url(icons/menu.svg) !important;
+				z-index: 1 !important;
+			}
+			
+			&:hover h4 {
+				color: var(--textColor) !important;
+			}
+		}
+		
+		.icon.icon-modal-delete {
+			background-image: url(icons/delete.svg) !important;
+			fill: var(--textColor) !important;
+			background-size: 24px !important;
+		}
 
 		@media (prefers-color-scheme: light) {
 			/* Pinned site tiles */
@@ -346,6 +414,13 @@
 			#row-selector {
 				box-shadow: var(--buttonShadowLight) !important;
 			}
+			
+			.card-outer {
+				box-shadow: var(--buttonShadowLight) !important;
+			}
+			.modal {
+				box-shadow: var(--dialogShadowLight) !important;
+			}
 
 		}
 
@@ -381,6 +456,13 @@
 			}
 			#row-selector {
 				box-shadow: var(--buttonShadowDark) !important;
+			}
+			
+			.card-outer {
+				box-shadow: var(--buttonShadowDark) !important;
+			}
+			.modal {
+				box-shadow: var(--dialogShadowDark) !important;
 			}
 		}
 }
@@ -484,6 +566,10 @@
 		--textColor: light-dark(rgba(0,0,0,.89), rgb(255,255,255)) !important;
 		--textInverse: light-dark(#fff, #000) !important;
 		--textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628)) !important;
+		
+		--dropdownSeparator: light-dark(rgba(0,0,0,.0803), rgba(255,255,255,.0837)) !important;
+		--textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+  		--textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
 
 		--tableOdd: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
 
@@ -984,6 +1070,49 @@
 		background-color: var(--separatorColor) !important;
 		margin-inline: -4px !important;
 	}
+	
+	/* For new tab context menu */
+	.context-menu {
+		overflow: hidden !important;
+		margin: 0 !important;
+		animation: panelSlide .45s cubic-bezier(0, 0, 0, 1) !important;
+		
+		& button {
+			background-color: transparent !important;
+		}
+		& span {
+			margin-block: auto !important;
+			line-height: 22px !important;
+		}
+		& * {
+			animation: panelContentSlide .3s cubic-bezier(0, 0, 0, 1) !important;
+		}
+	}
+	
+	.context-menu-item {
+		border-radius: 4px !important;
+		clip-path: inset(0 round 4px);
+		height: 28px !important;
+		margin-block: 4px !important;
+		
+		&:hover {
+			background-color: var(--textButtonHover) !important;
+		}
+		&:active {
+			background-color: var(--textButtonPressed) !important;
+		}
+		&:first-of-type {
+			margin-top: -4px !important;
+		}
+		&:last-of-type {
+			margin-bottom: -4px !important;
+		}
+	}
+	li.separator {
+		border-color: var(--dropdownSeparator) !important;
+		width: 1000% !important;
+		margin-left: -100px !important;
+	}
 
 	@keyframes selectorBar {
 		0% {
@@ -1005,6 +1134,23 @@
 			transform: scale(100%, 100%);
 		}
 	}
+	@keyframes panelContentSlide {
+		0% {
+			transform: translateY(-100%);
+		}
+		100% {
+			transform: translateY(0%);
+		}
+	}
+	@keyframes panelSlide {
+		0% {
+			clip-path: inset(0 0 100% 0);
+		}
+		100% {
+			clip-path: inset(0 -16px -16px -16px);
+		}
+	}
+
 
 	/* About:config table */
 	#about-config-search {
@@ -1279,7 +1425,7 @@
 	}
 
 	/* Links */
-	a:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button),
+	a:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button):not(.card-outer a),
 	.text-link,
 	button.text-link:is(:not([disabled="true"]), :enabled),
 	::part(support-link) {
@@ -1337,6 +1483,7 @@
 	.dialogClose,
 	.close-icon,
 	.icon-clear-input,
+	button.done,
 	[default="true"]
 	),
 	menulist,
@@ -1379,6 +1526,7 @@
 	.dialogClose,
 	.close-icon,
 	.icon-clear-input,
+	button.done,
 	[default="true"],
 	[disabled]
 	):hover,
@@ -1418,6 +1566,7 @@
 	.dialogClose,
 	.close-icon,
 	.icon-clear-input,
+	button.done,
 	[default="true"],
 	[disabled]
 	):active,
@@ -1504,9 +1653,10 @@
 	#chooseFolder,
 	#syncNow,
 	button.primary,
-	#containersAdd
+	#containersAdd,
+	button.done
 	) {
-		background-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+		background-color: var(--accentAuto) !important;
 		color: light-dark(#fff, #000) !important;
 		transition: var(--basicBGAnimation) !important;
 		border: 1px solid rgba(255, 255, 255, .08) !important;
@@ -1524,7 +1674,8 @@
 	#chooseFolder,
 	#syncNow,
 	button.primary,
-	#containersAdd
+	#containersAdd,
+	button.done
 	):hover {
 		background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
 	}
@@ -1536,7 +1687,8 @@
 	#chooseFolder,
 	#syncNow,
 	button.primary,
-	#containersAdd
+	#containersAdd,
+	button.done
 	):active {
 		background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
 		opacity: .8 !important;
@@ -2010,21 +2162,6 @@
 		background-color: black !important;
 		background-clip: padding-box !important;
 	}
-	/* Hacky way to make a footer */
-	/*.dialog-button-box {
-	padding: 0px 24px 24px 24px !important;
-	background-color: var(--footer) !important;
-	border-top: 1px solid var(--footerBorder) !important;
-	padding-block-start: 25px !important;
-	padding-block-end: 25px !important;
-	margin-block: 0 0 !important;
-	padding-inline: 20px 21px !important;
-}
-	.dialog-button-box button {
-	width: -moz-available !important;
-	font-weight: normal !important;
-	margin-inline: 4.5px !important;
-}*/
 
 	.dialog-button-box {
 		background-color: var(--footer) !important;
@@ -2599,6 +2736,7 @@
 		.dialogClose,
 		.close-icon,
 		.icon-clear-input,
+		button.done,
 		[default="true"]
 		),
 		menulist,
@@ -2636,6 +2774,7 @@
 		.dialogClose,
 		.close-icon,
 		.icon-clear-input,
+		button.done,
 		[default="true"]
 		):active,
 		menulist:not([disabled]):active,
@@ -2672,6 +2811,7 @@
 		.dialogClose,
 		.close-icon,
 		.icon-clear-input,
+		button.done,
 		[default="true"]
 		):active > *,
 		menulist:not([disabled]):active > *,
@@ -2808,6 +2948,7 @@
 		.dialogClose,
 		.close-icon,
 		.icon-clear-input,
+		button.done,
 		[default="true"]
 		),
 		menulist,
@@ -2845,6 +2986,7 @@
 		.dialogClose,
 		.close-icon,
 		.icon-clear-input,
+		button.done,
 		[default="true"]
 		):active,
 		menulist:not([disabled]):active,
@@ -2881,6 +3023,7 @@
 		.dialogClose,
 		.close-icon,
 		.icon-clear-input,
+		button.done,
 		[default="true"]
 		):active > *,
 		menulist:not([disabled]):active > *,
