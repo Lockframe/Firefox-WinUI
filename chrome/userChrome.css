@@ -1642,7 +1642,8 @@ menu[data-l10n-id="places-open-in-container-tab"],
 }
 
 /* Fix 137 changing the background color of hovered/clicked items inside panels */
-panel toolbarbutton:not([disabled]) {
+panel toolbarbutton:not([disabled]),
+.autocomplete-richlistitem:not([disabled="true"]):not([selected]) {
   &:hover {
     background-color: var(--textButtonHover) !important;
   }
@@ -2547,6 +2548,23 @@ window#webextpanels-window {
   box-shadow: none !important;
   background-color: transparent !important;
 }
+#header {
+  background-color: transparent !important;
+  padding-inline: 8px !important;
+  padding-block: 5px !important;
+  
+  & #provider {
+    margin-right: 6px !important;
+    height: 25px !important;
+    font-size: 14px !important;
+    background-position-x: 8px !important;
+    --start-padding: 24px !important;
+  }
+    
+  & #header-close {
+    margin-left: 2px !important;
+  }
+}
 
 #sidebar-header {
   margin-top: -6px !important;
@@ -2717,6 +2735,10 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
   }
 }
 
+.actions-list moz-button {
+  margin: 4px !important;
+}
+
 /* Remove permission icon in URL bar */
 #identity-permission-box {
   display: none !important;
@@ -2818,13 +2840,28 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
 
   & .autocomplete-richlistitem {
     margin-inline: 10px !important;
-    border-radius: 4px !important;
+    border-radius: 6px !important;
     padding-inline: 11px 0 !important;
     padding-block: 1px !important;
     margin-block: 2px !important;
     
     & .labels-wrapper {
       margin-left: -5px !important;
+      font-size: 13px !important;
+    }
+    
+    & .label-row {
+      line-height: 1em !important;
+      &:first-of-type {
+        padding-block: 4px !important;
+      }
+      &:last-of-type {
+        padding-bottom: 4px !important;
+      }
+    }
+    
+    & .label-row span {
+      font-style: normal !important;
     }
 
     & .line2-label {
@@ -2870,6 +2907,9 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
 
     & .ac-title {
       margin-inline: auto !important;
+    }
+    & .ac-site-icon {
+      display: none !important;
     }
   }
 }
@@ -3510,7 +3550,8 @@ button:not([slot="primary"],
 [data-l10n-id="choose-app-btn"],
 .downloadButton,
 [default="true"],
-[title="Close"]), 
+[title="Close"],
+#updateButton), 
 #editBookmarkPanelRemoveButton, 
 button.popup-notification-secondary-button,
 panel menulist,
@@ -3518,7 +3559,8 @@ panel menulist,
 #downloadsFooterButtons button,
 #identity-popup-clear-sitedata-button,
 #identity-popup-more-info,
-#PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"]{
+#PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
+#provider{
   font-weight: normal !important;
   background-color: var(--button) !important;
   border-radius: 3px !important;
@@ -4718,7 +4760,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   .downloadButton,
   [default="true"],
   [title="Close"],
-  .controls-bottom-lower button), 
+  .controls-bottom-lower button,
+  #updateButton), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -4727,7 +4770,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #identity-popup-clear-sitedata-button,
   #identity-popup-more-info,
   #sidebar-switcher-target,
-  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"] {
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
+  #provider {
     box-shadow: var(--buttonShadowDark) !important;
     
     &:hover {
@@ -5073,7 +5117,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   .downloadButton,
   [default="true"],
   [title="Close"],
-  .controls-bottom-lower button), 
+  .controls-bottom-lower button,
+  #updateButton), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -5082,7 +5127,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #identity-popup-clear-sitedata-button,
   #identity-popup-more-info,
   #sidebar-switcher-target,
-  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"] {
+  #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
+  #provider {
     box-shadow: var(--buttonShadowLight) !important;
 
     &:hover {
@@ -6599,6 +6645,14 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #context-navigation{
     margin-inline: 3px !important;
   }
+  #contentAreaContextMenu,
+  #chatbot-menupopup,
+  #PopupAutoComplete,
+  #chat-shortcuts-options-panel,
+  #ContentSelectDropdownPopup,
+  #ContentSelectDropdown {
+    margin: 0 !important;
+  }
   
   /* Fix other bookmarks panel not having acrylic */
   #OtherBookmarksPopup,
@@ -6607,8 +6661,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #BMB_bookmarksPopup menupopup{
     -moz-default-appearance: menupopup !important;
     appearance: auto !important;
-    margin-top: 0px !important;
-    margin-left: 0px !important;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
   }
   
   /* Alignment */
@@ -6628,9 +6682,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     margin-top: 2px !important;
     margin-inline: -1px !important;
   }
-  #PopupAutoComplete, #chat-shortcuts-options-panel {
-    margin: 0 !important;
-  }
   #selection-shortcut-action-panel hbox {
     background-color: transparent !important;
   }
@@ -6641,6 +6692,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     --arrowpanel-background: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
     --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
     --arrowpanel-border-color: none !important;
+    --panel-background: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
   }
   panel {
     appearance: auto !important;
@@ -6826,6 +6878,23 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     box-shadow: none !important;
     appearance: none !important;
     -moz-appearance: none !important;
+    padding: 6px 8px !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    background-color: var(--accentAuto) !important;
+    color: var(--textInverse) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
+    font-weight: normal !important;
+
+    &:hover {
+      background-color: var(--accentHover) !important;
+      box-shadow: none !important;
+    }
+    &:active {
+      background-color: var(--accentPressed) !important;
+      box-shadow: none !important;
+    }
   }
 
   @media not -moz-pref("widget.windows.mica") {
