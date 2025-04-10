@@ -3551,7 +3551,8 @@ button:not([slot="primary"],
 .downloadButton,
 [default="true"],
 [title="Close"],
-#updateButton), 
+#updateButton,
+html[windowtype="Toolkit:PictureInPicture"] *), 
 #editBookmarkPanelRemoveButton, 
 button.popup-notification-secondary-button,
 panel menulist,
@@ -3951,7 +3952,7 @@ html[windowtype="Toolkit:PictureInPicture"] {
 #unpip, #close {
   background-image: url(icons/unpip.svg) !important;
   -moz-context-properties: fill !important;
-  fill: var(--textPrimary) !important;
+  fill: white !important;
   background-size: 16px !important;
   background-color: transparent !important;
   box-shadow: none !important;
@@ -4761,7 +4762,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   [default="true"],
   [title="Close"],
   .controls-bottom-lower button,
-  #updateButton), 
+  #updateButton,
+  html[windowtype="Toolkit:PictureInPicture"] *), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -5118,7 +5120,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   [default="true"],
   [title="Close"],
   .controls-bottom-lower button,
-  #updateButton), 
+  #updateButton,
+  html[windowtype="Toolkit:PictureInPicture"] *), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -6698,6 +6701,11 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     appearance: auto !important;
     box-shadow: none !important;
     --panel-shadow-margin: 0 !important;
+  }
+  
+  #autoscroller, .autoscroller {
+    opacity: 0 !important;
+    appearance: none !important;
   }
   
   /* Move misaligned panels */
