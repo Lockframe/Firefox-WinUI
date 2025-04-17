@@ -356,7 +356,12 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after,
 #BMB_searchBookmarks .menu-text::after,
 #BMB_viewBookmarksSidebar .menu-text::after,
 #context_unloadTab .menu-text::after,
-#context_unpinTab .menu-text::after {
+#context_unpinTab .menu-text::after,
+#unified-extensions-context-menu-move-widget-down .menu-text::after,
+#unified-extensions-context-menu-move-widget-up .menu-text::after,
+#unified-extensions-context-menu-pin-to-toolbar .menu-iconic-text::after,
+menuitem[data-l10n-id="origin-controls-no-access"] .menu-text::after,
+menuitem[data-l10n-id="origin-controls-options"] .menu-text::after{
   content: '';
   background-repeat: no-repeat;
   background-position: center center;
@@ -467,6 +472,32 @@ body:fullscreen #fullscreen {
   & .menu-text::after {
     background-image: url(icons/unpin.svg) !important;
   }
+}
+
+.urlbarView-type-icon {
+  .urlbarView-row[type="bookmark"] > .urlbarView-row-inner > .urlbarView-no-wrap > & {
+    background-image: url(icons/star-filled.svg) !important;
+    background-size: 10px !important;
+    transform: translateY(-2px) !important;
+    fill: var(--accentAuto) !important;
+  }
+}
+
+#unified-extensions-context-menu-move-widget-down .menu-text::after {
+  background-image: url(icons/down.svg);
+  background-size: 15px !important;
+}
+#unified-extensions-context-menu-move-widget-up .menu-text::after {
+  background-image: url(icons/up.svg);
+  background-size: 15px !important;
+}
+#unified-extensions-context-menu-pin-to-toolbar .menu-iconic-text::after {
+  background-image: url(icons/pin.svg);
+}
+menuitem[data-l10n-id="origin-controls-no-access"] .menu-text::after,
+menuitem[data-l10n-id="origin-controls-options"] .menu-text::after {
+  background-image: url(icons/info.svg);
+  fill: var(--textDisabled);
 }
 
 /* Right arrow */
@@ -1598,6 +1629,11 @@ menuitem {
 #PanelUI-fxa-menu-services-header {
   margin-left: 14px !important;
 }
+#PanelUI-fxa-menu-services {
+  & .subviewbutton {
+    font-size: 13px !important;
+  }
+}
 /* Align services items */
 .fxa-cta-button {
   height: 20px !important;
@@ -1988,7 +2024,7 @@ panel toolbarbutton:not([disabled]),
 }
 
 #downloadsFooterButtons button {
-  margin: 17px 17px 15px !important;
+  margin: 17px 18px 16px !important;
   padding-block: 7px !important;
   height: 30px !important;
   max-height: 30px !important;
@@ -2120,21 +2156,23 @@ panel toolbarbutton:not([disabled]),
 }
 
 /* Bookmark panel */
-#editBMPanel_namePicker {
+#editBMPanel_namePicker, input[type="number"] {
   outline: none !important;
   border: none !important;
   border-radius: 3px !important;
   background-color: var(--button) !important;
+  
+  &:hover {
+    background-color: var(--searchHover) !important;
+  }
+  &:active {
+    background-color: var(--buttonPressed) !important;
+  }
+  &:focus-within {
+    background-color: var(--searchActive) !important;
+  }
 }
-#editBMPanel_namePicker:hover {
-  background-color: var(--searchHover) !important;
-}
-#editBMPanel_namePicker:active {
-  background-color: var(--buttonPressed) !important;
-} 
-#editBMPanel_namePicker:focus-within {
-  background-color: var(--searchActive) !important;
-}
+
 #editBookmarkHeaderSeparator {
   display: none !important;
 }
@@ -2301,7 +2339,7 @@ panel toolbarbutton:not([disabled]),
   border-top: 1px solid var(--footerBorder) !important;
   margin: 4px 0 0 0 !important;
   padding-block: 16px !important;
-  padding-inline: 10px 12px !important;
+  padding-inline: 12px 14px !important;
 }
 
 .panel-footer button {
@@ -2375,12 +2413,14 @@ panel toolbarseparator {
 #unified-extensions-panel[animate="open"],
 #editBookmarkPanel[animate="open"],
 #identity-popup[animate="open"],
-#BMB_bookmarksPopup[animate="open"]{
+#BMB_bookmarksPopup[animate="open"],
+#customizationui-widget-panel[animate="open"]{
   animation: panelSlide2 .5s cubic-bezier(0,0,0,1) !important;
   transform-origin: top center !important;
 }
 #unified-extensions-panel[animate="open"],
-#editBookmarkPanel[animate="open"]{
+#editBookmarkPanel[animate="open"],
+#customizationui-widget-panel[animate="open"]{
   & toolbarbutton,
   & toolbarseparator,
   & vbox,
@@ -2823,6 +2863,17 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
   & .autocomplete-richlistbox {
     background-image: var(--acrylic) !important;
     max-height: unset !important;
+    
+    & .ac-title {
+      font-size: 13px !important;
+    }
+    
+    & .autocomplete-richlistitem[ac-image=""] .ac-title {
+      transform: translateX(-32px) !important;
+    }
+    & .autocomplete-richlistitem[ac-image=""]:last-of-type:not([originaltype="loginsFooter"]) {
+      margin-bottom: 9px !important;
+    }
   }
   
   & richlistitem[originaltype="importableLogins"] {
@@ -2839,7 +2890,7 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
   }
 
   & .autocomplete-richlistitem {
-    margin-inline: 10px !important;
+    margin-inline: 9px !important;
     border-radius: 6px !important;
     padding-inline: 11px 0 !important;
     padding-block: 1px !important;
@@ -2890,12 +2941,12 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
     }
   }
   & .autocomplete-richlistitem:first-of-type {
-    margin-top: 8px !important;
+    margin-top: 9px !important;
   }
 
   & .autocomplete-richlistitem[originaltype="loginsFooter"] {
     height: 30px !important;
-    margin-block: 24px 16px !important;
+    margin-block: 24px 18px !important;
     margin-inline: 18px !important;
 
     &::before {
@@ -3561,7 +3612,8 @@ panel menulist,
 #identity-popup-clear-sitedata-button,
 #identity-popup-more-info,
 #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
-#provider{
+#provider,
+select{
   font-weight: normal !important;
   background-color: var(--button) !important;
   border-radius: 3px !important;
@@ -3777,7 +3829,7 @@ input[type="checkbox"]:checked + .slider::before {
 radio {
   opacity: 1 !important;
 }
-input[type="radio"] {
+input[type="radio"]:not(#print .toggle-group *) {
   appearance: none !important;
   background-clip: border-box !important;
   background-color: var(--controlAltSecondary) !important;
@@ -3790,54 +3842,48 @@ input[type="radio"] {
   width: auto !important;
   height: auto !important;
   list-style: none !important;
+
+  &:hover {
+    background-color: var(--controlAltTertiary) !important;
+    border-color: var(--controlStrongStroke) !important;
+  }
+  &:hover:active {
+    background-color: var(--controlAltQuartenary) !important;
+    border-color: var(--controlStrongStrokeDisabled) !important;
+  }
+  &:checked {
+    background-color: var(--accentAuto) !important;
+    border-color: transparent !important;
+  }
+  &:checked:hover {
+    background-color: var(--accentHover) !important;
+    border-color: transparent !important;
+  }
+  &:checked:hover:active {
+    background-color: var(--accentPressed) !important;
+    border-color: transparent !important;
+  }
+
+  &::before {
+    display: block !important;
+    content: "" !important;
+    background: transparent !important;
+    height: 8px !important;
+    width: 8px !important;
+    margin: 4px !important;
+    border-radius: 100% !important;
+    transition: all 43ms linear !important;
+  }
+  &:hover::before {
+    height: 10px !important;
+    width: 10px !important;
+    margin: 3px !important;
+  }
+  &:hover:active::before, &:checked::before, &:checked:hover::before, &:checked:hover:active::before  {
+    background: light-dark(#fff,#000) !important;
+  }
 }
-input[type="radio"]:hover {
-  background-color: var(--controlAltTertiary) !important;
-  border-color: var(--controlStrongStroke) !important;
-}
-input[type="radio"]:hover:active {
-  background-color: var(--controlAltQuartenary) !important;
-  border-color: var(--controlStrongStrokeDisabled) !important;
-}
-input[type="radio"]:checked {
-  background-color: var(--accentAuto) !important;
-  border-color: transparent !important;
-}
-input[type="radio"]:checked:hover {
-  background-color: var(--accentHover) !important;
-  border-color: transparent !important;
-}
-input[type="radio"]:checked:hover:active {
-  background-color: var(--accentPressed) !important;
-  border-color: transparent !important;
-}
-input[type="radio"]::before {
-  display: block !important;
-  content: "" !important;
-  background: transparent !important;
-  height: 8px !important;
-  width: 8px !important;
-  margin: 4px !important;
-  border-radius: 100% !important;
-  transition: all 43ms linear !important;
-}
-input[type="radio"]:hover::before {
-  height: 10px !important;
-  width: 10px !important;
-  margin: 3px !important;
-}
-input[type="radio"]:hover:active::before {
-  background: light-dark(#fff,#000) !important;
-}
-input[type="radio"]:checked::before {
-  background: light-dark(#fff,#000) !important;
-}
-input[type="radio"]:checked:hover::before {
-  background: light-dark(#fff,#000) !important;
-}
-input[type="radio"]:checked:hover:active::before {
-  background: Alight-dark(#fff,#000) !important;
-}
+
 input[type="radio"] + span {
   position: relative !important;
   bottom: 0px !important;
@@ -3933,6 +3979,20 @@ input[type="range"]::-moz-range-thumb {
   height: 12px !important;
   border-radius: 50% !important;
   outline: 4px solid var(--controlSolid) !important;
+}
+
+/* Minor adjustments to number input boxes */
+input[type="number"] {
+  text-align: center !important;
+  appearance: none !important;
+  border: none !important;
+  height: 28px !important;
+  font-size: 14px !important;
+  padding: 0 !important;
+}
+input[type="number"]::-moz-number-spin-up, 
+input[type="number"]::-moz-number-spin-down {
+  appearance: none !important;
 }
 
 /* Picture in Picture */
@@ -4514,9 +4574,106 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 }
 
 /* Make selected text use the accent color*/
-*::-moz-selection {
+*::-moz-selection, ::selection {
   background-color: var(--accentAuto) !important;
   color: var(--textInverse) !important;
+}
+
+/* Print panel */
+#print, .header-container {
+  background-color: var(--commonBackground) !important;
+  margin-top: -1px !important;
+  padding-top: 12px !important;
+  
+  & h2 {
+    font-weight: semibold !important;
+    margin: 0 !important;
+  }
+  & div[aria-live="polite"] {
+    color: var(--textTertiary) !important;
+  }
+  
+  & input[type="checkbox"] {
+    margin-block: 4px !important;
+  }
+}
+
+#print select:not(#printer-picker) {
+  font-size: 13px !important;
+  padding-left: 10px !important;
+  padding-block: 0 1px !important;
+  height: 28px !important;
+  background-image: url(icons/chevron-down.svg) !important;
+  background-size: 11px !important;
+  background-position-x: 93% !important;
+}
+#printer-picker {
+  padding-left: 35px !important;
+  background-image: url(icons/print.svg), url(icons/chevron-down.svg) !important;
+  background-position-x: 10px, 93% !important;
+  background-size: 16px, 11px !important;
+  
+  &[output="pdf"] {
+    background-image: url(icons/document.svg), url(icons/chevron-down.svg) !important;
+    background-size: 12px, 11px !important;
+  }
+}
+
+#print-footer {
+  background-color: var(--footer) !important;
+  border-top: 1px solid var(--footerBorder2) !important;
+  
+  & button {
+    width: -moz-available !important;
+  }
+}
+
+.toggle-group {  
+  & input, label {
+    margin-inline: 0 !important;
+    padding: 0 10px !important;
+    height: 28px !important;
+    border-radius: 3px !important;
+  }
+}
+
+#print .toggle-group-input + .toggle-group-label {
+  margin-inline: 0px 4px !important;
+}
+
+#print .toggle-group-input:not(:checked) + .toggle-group-label {
+  background-color: var(--controlAltSecondary) !important;
+  outline: 1px solid var(--controlStroke) !important;
+}
+
+#print .toggle-group-input:checked + .toggle-group-label {
+  background-color: var(--button) !important;
+  color: var(--textPrimary) !important;
+  border-radius: 3px !important;
+}
+
+#portrait:checked ~ label[for="portrait"]::after,
+#landscape:checked ~ label[for="landscape"]::after{
+  content: '';
+  display: block;
+  position: relative;
+  width: 16px;
+  height: 3px;
+  background-color: var(--accentAuto);
+  border-radius: 99px;
+  margin: 24px 0 0 0;
+  margin-left: -59%;
+  margin-right: -16px;
+}
+
+#open-dialog-link {
+  &::after {
+    display: none !important;
+  }
+}
+
+#print hr {
+  display: none !important;
 }
 
 /* ============= DARK ================== */
@@ -4773,7 +4930,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #identity-popup-more-info,
   #sidebar-switcher-target,
   #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
-  #provider {
+  #provider,
+  select,
+  #print .toggle-group-input:checked + .toggle-group-label{
     box-shadow: var(--buttonShadowDark) !important;
     
     &:hover {
@@ -4846,7 +5005,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
   
   /* AI panel */
-  .ask-chat-shortcuts-custom-prompt {
+  .ask-chat-shortcuts-custom-prompt, input[type="number"] {
     box-shadow: var(--searchShadowDark) !important;
     
     &:focus-within {
@@ -5131,7 +5290,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #identity-popup-more-info,
   #sidebar-switcher-target,
   #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
-  #provider {
+  #provider,
+  select,
+  #print .toggle-group-input:checked + .toggle-group-label{
     box-shadow: var(--buttonShadowLight) !important;
 
     &:hover {
@@ -5219,7 +5380,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
   
   /* AI panel */
-  .ask-chat-shortcuts-custom-prompt {
+  .ask-chat-shortcuts-custom-prompt, input[type="number"] {
     box-shadow: var(--searchShadowLight) !important;
     
     &:focus-within {
@@ -5304,6 +5465,16 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 @media (-moz-platform: windows) and (not (-moz-windows-accent-color-in-titlebar)) {
   :root[sizemode="maximized"]:not([inFullscreen]) #navigator-toolbox {
     margin-top: -1px !important;
+  }
+}
+
+/* Support for accent color title bars */
+@media (-moz-windows-accent-color-in-titlebar) {
+  :root:not(:-moz-window-inactive) {
+    background-color: var(--accentAuto) !important;
+  }
+  * {
+    --lwt-accent-color: var(--accentLight4) !important;
   }
 }
 
