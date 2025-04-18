@@ -5498,7 +5498,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       background-color: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
     }
 
-    &:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [sizemode="maximized"], [chromehidden*="toolbar"], [chromehidden*="menubar"]) tabbox#tabbrowser-tabbox browser {
+    &:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [chromehidden*="toolbar"], [chromehidden*="menubar"]) tabbox#tabbrowser-tabbox browser {
       border-radius: 8px;
       clip-path: circle(100%);
     }
