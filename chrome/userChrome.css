@@ -755,7 +755,7 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   margin-top: 9px !important;
 }
 :root[sizemode="maximized"] .tab-stack {
-  margin-top: 1px !important;
+  margin-top: 2px !important;
 }
 
 /* Fix new tab button top margin w tab shadow fix */
@@ -2862,7 +2862,7 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
 
   & .autocomplete-richlistbox {
     background-image: var(--acrylic) !important;
-    max-height: unset !important;
+    max-height: 379px !important;
     
     & .ac-title {
       font-size: 13px !important;
@@ -4188,8 +4188,11 @@ html[windowtype="Toolkit:PictureInPicture"] {
   & #urlbar-input, .urlbar-page-action {
       margin-bottom: -1px !important;
   }
-  & .urlbar-icon, #urlbar-searchmode-switcher {
-    margin-top: 4px !important;
+  & hbox[role="button"] {
+    transform: translateY(-3px) !important;
+  }
+  & image {
+    transform: translateY(0px) !important;
   }
 }
 
