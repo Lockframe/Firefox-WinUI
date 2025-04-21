@@ -361,7 +361,8 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after,
 #unified-extensions-context-menu-move-widget-up .menu-text::after,
 #unified-extensions-context-menu-pin-to-toolbar .menu-iconic-text::after,
 menuitem[data-l10n-id="origin-controls-no-access"] .menu-text::after,
-menuitem[data-l10n-id="origin-controls-options"] .menu-text::after{
+menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
+#PanelUI-historyMore .toolbarbutton-text::after{
   content: '';
   background-repeat: no-repeat;
   background-position: center center;
@@ -498,6 +499,11 @@ menuitem[data-l10n-id="origin-controls-no-access"] .menu-text::after,
 menuitem[data-l10n-id="origin-controls-options"] .menu-text::after {
   background-image: url(icons/info.svg);
   fill: var(--textDisabled);
+}
+
+#PanelUI-historyMore .toolbarbutton-text::after {
+  background-image: url(icons/repair.svg);
+  transform: translate(-28px,-15px) !important;
 }
 
 /* Right arrow */
@@ -1609,7 +1615,7 @@ menuitem {
 }
 
 #PanelUI-fxa-menu-syncnow-button, #PanelUI-fxa-menu-empty-profiles-button {
-  font-size: 14px !important;
+  font-size: 13px !important;
   height: 16px !important;
 }
 #PanelUI-fxa-menu-empty-profiles-button {
@@ -1618,6 +1624,15 @@ menuitem {
   
   &::after {
     margin-left: auto !important;
+  }
+}
+
+#fxa-manage-account-button {
+  font-size: 13px !important;
+  margin-top: 3px !important;
+  
+  & #fxa-menu-header-description {
+    display: none !important;
   }
 }
 
@@ -6013,7 +6028,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     transform: translateY(-1px) !important;
     
     & image {
-      transform: translateY(-7px) !important;
+      transform: translateY(-3px) !important;
     }
   }
   
@@ -6874,7 +6889,18 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   panel {
     appearance: auto !important;
     box-shadow: none !important;
-    --panel-shadow-margin: 0 !important;
+    --panel-shadow-margin: .0000001px !important;
+    padding-bottom: 1px !important;
+    
+    & richlistitem, & toolbarbutton {
+      margin-inline: 5px !important;
+    }
+  }
+  #PanelUI-fxa-remotetabs-deck .all-tabs-button {
+    margin-inline: -3px !important;
+  }
+  #PanelUI-fxa-remotetabs-deck .all-tabs-close-button {
+    margin-inline: 6px -3px !important;
   }
   
   #autoscroller, .autoscroller {
@@ -6885,6 +6911,10 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   /* Move misaligned panels */
   #unified-extensions-panel {
     margin-top: 2px !important;
+    
+    & .unified-extensions-item {
+      margin-inline: 0px !important;
+    }
   }
   #identity-popup {
     margin-top: 4px !important;
