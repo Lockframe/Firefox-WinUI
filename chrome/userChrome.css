@@ -3001,9 +3001,6 @@ menupopup, panel {
 panel {
   --panel-shadow-margin: 24px !important;
 }
-menupopup {
-  --panel-shadow-margin: 0 !important;
-}
 
 #PopupSearchAutoComplete {
   --panel-border-radius: 0 0 8px 8px !important;
@@ -6828,6 +6825,21 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     box-shadow: none !important;
     margin: -3px -12px -19px !important;
     border-radius: 0 !important;
+  }
+  
+  /* Potential fix for unscrollable menulists */
+  menupopup {
+    --panel-shadow-margin: -12px !important;
+  }
+  
+  menupopup#ContentSelectDropdownPopup {
+    margin-left: 0 !important;
+
+    & menuitem {
+      &:last-of-type {
+        margin-bottom: 2px !important;
+      }
+    }
   }
   
   #contentAreaContextMenu menuitem,
