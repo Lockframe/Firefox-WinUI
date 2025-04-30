@@ -3035,7 +3035,7 @@ findbar {
   border-top: none !important;
   position: relative !important;
 	border-radius: 7px !important;
-	bottom: 60px !important;
+	bottom: -61px !important;
 	margin-inline: auto !important;
 	width: 48.5rem !important;
 	height: 4rem !important;
@@ -3044,6 +3044,8 @@ findbar {
 	margin-top: -4rem !important;
 	transition: all 333ms ease-out !important;
   outline: 1px solid rgba(117,117,117,.4) !important;
+  order: -1 !important;
+  z-index: 99 !important;
   
   &:has(.found-matches:not([hidden="true"])) {
     width: 58rem !important;
