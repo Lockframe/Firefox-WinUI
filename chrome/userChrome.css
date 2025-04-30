@@ -301,7 +301,10 @@ h1, h2, h3 {
 #identity-box[pageproxystate="valid"].verifiedDomain #identity-icon, 
 #identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon,
 #identity-popup[connection^="secure"] .identity-popup-security-connection {
-  list-style-image: url('icons/lock.svg') !important;
+  list-style-image: none !important;
+  background-image: url(icons/lock.svg);
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
 }
 
 #appMenu-zoom-controls::before {
@@ -857,7 +860,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   --tab-min-height: 32px !important;
   
   & #TabsToolbar {
-    --tab-min-height: 31px !important;
+    --tab-min-height: 32px !important;
   }
 
   &[uidensity=compact] {
@@ -865,7 +868,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   }
 
   &[uidensity=touch] {
-    --tab-min-height: 31px !important;
+    --tab-min-height: 32px !important;
   }
 }
 :root[sizemode="maximized"] {
@@ -1075,7 +1078,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   line-height: normal !important;
   overflow: hidden !important;
   white-space: nowrap !important;
-  margin-block: 0px !important;
+  margin-block: 0 !important;
 }
 
 .tabbrowser-tab:not([selected]) .tab-content, .tab-icon-overlay {
@@ -1201,8 +1204,8 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 #statuspanel-label{
   display: block !important;
   border-radius: 4px !important;
-  padding: 2px 7px 6px 8px !important;
-  margin: 0 0 4px 4px !important;
+  padding: 4px 7px 7px 8px !important;
+  margin: 0 0 5px 5px !important;
   background-image: var(--acrylic) !important;
 }
 
@@ -1700,6 +1703,14 @@ panel toolbarbutton:not([disabled]),
   }
   &:active {
     background-color: var(--textButtonPressed) !important;
+  }
+}
+
+panel[type="autocomplete-richlistbox"] {
+  & .autocomplete-richlistitem {
+    &[selected] {
+      background-color: var(--textButtonPressed) !important;
+    }
   }
 }
 
@@ -3026,13 +3037,17 @@ findbar {
 	border-radius: 7px !important;
 	bottom: 60px !important;
 	margin-inline: auto !important;
-	width: 47.5rem !important;
+	width: 48.5rem !important;
 	height: 4rem !important;
 	display: flex !important;
 	align-items: space-evenly !important;
 	margin-top: -4rem !important;
 	transition: all 333ms ease-out !important;
   outline: 1px solid rgba(117,117,117,.4) !important;
+  
+  &:has(.found-matches:not([hidden="true"])) {
+    width: 58rem !important;
+  }
 }
 
 findbar[hidden]{
@@ -3140,28 +3155,16 @@ findbar:not([hidden]) {
   margin: auto 10px auto auto !important;
 }
 
-/* hide matched amount */
+/* Matches found */
 .findbar-find-status, .found-matches {
-	display: none !important;
-}
-.found-matches::before {
-	z-index: 8 !important;
-}
-.found-matches::after {
-	position: absolute;
-	display: block;
-	content: '';
-	width: 1rem;
-	height: 1.5rem;
-	background: var(--toolbar-bgcolor, var(--toolbar-non-lwt-bgcolor)) !important;
-	right: -0.5rem;
-	top: 0.8rem;
-	transform: rotate(45deg);
-	box-shadow: 0 0 0px 1px var(--lwt-accent-color);
-	clip-path: inset(0 -0.3rem 0 0);
-}
-.findbar-textbox { 
-	z-index: 10 !important;
+  &:not([hidden="true"]) {
+    display: block !important;
+    margin-inline: 2px 0 !important;
+    font-size: 13px !important;
+    padding: 0 !important;
+    color: var(--textSecondary) !important;
+    font-weight: normal !important;
+  }
 }
 
 /* Dropdowns */
@@ -3321,6 +3324,10 @@ dialog:not(#window-modal-dialog) {
   animation: fadeInScale .333s ease-out !important;
 }
 
+#description {
+  font-size: 18px !important;
+}
+
 #description-box {
   font-size: 14px !important;
 
@@ -3330,7 +3337,7 @@ dialog:not(#window-modal-dialog) {
     margin-top: 11px !important;
   }
 
-  & .text-link {
+  & .text-link, #description-extra {
     margin-left: 7px !important;
   }
 }
@@ -3340,7 +3347,7 @@ dialog:not(#window-modal-dialog) {
   margin-top: -6px !important;
 }
 #remember-text {
-  margin-block: 8px 17px !important;
+  margin-block: 8px -17px !important;
 }
 
 #items {
@@ -4192,6 +4199,7 @@ html[windowtype="Toolkit:PictureInPicture"] {
   margin-top: 29px;
   border-radius: 0 0 4px 4px;
 }
+
 /* Reposition in-url input and right-side icons in 136 and 137 */
 #urlbar-input, .urlbar-page-action {
   margin-bottom: 1px !important;
@@ -5534,23 +5542,10 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
 }
 
-/* Safari-style centered URL links unless active */
+/* Simplified centered url tweak */
 @media -moz-pref("uc.winui.centered-url") {
   #urlbar-input {
-    position: absolute;
-    width: 50%;
-    height: 100%;
     text-align: center !important;
-    transform: translateX(50%);
-    transition: transform 0.3s cubic-bezier(0, 0.7, 0.3, 1);
-  }
-  #urlbar[focused] #urlbar-input {
-    transform: translateX(0);
-    width: 100%;
-    text-align: left !important;
-  }
-  #urlbar[breakout][breakout-extend] #urlbar-input {
-    margin-top: 1px !important;
   }
 }
 
@@ -5681,13 +5676,25 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
   #urlbar[breakout][breakout-extend][open],
   #urlbar[breakout][breakout-extend][open] > #urlbar-background {
-    border-radius: 16px 16px 0px 0px !important;
+    border-radius: 16px 16px 0 0 !important;
   }
   #identity-icon-box {
     border-radius: 99px 24px 24px 99px !important;
   }
   #star-button-box {
     border-radius: 24px 99px 99px 24px !important;
+  }
+  
+  /* Accent bottom border */
+  #urlbar[breakout][breakout-extend]:not([usertyping]) > #urlbar-background,
+  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background {
+    border-radius: 16px !important;
+  }
+  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
+    height: 30px !important;
+    margin-top: 1px !important;
+    clip-path: inset(28px 0 0 0) !important;
+    border-radius: 0 0 16px 16px !important;
   }
 }
 
@@ -5885,14 +5892,10 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #identity-box, #star-button-box, #reader-mode-button{
     margin-bottom: 0px !important;
   }
-  #urlbar {
-    margin-bottom: 1px !important;
-  }
 
-  #nav-bar,
-  #PersonalToolbar {
+  #nav-bar {
     margin-inline: 5px !important;
-    height: 49px !important;
+    height: 48px !important;
   }
   /* Animated refresh icon */
   .toolbarbutton-animatable-box {
@@ -5901,27 +5904,29 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     margin-top: -1px !important;
   }
  @media -moz-pref("uc.winui.rounded-corners") {
-    :root:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [sizemode="maximized"]) browser {
-      margin: 0 4px 4px 4px !important;
+     :root:not([inDOMFullscreen="true"], 
+    [sizemode="fullscreen"], 
+    [sizemode="maximized"]) browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
+      margin: -1px 4px 4px 4px !important;
       border-radius: 0 0 6px 6px !important;
       border: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
-      border-top: none !important;
     }
-    :root[sizemode="maximized"] browser {
-      margin: 0 4px 4px 4px !important;
+    :root[sizemode="maximized"] browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
+      margin: 0px 4px 4px 4px !important;
       border-radius: 0 0 8px 8px !important;
       border: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
       border-top: none !important;
     }
+   
     :root {   
       & tabbox#tabbrowser-tabbox,
       & #tabbrowser-tabpanels {
         background-color: transparent !important;
       }
 
-      &:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [sizemode="maximized"], [chromehidden*="toolbar"], [chromehidden*="menubar"]) tabbox#tabbrowser-tabbox browser {
-        border-radius: 8px;
-        clip-path: circle(100%);
+      &:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [chromehidden*="toolbar"], [chromehidden*="menubar"]) tabbox#tabbrowser-tabbox browser {
+        border-radius: 0 0 8px 8px !important;
+        clip-path: circle(100%) !important;
       }
     }
   }
@@ -6003,12 +6008,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
 
   #star-button-box,
-  #identity-box,
-  #reader-mode-button {
+  #reader-mode-button,
+  #identity-icon{
     scale: .9 !important;
-  }
-  #urlbar:not(.searchButton) > :is(#urlbar-input-container, .urlbar-input-container) > #identity-box[pageproxystate="invalid"] #identity-icon {
-    scale: .94 !important;
   }
 
   #translations-button {
@@ -6027,15 +6029,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     & image {
       transform: translateY(-3px) !important;
     }
-  }
-  
-  .identity-box-button {
-    margin-left: 1px !important;
-    margin-top: 1.5px !important;
-    height: 25px !important;
-  }
-  :root:has(.notification-anchor-icon[showing]) .identity-box-button {
-    margin-left: -1px !important;
   }
   
   /* DRM & other notification icons */
@@ -6464,6 +6457,26 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       content: url('icons/back-mac.svg') !important;
     }
   }
+  
+  /* Safari-style centered URL unless active */
+  @media -moz-pref("uc.winui.centered-url") {
+    #urlbar-input {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      text-align: center !important;
+      transform: translateX(50%);
+      transition: transform 0.3s cubic-bezier(0, 0.7, 0.3, 1);
+    }
+    #urlbar[focused] #urlbar-input {
+      transform: translateX(0);
+      width: 100%;
+      text-align: left !important;
+    }
+    #urlbar[breakout][breakout-extend] #urlbar-input {
+      margin-top: 1px !important;
+    }
+  }
 
   @media (prefers-color-scheme: dark) {
     /* Hovering tab animated */
@@ -6825,6 +6838,10 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     box-shadow: none !important;
     margin: -3px -12px -19px !important;
     border-radius: 0 !important;
+    
+    & menuitem {
+      margin-right: -10px !important;
+    }
   }
   
   /* Potential fix for unscrollable menulists */
@@ -6832,14 +6849,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     --panel-shadow-margin: -12px !important;
   }
   
+  /* A way to increase the bottom padding exclusively for long lists is required */
   menupopup#ContentSelectDropdownPopup {
     margin-left: 0 !important;
-
-    & menuitem {
-      &:last-of-type {
-        margin-bottom: 2px !important;
-      }
-    }
   }
   
   #contentAreaContextMenu menuitem,
@@ -6847,7 +6859,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   menupopup menuitem,
   menupopup menu,
   #context-navigation{
-    margin-inline: 3px !important;
+    margin-inline: 3px  2px !important;
   }
   #contentAreaContextMenu,
   #chatbot-menupopup,
@@ -6864,9 +6876,15 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #BMB_bookmarksPopup,
   #BMB_bookmarksPopup menupopup{
     -moz-default-appearance: menupopup !important;
-    appearance: auto !important;
+    appearance: menupopup !important;
     margin-top: 0 !important;
     margin-left: 0 !important;
+  }
+  
+  /* 138 fix for panels */
+  panel {
+    -moz-default-appearance: menupopup !important;
+    appearance: menupopup !important;
   }
   
   /* Alignment */
@@ -6930,6 +6948,11 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
   #identity-popup {
     margin-top: 4px !important;
+  }
+  
+  .tab-preview-thumbnail-container canvas {
+    margin-inline: 9px !important;
+    width: 262px !important;
   }
   
   /* Acrylic tooltips */

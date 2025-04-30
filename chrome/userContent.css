@@ -753,9 +753,10 @@
 		background-size: 12px !important;
 	}
 	.cell-reset .button-delete {
-		background-image: url('icons/delete.svg') !important;
+		background-image: url(icons/delete.svg) !important;
 		background-size: 15px !important;
 	}
+	
 	.button-add {
 		background-image: url('icons/plus.svg') !important;
 		background-size: 14px !important;
@@ -764,8 +765,8 @@
 		background-image: url("icons/edit.svg") !important;
 	}
 	.button-reset {
-		background-image: url("icons/media-undo.svg") !important;
-		background-size: 12px !important;
+		background-image: url(icons/undo.svg) !important;
+		background-size: 13px !important;
 	}
 	#prefs > tr.locked {
 		background-image: url("icons/lock.svg") !important;
