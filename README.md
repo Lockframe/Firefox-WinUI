@@ -44,6 +44,7 @@ Create the following boolean keys as required:
 - `uc.winui.aptos` - Use the new MS Aptos font (Download and install the font from [here](https://www.microsoft.com/en-us/download/details.aspx?id=106087) first)
 - `uc.winui.borderless-bookmarks-bar` - Remove the border between the navbar and bookmarks bar
 - `uc.winui.centered-url` - Center aligns the URL in the URL Bar
+- `uc.winui.centered-url-alt` - Center aligns the URL in the URL Bar but moves it back to the left when selected
 - `uc.winui.extra-highlights` - Adds more highlights to the active tab and context menu
 - `uc.winui.grayer-tabbed` - Reduces the saturation of the Mica backdrop in dark mode
 - `uc.winui.hide-shortcuts` - Hide shortcut hints in menus and panels

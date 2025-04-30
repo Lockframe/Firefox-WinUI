@@ -5551,6 +5551,26 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
 }
 
+/* Safari-style centered URL unless active */
+@media -moz-pref("uc.winui.centered-url-alt") {
+  #urlbar-input {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    text-align: center !important;
+    transform: translateX(50%);
+    transition: transform 0.3s cubic-bezier(0, 0.7, 0.3, 1);
+  }
+  #urlbar[focused] #urlbar-input {
+    transform: translateX(0);
+    width: 100%;
+    text-align: left !important;
+  }
+  #urlbar[breakout][breakout-extend] #urlbar-input {
+    margin-top: 1px !important;
+  }
+}
+
 /* Hide tab bar with 1 tab - Needs polishing - Best without mica */
 @media -moz-pref("uc.winui.hide-with-1-tab") {
   :root[sizemode="normal"] #nav-bar{ --uc-window-drag-space-width: 20px }
@@ -6004,6 +6024,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #identity-icon{
     scale: .9 !important;
   }
+  
+  .identity-box-button {
+    height: 22px !important;
+    margin-left: 3px !important;
+    margin-top: 3px !important;
+  }
 
   #translations-button {
     height: 22px !important;
@@ -6447,26 +6473,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     }
     #back-button::after {
       content: url('icons/back-mac.svg') !important;
-    }
-  }
-  
-  /* Safari-style centered URL unless active */
-  @media -moz-pref("uc.winui.centered-url") {
-    #urlbar-input {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      text-align: center !important;
-      transform: translateX(50%);
-      transition: transform 0.3s cubic-bezier(0, 0.7, 0.3, 1);
-    }
-    #urlbar[focused] #urlbar-input {
-      transform: translateX(0);
-      width: 100%;
-      text-align: left !important;
-    }
-    #urlbar[breakout][breakout-extend] #urlbar-input {
-      margin-top: 1px !important;
     }
   }
 
