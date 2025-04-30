@@ -32,7 +32,7 @@ The theme allows use of **Mica**, which adds a translucent layer to the UI, and 
 To do this, open `about:config` and enable the following boolean keys:
 
 - `widget.windows.mica` (enable mica backdrop)
-- `widget.windows.mica.popups` (⚠️ Acrylic context menus. Requires `uc.winui.acrylic-menus` to be `true`)
+- `widget.windows.mica.popups` (⚠️ Acrylic context menus. Requires `uc.winui.acrylic-menus` to be `true`) ????? default = 2 - what does this mean? ?????
 - `browser.tabs.allow_transparent_browser` (⚠️ Make new tab page translucent. This may cause issues in some web pages)
 
 ---
@@ -106,4 +106,3 @@ This theme integrates styling and features from:
 ## Contributing
 
 Bug reports, feature requests, and code contributions are always welcome.
-
