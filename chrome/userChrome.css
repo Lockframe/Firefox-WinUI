@@ -860,7 +860,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   --tab-min-height: 32px !important;
   
   & #TabsToolbar {
-    --tab-min-height: 32px !important;
+    --tab-min-height: 31px !important;
   }
 
   &[uidensity=compact] {
@@ -868,7 +868,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   }
 
   &[uidensity=touch] {
-    --tab-min-height: 32px !important;
+    --tab-min-height: 31px !important;
   }
 }
 :root[sizemode="maximized"] {
@@ -5950,16 +5950,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
 }
 
-@media -moz-pref("uc.winui.extra-acrylic") {
-  #nav-bar,
-  #PersonalToolbar,
-  #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
-  #sidebar-box {
-    background-image: var(--extraacrylic), var(--acrylic) !important;
-    background-repeat: repeat !important;
-  }
-}
-
 @media -moz-pref("uc.winui.taller-urlbar") {
   #urlbar-background {
     height: 34px !important;
@@ -6554,7 +6544,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       scale: .85 !important;
     }
     #back-button:not([disabled="true"]):hover image, #forward-button:not([disabled="true"]):hover image {
-      box-shadow: 0 -.5px 0 2px var(--textByuttonHover) !important;
+      box-shadow: 0 -.5px 0 2px var(--textButtonHover) !important;
     }
     #back-button:not([disabled="true"]):active image, #forward-button:not([disabled="true"]):active image  {
       box-shadow: 0 -.5px 0 2px var(--textButtonPressed) !important;
@@ -6588,7 +6578,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #unified-extensions-view #unified-extensions-manage-extensions,
   #unified-extensions-view .unified-extensions-item-menu-button.subviewbutton,
   #unified-extensions-view .unified-extensions-item-action-button .unified-extensions-item-contents{
-    display:none !important;
+    display: none !important;
   }
 
   #unified-extensions-view .panel-subview-body {
@@ -6596,8 +6586,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
 
   #unified-extensions-view .unified-extensions-item .toolbarbutton-badge-stack {
-    margin-inline: -4px !important;
-    padding: 5px !important;
+    margin-inline: 0 !important;
+    padding: 4px 0 !important;
+    
+    & image {
+        margin: auto !important;
+      }
   }
   #unified-extensions-view .unified-extensions-item .unified-extensions-item-icon{
     padding: 0 !important;
@@ -6610,6 +6604,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     grid-template-columns: repeat(var(--firefoxcss-number-of-extensions-in-a-row),auto);
     justify-items: left !important;
     align-items: left !important;
+    grid-row-gap: unset !important;
   }
 
   #unified-extensions-view .unified-extensions-list .unified-extensions-item,
@@ -6619,11 +6614,22 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
   #unified-extensions-view #unified-extensions-area {
     padding-bottom: 2px !important;
-    border-bottom: 1px solid var(--footerBorder) !important;
+    border-bottom: 1px solid var(--dropdownSeparator) !important;
   }
 
   #unified-extensions-view:is(panelview, #widget-overflow-fixed-list) .toolbaritem-combined-buttons {
     margin: 2px !important;
+  }
+  
+  @media -moz-pref("widget.windows.mica.popups", 1) or
+       -moz-pref("widget.windows.mica.popups", 2) { 
+    #unified-extensions-view .panel-subview-body {
+      padding: 3px !important;
+    }
+    
+    #unified-extensions-view toolbarbutton{
+      margin-inline: 0 !important;
+    }
   }
 }
 
@@ -6830,9 +6836,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }  
 }
 
-/* Dedicated flag to enable acrylic context menu support due to CSS limitations regarding integer prefs */
-@media -moz-pref("uc.winui.acrylic-menus") {
-  /* Acrylic menus */
+/* Acrylic menus and panels */
+@media -moz-pref("widget.windows.mica.popups", 1) or
+       -moz-pref("widget.windows.mica.popups", 2) {
   .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
     background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
     box-shadow: none !important;
