@@ -6025,7 +6025,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     scale: .9 !important;
   }
   
-  .identity-box-button {
+  .identity-box-button,
+  #notification-popup-box {
     height: 22px !important;
     margin-left: 3px !important;
     margin-top: 3px !important;
@@ -6052,10 +6053,13 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   /* DRM & other notification icons */
   #notification-popup-box {
     margin-bottom: 2px !important;
+    margin-right: 2px !important;
     padding-top: 1px !important;
 
     & image {
+      background-size: 14px !important;
       padding-inline: 16px !important;
+      margin-bottom: 2px !important;
     }
   }
 

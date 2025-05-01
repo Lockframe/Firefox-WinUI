@@ -27,10 +27,10 @@ Firefox stable release is supported. Beta and Nightly may work, but support is l
 
 The theme allows use of **Mica**, which adds a translucent layer to the UI, and **Acrylic**, which blurs various elements, such as context menus, panels and dialogs.
 
-To do this, open `about:config` and enable the following boolean keys:
+To do this, open `about:config` and enable the following keys:
 
 - `widget.windows.mica`
-- `widget.windows.mica.popups`
+- `widget.windows.mica.popups` (Set to 1 or 2)
 - `browser.tabs.allow_transparent_browser` (⚠️ Extends the **Mica** backdrop into the new tab page area, but may cause issues in some web pages.)
 
 ---
