@@ -226,7 +226,29 @@
 			border-radius: 4px !important;
 			background-position-x: 12px !important;
 		}
+		.showPrivate {
+			& .fake-editable {
+				padding-block: 7px !important;
+				appearance: none !important;
 
+				&:active {
+					background-color: var(--searchActive) !important;
+					&:hover {
+						background-color: var(--searchActive) !important;
+					}
+				}
+			}
+			& .fake-caret {
+				background-color: var(--textColor) !important;
+				transform: translateY(-2px) !important;
+			}
+		}
+		.search-inner-wrapper {
+			& .search-handoff-button, & .search-handoff-button:active, & .search-handoff-button:enabled:hover:active {
+				border-radius: 4px !important;
+			}
+		}
+		
 		.search-inner-wrapper {
 			& .search-handoff-button {
 				border-radius: 4px !important;
