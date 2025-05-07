@@ -667,6 +667,7 @@ menu::after {
   fill: var(--textPrimary) !important;
   -moz-context-properties: fill !important;
   margin-left: -28px;
+  transform: translateY(2px) !important;
 }
 
 /* Download failed badge */
@@ -1300,6 +1301,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 meupopup {
   --uc-contextmenu-border-radius: 8px;
 }
+
 .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
   background-image: var(--acrylic) !important;
   background-color: var(--commonBackground) !important;
@@ -1670,8 +1672,15 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 /* Standardize font size */
 #PanelUI-fxa-menu-syncnow-button label,
 menu[data-l10n-id="places-open-in-container-tab"],
-#contentAreaContextMenu label {
-  font-size: 13px !important;
+#contentAreaContextMenu label,
+.menu-text,
+.menu-iconic-text,
+panel .toolbarbutton-text,
+#appMenu-fxa-status2,
+.panel-header,
+panel[type="autocomplete-richlistbox"],
+#context-navigation > .menuitem-iconic::after{
+  font-size: 14px !important;
 }
 
 /* Clicked item opacity */
@@ -1690,10 +1699,23 @@ menu[data-l10n-id="places-open-in-container-tab"],
 }
 #appMenu-zoom-controls {
   background-color: transparent !important;
+  
+  & #appMenu-zoomReduce-button2,
+  #appMenu-zoomReset-button2,
+  #appMenu-zoomEnlarge-button2,
+  #appMenu-fullscreen-button2 {
+    &:hover {
+      background-color: var(--textButtonHover) !important;
+    }
+    &:active {
+      background-color: var(--textButtonPressed) !important;
+    }
+  }
 }
 #appMenu-zoom-controls toolbarbutton:active * {
   color: var(--textSecondary) !important;
 }
+
 
 /* Fix 137 changing the background color of hovered/clicked items inside panels */
 panel toolbarbutton:not([disabled]),
@@ -2419,6 +2441,7 @@ label[itemtype="client"] {
   height: 28px !important;
 }
 #appMenu-fxa-status2 {
+  margin-top: 1px !important;
   background: transparent !important;
 }
 #appMenu-quit-button2::before {
@@ -2587,7 +2610,6 @@ panel toolbarseparator {
 
 #appMenu-multiView {
   background-image: var(--acrylic) !important;
-  font-size: 13px !important;
 }
 
 /* Sidebar */
@@ -2598,6 +2620,11 @@ window#webextpanels-window {
 .sidebar-splitter {
   --splitter-width: 1px !important;
   border-inline-end-width: 0px !important;
+}
+#sidebar-launcher-splitter {
+  padding-left: 6px !important;
+  margin-left: -6px !important;
+  background-color: transparent !important;
 }
 #sidebar-box {
   margin: 0 !important;
@@ -2873,6 +2900,76 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
   margin-top: 2px !important;
 }
 
+/* Transform the account button into the private browsing indicator */
+:root[privatebrowsingmode="temporary"] #fxa-toolbar-menu-button {
+  background-color: var(--accentAuto) !important;
+  height: 28px !important;
+  margin-block: auto !important;
+  border-radius: 99px !important;
+  
+  & #fxa-avatar-image {
+    list-style-image: url(icons/account-private.svg) !important;
+    height: 22px !important;
+    width: 22px !important;
+    scale: 100% !important;
+    margin: 0 0 1px -9px !important;
+  }
+  
+  &::after {
+    content: 'Private';
+    color: var(--textInverse);
+    font-size: 12px;
+    margin-block: 0 3px;
+    padding-inline: 0 6px;
+    margin-inline: -5px 0;
+  }
+  &:hover stack {
+    background-color: transparent !important;
+  }
+  &:active stack {
+    background-color: transparent !important;
+  }
+}
+
+:root[privatebrowsingmode="temporary"] #TabsToolbar-customization-target #fxa-toolbar-menu-button {
+  background-color: var(--accentAuto) !important;
+  height: 28px !important;
+  margin-block: auto !important;
+  
+  & #fxa-avatar-image {
+    margin: 0 0 1px -7px !important;
+  }
+  
+  &::after {
+    margin-inline: 0 1px;
+  }
+}
+:root[privatebrowsingmode="temporary"][sizemode="maximized"] #TabsToolbar-customization-target #fxa-toolbar-menu-button {
+  background-color: var(--accentAuto) !important;
+  height: 28px !important;
+  margin-block: auto !important;
+  
+  & #fxa-avatar-image {
+    margin: 0 0 0px -7px !important;
+  }
+  &::after {
+    margin-block: 0 2px !important;
+  }
+}
+
+/* Make the original indicator disappear if the account button is in the tab bar or navbar*/
+:root[privatebrowsingmode="temporary"] #TabsToolbar:has(#fxa-toolbar-menu-button) {
+  & .private-browsing-indicator-with-label {
+    display: none !important;
+  }
+  & .tabbrowser-tab:first-of-type {
+    margin-left: 13px !important;
+  }
+}
+:root[privatebrowsingmode="temporary"] #navigator-toolbox:has(#nav-bar #fxa-toolbar-menu-button) #TabsToolbar .private-browsing-indicator-with-label {
+  display: none !important;
+}
+
 /* Fix 2px extra padding in some areas */
 #PopupAutoComplete {
   & > .autocomplete-richlistbox {
@@ -2894,7 +2991,7 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
       font-size: 13px !important;
     }
     
-    & .autocomplete-richlistitem[ac-image=""] .ac-title {
+    & .autocomplete-richlistitem[ac-image=""]:not([originaltype="loginsFooter"]) .ac-title {
       transform: translateX(-32px) !important;
     }
     & .autocomplete-richlistitem[ac-image=""]:last-of-type:not([originaltype="loginsFooter"]) {
@@ -3167,6 +3264,10 @@ findbar:not([hidden]) {
     color: var(--textSecondary) !important;
     font-weight: normal !important;
   }
+}
+/* Hide matches found text if there are none */
+.findbar-label[status="notfound"] {
+  display: none !important;
 }
 
 /* Dropdowns */
@@ -4026,7 +4127,8 @@ html[windowtype="Toolkit:PictureInPicture"] {
   & .urlbar-icon {
     margin-top: -24px !important;
     list-style-image: none !important;
-    background: url("chrome://global/skin/media/picture-in-picture-open.svg") no-repeat center -2px !important;
+    background: url(icons/media-pip.svg) no-repeat center center !important;
+    height: 19px !important;
   }
 }
 
@@ -4430,7 +4532,7 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
 }
 
 /* Navbar profile button */
-#fxa-toolbar-menu-button {
+:root:not([privatebrowsingmode="temporary"]) #fxa-toolbar-menu-button {
   scale: 90%;
   transition: transform 183ms linear !important;
   
@@ -6041,6 +6143,14 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       margin: auto !important;
     }
   }
+  #picture-in-picture-button {
+    height: 22px !important;
+    width: 29px !important;
+    
+    & .urlbar-icon {
+      transform: translate(-2px, -2px) !important;
+    }
+  }
   
   #urlbar:is([breakout][breakout-extend][open]) hbox[role="button"] {
     transform: translateY(-1px) !important;
@@ -6064,7 +6174,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
 
   .toolbarbutton-1 image,
-  #fxa-toolbar-menu-button {
+  :root:not([privatebrowsingmode="temporary"]) #fxa-toolbar-menu-button {
     scale: .85 !important;
   }
   
@@ -6074,7 +6184,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     scale: 1 !important;
   }
 
-  .toolbarbutton-1:not(#downloadsFooterButtons *) {
+  .toolbarbutton-1:not(#downloadsFooterButtons *, #vertical-tabs-newtab-button) {
     margin-inline: -1px !important;
   }
   #unified-extensions-button {
@@ -6134,7 +6244,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #downloads-button, 
   #PanelUI-menu-button, 
   .unified-extensions-item-action-button, 
-  #TabsToolbar *) image:not(menuitem *, #BMB_bookmarksPopup *) {
+  #TabsToolbar *, #tabs-newtab-button, #vertical-tabs-newtab-button) image:not(menuitem *, #BMB_bookmarksPopup *) {
     box-shadow: 0 -.5px 0 2px var(--textButtonHover) !important;
     transition: box-shadow 0s linear !important;
   }
@@ -6656,28 +6766,80 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
 /* Vertical tabs compatibility */
 @media -moz-pref("sidebar.verticalTabs") {
-  #vertical-tabs {
-    margin-top: 7px !important;
-    margin-inline: -3px !important;
-    padding: 0 !important;
+  :root {
+    --tabstrip-inner-border: none !important;
   }
   
-  #tabbrowser-tabs[overflow] {
-    & .tabbrowser-tab:not([pinned]) {
-      margin-inline: 0 !important;
+  #vertical-tabs {
+    margin-top: 7px !important;
+    margin-inline: 1px -3px !important;
+    padding: 0 !important;
+    
+    &:has(#tabbrowser-tabs[overflow]) {
+      margin-inline: -7px -7px !important;
     }
   }
 
   /* Tab spacing */
-  .tabbrowser-tab:not([pinned]),
-  .tabbrowser-tab[pinned]{
-    margin-inline: 0px !important;
+  .tabbrowser-tab {
+    &:not([pinned], [style*="max-width"])[fadein] {
+      max-width: unset !important;
+    }
   }
-
+  /* Fix tab height */
+  :root[sizemode="maximized"] #vertical-tabs,
+  :root:not([sizemode="maximized"]) #vertical-tabs {
+    --tab-min-height: 36px !important;
+  }
+  
+  /* Unselected tabs are 1px smaller than selected tabs */
+  #vertical-pinned-tabs-container .tab-background:not([selected=""]),
+  .tabbrowser-tab:hover .tab-background:not([selected=""]) {
+    clip-path: inset(1px 1px 1px 2px round 4px) !important;
+  }
+  #vertical-pinned-tabs-container #tabbrowser-tabs:not([expanded]) .tab-background:not([selected=""]),
+  .tabbrowser-tab:hover .tab-background:not([selected=""]) {
+    clip-path: inset(1px 0px 1px 2px round 4px) !important;
+  }
+  
+  /* Ensure the title won't move */
+  #tabbrowser-tabs[expanded] .tab-icon-stack {
+    width: 23px !important;
+    margin-left: 22px !important;
+  }
+  
+  
   #tabbrowser-tabs {
     &:not([overflow]) {
       & :where(#tabbrowser-arrowscrollbox .tabbrowser-tab:nth-child(1 of .tabbrowser-tab:not([hidden]))) {
         margin-inline-start: 0 !important;
+      }
+    }
+    &:not([expanded]) {
+      & .tab-background, #tabs-newtab-button {
+        width: 40px !important;
+      }
+      & .tab-icon-stack {
+        margin-left: 22px !important;
+      }
+      & .tabbrowser-tab:first-of-type .tab-icon-stack {
+        margin-left: 23px !important;
+      }
+      & .tabbrowser-tab:hover {
+          .tab-close-button {
+            margin: 7px 0 0 12px !important;
+            box-shadow: none !important;
+            height: 28px !important;
+        }
+        .tab-icon-image {
+          opacity: 0 !important;
+        }
+      }
+      & #tabs-newtab-button {
+        margin-left: 11px !important;
+        & .toolbarbutton-icon {
+          margin-left: 0 !important;
+        }
       }
     }
   }
@@ -6686,13 +6848,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     padding-left: 0 !important;
   }
 
-  /* Unselected tabs are 1px smaller than selected tabs */
-  .tab-background:not([selected]),
-  .tabbrowser-tab[pinned]:not([selected]) .tab-background{
-    clip-path: inset(1px round 7px) !important;
-  }
-
-  /* Proper tab roundness */
+  /* Tab roundness */
   .tab-background {
     border-radius: 4px !important;
   }
@@ -6728,14 +6884,19 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     content: '';
     width: 3px;
     height: 16px;
-    margin-left: 10px;
-    margin-top: -73px;
+    margin-inline: 10px -12px;
+    margin-block: 10px 0;
     background-color: var(--accentAuto);
-    position: absolute;
-    display: block;
+    position: relative;
     border-radius: 99px;
     z-index: 1;
     animation: selectorBar 187ms forwards !important;
+  }
+  :root[sizemode="maximized"] .tabbrowser-tab:is([selected], [multiselected]):not([pinned])::before {
+    margin-block: 12px 0;
+  }
+  .tabbrowser-tab:is([selected], [multiselected]):not([pinned]) .tab-content {
+    margin-left: -1px !important;
   }
 
   /* Space between tab icons and the tab titles. */
@@ -6745,11 +6906,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   .tab-sharing-icon-overlay:not([pinned]) {
     margin-inline: 0 !important;
     border-radius: 0 !important;
-  }
-
-  /* Fix tab height */
-  :root[sizemode="maximized"], :root {
-    --tab-min-height: 32px !important;
   }
   
   /* Set separator color */
@@ -6761,10 +6917,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     }
   }
 
-  /* Tab width and label fix */
-  #tabbrowser-tabs {
-    --tab-min-width: -moz-available !important;
-    
+  /* Tab label hover */
+  #tabbrowser-tabs {    
     & .tabbrowser-tab:not([selected], :hover) .tab-label {
       clip-path: inset(0 16px 0 0) !important;
     }
@@ -6776,7 +6930,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
   
   /* New tab button */
-  #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button {
+  #tabbrowser-arrowscrollbox-periphery #tabs-newtab-button,
+  #vertical-tabs-newtab-button{
     margin-inline: 10px !important;
     border-radius: 4px !important;
     
@@ -6789,14 +6944,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     
     & .toolbarbutton-icon {
       background-color: transparent !important;
-      box-shadow: none !important;
+      margin-left: 10px !important;
+      margin-right: -1px !important;
     }
-  }
-
-  /* Ensure the title won't move */
-  .tab-icon-stack {
-    width: 23px !important;
-    margin-left: 18px !important;
+    & label {
+      margin-top: -3px !important;
+    }
   }
 
   /* Pinned tab */
@@ -6819,15 +6972,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       left: auto !important;
     }
   }
-  
-  #vertical-pinned-tabs-container .tab-background:not([selected]),
-  .tabbrowser-tab:hover .tab-background {
-    clip-path: inset(1px round 3px) !important;
-  }
-  
-  #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned] {
-    margin-inline: 0 !important;
-  }
 
   /* Tab opening animation */ 
   @keyframes fastInvoke {
@@ -6845,7 +6989,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   .tabbrowser-tab[fadein] .tab-content,
   .tabbrowser-tab[fadein] .tab-background {
     animation: fastInvoke .5s cubic-bezier(0.55, 0.55, 0, 1) !important;
-  }  
+  }
 }
 
 /* Acrylic menus and panels */
@@ -6877,7 +7021,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   menupopup menuitem,
   menupopup menu,
   #context-navigation{
-    margin-inline: 3px  2px !important;
+    margin-inline: 3px !important;
   }
   #contentAreaContextMenu,
   #chatbot-menupopup,
