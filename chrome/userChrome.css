@@ -128,9 +128,6 @@
   
   --link-color: var(--accentAuto) !important;
   --attention-dot-color: transparent !important; /* Remove synced tabs bottom dot */
-  --sidebar-background-color: light-dark(white, rgb(28, 27, 34));
-  --sidebar-text-color: light-dark(rgb(21, 20, 26), rgb(249, 249, 250));
-  --sidebar-border-color: light-dark(rgb(240, 240, 244), rgb(82, 82, 94));
   
   /* Panel colors */
   --arrowpanel-background: var(--searchDropdown) !important;
@@ -571,16 +568,6 @@ menu::after {
       background-repeat: no-repeat;
       background-position-x: center !important;
       padding: 4px !important;
-      
-      /* WIP
-      &[checked=true] .toolbarbutton-icon {
-        background-color: var(--accentAuto) !important;
-        background-image: url(icons/dock-left.svg) !important;
-        background-position: 7px center !important;
-        fill: var(--textInverse) !important;
-        border: 1px solid rgba(255,255,255,.08) !important;
-        border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
-      }*/
 
       @media (-moz-bool-pref: "uc.winui.smaller-toolbar-buttons") {
         background-size: 15px;
@@ -4313,7 +4300,7 @@ html[windowtype="Toolkit:PictureInPicture"] {
       margin-bottom: -1px !important;
   }
   & hbox[role="button"] {
-    transform: translateY(-3px) !important;
+    transform: translateY(-4px) !important;
   }
   & image {
     transform: translateY(0px) !important;
@@ -4845,7 +4832,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     background-color: var(--frameBG) !important;
     box-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset !important;
   }
-
+  
   :root, :root .tabbrowser-tab {
     & [brighttext], & [brighttext] .tabbrowser-tab {
       --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset;
@@ -5356,10 +5343,8 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
   /* Tabs toolbar background color */
   * {
-    --lwt-accent-color: rgb(218, 218, 218) !important; /* Active window color */
-    --lwt-accent-color-inactive: rgb(232, 232, 232) !important; /* Inactive window color */
-
-    --lwt-accent-color: var(--mica) !important;
+    --lwt-accent-color: var(--mica) !important; /* Active window color */
+    --lwt-accent-color-inactive: var(--mica) !important; /* Inactive window color */
   }
 
   /* Colors when window is inactive */
@@ -5619,6 +5604,18 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     border-radius: 8px !important;
     border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
   }
+  
+  @media -moz-pref("sidebar.verticalTabs") {
+    :root:not([inDOMFullscreen="true"], 
+    [sizemode="fullscreen"], 
+    [sizemode="maximized"]) browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
+      margin: -1px 4px 4px 0 !important;
+    }
+    :root[sizemode="maximized"] browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
+      margin: -1px 4px 4px 0 !important;
+    }
+  }
+  
   :root {
     & tabbox#tabbrowser-tabbox,
     & #tabbrowser-tabpanels {
@@ -6079,8 +6076,11 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     height: 34px !important;
     margin-top: -2px !important;
   }
+  /* Accent bottom border */
   #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
-    margin-top: 33px !important;
+    height: 34px !important;
+    margin-top: 1px !important;
+    clip-path: inset(32px 0 0 0) !important;
   }
 }
 
@@ -6118,7 +6118,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #reader-mode-button-icon,
   #translations-button-icon,
   #translations-button-circle-arrows {
-    transform: translate(0, -3px) !important;
+    transform: translate(-1px, -3px) !important;
   }
 
   #star-button-box,
@@ -6156,7 +6156,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     transform: translateY(-1px) !important;
     
     & image {
-      transform: translateY(-3px) !important;
+      transform: translate(-1px,-3px) !important;
     }
   }
   
@@ -6198,7 +6198,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     margin-inline: 5px !important;
   }
   .urlbar-input {
-    margin-left: -4px !important;
+    margin-left: -1px !important;
   }
 
   /* Overflowing tabs new tab button */
@@ -6277,6 +6277,44 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     & #downloads-indicator-progress-inner {
       transform: scale(1.5) !important;
     }
+  }
+  
+  @media -moz-pref("uc.winui.taller-urlbar") {
+    .identity-box-button,
+    #notification-popup-box {
+      height: 26px !important;
+      margin-top: 1px !important;
+    }
+    #translations-button {
+      height: 26px !important;
+
+      & image {
+        height: 14px !important;
+        width: 14px !important;
+        margin: auto !important;
+      }
+    }
+    #picture-in-picture-button {
+      height: 26px !important;
+
+      & .urlbar-icon {
+        transform: translate(-2px, 1px) !important;
+      }
+    }
+    #urlbar-go-button,
+    #star-button-box,
+    #reader-mode-button,
+    #translations-button,
+    #translations-button-circle-arrows{
+      height: 28px !important;
+    }
+    #star-button,
+    #reader-mode-button-icon,
+    #translations-button-icon,
+    #translations-button-circle-arrows {
+      transform: translate(-1px, -1px) !important;
+    }
+    
   }
 }
 
@@ -6769,15 +6807,26 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   :root {
     --tabstrip-inner-border: none !important;
   }
+  /* Spacer on the right to drag the window */
+  #vertical-spacer {
+    display: none !important;
+  }
+  .titlebar-spacer[type="post-tabs"] {
+    display: block !important;
+  }
   
+  /* Mini sidebar width */
   #vertical-tabs {
     margin-top: 7px !important;
-    margin-inline: 1px -3px !important;
+    margin-inline: 1px -1px !important;
     padding: 0 !important;
     
     &:has(#tabbrowser-tabs[overflow]) {
       margin-inline: -7px -7px !important;
     }
+  }
+  :root:not([sizemode="maximized"]) #sidebar-main:has(#tabbrowser-tabs:not([expanded])) {
+    max-width: 49px !important;
   }
 
   /* Tab spacing */
@@ -6808,7 +6857,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     margin-left: 22px !important;
   }
   
-  
   #tabbrowser-tabs {
     &:not([overflow]) {
       & :where(#tabbrowser-arrowscrollbox .tabbrowser-tab:nth-child(1 of .tabbrowser-tab:not([hidden]))) {
@@ -6825,11 +6873,16 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       & .tabbrowser-tab:first-of-type .tab-icon-stack {
         margin-left: 23px !important;
       }
-      & .tabbrowser-tab:hover {
+      & .tabbrowser-tab:not([pinned]):hover {
           .tab-close-button {
             margin: 7px 0 0 12px !important;
             box-shadow: none !important;
             height: 28px !important;
+        }
+        &:first-of-type {
+          .tab-close-button {
+            margin: 7px 0 0 13px !important;
+          }
         }
         .tab-icon-image {
           opacity: 0 !important;
@@ -6843,17 +6896,13 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       }
     }
   }
-  
-  #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned]:first-of-type {
-    padding-left: 0 !important;
-  }
 
   /* Tab roundness */
   .tab-background {
     border-radius: 4px !important;
   }
 
-  /* Fix space above tabs so that shadows can appear */
+  /* Fix space above tabs */
   #tabbrowser-tabs, .tab-stack {
     margin-top: 0 !important;
   }
@@ -6895,6 +6944,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   :root[sizemode="maximized"] .tabbrowser-tab:is([selected], [multiselected]):not([pinned])::before {
     margin-block: 12px 0;
   }
+  .tabbrowser-tab:is([selected], [multiselected]):not([pinned]):first-of-type::before {
+    margin-inline: 11px -13px !important;
+  }
   .tabbrowser-tab:is([selected], [multiselected]):not([pinned]) .tab-content {
     margin-left: -1px !important;
   }
@@ -6926,7 +6978,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
   /* Tab close button */
   .tab-close-button {
-    margin-right: 14px !important;
+    margin-right: 16px !important;
   }
   
   /* New tab button */
@@ -6944,11 +6996,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     
     & .toolbarbutton-icon {
       background-color: transparent !important;
-      margin-left: 10px !important;
+      margin-left: 6px !important;
       margin-right: -1px !important;
     }
     & label {
       margin-top: -3px !important;
+      margin-left: -1px !important;
     }
   }
 
@@ -6970,6 +7023,81 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       margin-right: auto !important;
       width: initial !important;
       left: auto !important;
+    }
+    & .tab-close-button {
+      display: none !important;
+    }
+  }
+  #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned]:first-of-type {
+    padding-left: 0 !important;
+  }
+  #tabbrowser-tabs[expanded] .tabbrowser-tab[pinned] .tab-content {
+    margin-inline: auto !important;
+  }
+  #tabbrowser-tabs:not([expanded]) .tabbrowser-tab[pinned] {
+    padding-bottom: -1px !important;
+  }
+  
+  /* Rounded upper left webpage corner */
+  :root browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
+    margin: -1px !important;
+    border-radius: 8px 0 0 0;
+    border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
+    border-bottom: none !important;
+    border-right: none !important;
+  }
+  #sidebar-main,
+  #nav-bar,
+  #PersonalToolbar,
+  #sidebar-box {
+    border-right: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Expand-on-hover fixes */
+  :root:has(#tabbrowser-tabbox[sidebar-launcher-hovered=""]) #sidebar-main {
+    background-color: light-dark(#fafafa, #2c2c2c) !important;
+    border-radius: 0 8px 8px 0 !important;
+    border-right: 1px solid light-dark(rgba(0,0,0,.1), rgba(0,0,0,.16)) !important;
+    padding-right: 1px !important;
+    
+    & .tabbrowser-tab:first-of-type .tab-content {
+      margin-left: 1px !important;
+    }
+    & #tabbrowser-tabs[expanded] .tabbrowser-tab[pinned] .tab-content {
+      margin-inline: auto !important;
+    }
+    & #tabs-newtab-button {
+      & .toolbarbutton-icon {
+        margin-left: 11px !important;
+      }
+    }
+    & .tab-close-button {
+      margin-top: 2px !important;
+    }
+  }
+  :root:not([sizemode="maximized"]):has(#tabbrowser-tabbox[sidebar-launcher-hovered=""]) #sidebar-main {
+    & #tabs-newtab-button {
+      & .toolbarbutton-icon {
+        margin-left: 6px !important;
+      }
+    }
+  }
+  
+  /* Bottom sidebar buttons */
+  .actions-list {
+    & > moz-button:not(.tools-overflow) {
+      &:first-of-type, &:last-of-type {
+        --button-outer-padding-block-start: unset !important;
+        --button-outer-padding-block-end: unset !important;
+      }
+    }
+  }
+  .actions-list {
+    & > moz-button:not(.tools-overflow) {
+      --button-outer-padding-inline: unset !important;
+      --button-outer-padding-block: unset !important;
+      margin-inline: auto !important;
     }
   }
 
