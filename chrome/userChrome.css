@@ -296,12 +296,19 @@ h1, h2, h3 {
   list-style-image: url("icons/cog.svg") !important;
 }
 #identity-box[pageproxystate="valid"].verifiedDomain #identity-icon, 
-#identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon,
-#identity-popup[connection^="secure"] .identity-popup-security-connection {
+#identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon {
   list-style-image: none !important;
   background-image: url(icons/lock.svg);
   background-repeat: no-repeat !important;
   background-position: center center !important;
+}
+
+#identity-popup[connection^="secure"] .identity-popup-security-connection {
+  list-style-image: none !important;
+  background-image: url(icons/lock.svg);
+  background-repeat: no-repeat !important;
+  background-position: 10px center !important;
+  background-size: 12px !important;
 }
 
 #appMenu-zoom-controls::before {
@@ -7056,9 +7063,10 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   
   /* Expand-on-hover fixes */
   :root:has(#tabbrowser-tabbox[sidebar-launcher-hovered=""]) #sidebar-main {
-    background-color: light-dark(#fafafa, #2c2c2c) !important;
+    background-color: light-dark(#f3f3f3, #202020) !important;
     border-radius: 0 8px 8px 0 !important;
-    border-right: 1px solid light-dark(rgba(0,0,0,.1), rgba(0,0,0,.16)) !important;
+    border: 1px solid var(--controlStroke) !important;
+    border-left: none !important;
     padding-right: 1px !important;
     
     & .tabbrowser-tab:first-of-type .tab-content {
