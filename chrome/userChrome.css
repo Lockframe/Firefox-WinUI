@@ -6779,13 +6779,23 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     max-width: max-content;
   }
 
-  #unified-extensions-view #unified-extensions-area {
+  #unified-extensions-view:has(.unified-extensions-item-action-button[disabled="true"]) #unified-extensions-area {
     padding-bottom: 2px !important;
     border-bottom: 1px solid var(--dropdownSeparator) !important;
+  }  
+
+  .unified-extensions-item-action-button[disabled="true"] {
+    height: 36px !important;
+    width: 36px !important;
+    margin-block: 2px -1px !important;
   }
 
   #unified-extensions-view:is(panelview, #widget-overflow-fixed-list) .toolbaritem-combined-buttons {
     margin: 2px !important;
+  }
+  
+  #unified-extensions-area .toolbarbutton-badge {
+    transform: translateX(4px) !important;
   }
   
   @media -moz-pref("widget.windows.mica.popups", 1) or
