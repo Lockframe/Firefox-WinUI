@@ -39,8 +39,8 @@
   --dropdownSeparator: light-dark(rgba(0,0,0,.0803), rgba(255,255,255,.0837)) !important;
   
   --textPrimary: light-dark(rgba(0,0,0,.8956), rgb(255,255,255)) !important;
-  --textTertiary: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
   --textSecondary: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.786)) !important;
+  --textTertiary: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
   --textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628)) !important;
   --textInverse: light-dark(#fff,#000) !important;
 
@@ -4630,6 +4630,15 @@ button.text-link:is(:not([disabled="true"]), :enabled),
   }
 }
 
+.urlbarView-url, .urlbarView-title-separator {
+  color: var(--textTertiary) !important;
+  overflow: clip !important;
+}
+
+.urlbarView-title-separator {
+  transform: scaleX(.7);
+}
+
 /* Hack to prevent close button in #shadow-root from losing its glyph when hovered */
 button[title="Close"] {
   background-image: url(icons/close.svg) !important;
@@ -4902,10 +4911,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   /* WinUI blue border on the left of URL bar result */
   .urlbarView-row[selected] .urlbarView-row-inner::before {
     background-color: var(--accentDark) !important;
-  }
-  /* Links */
-  .urlbarView-url {
-    color: var(--accentDark) !important;;
   }
 
   /* URL tooltip */
@@ -5261,10 +5266,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   /* WinUI blue border on the left of URL bar result */
   .urlbarView-row[selected] .urlbarView-row-inner::before {
     background-color: var(--accentLight) !important;
-  }
-  /* Links */
-  .urlbarView-url {
-    color: var(--accentLight) !important;
   }
 
   /* URL tooltip */
@@ -7140,237 +7141,243 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
 /* Acrylic menus and panels */
 @media -moz-pref("widget.windows.mica.popups", 1) or
-       -moz-pref("widget.windows.mica.popups", 2) {
-  .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
-    background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
-    box-shadow: none !important;
-    margin: -3px -12px -19px !important;
-    border-radius: 0 !important;
+  -moz-pref("widget.windows.mica.popups", 2) {
+    .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+      background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+      box-shadow: none !important;
+      margin: -3px -12px -19px !important;
+      border-radius: 0 !important;
+
+      & menuitem {
+        margin-right: -10px !important;
+      }
+    }
+
+    /* Potential fix for unscrollable menulists */
+    menupopup {
+      --panel-shadow-margin: -12px !important;
+    }
+
+    /* A way to increase the bottom padding exclusively for long lists is required */
+    menupopup#ContentSelectDropdownPopup {
+      margin-left: 0 !important;
+    }
+
+    #contentAreaContextMenu menuitem,
+    #contentAreaContextMenu menu,
+    menupopup menuitem,
+    menupopup menu,
+    #context-navigation{
+      margin-inline: 3px !important;
+    }
     
-    & menuitem {
-      margin-right: -10px !important;
+    #contentAreaContextMenu menu,
+    #contentAreaContextMenu menuitem {
+      margin-inline: 3px 2px !important;
     }
-  }
-  
-  /* Potential fix for unscrollable menulists */
-  menupopup {
-    --panel-shadow-margin: -12px !important;
-  }
-  
-  /* A way to increase the bottom padding exclusively for long lists is required */
-  menupopup#ContentSelectDropdownPopup {
-    margin-left: 0 !important;
-  }
-  
-  #contentAreaContextMenu menuitem,
-  #contentAreaContextMenu menu,
-  menupopup menuitem,
-  menupopup menu,
-  #context-navigation{
-    margin-inline: 3px !important;
-  }
-  #contentAreaContextMenu,
-  #chatbot-menupopup,
-  #PopupAutoComplete,
-  #chat-shortcuts-options-panel,
-  #ContentSelectDropdownPopup,
-  #ContentSelectDropdown {
-    margin: 0 !important;
-  }
-  
-  /* Fix other bookmarks panel not having acrylic */
-  #OtherBookmarksPopup,
-  #OtherBookmarksPopup menupopup,
-  #BMB_bookmarksPopup,
-  #BMB_bookmarksPopup menupopup{
-    -moz-default-appearance: menupopup !important;
-    appearance: menupopup !important;
-    margin-top: 0 !important;
-    margin-left: 0 !important;
-  }
-  
-  /* 138 fix for panels */
-  panel {
-    -moz-default-appearance: menupopup !important;
-    appearance: menupopup !important;
-  }
-  
-  /* Alignment */
-  #back-button menupopup {
-    margin-top: -8px !important;
-    margin-left: 8px !important;
-  }
-  #forward-button menupopup {
-    margin-top: -8px !important;
-    margin-left: 4px !important;
-  }
-  menupopup menupopup[hasbeenopened="true"] {
-    margin-top: 2px !important;
-    margin-inline: 0 !important;
-  }
-  #BMB_bookmarksPopup {
-    margin-top: 2px !important;
-    margin-inline: -1px !important;
-  }
-  #selection-shortcut-action-panel hbox {
-    background-color: transparent !important;
-  }
-  
-  /* Acrylic panels */
-  * {
-    /* Panel colors */
-    --arrowpanel-background: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
-    --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
-    --arrowpanel-border-color: none !important;
-    --panel-background: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
-  }
-  panel {
-    appearance: auto !important;
-    box-shadow: none !important;
-    --panel-shadow-margin: .0000001px !important;
-    padding-bottom: 1px !important;
-    
-    & richlistitem, & toolbarbutton {
-      margin-inline: 5px !important;
+
+    #contentAreaContextMenu,
+    #chatbot-menupopup,
+    #PopupAutoComplete,
+    #chat-shortcuts-options-panel,
+    #ContentSelectDropdownPopup,
+    #ContentSelectDropdown {
+      margin: 0 !important;
     }
-  }
-  #PanelUI-fxa-remotetabs-deck .all-tabs-button {
-    margin-inline: -3px !important;
-  }
-  #PanelUI-fxa-remotetabs-deck .all-tabs-close-button {
-    margin-inline: 6px -3px !important;
-  }
-  
-  #autoscroller, .autoscroller {
-    opacity: 0 !important;
-    appearance: none !important;
-  }
-  
-  /* Move misaligned panels */
-  #unified-extensions-panel {
-    margin-top: 2px !important;
-    
-    & .unified-extensions-item {
-      margin-inline: 0px !important;
+
+    /* Fix other bookmarks panel not having acrylic */
+    #OtherBookmarksPopup,
+    #OtherBookmarksPopup menupopup,
+    #BMB_bookmarksPopup,
+    #BMB_bookmarksPopup menupopup{
+      -moz-default-appearance: menupopup !important;
+      appearance: menupopup !important;
+      margin-top: 0 !important;
+      margin-left: 0 !important;
     }
-  }
-  #identity-popup {
-    margin-top: 4px !important;
-  }
-  
-  .tab-preview-thumbnail-container canvas {
-    margin-inline: 9px !important;
-    width: 262px !important;
-  }
-  
-  /* Acrylic tooltips */
-  tooltip,
-  #tabbrowser-tab-tooltip,
-  #places-tooltip-insecure-icon,
-  #btTooltip,
-  #bhTooltip,
-  #un-toolbar-tooltip,
-  #tooltip,.tooltip,
-  #aHTMLTooltip,
-  #urlTooltip {
-    appearance: auto !important;
-    -moz-default-appearance: menupopup;
-    box-shadow: none !important;
-  }
-  
-  #editBookmarkPanel {
-    margin-top: 5px !important;
-  }
-  #full-page-translations-panel {
-    margin-top: 3px !important;
-  }
-  .panel-footer {
-    background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
-  }
-  
-  /* Tab preview panel */
-  .tab-preview-thumbnail-container {
-    background-color: transparent !important;
-  }
-  
-  /* Disable animations by modifying them into being blank */
-  @media not -moz-pref("uc.winui.acrylic-animations") {
-    @keyframes panelContentSlide {
-      0% {
-        transform: unset !important;
-      }
-      100% {
-        transform: unset !important;
+
+    /* 138 fix for panels */
+    panel {
+      -moz-default-appearance: menupopup !important;
+      appearance: menupopup !important;
+    }
+
+    /* Alignment */
+    #back-button menupopup {
+      margin-top: -8px !important;
+      margin-left: 8px !important;
+    }
+    #forward-button menupopup {
+      margin-top: -8px !important;
+      margin-left: 4px !important;
+    }
+    menupopup menupopup[hasbeenopened="true"] {
+      margin-top: 2px !important;
+      margin-inline: 0 !important;
+    }
+    #BMB_bookmarksPopup {
+      margin-top: 2px !important;
+      margin-inline: -1px !important;
+    }
+    #selection-shortcut-action-panel hbox {
+      background-color: transparent !important;
+    }
+
+    /* Acrylic panels */
+    * {
+      /* Panel colors */
+      --arrowpanel-background: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+      --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
+      --arrowpanel-border-color: none !important;
+      --panel-background: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+    }
+    panel {
+      appearance: auto !important;
+      box-shadow: none !important;
+      --panel-shadow-margin: .0000001px !important;
+      padding-bottom: 1px !important;
+
+      & richlistitem, & toolbarbutton {
+        margin-inline: 5px !important;
       }
     }
-    @keyframes panelSlide {
-      0% {
-        transform: unset !important;
-      }
-      100% {
-        transform: unset !important;
+    #PanelUI-fxa-remotetabs-deck .all-tabs-button {
+      margin-inline: -3px !important;
+    }
+    #PanelUI-fxa-remotetabs-deck .all-tabs-close-button {
+      margin-inline: 6px -3px !important;
+    }
+
+    #autoscroller, .autoscroller {
+      opacity: 0 !important;
+      appearance: none !important;
+    }
+
+    /* Move misaligned panels */
+    #unified-extensions-panel {
+      margin-top: 2px !important;
+
+      & .unified-extensions-item {
+        margin-inline: 0px !important;
       }
     }
-    @keyframes subtleSlideDown {
-      0% {
-        transform: unset !important;
+    #identity-popup {
+      margin-top: 4px !important;
+    }
+
+    .tab-preview-thumbnail-container canvas {
+      margin-inline: 9px !important;
+      width: 262px !important;
+    }
+
+    /* Acrylic tooltips */
+    tooltip,
+    #tabbrowser-tab-tooltip,
+    #places-tooltip-insecure-icon,
+    #btTooltip,
+    #bhTooltip,
+    #un-toolbar-tooltip,
+    #tooltip,.tooltip,
+    #aHTMLTooltip,
+    #urlTooltip {
+      appearance: auto !important;
+      -moz-default-appearance: menupopup;
+      box-shadow: none !important;
+    }
+
+    #editBookmarkPanel {
+      margin-top: 5px !important;
+    }
+    #full-page-translations-panel {
+      margin-top: 3px !important;
+    }
+    .panel-footer {
+      background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
+    }
+
+    /* Tab preview panel */
+    .tab-preview-thumbnail-container {
+      background-color: transparent !important;
+    }
+
+    /* Disable animations by modifying them into being blank */
+    @media not -moz-pref("uc.winui.acrylic-animations") {
+      @keyframes panelContentSlide {
+        0% {
+          transform: unset !important;
+        }
+        100% {
+          transform: unset !important;
+        }
       }
-      100% {
-        transform: unset !important;
+      @keyframes panelSlide {
+        0% {
+          transform: unset !important;
+        }
+        100% {
+          transform: unset !important;
+        }
+      }
+      @keyframes subtleSlideDown {
+        0% {
+          transform: unset !important;
+        }
+        100% {
+          transform: unset !important;
+        }
+      }
+      @keyframes extremeSlideDown {
+        0% {
+          transform: unset !important;
+        }
+        100% {
+          transform: unset !important;
+        }
+      }
+      @keyframes panelSlide2 {
+        0% {
+          transform: unset !important;
+        }
+        100% {
+          transform: unset !important;
+        }
+      }
+      @keyframes panelContentSlide2 {
+        0% {
+          transform: unset !important;
+        }
+        100% {
+          transform: unset !important;
+        }
+      }
+      @keyframes panelContentSlide3 {
+        0% {
+          transform: unset !important;
+        }
+        100% {
+          transform: unset !important;
+        }
+      }
+      @keyframes richlistSlide {
+        0% {
+          transform: unset !important;
+        }
+        100% {
+          transform: unset !important;
+        }
+      }
+      @keyframes richlistContentSlide {
+        0% {
+          transform: unset !important;
+        }
+        100% {
+          transform: unset !important;
+        }
+      }
+      :root[animate-menupopups] :not(menulist) > menupopup:not([position], [type="arrow"])[animate][animate="open"] {
+        transition-duration: 0s !important;
       }
     }
-    @keyframes extremeSlideDown {
-      0% {
-        transform: unset !important;
-      }
-      100% {
-        transform: unset !important;
-      }
-    }
-    @keyframes panelSlide2 {
-      0% {
-        transform: unset !important;
-      }
-      100% {
-        transform: unset !important;
-      }
-    }
-    @keyframes panelContentSlide2 {
-      0% {
-        transform: unset !important;
-      }
-      100% {
-        transform: unset !important;
-      }
-    }
-    @keyframes panelContentSlide3 {
-      0% {
-        transform: unset !important;
-      }
-      100% {
-        transform: unset !important;
-      }
-    }
-    @keyframes richlistSlide {
-      0% {
-        transform: unset !important;
-      }
-      100% {
-        transform: unset !important;
-      }
-    }
-    @keyframes richlistContentSlide {
-      0% {
-        transform: unset !important;
-      }
-      100% {
-        transform: unset !important;
-      }
-    }
-    :root[animate-menupopups] :not(menulist) > menupopup:not([position], [type="arrow"])[animate][animate="open"] {
-      transition-duration: 0s !important;
-    }
-  }
 }
 
 @media -moz-pref("uc.winui.borderless-bookmarks-bar") {

@@ -846,7 +846,7 @@
 	#filter,
 	#form-edit > input,
 	textarea,
-	input:not(.wallpaper-input), 
+	input:not(.wallpaper-input):not([inputmode="search"]), 
 	input[type="text"],
 	#engineUrl {
 		background-color: var(--searchBackground) !important;
@@ -855,43 +855,16 @@
 		outline: none !important;
 		height: 30px !important;
 		transition: background-color 83ms linear, box-shadow 83ms linear !important;
-	}
-	search-textbox:not([disabled=""]):hover,
-	#about-config-search:not([disabled=""]):hover,
-	input#downloadFolder:not([disabled=""]):hover,
-	#filter:not([disabled=""]):hover,
-	#form-edit > input:not([disabled=""]):hover,
-	textarea:not([disabled=""]):hover,
-	input:not([disabled=""], .wallpaper-input):hover, 
-	input[type="text"]:not([disabled=""]):hover,
-	#engineUrl:not([disabled=""]):hover {
-		background-color: var(--searchHover) !important;
-	}
-	search-textbox:focus-within,
-	#about-config-search:focus-within,
-	input#downloadFolder:focus-within,
-	#filter:focus-within,
-	#form-edit > input:focus-within,
-	/*textarea:focus-within,
-	input:focus-within, 
-	input[type="text"]:focus-within,*/
-	#engineUrl:focus-within {
-		background-color: var(--searchActive) !important;
-		&:hover {
-			background-color: var(--searchActive) !important;
-		}
-	}
 
-	/* Fix double search bars */
-	input[inputmode="search"],
-	input[inputmode="search"]:hover,
-	input[inputmode="search"]:active {
-		background-color: transparent !important;
-		box-shadow: none !important;
-		outline: none !important;
-		appearance: none !important;
-		border: none !important;
-		align-self: center !important;
+		&:hover {
+			background-color: var(--searchHover) !important;
+		}
+		&:focus-within {
+			background-color: var(--searchActive) !important;
+			&:hover {
+				background-color: var(--searchActive) !important;
+			}
+		}
 	}
 
 	/* Disabled input bars */
@@ -1448,7 +1421,7 @@
 	}
 
 	/* Links */
-	a:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button):not(.card-outer a),
+	a:not(.sidebar-footer-link, .addon-badge, .top-site-button, .card-outer a, .addon-name-link),
 	.text-link,
 	button.text-link:is(:not([disabled="true"]), :enabled),
 	::part(support-link) {
@@ -1458,23 +1431,19 @@
 		max-width: -moz-available !important;
 		width: min-content !important;
 		display: ruby !important;
-	}
-	a:hover:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button),
-	.text-link:hover,
-	button.text-link:is(:not([disabled="true"]), :enabled):hover,
-	::part(support-link):hover {
-		box-shadow: 4px 0 0 var(--textButtonHover),
-			-4px 0 0 0 var(--textButtonHover),
-			0 0 99px 0 var(--textButtonHover) inset !important;
-	}
-	a:active:not(.sidebar-footer-link):not(.addon-badge):not(.top-site-button),
-	.text-link:active,
-	button.text-link:is(:not([disabled="true"]), :enabled):active,
-	::part(support-link):active {
-		box-shadow: 4px 0 0 var(--textButtonPressed),
-			-4px 0 0 0 var(--textButtonPressed),
-			0 0 99px 0 var(--textButtonPressed) inset !important;
-		color: var(--accentLight4) !important;
+
+		&:hover {
+			box-shadow: 4px 0 0 var(--textButtonHover),
+				-4px 0 0 0 var(--textButtonHover),
+				0 0 99px 0 var(--textButtonHover) inset !important;
+		}
+
+		&:active {
+			box-shadow: 4px 0 0 var(--textButtonPressed),
+				-4px 0 0 0 var(--textButtonPressed),
+				0 0 99px 0 var(--textButtonPressed) inset !important;
+			color: var(--accentLight4) !important;
+		}
 	}
 
 	/* Base button styles to exclude */
@@ -1517,86 +1486,13 @@
 		background-color: var(--button) !important;
 		transition: var(--basicBGAnimation) !important;
 		font-weight: normal !important;
-	}
-
-	/* Hover state */
-	:where(button):not(
-	.arrow-button,
-	.toggle-button,
-	.category,
-	[role="menuitem"],
-	[role="menuitemcheckbox"],
-	.tab-button,
-	.button-save,
-	[type="checkbox"],
-	[type="radio"],
-	.a11y-link-button,
-	[type="submit"],
-	.context-menu-button,
-	.search-button,
-	.more-options-button,
-	#checkForUpdatesButton3,
-	#data-migration,
-	#chooseFolder,
-	#syncNow,
-	#containersAdd,
-	.arrowhead,
-	.back-button,
-	.button-link,
-	.addon-detail-contribute-button,
-	button.primary,
-	[dlgtype="accept"],
-	.dialogClose,
-	.close-icon,
-	.icon-clear-input,
-	button.done,
-	[default="true"],
-	[disabled]
-	):hover,
-	menulist:not([disabled]):hover,
-	.web-appearance-choice:not([disabled]):hover,
-	treecol:not([disabled]):hover {
-		background-color: light-dark(rgba(249, 249, 249, .5), rgba(255, 255, 255, .0837)) !important;
-	}
-
-	/* Pressed state */
-	:where(button):not(
-	.arrow-button,
-	.toggle-button,
-	.category,
-	[role="menuitem"],
-	[role="menuitemcheckbox"],
-	.tab-button,
-	.button-save,
-	[type="checkbox"],
-	[type="radio"],
-	.a11y-link-button,
-	[type="submit"],
-	.context-menu-button,
-	.search-button,
-	.more-options-button,
-	#checkForUpdatesButton3,
-	#data-migration,
-	#chooseFolder,
-	#syncNow,
-	#containersAdd,
-	.arrowhead,
-	.back-button,
-	.button-link,
-	.addon-detail-contribute-button,
-	button.primary,
-	[dlgtype="accept"],
-	.dialogClose,
-	.close-icon,
-	.icon-clear-input,
-	button.done,
-	[default="true"],
-	[disabled]
-	):active,
-	menulist:not([disabled]):active,
-	.web-appearance-choice:not([disabled]):active,
-	treecol:not([disabled]):active {
-		background-color: light-dark(rgba(249, 249, 249, .3), rgba(255, 255, 255, .0326)) !important;
+		
+		&:hover {
+			background-color: light-dark(rgba(249, 249, 249, .5), rgba(255, 255, 255, .0837)) !important;
+		}
+		&:active {
+			background-color: light-dark(rgba(249, 249, 249, .3), rgba(255, 255, 255, .0326)) !important;
+		}
 	}
 
 	.arrowhead {
@@ -1610,22 +1506,24 @@
 	.back-button {
 		background-color: transparent !important;
 		transition: var(--basicBGAnimation) !important;
-	}
-	.back-button:hover {
-		background-color: var(--buttonHover) !important;
-	}
-	.back-button:active {
-		background-color: var(--buttonPressed) !important;
+		
+		&:hover {
+			background-color: var(--buttonHover) !important;
+		}
+		&:active {
+			background-color: var(--buttonPressed) !important;
+		}
 	}
 
 	.more-options-button {
 		background-color: unset !important;
-	}
-	.more-options-button:hover {
-		background-color: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
-	}
-	.more-options-button:active {
-		background-color: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+		
+		&:hover {
+			background-color: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+		}
+		&:active {
+			background-color: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+		}
 	}
 
 	#chooseFolder {
@@ -1639,9 +1537,10 @@
 	#openChangeProfileImage {
 		border: none !important;
 		transition: transform 187ms ease-out !important;
-	}
-	#openChangeProfileImage:hover{
-		transform: scale(1.05) !important;
+		
+		&:hover {
+			transform: scale(1.05) !important;
+		}
 	}
 
 	#fxaDisplayNameHeading {
@@ -1688,40 +1587,21 @@
 			rgba(0, 0, 0, .14)
 		) !important;
 		font-weight: normal !important;
-	}
-	:where(
-	.button-save,
-	button[type="submit"],
-	#checkForUpdatesButton3,
-	#data-migration,
-	#chooseFolder,
-	#syncNow,
-	button.primary,
-	#containersAdd,
-	button.done
-	):hover {
-		background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
-	}
-	:where(
-	.button-save,
-	button[type="submit"],
-	#checkForUpdatesButton3,
-	#data-migration,
-	#chooseFolder,
-	#syncNow,
-	button.primary,
-	#containersAdd,
-	button.done
-	):active {
-		background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
-		opacity: .8 !important;
+		
+		&:hover {
+			background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+		}
+		&:active {
+			background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+			opacity: .8 !important;
+		}
 	}
 
 	#containersAdd {
 		margin-left: 0 !important;
 	}
 	#chooseFolder {
-		margin-bottom: 0px !important;
+		margin-bottom: 0 !important;
 		height: 34px !important;
 		transform: translateY(-2px) !important;
 	}
@@ -2028,10 +1908,12 @@
 		border: none !important;
 		background: light-dark(rgba(0,0,0,.44), rgba(255,255,255,.54)) !important;
 		height: 2px !important;
+		
+		&:hover {
+			background: light-dark(rgba(0,0,0,.44), rgba(255,255,255,.54)) !important;
+		}
 	}
-	input[type="range"]:hover {
-		background: light-dark(rgba(0,0,0,.44), rgba(255,255,255,.54)) !important;
-	}
+	
 	input[type="range"]::-moz-range-progress {
 		background: light-dark(var(--accentLight), var(--accentDark)) !important;
 		height: 2px !important;
@@ -2225,9 +2107,6 @@
 		padding: 25px 21px !important;
 		margin-top: 5px !important;
 		margin-inline: -24px !important;
-		/*padding: 25px 25px 25px 17px !important;
-		margin-inline: -24px !important;
-		margin-top: 24px !important;*/
 	}
 	#wizard-deck .buttons button {
 		width: -moz-available !important;
@@ -2659,31 +2538,14 @@
 		#filter,
 		#form-edit > input,
 		textarea,
-		input, 
+		input:not([inputmode="search"]), 
 		input[type="text"],
 		#engineUrl {
 			box-shadow: var(--searchShadowLight) !important;
-		}
-
-		search-textbox:focus-within,
-		#about-config-search:focus-within,
-		input#downloadFolder:focus-within,
-		#filter:focus-within,
-		#form-edit > input:focus-within,
-		textarea:focus-within,
-		input:focus-within, 
-		input[type="text"]:focus-within,
-		#engineUrl:focus-within {
-			box-shadow: var(--searchActiveShadowLight) !important;
-		}
-
-		/* Fix double search bar in settings */
-		input[inputmode="search"] {
-			background-color: transparent !important;
-			box-shadow: none !important;
-			outline: none !important;
-			appearance: none !important;
-			border: none !important;
+			
+			&:focus-within {
+				box-shadow: var(--searchActiveShadowLight) !important;
+			}
 		}
 
 		/* Disabled */
@@ -2766,81 +2628,14 @@
 		.web-appearance-choice,
 		treecol {
 			box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
-		}
-		/* Pressed */
-		:where(button):not(
-		.arrow-button,
-		.toggle-button,
-		.category,
-		[role="menuitem"],
-		[role="menuitemcheckbox"],
-		.tab-button,
-		.button-save,
-		[type="checkbox"],
-		[type="radio"],
-		.a11y-link-button,
-		[type="submit"],
-		.context-menu-button,
-		.search-button,
-		.more-options-button,
-		#checkForUpdatesButton3,
-		#data-migration,
-		#chooseFolder,
-		#syncNow,
-		#containersAdd,
-		.arrowhead,
-		.back-button,
-		.button-link,
-		.addon-detail-contribute-button,
-		button.primary,
-		[dlgtype="accept"],
-		.dialogClose,
-		.close-icon,
-		.icon-clear-input,
-		button.done,
-		[default="true"]
-		):active,
-		menulist:not([disabled]):active,
-		.web-appearance-choice:not([disabled]):active,
-		treecol:not([disabled]):active {
-			box-shadow: 0 0 0 1px rgba(0,0,0,.0578) !important;
-		}
-		:where(button):not(
-		.arrow-button,
-		.toggle-button,
-		.category,
-		[role="menuitem"],
-		[role="menuitemcheckbox"],
-		.tab-button,
-		.button-save,
-		[type="checkbox"],
-		[type="radio"],
-		.a11y-link-button,
-		[type="submit"],
-		.context-menu-button,
-		.search-button,
-		.more-options-button,
-		#checkForUpdatesButton3,
-		#data-migration,
-		#chooseFolder,
-		#syncNow,
-		#containersAdd,
-		.arrowhead,
-		.back-button,
-		.button-link,
-		.addon-detail-contribute-button,
-		button.primary,
-		[dlgtype="accept"],
-		.dialogClose,
-		.close-icon,
-		.icon-clear-input,
-		button.done,
-		[default="true"]
-		):active > *,
-		menulist:not([disabled]):active > *,
-		.web-appearance-choice:not([disabled]):active > *,
-		treecol:not([disabled]):active > * {
-			opacity: .6 !important;
+			
+			&:active {
+				box-shadow: 0 0 0 1px rgba(0,0,0,.0578) !important;
+				
+				& * {
+					opacity: .6 !important;
+				}
+			}
 		}
 	}
 
@@ -2875,31 +2670,14 @@
 		#filter,
 		#form-edit > input,
 		textarea,
-		input, 
+		input:not([inputmode="search"]), 
 		input[type="text"],
 		#engineUrl {
 			box-shadow: var(--searchShadowDark) !important;
-		}
-
-		search-textbox:focus-within,
-		#about-config-search:focus-within,
-		input#downloadFolder:focus-within,
-		#filter:focus-within,
-		#form-edit > input:focus-within,
-		textarea:focus-within,
-		input:focus-within, 
-		input[type="text"]:focus-within,
-		#engineUrl:focus-within {
-			box-shadow: var(--searchActiveShadowDark) !important;
-		}
-
-		/* Fix double search bar in settings */
-		input[inputmode="search"] {
-			background-color: transparent !important;
-			box-shadow: none !important;
-			outline: none !important;
-			appearance: none !important;
-			border: none !important;
+			
+			&:focus-within {
+				box-shadow: var(--searchActiveShadowDark) !important;
+			}
 		}
 
 		/* Disabled */
@@ -2910,6 +2688,10 @@
 		}
 
 		/* Addon cards */
+		.card {
+			border: none !important;
+		}
+		
 		.addon.card {
 			box-shadow: var(--cardShadowDark) !important;
 
@@ -2978,81 +2760,14 @@
 		.web-appearance-choice,
 		treecol {
 			box-shadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
-		}
-		/* Pressed */
-		:where(button):not(
-		.arrow-button,
-		.toggle-button,
-		.category,
-		[role="menuitem"],
-		[role="menuitemcheckbox"],
-		.tab-button,
-		.button-save,
-		[type="checkbox"],
-		[type="radio"],
-		.a11y-link-button,
-		[type="submit"],
-		.context-menu-button,
-		.search-button,
-		.more-options-button,
-		#checkForUpdatesButton3,
-		#data-migration,
-		#chooseFolder,
-		#syncNow,
-		#containersAdd,
-		.arrowhead,
-		.back-button,
-		.button-link,
-		.addon-detail-contribute-button,
-		button.primary,
-		[dlgtype="accept"],
-		.dialogClose,
-		.close-icon,
-		.icon-clear-input,
-		button.done,
-		[default="true"]
-		):active,
-		menulist:not([disabled]):active,
-		.web-appearance-choice:not([disabled]):active,
-		treecol:not([disabled]):active {
-			box-shadow: 0 0 0 1px rgba(255,255,255,.0698) !important;
-		}
-		:where(button):not(
-		.arrow-button,
-		.toggle-button,
-		.category,
-		[role="menuitem"],
-		[role="menuitemcheckbox"],
-		.tab-button,
-		.button-save,
-		[type="checkbox"],
-		[type="radio"],
-		.a11y-link-button,
-		[type="submit"],
-		.context-menu-button,
-		.search-button,
-		.more-options-button,
-		#checkForUpdatesButton3,
-		#data-migration,
-		#chooseFolder,
-		#syncNow,
-		#containersAdd,
-		.arrowhead,
-		.back-button,
-		.button-link,
-		.addon-detail-contribute-button,
-		button.primary,
-		[dlgtype="accept"],
-		.dialogClose,
-		.close-icon,
-		.icon-clear-input,
-		button.done,
-		[default="true"]
-		):active > *,
-		menulist:not([disabled]):active > *,
-		.web-appearance-choice:not([disabled]):active > *,
-		treecol:not([disabled]):active > * {
-			opacity: .786 !important;
+			
+			&:active {
+				box-shadow: 0 0 0 1px rgba(255,255,255,.0698) !important;
+				
+				& * {
+					opacity: .786 !important;
+				}
+			}
 		}
 	}
 }
@@ -3129,5 +2844,17 @@
 	}
 	#categories .category-name {
 		padding-inline-start: 10px !important;
+	}
+	.sidebar-footer-list a {
+		margin-right: 8px !important;
+	}
+}
+
+@-moz-document url-prefix(about:addons) {
+	#categories .category {
+		margin-right: 0 !important;
+	}
+	.sidebar-footer-list li {
+		margin-right: 8px !important;
 	}
 }
