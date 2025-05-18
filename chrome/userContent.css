@@ -846,7 +846,7 @@
 	#filter,
 	#form-edit > input,
 	textarea,
-	input:not(.wallpaper-input):not([inputmode="search"]), 
+	input:not(.wallpaper-input):not([inputmode="search"],[type="checkbox"],[type="radio"]), 
 	input[type="text"],
 	#engineUrl {
 		background-color: var(--searchBackground) !important;
@@ -2538,7 +2538,7 @@
 		#filter,
 		#form-edit > input,
 		textarea,
-		input:not([inputmode="search"]), 
+		input:not(.wallpaper-input):not([inputmode="search"],[type="radio"],[type="checkbox"]), 
 		input[type="text"],
 		#engineUrl {
 			box-shadow: var(--searchShadowLight) !important;
@@ -2670,7 +2670,7 @@
 		#filter,
 		#form-edit > input,
 		textarea,
-		input:not([inputmode="search"]), 
+		input:not(.wallpaper-input):not([inputmode="search"],[type="radio"],[type="checkbox"]), 
 		input[type="text"],
 		#engineUrl {
 			box-shadow: var(--searchShadowDark) !important;
