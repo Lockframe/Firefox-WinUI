@@ -738,6 +738,16 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   padding-left: 7px !important;
 }
 
+/* Prevent audio playing tabs from modifying tab width */
+.tabbrowser-tab {
+  &:is([muted], [soundplaying], [activemedia-blocked]) {
+    #tabbrowser-tabs[orient="horizontal"] &:not([pinned]) {
+      --tab-min-width: unset !important;
+      min-width: var(--tab-min-width-pref, var(--tab-min-width)) !important;
+    }
+  }
+}
+
 /* Unselected tabs are 1px smaller than selected tabs */
 .tab-background:not([selected]) {
   clip-path: inset(1px 0 1px 0 round 7px 7px 0 0) !important;
@@ -900,7 +910,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
     padding-block: 5px !important;
     width: 32px !important;
     height: 24px !important;
-    margin-bottom: 1px !important;
+    margin-bottom: 5px !important;
   }
 }
 
@@ -2794,6 +2804,14 @@ button:active {
   }
 }
 
+/* Navbar color and pseudo-border */
+#nav-bar,
+#PersonalToolbar,
+#sidebar-box {
+  background-color: var(--frameBG) !important;
+  box-shadow: 0 -1px 0 0 var(--footerBorder) inset !important;
+}
+
 /* Side panel */
 #sidebar-main {
   background-color: var(--frameBG) !important;
@@ -2824,6 +2842,21 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
 
 .actions-list moz-button {
   margin: 4px !important;
+}
+
+/* Rounded upper left corner if the side panel is shown */
+:root:has(#sidebar-main:not([hidden="true"])) {
+  browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
+    margin: -1px !important;
+    border-radius: 8px 0 0 0 !important;
+    border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
+    border-bottom: none !important;
+    border-right: none !important;
+  }
+  & #sidebar-main, #nav-bar, #PersonalToolbar, #sidebar-box {
+    border-right: none !important;
+    box-shadow: none !important;
+  }
 }
 
 /* Remove permission icon in URL bar */
@@ -4840,14 +4873,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   .tabbrowser-tab[selected] .tab-content{
     color: var(--textPrimary) !important;
   }
-
-  /* Color the navbar/toolbar & add shadow*/
-  #nav-bar,
-  #PersonalToolbar,
-  #sidebar-box {
-    background-color: var(--frameBG) !important;
-    box-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset !important;
-  }
   
   :root, :root .tabbrowser-tab {
     & [brighttext], & [brighttext] .tabbrowser-tab {
@@ -5192,13 +5217,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   /* Active tab text */
   .tabbrowser-tab[selected] .tab-content {
     color: var(--textPrimary) !important;
-  }
-
-  /* Color the navbar/toolbar & add bottom shadow*/
-  #nav-bar,
-  #PersonalToolbar {
-    background-color: var(--frameBG) !important;
-    box-shadow: 0 -1px 0 0 rgba(0,0,0,.0578) inset !important;
   }
 
   /* Alternate way to set navbar upper shadow */
@@ -6207,13 +6225,6 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
   .urlbar-input {
     margin-left: -1px !important;
-  }
-
-  /* Overflowing tabs new tab button */
-  #TabsToolbar {
-    & #tabbrowser-tabs[hasadjacentnewtabbutton][overflow] ~ #new-tab-button > .toolbarbutton-icon {
-      transform: translateY(-4px) !important;
-    }
   }
   
   #urlbar-go-button {
