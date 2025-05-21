@@ -5843,6 +5843,15 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     clip-path: inset(28px 0 0 0) !important;
     border-radius: 0 0 16px 16px !important;
   }
+  
+  @media -moz-pref("uc.winui.pill-urlbar") {
+    /* Reposition in-url buttons */
+    #urlbar { 
+      & hbox[role="button"] {
+        transform: translateY(-1px) !important;
+      }
+    }
+  }
 }
 
 @media -moz-pref("uc.winui.aptos") {
@@ -5854,8 +5863,13 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   .bookmark-item .toolbarbutton-text{
     transform: translateY(2px) !important;
   }
-  .menu-text{
-    transform: translateY(0px) !important;
+  menupopup, .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu, panel, #context-navigation {
+    & label {
+       transform: translateY(1px) !important;
+    }
+    & menuitem::after {
+      transform: translateY(1px) !important;
+    }
   }
 }
 
@@ -6072,8 +6086,11 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       }
 
       &:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [chromehidden*="toolbar"], [chromehidden*="menubar"]) tabbox#tabbrowser-tabbox browser {
-        border-radius: 0 0 8px 8px !important;
+        border-radius: 0 0 5px 5px !important;
         clip-path: circle(100%) !important;
+      }
+      &[sizemode="maximized"] tabbox#tabbrowser-tabbox browser {
+        border-radius: 0 0 8px 8px !important;
       }
     }
   }
@@ -6107,6 +6124,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     height: 34px !important;
     margin-top: 1px !important;
     clip-path: inset(32px 0 0 0) !important;
+  }
+  /* Reposition in-url buttons */
+  #urlbar[breakout][breakout-extend] { 
+    & hbox[role="button"] {
+      transform: translateY(-3px) !important;
+    }
   }
 }
 
@@ -6334,6 +6357,14 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       transform: translate(-1px, -1px) !important;
     }
     
+    @media -moz-pref("uc.winui.taller-urlbar") {
+      /* Reposition in-url buttons */
+      #urlbar[breakout][breakout-extend] { 
+        & hbox[role="button"] {
+          padding-top: 9px !important;
+        }
+      }
+    }
   }
 }
 
@@ -7161,6 +7192,36 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
       & menuitem {
         margin-right: -10px !important;
+      }
+    }
+    .panel-viewstack {
+      background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+    }
+    
+    @media -moz-pref("uc.winui.extra-highlights") {
+      @media (prefers-color-scheme: dark) {
+        .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+          background-color: light-dark(rgba(255,255,255,.85), rgba(0,0,0,.57)) !important;
+          box-shadow: 0 1px 0 0 rgba(255,255,255,.1) inset !important;
+          border-radius: 7px !important;
+        }
+        .panel-viewstack {
+          box-shadow: 0 2px 0 rgba(255,255,255,.1) inset !important;
+          border-radius: 0px !important;
+        }
+      }
+
+      @media (prefers-color-scheme: light) {
+        .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+          box-shadow: box-shadow: 0 0 0 1px rgba(255,255,255,.7) inset,
+            0 1px 0 rgba(255,255,255,.85) inset !important;
+          border-radius: 7px !important;
+        }
+        .panel-viewstack {
+          box-shadow: 0 0 0 1px rgba(255,255,255,.7) inset,
+            0 1px 0 rgba(255,255,255,.85) inset !important;
+          border-radius: 0px !important;
+        }
       }
     }
 
