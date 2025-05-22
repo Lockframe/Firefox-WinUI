@@ -978,7 +978,6 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 }
 
 /* Tab audio icon - from WaveFox */
-/* Pinned Tabs - Needs fixing */
 .tabbrowser-tab[pinned]:not([crashed]){
   .tab-icon-overlay {
     background-color: var(--accentAuto) !important;
@@ -7194,11 +7193,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
         margin-right: -10px !important;
       }
     }
-    .panel-viewstack {
-      background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
-    }
     
     @media -moz-pref("uc.winui.extra-highlights") {
+      .panel-viewstack {
+        background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+      }
+      
       @media (prefers-color-scheme: dark) {
         .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
           background-color: light-dark(rgba(255,255,255,.85), rgba(0,0,0,.57)) !important;
