@@ -46,7 +46,6 @@
 
   --searchBackground: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
   --searchHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
-  --searchActive: light-dark(#fff, rgba(30,30,30,.7)) !important;
   --searchActiveBorder: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0698)) !important;
   --searchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.41) !important;
   --searchShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.46) !important;
@@ -82,6 +81,8 @@
   --criticalBadge: light-dark(#C42B1C,#FF99A4) !important;
 
   --segmentedBG: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+
+  --tabCorner: light-dark(rgba(0,0,0,.0405),rgba(0,0,0,.1)) !important;
 
   --progressBar: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
 
@@ -119,6 +120,9 @@
 
   --genericShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
   --genericShadowDark: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26) !important;
+  --tooltipShadowColor: light-dark(rgba(0,0,0,.14), rgba(0,0,0,.26)) !important;
+  --tooltipShadow: 0 4px 8px var(--tooltipShadowColor) !important;
+  --flyoutStroke: light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.2)) !important;
 
   --basicBGAnimation: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear !important;
 
@@ -246,12 +250,31 @@ h1, h2, h3 {
 #reader-mode-button > .urlbar-icon {
   list-style-image: url('icons/read.svg') !important;
 }
-#pageAction-panel-bookmark, #star-button, #context-bookmarkpage {
+#pageAction-panel-bookmark:not([starred]), 
+#star-button:not([starred]), 
+#context-bookmarkpage:not([starred]) {
   list-style-image: url('icons/star.svg') !important;
+  list-style-image: none !important;
+  background-image: url(icons/star.svg);
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 10px 5px !important;
 }
-#pageAction-panel-bookmark[starred], #star-button[starred] {
+#pageAction-panel-bookmark[starred],
+#context-bookmarkpage[starred] {
   list-style-image: url("icons/star-filled.svg") !important;
+  list-style-image: none !important;
+  background-image: url(icons/star-filled.svg) !important;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 10px 5px !important;
 }
+
+#star-button[starred] {
+  list-style-image: none !important;
+  background-image: url(icons/star-filled.svg) !important;
+}
+
 #context_bookmarkTab, 
 #context_bookmarkSelectedTabs, 
 #toggle_PersonalToolbar, 
@@ -349,6 +372,22 @@ h1, h2, h3 {
   background-position: 12px 6px !important;
 }
 
+menuitem[type="checkbox"]:not([checked="true"]){
+  .menu-text {
+    margin-left: 28px !important;
+  }
+}
+menuitem[type="checkbox"][checked="true"] {
+  .menu-text {
+    margin-left: 4px !important;
+  }
+}
+menuitem[type="radio"]:not([checked="true"]) {
+  .menu-text {
+    margin-left: 24px !important;
+  }
+}
+
 /* Create space for icons */
 .customize-context-removeFromToolbar .menu-text::after,
 menuitem[command="downloadsCmd_clearList"] .menu-text::after,
@@ -381,6 +420,31 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
   position: absolute;
   order: -1;
   transform: translate(-28px, 2px);
+}
+
+
+#spell-check-enabled:not([checked="true"]){
+  background-image: url(icons/spelling.svg) !important;
+  background-size: 16px !important;
+  background-repeat: no-repeat !important;
+  background-position: 10px 6px !important;
+  fill: var(--textPrimary) !important;
+  
+  &[disabled] {
+    fill: var(--textTertiary) !important;
+  }
+}
+
+#context-video-pictureinpicture:not([checked="true"]){
+  background-image: url(icons/media-pip.svg) !important;
+  background-size: 16px !important;
+  background-repeat: no-repeat !important;
+  background-position: 10px 6px !important;
+  fill: var(--textPrimary) !important;
+  
+  &[disabled] {
+    fill: var(--textTertiary) !important;
+  }
 }
 
 #placesContext_paste .menu-text::after {
@@ -519,10 +583,13 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after {
 }
 menu::after {
   content: "";
-  margin-left: 4px;
+  margin-right: -1px !important;
   color: var(--textSecondary) !important;
   font-size: 10px !important;
   font-family: 'Segoe Fluent Icons', 'Segoe MDL2 Assets' !important;
+  background-size: 10px !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
 }
 #protections-popup-mainView .subviewbutton-nav:not(.notFound), .widget-overflow-list .subviewbutton-nav, .PanelUI-subView .subviewbutton-nav {
   &::after {
@@ -591,17 +658,6 @@ menu::after {
     background-position: center center;
     background-repeat: no-repeat;
     padding: 3px !important;
-    
-      /*&[checked=true] .toolbarbutton-icon {
-        background-color: var(--accentAuto) !important;
-        background-image: url(icons/dock-right.svg) !important;
-        background-size: 16px !important;
-        background-repeat: no-repeat !important;
-        background-position: center center !important;
-        fill: var(--textInverse) !important;
-        border: 1px solid rgba(255,255,255,.08) !important;
-        border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
-      }*/
 
     @media -moz-pref("uc.winui.smaller-toolbar-buttons") {
       background-size: 15px;
@@ -2220,7 +2276,7 @@ panel[type="autocomplete-richlistbox"] {
     background-color: var(--buttonPressed) !important;
   }
   &:focus-within {
-    background-color: var(--searchActive) !important;
+    background-color: var(--inputActive) !important;
   }
 }
 
@@ -2267,7 +2323,7 @@ panel[type="autocomplete-richlistbox"] {
       background-color: var(--buttonPressed) !important;
     }
     &:focus-within {
-      background-color: var(--searchActive) !important;
+      background-color: var(--inputActive) !important;
     }
   }
 }
@@ -2744,7 +2800,7 @@ window#webextpanels-window {
       background-color: var(--searchHover) !important;
     }
     &:focus-within {
-      background-color: var(--searchActive) !important;
+      background-color: var(--inputActive) !important;
       outline: none !important;
     }
   }
@@ -3220,7 +3276,7 @@ findbar:not([hidden]) {
     background-color: var(--searchHover) !important;
   }
   &:focus-within {
-    background-color: var(--searchActive) !important;
+    background-color: var(--inputActive) !important;
     border-color: var(--searchActiveBorder) !important;
     border-bottom: 2px solid var(--accentAuto) !important;
   }
@@ -3328,15 +3384,35 @@ menupopup#ContentSelectDropdownPopup {
 }
 
 #context-navigation > .menuitem-iconic {
-  -moz-box-pack: start !important; /* can not be replaced with box-pack yet */
+  -moz-box-pack: start !important;
   flex: unset !important;
   justify-content: unset !important;
+}
+
+#context-navigation {
+  #context-back, #context-forward, #context-reload {
+    padding-inline: 3px 0 !important;
+    
+    .menuitem-iconic {
+      list-style-image: url(icons/mail.svg) !important;
+    }
+    &::after {
+      margin-inline: -7px 0 !important;
+    }
+  }
+}
+#context-navigation {
+  #context-bookmarkpage {
+    &::after {
+      margin-inline: 2px 0 !important;
+    }
+  }
 }
 
 #context-navigation :is(menu, menuitem, menucaption),
 :is(#context-back,#context-forward,#context-reload,#context-stop,#context-bookmarkpage) {
   appearance: none !important;
-  min-height: unset !important;
+  height: 28px !important;
 }
 #context-navigation > .menuitem-iconic[_moz-menuactive="true"]:not([disabled="true"]) > .menu-iconic-left > .menu-iconic-icon,
 #context-navigation > .menuitem-iconic[_moz-menuactive="true"][disabled="true"] > .menu-iconic-left > .menu-iconic-icon {
@@ -4548,7 +4624,7 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
       background-color: var(--searchHover) !important;
     }
     &:focus-within {
-      background-color: var(--searchActive) !important;
+      background-color: var(--inputActive) !important;
     }
   }
   
@@ -4838,6 +4914,208 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   display: none !important;
 }
 
+/* Active tab */
+  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background {
+    background: var(--frameBG) !important;
+  }
+
+  /* Bottom corners */
+  .tab-background:is([selected], [multiselected]) {
+    --uc-tab-corner-bg: var(--frameBG);
+    --uc-tab-corner-outline: var(--tabCorner) !important;
+  }
+
+/* Inactive tab text */  
+.tabbrowser-tab:not([selected]) .tab-content{
+  color: var(--textSecondary) !important;
+}
+
+/* Active tab text */
+.tabbrowser-tab[selected] .tab-content{
+  color: var(--textPrimary) !important;
+}
+
+/* URL bar customization */
+#urlbar-background, #searchbar {
+  background-color: var(--searchBackground) !important;
+}
+/* Hover */
+#urlbar:hover>#urlbar-background, #searchbar:hover {
+  background-color: var(--searchHover) !important;
+}
+
+/* Open */
+#urlbar[open]>#urlbar-background {
+  background-color: var(--inputActive) !important;
+}
+/* Results */
+#urlbar[breakout][breakout-extend][open] {
+  border-radius: 3px 3px 8px 8px !important;
+}
+
+#searchbar:focus-within {
+  border-radius: 3px 3px 0 0 !important;
+  background-color: var(--inputActive) !important;
+  transform: translateY(1px) !important;
+  height: 32px !important;
+  padding-bottom: 2px !important;
+}
+#PopupSearchAutoComplete {
+  --panel-background: var(--searchDropdown) !important;
+  transform: translateY(1px) !important;
+}
+#PopupSearchAutoComplete {
+  --panel-background: var(--searchDropdown) !important;
+  transform: translateY(1px) !important;
+}
+/* URL bar bottom border when opened */
+.urlbarView {
+  margin-top: -3px !important;
+}
+/* URL breakout results */
+.urlbarView-row {
+  color: var(--textPrimary);
+  --urlbar-popup-url-color: var(--accentAuto) !important;
+  background-color: transparent !important;
+}
+/* URL breakout results hover*/
+.urlbarView-row:hover,
+#PopupSearchAutoComplete .autocomplete-richlistitem:hover {
+  --urlbar-popup-url-color: transparent !important;
+  background-color: var(--textButtonHover) !important;
+}
+/* URL breakout result */
+.urlbarView-row:not([type="tip"], [type="dynamic"])[selected]>.urlbarView-row-inner,
+.urlbarView-row-inner[selected] {
+  background-color: var(--textButtonHover) !important;
+}
+/* WinUI blue border on the left of URL bar result */
+.urlbarView-row[selected] .urlbarView-row-inner::before {
+  background-color: var(--accentAuto) !important;
+}
+
+/* URL tooltip */
+#statuspanel-label{
+  background-color: var(--commonBackground) !important;
+  box-shadow: var(--tooltipShadow) !important;
+  outline: 1px solid var(--flyoutStroke) !important;
+}
+
+/* Toolbar buttons hover */
+.toolbarbutton-1:hover > .toolbarbutton-icon,
+.toolbarbutton-1:hover > stack {
+  background-color: var(--textButtonHover) !important;
+}
+
+/* New tab hover */
+#TabsToolbar .toolbarbutton-1:hover>.toolbarbutton-icon {
+  background-color: var(--textButtonHover) !important;
+}
+
+.tab-close-button:hover {
+  background-color: var(--textButtonHover) !important;
+}
+
+/* Hovered menu item */
+menupopup menu:hover:not([disabled=true]),
+menupopup menuitem:hover:not([disabled=true]),
+menupopup menu[_moz-menuactive]:not([disabled=true]),
+menupopup menuitem[_moz-menuactive]:not([disabled=true]) {
+  background-color: var(--textButtonHover) !important;
+}
+/* Active/Clicked menu item */
+menupopup menuitem:hover:active:not([disabled=true]),
+menupopup menu:hover:active:not([disabled=true]) {
+  background-color: var(--textButtonPressed) !important;
+  color: var(--textSecondary) !important;
+}
+
+.in-menulist menuitem[selected="true"]::before {
+  background-color: var(--accentAuto) !important;
+}
+
+tooltip {
+  background: var(--commonBackground) !important;
+  border: 1px solid var(--flyoutStroke)) !important;
+}
+
+/* Downloads button colors */
+#downloads-button[attention="success"]
+> .toolbarbutton-badge-stack
+> #downloads-indicator-anchor
+> #downloads-indicator-icon {
+  fill: var(--successBadge) !important;
+  list-style-image: none !important;
+}
+/* Remove download finished icon animation */
+#downloads-indicator-finish-image {
+  list-style-image: none !important;
+}
+#downloads-button {
+  --toolbarbutton-icon-fill-attention: var(--successBadge) !important;
+}
+#downloads-button[progress] {
+  --downloads-progress-fill: var(--accentAuto) !important;
+}
+
+/* Changes color of download progress circle but it's weird w green */
+#downloads-indicator-progress-inner{
+  --toolbarbutton-icon-fill-attention: var(--accentAuto) !important;
+}
+.downloadProgress::-moz-progress-bar {
+  background-color: var(--accentAuto) !important;
+}
+
+/* Tabs toolbar background color */
+* {
+  --lwt-accent-color: var(--mica) !important; /* Active window color */
+  --lwt-accent-color-inactive: var(--mica) !important; /* Inactive window color */
+}
+
+/* Colors for when the window is inactive */
+.tabbrowser-tab[selected]:-moz-window-inactive .tab-background,
+.tab-background:is([selected], [multiselected]):-moz-window-inactive,
+#nav-bar:-moz-window-inactive,
+#PersonalToolbar:-moz-window-inactive,
+#sidebar-box:-moz-window-inactive {
+  background-color: var(--frameBG)  !important;
+  --uc-tab-corner-bg: var(--frameBG) !important;
+}
+/* Tab requires special treatment since it becomes more translucent than expected when the window is inactive */
+.tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive {
+  background-color: light-dark(var(--frameBG),rgba(58,58,58,.6))  !important;
+}
+
+.tab-preview-title {
+  color: var(--textAuto) !important;
+}
+
+/* Translator buttons */
+#select-translations-panel-from,
+#select-translations-panel-to,
+#select-translations-panel-translate-full-page-button {
+  background: var(--button) !important;
+}
+#select-translations-panel-done-button-primary {
+  background: var(--accentAuto) !important;
+}
+
+/* Active button opacity*/
+:is(
+.toolbarbutton-1 > .toolbarbutton-icon,
+.toolbarbutton-1 > .toolbarbutton-text,
+.toolbarbutton-1 > .toolbarbutton-badge-stack,
+:not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
+.urlbar-page-action,
+.identity-box-button,
+#tracking-protection-icon-container,
+panel button,
+panel menulist,
+button
+):active > * {
+  color: var(--textSecondary) !important;
+}
+
 /* ============= DARK ================== */
 
 @media (prefers-color-scheme: dark) {
@@ -4847,64 +5125,31 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     box-shadow: 0 0 1px 0 rgba(0,0,0,.35), 0 -1px 0 0 rgba(255,255,255,.005) inset !important;
   }
 
-  /* Active tab */
-  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background {
-    background: var(--frameBG) !important;
-  }
-
-  /* Bottom corners */
-  .tab-background:is([selected], [multiselected]) {
-    --uc-tab-corner-bg: var(--frameBG);
-    --uc-tab-corner-outline: rgba(0,0,0,.1);
-  }
-
   /* Hovering tab */
   .tabbrowser-tab:not([selected]):hover .tab-background {
     background-color: var(--textButtonHover) !important;
   }
-
-  /* Inactive tab text */  
-  .tabbrowser-tab:not([selected]) .tab-content{
-    color: var(--textSecondary) !important;
-  }
-
-  /* Active tab text */
-  .tabbrowser-tab[selected] .tab-content{
-    color: var(--textPrimary) !important;
-  }
   
+  /* Navbar upper shadow */
   :root, :root .tabbrowser-tab {
     & [brighttext], & [brighttext] .tabbrowser-tab {
-      --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset;
+      --uc-titlebar-shadow: 0 -1px 0 0 var(--footerBorder) !important;
     }
   }
 
   /* URL bar and search bar customization */
   #urlbar-background, #searchbar {
-    background-color: rgb(255, 255, 255, .0605) !important;
     box-shadow: var(--buttonShadowDark) !important;
   }
-  /* Hover */
-  #urlbar:hover>#urlbar-background, #searchbar:hover {
-    background-color: rgba(255,255,255,.0837) !important;
-  }
+  
   /* Open */
-  #urlbar[open]>#urlbar-background, #searchbar:focus-within {
-    background-color: var(--inputActive) !important;
+  #urlbar[open]>#urlbar-background {
     box-shadow: var(--buttonShadowDarkPressed) !important;
   }
   #searchbar:focus-within {
-    box-shadow: 0 0 0 1px rgba(255,255,255,.0698), 0 -2px 0 var(--accentDark) inset !important;
-    border-radius: 3px 3px 0 0 !important;
-    background-color: var(--searchActive) !important;
-    transform: translateY(1px) !important;
-    height: 32px !important;
-    padding-bottom: 2px !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.0698), 0 -2px 0 var(--accentAuto) inset !important;
   }
-  #PopupSearchAutoComplete {
-    --panel-background: rgb(44,44,44) !important;
-    transform: translateY(1px) !important;
-  }
+
   /* Panel shadows */
   menupopup, panel {
     --panel-shadow: var(--genericShadowDark) !important;
@@ -4912,137 +5157,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
   /* URL bar bottom border when opened */
   .urlbarView {
-    box-shadow: 0 2px 0 0 var(--accentDark) inset, var(--genericShadowDark) !important;
-    margin-top: -3px !important;
-  }
-  /* URL breakout results */
-  .urlbarView-row {
-    color: var(--textPrimary);
-    --urlbar-popup-url-color: var(--accentDark) !important;
-    background-color: transparent !important;
-  }
-  /* URL breakout results hover*/
-  .urlbarView-row:hover,
-  #PopupSearchAutoComplete .autocomplete-richlistitem:hover {
-    --urlbar-popup-url-color: transparent !important;
-    background-color: var(--textButtonHover) !important;
-  }
-  /* URL breakout result */
-  .urlbarView-row:not([type="tip"], [type="dynamic"])[selected]>.urlbarView-row-inner,
-  .urlbarView-row-inner[selected] {
-    background-color: var(--textButtonHover) !important;
-  }
-  /* WinUI blue border on the left of URL bar result */
-  .urlbarView-row[selected] .urlbarView-row-inner::before {
-    background-color: var(--accentDark) !important;
-  }
-
-  /* URL tooltip */
-  #statuspanel-label{
-    background-color: var(--commonBackground) !important;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,.26) !important;
-    outline: 1px solid rgba(0,0,0,.2) !important;
-  }  
-
-  /* toolbar buttons hover */
-  .toolbarbutton-1:hover > .toolbarbutton-icon,
-  .toolbarbutton-1:hover > stack {
-    background-color: var(--textButtonHover) !important;
-  }
-
-  /* New tab hover */
-  #TabsToolbar .toolbarbutton-1:hover>.toolbarbutton-icon {
-    background-color: var(--textButtonHover) !important;
-  }
-
-  .tab-close-button:hover {
-    background-color: var(--textButtonHover) !important;
+    box-shadow: 0 2px 0 0 var(--accentAuto) inset, var(--genericShadowDark) !important;
   }
 
   /* Context menu */
   .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
     box-shadow: var(--genericShadowDark) !important;
-  }
-  /* Hovered menu item */
-  menupopup menu:hover:not([disabled=true]),
-  menupopup menuitem:hover:not([disabled=true]),
-  menupopup menu[_moz-menuactive]:not([disabled=true]),
-  menupopup menuitem[_moz-menuactive]:not([disabled=true]) {
-    background-color: rgba(255,255,255,.0605) !important;
-  }
-  /* Active/Clicked menu item */
-  menupopup menuitem:hover:active:not([disabled=true]),
-  menupopup menu:hover:active:not([disabled=true]) {
-    background-color: rgba(255,255,255,.04) !important;
-    color: var(--textSecondary) !important;
-  }
-
-  .in-menulist menuitem[selected="true"]::before {
-    background-color: var(--accentDark) !important;
-  }
-
-  tooltip {
-    background: var(--commonBackground) !important;
-    border: 1px solid rgba(0,0,0,.2) !important;
-  }
-
-  /* Downloads button colors */
-  #downloads-button[attention="success"]
-  > .toolbarbutton-badge-stack
-  > #downloads-indicator-anchor
-  > #downloads-indicator-icon {
-    fill: rgb(108, 203, 95) !important;
-    list-style-image: url(icons/success-dark.svg) !important;
-    list-style-image: none !important;
-  }
-  
-  /* Remove download finished icon animation */
-  #downloads-indicator-finish-image {
-    list-style-image: url('icons/success-dark.svg') !important;
-    list-style-image: none !important;
-  }
-  #downloads-button {
-    --toolbarbutton-icon-fill-attention: rgb(108, 203, 95) !important;
-  }
-  #downloads-button[progress] {
-    --downloads-progress-fill: var(--accentDark) !important;
-  }
-
-  /* Changes color of download progress circle but it's weird w green */
-  #downloads-indicator-progress-inner{
-    --toolbarbutton-icon-fill-attention: var(--accentDark) !important;
-  }
-  .downloadProgress::-moz-progress-bar {
-    background-color: var(--accentDark) !important;
-  }
-
-  /* Tabs toolbar background color */
-  * {
-    --lwt-accent-color: var(--mica) !important; /* Active window color */
-    --lwt-accent-color-inactive: var(--mica) !important; /* Inactive window color */
-  }
-
-  /* Colors when window is inactive */
-  .tabbrowser-tab[selected]:-moz-window-inactive .tab-background,
-  .tab-background:is([selected], [multiselected]):-moz-window-inactive,
-  #nav-bar:-moz-window-inactive,
-  #PersonalToolbar:-moz-window-inactive,
-  #sidebar-box:-moz-window-inactive {
-    background-color: rgba(58,58,58,.45)  !important;
-    --uc-tab-corner-bg: rgba(58,58,58,.45) !important;
-  }
-  /* Active tab */
-  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive {
-    background-color: rgba(58,58,58,.6)  !important;
-  }
-
-  /* Tab Preview Cards */
-  .tab-preview-text-container {
-    color: rgba(255,255,255,.5) !important;
-  }
-
-  .tab-preview-title {
-    color: var(--textAuto) !important;
   }
 
   /* Translator buttons */
@@ -5051,12 +5171,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #select-translations-panel-translate-full-page-button {
     border: 1px solid rgba(255,255,255,.04) !important;
     border-top: 1px solid rgba(255,255,255,.06) !important;
-    background: rgba(255,255,255,.0605) !important;
   }
 
   #select-translations-panel-done-button-primary {
-    background: var(--accentDark) !important;
-    color: black !important;
     box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -1px 0 rgba(0,0,0,.14) inset !important;
   }
 
@@ -5120,31 +5237,11 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     }
   }
 
-  /* Active button opacity*/
-  :is(
-  .toolbarbutton-1 > .toolbarbutton-icon,
-  .toolbarbutton-1 > .toolbarbutton-text,
-  .toolbarbutton-1 > .toolbarbutton-badge-stack,
-  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
-  .urlbar-page-action,
-  .identity-box-button,
-  #tracking-protection-icon-container,
-  panel button,
-  panel menulist,
-  button
-  ):active > * {
-    opacity: .786 !important;
-  }
-
-  menupopup * {
-    color: #fff !important;
-  }
-  
   /* Ctrl F */
   findbar {
     box-shadow: var(--genericShadowDark) !important;
   }
-  
+
   /* Buttons inside the customize toolbar area */
   #customization-palette toolbarpaletteitem {
     box-shadow: var(--buttonShadowDark) !important;
@@ -5153,7 +5250,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #customization-panelWrapper .panel-arrowcontent  {
     box-shadow: var(--genericShadowDark) !important;
   }
-  
+
   /* AI panel */
   .ask-chat-shortcuts-custom-prompt, input[type="number"] {
     box-shadow: var(--searchShadowDark) !important;
@@ -5185,19 +5282,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       0 -1px 0 0 rgba(255,255,255,.3) inset !important;
   }
 
-  /* Active tab */
-  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background {
-    background: var(--frameBG) !important;
-  }
   /* Fix active tab color in inactive window 133 */
   .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive {
     background: rgb(253,253,253) !important;
-  }
-
-  /* Bottom corners */
-  .tab-background:is([selected], [multiselected]) {
-    --uc-tab-corner-bg: var(--frameBG);
-    --uc-tab-corner-outline: rgba(0,0,0,.0405);
   }
 
   /* Hovering tab */
@@ -5209,189 +5296,33 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     }
   }
 
-  /* Inactive tab text */  
-  .tabbrowser-tab:not([selected]) .tab-content {
-    color: var(--textSecondary) !important;
-  }
-  /* Active tab text */
-  .tabbrowser-tab[selected] .tab-content {
-    color: var(--textPrimary) !important;
-  }
-
-  /* Alternate way to set navbar upper shadow */
-  * {
-    --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.0578) inset;
-  }
-
   /* URL bar customization */
   #urlbar-background, #searchbar {
-    background-color: var(--searchBackground) !important;
     box-shadow: var(--buttonShadowLight) !important;
-  }
-  /* Hover */
-  #urlbar:hover>#urlbar-background, #searchbar:hover {
-    background-color: var(--searchHover) !important;
   }
   /* Open */
   #urlbar[open]>#urlbar-background {
     box-shadow: var(--buttonShadowLightPressed) !important;
-    background-color: var(--searchActive) !important;
   }
   #searchbar:focus-within {
-    box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 -2px 0 var(--accentLight) inset !important;
-    border-radius: 3px 3px 0 0 !important;
-    background-color: var(--searchActive) !important;
-    transform: translateY(1px) !important;
-    height: 32px !important;
-    padding-bottom: 2px !important;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 -2px 0 var(--accentAuto) inset !important;
   }
   #PopupSearchAutoComplete {
-    --panel-background: var(--searchDropdown) !important;
     --panel-border-color: rgba(0,0,0,.125) !important;
-    transform: translateY(1px) !important;
   }
   /* Panel shadows */
   menupopup, panel {
     --panel-shadow: var(--genericShadowLight) !important;
   }
-  /* Results */
-  #urlbar[breakout][breakout-extend][open] {
-    border-radius: 3px 3px 8px 8px !important;
-  }
+  
   /* URL bar bottom border when opened */
   .urlbarView {
-    box-shadow: 0 2px 0 0 var(--accentLight) inset, var(--genericShadowLight) !important;
-    margin-top: -3px !important;
-  }
-  /* URL breakout results */
-  .urlbarView-row {
-    color: var(--textPrimary);
-    --urlbar-popup-url-color: rgb(0,62,146);
-    background-color: transparent !important;
-  }
-  /* URL breakout results hover*/
-  .urlbarView-row:hover,
-  #PopupSearchAutoComplete .autocomplete-richlistitem:hover {
-    --urlbar-popup-url-color: rgb(0,62,146);
-    background-color: var(--textButtonHover) !important;
-  }
-  /* URL breakout result */
-  .urlbarView-row:not([type="tip"], [type="dynamic"])[selected]>.urlbarView-row-inner,
-  .urlbarView-row-inner[selected] {
-    background-color: var(--textButtonHover) !important;
-  }
-  /* WinUI blue border on the left of URL bar result */
-  .urlbarView-row[selected] .urlbarView-row-inner::before {
-    background-color: var(--accentLight) !important;
-  }
-
-  /* URL tooltip */
-  #statuspanel-label{
-    background-color: var(--commonBackground) !important;
-    outline: 1px solid rgba(0,0,0,.0578) !important;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,.14) !important;
-  }  
-
-  /* toolbar buttons hover */
-  .toolbarbutton-1:hover > .toolbarbutton-icon,
-  .toolbarbutton-1:hover > stack {
-    background-color: var(--textButtonHover) !important;
-  }
-
-  /* New tab hover */
-  #TabsToolbar .toolbarbutton-1:hover>.toolbarbutton-icon {
-    background-color: var(--textButtonHover) !important;
-  }
-
-  .tab-close-button:hover {
-    background-color: var(--textButtonHover) !important;
+    box-shadow: 0 2px 0 0 var(--accentAuto) inset, var(--genericShadowLight) !important;
   }
 
   /* Context menu */
   .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
     box-shadow: var(--genericShadowLight) !important;
-  }
-  /* Hovered menu item */
-  menupopup menu:hover:not([disabled=true]),
-  menupopup menuitem:hover:not([disabled=true]),
-  menupopup menu[_moz-menuactive]:hover:not([disabled=true]),
-  menupopup menuitem[_moz-menuactive]:hover:not([disabled=true]) {
-    background-color: var(--textButtonHover) !important;
-  }
-  /* Active/Clicked menu item */
-  menupopup menuitem:hover:active:not([disabled=true]),
-  menupopup menu:hover:active:not([disabled=true]) {
-    background-color: rgba(0,0,0,.02) !important;
-    color: var(--textSecondary) !important;
-  }
-  menupopup menuitem:hover:active:not([disabled=true]) *,
-  menupopup menu:hover:active:not([disabled=true]) * {
-    opacity: .6 !important;
-  }
-
-  .in-menulist menuitem[selected="true"]::before {
-    background-color: var(--accentLight) !important;
-  }
-
-  tooltip {
-    background: var(--commonBackground) !important;
-    border: 1px solid rgba(0,0,0,.2) !important;
-  }
-
-  /* Downloads button colors */
-  #downloads-button[attention="success"]
-  > .toolbarbutton-badge-stack
-  > #downloads-indicator-anchor
-  > #downloads-indicator-icon {
-    fill: rgb(15, 123, 15) !important;
-    list-style-image: url(icons/success-light.svg) !important;
-    list-style-image: none !important;
-  }
-  /* Remove download finished icon animation */
-  #downloads-indicator-finish-image {
-    list-style-image: url('icons/success-light.svg') !important;
-    list-style-image: none !important;
-  }
-  #downloads-button {
-    --toolbarbutton-icon-fill-attention: rgb(15, 123, 15) !important;
-  }
-  #downloads-button[progress] {
-    --downloads-progress-fill: var(--accentLight) !important;
-  }
-  /* Changes color of download progress circle but it's weird w green */
-  #downloads-indicator-progress-inner {
-    --toolbarbutton-icon-fill-attention: var(--accentLight) !important;
-  }
-  .downloadProgress::-moz-progress-bar {
-    background-color: var(--accentLight) !important;
-  }
-
-  /* Tabs toolbar background color */
-  * {
-    --lwt-accent-color: var(--mica) !important; /* Active window color */
-    --lwt-accent-color-inactive: var(--mica) !important; /* Inactive window color */
-  }
-
-  /* Colors when window is inactive */
-  .tabbrowser-tab[selected]:-moz-window-inactive .tab-background,
-  .tab-background:is([selected], [multiselected]):-moz-window-inactive,
-  #nav-bar:-moz-window-inactive,
-  #PersonalToolbar:-moz-window-inactive,
-  #sidebar-box:-moz-window-inactive {
-    background-color: rgb(248, 248, 248) !important;
-  }
-
-  .tab-background:is([selected], [multiselected]):-moz-window-inactive {
-    --uc-tab-corner-bg: rgb(248, 248, 248) !important;
-  }
-
-  /* Tab Preview Cards */
-  .tab-preview-text-container {
-    color: rgba(0,0,0,.5) !important;
-  }
-
-  .tab-preview-title {
-    color: var(--textPrimary) !important;
   }
 
   /* Translator buttons */
@@ -5399,11 +5330,9 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   #select-translations-panel-to,
   #select-translations-panel-translate-full-page-button {
     box-shadow: 0 1px 0 rgba(0,0,0,.06) inset, 0 -1px 0 rgba(0,0,0,.16) inset !important;
-    background: rgba(255,255,255,.7) !important;
   }
 
   #select-translations-panel-done-button-primary {
-    background: #005fb8 !important;
     box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 -1px 0 rgba(0,0,0,.4) inset !important;
   }
 
@@ -5467,32 +5396,12 @@ toolbarbutton[itemtype="showinactivebutton"] label {
     }
   }
 
-  /* Active button opacity */
-  :is(
-  .toolbarbutton-1 > .toolbarbutton-icon,
-  .toolbarbutton-1 > .toolbarbutton-text,
-  .toolbarbutton-1 > .toolbarbutton-badge-stack,
-  :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
-  .urlbar-page-action,
-  .identity-box-button,
-  #tracking-protection-icon-container,
-  panel button,
-  panel menulist,
-  button
-  ):active > * {
-    opacity: .6 !important;
-  }
-
-  menupopup * {
-    color: rgba(0,0,0,.89) !important;
-  }
-
   @-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
     #rightBox::before {
       filter: invert(1) !important;
     }
   }
-  
+
   /* Ctrl F */
   findbar {
     box-shadow: var(--genericShadowLight) !important;
@@ -6795,15 +6704,11 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
 
   #unified-extensions-view .unified-extensions-item .toolbarbutton-badge-stack {
-    margin-inline: 0 !important;
     padding: 4px 0 !important;
     
     & image {
         margin: auto !important;
       }
-  }
-  #unified-extensions-view .unified-extensions-item .unified-extensions-item-icon{
-    padding: 0 !important;
   }
 
   #unified-extensions-view #overflowed-extensions-list,
@@ -6846,7 +6751,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
       padding: 3px !important;
     }
     
-    #unified-extensions-view toolbarbutton{
+    #unified-extensions-view toolbarbutton {
       margin-inline: 0 !important;
     }
   }
