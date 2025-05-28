@@ -257,7 +257,9 @@ h1, h2, h3 {
   background-image: url(icons/star.svg);
   background-repeat: no-repeat;
   background-size: 16px;
-  background-position: 10px 5px !important;
+  background-position: 10px 6px !important;
+  -moz-context-properties: fill !important;
+  fill: var(--textPrimary) !important;
 }
 #pageAction-panel-bookmark[starred],
 #context-bookmarkpage[starred] {
@@ -267,6 +269,8 @@ h1, h2, h3 {
   background-repeat: no-repeat;
   background-size: 16px;
   background-position: 10px 5px !important;
+  -moz-context-properties: fill !important;
+  fill: var(--textPrimary) !important;
 }
 
 #star-button:not([starred]) {
@@ -3393,7 +3397,7 @@ menupopup#ContentSelectDropdownPopup {
 }
 
 #context-navigation {
-  #context-back, #context-forward, #context-reload {
+  #context-back, #context-forward, #context-reload, #context-stop {
     padding-inline: 3px 0 !important;
     
     .menuitem-iconic {
