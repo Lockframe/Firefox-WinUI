@@ -251,7 +251,6 @@ h1, h2, h3 {
   list-style-image: url('icons/read.svg') !important;
 }
 #pageAction-panel-bookmark:not([starred]), 
-#star-button:not([starred]), 
 #context-bookmarkpage:not([starred]) {
   list-style-image: url('icons/star.svg') !important;
   list-style-image: none !important;
@@ -270,6 +269,10 @@ h1, h2, h3 {
   background-position: 10px 5px !important;
 }
 
+#star-button:not([starred]) {
+  list-style-image: none !important;
+  background-image: url(icons/star.svg) !important;
+}
 #star-button[starred] {
   list-style-image: none !important;
   background-image: url(icons/star-filled.svg) !important;
