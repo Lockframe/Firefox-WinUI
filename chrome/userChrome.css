@@ -394,6 +394,33 @@ menuitem[type="radio"]:not([checked="true"]) {
     margin-left: 24px !important;
   }
 }
+menuitem[checked="true"] {
+  & > .menu-icon {
+    list-style-image: unset !important;
+    background-image: url(icons/checkmark-small.svg) !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: 10px !important;
+    fill: var(--textSecondary) !important;
+  }
+  &:hover {
+    & > .menu-icon {
+      fill: var(--textPrimary) !important;
+    }
+  }
+}
+menuitem[type="radio"][checked="true"] {
+  & > .menu-icon {
+    background-image: url(icons/radio-bullet.svg) !important;
+    background-size: 6px !important;
+    fill: var(--textSecondary) !important;
+  }
+  &:hover {
+    & > .menu-icon {
+      fill: var(--textPrimary) !important;
+    }
+  }
+}
 
 /* Create space for icons */
 .customize-context-removeFromToolbar .menu-text::after,
@@ -447,11 +474,8 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
   background-size: 16px !important;
   background-repeat: no-repeat !important;
   background-position: 10px 6px !important;
+  -moz-context-properties: fill !important;
   fill: var(--textPrimary) !important;
-  
-  &[disabled] {
-    fill: var(--textTertiary) !important;
-  }
 }
 
 #placesContext_paste .menu-text::after {
