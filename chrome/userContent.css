@@ -80,13 +80,16 @@
 
 		/* Pinned sites three-dot menu button */
 		.top-site-outer .context-menu-button {
-			margin-top: 20px !important;
+			margin-top: -12px !important;
 			margin-right: 4px !important;
 			opacity: 0 !important;
 			
 			&:hover {
 				opacity: .9 !important;
 			}
+		}
+		.shortcuts-refresh .top-site-outer .context-menu {
+			inset-block-start: 0 !important;
 		}
 
 		/* Center the pinned sites area */
