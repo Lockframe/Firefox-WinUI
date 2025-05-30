@@ -5164,7 +5164,7 @@ button
   /* Navbar upper shadow */
   :root, :root .tabbrowser-tab {
     & [brighttext], & [brighttext] .tabbrowser-tab {
-      --uc-titlebar-shadow: 0 -1px 0 0 var(--footerBorder) !important;
+      --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.135) inset !important;
     }
   }
 
@@ -5311,6 +5311,11 @@ button
   #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
     box-shadow: 0 0 1px 0 rgba(0,0,0,.175), 
       0 -1px 0 0 rgba(255,255,255,.3) inset !important;
+  }
+  
+  /* Navbar upper shadow */
+  :root, :root .tabbrowser-tab {
+    --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.05) inset !important;
   }
 
   /* Fix active tab color in inactive window 133 */
