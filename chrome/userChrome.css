@@ -4271,12 +4271,12 @@ html[windowtype="Toolkit:PictureInPicture"] {
 }
 #picture-in-picture-button {
   height: 24px !important;
+  background: url(icons/media-pip.svg) no-repeat center center !important;
+  -moz-context-properties: fill !important;
+  fill: var(--textSecondary) !important;
   
   & .urlbar-icon {
-    margin-top: -24px !important;
     list-style-image: none !important;
-    background: url(icons/media-pip.svg) no-repeat center center !important;
-    height: 19px !important;
   }
 }
 
@@ -6154,10 +6154,6 @@ button
   #picture-in-picture-button {
     height: 22px !important;
     width: 29px !important;
-    
-    & .urlbar-icon {
-      transform: translate(-2px, -2px) !important;
-    }
   }
   
   #urlbar:is([breakout][breakout-extend][open]) hbox[role="button"] {
