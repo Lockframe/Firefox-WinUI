@@ -42,7 +42,10 @@
   --textSecondary: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.786)) !important;
   --textTertiary: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
   --textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628)) !important;
-  --textInverse: light-dark(#fff,#000) !important;
+  
+  --textAccentPrimary: light-dark(#fff,#000) !important;
+  --textAccentSecondary: light-dark(rgba(255,255,255,.7),rgba(0,0,0,.5)) !important;
+  --textAccentDisabled: light-dark(#fff,rgba(255,255,255,.5302)) !important;
 
   --searchBackground: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
   --searchHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
@@ -85,6 +88,7 @@
   --tabCorner: light-dark(rgba(0,0,0,.0405),rgba(0,0,0,.1)) !important;
 
   --progressBar: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
+  --progressRing: light-dark(rgba(0,0,0,.06063), rgba(255,255,255,.06047)) !important;
 
   --accentLight: color-mix(in srgb, accentColor 85%, black) !important; /* Main */
   --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
@@ -422,6 +426,12 @@ menuitem[type="radio"][checked="true"] {
   }
 }
 
+#chatbot-menupopup {
+  menuitem[checked="true"] image {
+    margin-left: -24px !important;
+  }
+}
+
 /* Create space for icons */
 .customize-context-removeFromToolbar .menu-text::after,
 menuitem[command="downloadsCmd_clearList"] .menu-text::after,
@@ -755,7 +765,7 @@ menu::after {
 #downloads-button[attention="warning"] > .toolbarbutton-badge-stack > .toolbarbutton-badge {
   background-image: url(icons/caution-badge.svg) !important;
   background-size: 2px !important;
-  fill: var(--textInverse) !important;
+  fill: var(--textAccentPrimary) !important;
   width: 12px !important;
   background-color: var(--cautionBadge) !important;
 }
@@ -1069,7 +1079,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   .tab-icon-overlay {
     background-color: var(--accentAuto) !important;
     background-image: none !important;
-    fill: var(--textInverse) !important;
+    fill: var(--textAccentPrimary) !important;
     border-radius: 50px !important;
     top: -8px !important;
     inset-inline-end: -8px !important;
@@ -1099,7 +1109,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
     background-color: var(--accentAuto) !important;
     
     /* Handle the icon color */
-    fill: var(--textInverse) !important;
+    fill: var(--textAccentPrimary) !important;
     -moz-context-properties: fill !important;
   }
   
@@ -1544,7 +1554,7 @@ richlistitem:active {
   .searchbar-search-button[addengines="true"] > & {
     list-style-image: none !important;
     -moz-context-properties: fill !important;
-    fill: var(--textInverse) !important;
+    fill: var(--textAccentPrimary) !important;
     background-image: url(icons/plus.svg) !important;
     background-position: 2px 2px !important;
     background-color: var(--accentAuto) !important;
@@ -1557,7 +1567,7 @@ richlistitem:active {
 moz-input-box > menupopup .context-menu-add-engine > .menu-iconic-left::after {
   background: url(icons/plus.svg) no-repeat 2px 2px !important;
   background-size: 8px !important;
-  fill: var(--textInverse) !important;
+  fill: var(--textAccentPrimary) !important;
   margin-inline: -6px -5px !important;
   margin-top: -16px !important;
   background-color: var(--accentAuto) !important;
@@ -1852,7 +1862,7 @@ panel[type="autocomplete-richlistbox"] {
     background-color: var(--cautionBadge) !important;
     background-size: 2px !important;
     background-position: center center !important;
-    fill: var(--textInverse) !important;
+    fill: var(--textAccentPrimary) !important;
     padding: 7px !important;
   }
 }
@@ -1864,7 +1874,7 @@ panel[type="autocomplete-richlistbox"] {
       -moz-context-properties: fill;
       padding: 4px 6px !important;
       background-image: url(icons/sync-badge.svg) !important;
-      fill: var(--textInverse) !important;
+      fill: var(--textAccentPrimary) !important;
       background-size: auto;
       background-size: 8px !important;
     }
@@ -1905,7 +1915,7 @@ panel[type="autocomplete-richlistbox"] {
     width: 14px !important;
     height: 14px !important;
     background-size: 2px !important;
-    fill: var(--textInverse) !important;
+    fill: var(--textAccentPrimary) !important;
     align-self: center !important;
     background-color: var(--cautionBadge) !important;
     border-radius: 99px !important;
@@ -2965,7 +2975,7 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
   background-color: var(--accentAuto) !important;
   font-weight: normal !important;
   box-shadow: none !important;
-  color: var(--textInverse) !important;
+  color: var(--textAccentPrimary) !important;
   border-radius: 99px !important;
   min-width: 1px !important;
   max-width: 32px !important;
@@ -3000,7 +3010,7 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
     content: "Private";
     margin-inline: 6px;
     padding-bottom: .1em !important;
-    color: var(--textInverse) !important;
+    color: var(--textAccentPrimary) !important;
   }
 }
 
@@ -3030,7 +3040,7 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
   
   &::after {
     content: 'Private';
-    color: var(--textInverse);
+    color: var(--textAccentPrimary);
     font-size: 12px;
     margin-block: 0 3px;
     padding-inline: 0 6px;
@@ -3384,7 +3394,7 @@ findbar:not([hidden]) {
 }
 
 /* Dropdowns */
-menupopup#ContentSelectDropdownPopup {
+menupopup#ContentSelectDropdownPopup, menuitem {
   margin-left: -14px !important;
   color: var(--textPrimary) !important;
 }
@@ -3825,7 +3835,7 @@ button[title="Close"]{
     background-color: var(--accentAuto) !important;
     
     & * {
-      fill: var(--textInverse) !important;
+      fill: var(--textAccentPrimary) !important;
     }
   }
 }
@@ -3903,7 +3913,7 @@ button[default="true"],
 .dialog-button-box button[dlgtype="accept"] {
   box-shadow: none !important;
   background-color: var(--accentAuto) !important;
-  color: var(--textInverse) !important;
+  color: var(--textAccentPrimary) !important;
   border: 1px solid rgba(255,255,255,.08) !important;
   border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
   border-radius: 4px !important;
@@ -3917,6 +3927,11 @@ button[default="true"],
   &:active {
     background-color: var(--accentPressed) !important;
     box-shadow: none !important;
+    color: var(--textAccentSecondary) !important;
+    
+    & * {
+      color: var(--textAccentSecondary) !important;
+    }
   }
 }
 
@@ -4835,7 +4850,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 8px;
-  fill: var(--textInverse);
+  fill: var(--textAccentPrimary);
   z-index: 9;
   display: block;
   position: absolute;
@@ -4845,7 +4860,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 /* Make selected text use the accent color*/
 *::-moz-selection, ::selection {
   background-color: var(--accentAuto) !important;
-  color: var(--textInverse) !important;
+  color: var(--textAccentPrimary) !important;
 }
 
 /* Print panel */
@@ -7175,18 +7190,13 @@ button
     menupopup#ContentSelectDropdownPopup {
       margin-left: 0 !important;
     }
-
-    #contentAreaContextMenu menuitem,
-    #contentAreaContextMenu menu,
-    menupopup menuitem,
-    menupopup menu,
-    #context-navigation{
-      margin-inline: 3px !important;
-    }
     
     #contentAreaContextMenu menu,
-    #contentAreaContextMenu menuitem {
-      margin-inline: 3px 2px !important;
+    #contentAreaContextMenu menuitem,
+    #context-navigation,
+    menupopup menuitem,
+    menupopup menu {
+      margin-inline: 3px !important;
     }
 
     #contentAreaContextMenu,
@@ -7427,7 +7437,7 @@ button
     border-radius: 4px;
     padding-inline: 8px;
     padding-block: 1px 3px;
-    color: var(--textInverse);
+    color: var(--textAccentPrimary);
     position: absolute;
     transform: translate(105px, 195px);
     font-weight: 600;
@@ -7457,7 +7467,7 @@ button
     border-radius: 4px !important;
     box-shadow: none !important;
     background-color: var(--accentAuto) !important;
-    color: var(--textInverse) !important;
+    color: var(--textAccentPrimary) !important;
     border: 1px solid rgba(255,255,255,.08) !important;
     border-bottom-color: light-dark(rgba(0,0,0,.4), rgba(0,0,0,.14)) !important;
     font-weight: normal !important;
