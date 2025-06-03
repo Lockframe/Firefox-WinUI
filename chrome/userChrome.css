@@ -452,7 +452,8 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after,
 #unified-extensions-context-menu-pin-to-toolbar .menu-iconic-text::after,
 menuitem[data-l10n-id="origin-controls-no-access"] .menu-text::after,
 menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
-#PanelUI-historyMore .toolbarbutton-text::after{
+#PanelUI-historyMore .toolbarbutton-text::after,
+#context-media-loop .menu-text::after{
   content: '';
   background-repeat: no-repeat;
   background-position: center center;
@@ -466,6 +467,17 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
   transform: translate(-28px, 2px);
 }
 
+#context-media-loop .menu-text::after {
+  background-image: url(icons/repeat-off.svg);
+}
+#context-media-loop[checked="true"] { 
+  .menu-text::after {
+    background-image: url(icons/repeat-on.svg);
+  }
+  .menu-icon {
+    opacity: 0 !important;
+  }
+}
 
 #spell-check-enabled:not([checked="true"]){
   background-image: url(icons/spelling.svg) !important;
@@ -761,13 +773,32 @@ menu::after {
   transform: translateY(2px) !important;
 }
 
-/* Download failed badge */
-#downloads-button[attention="warning"] > .toolbarbutton-badge-stack > .toolbarbutton-badge {
-  background-image: url(icons/caution-badge.svg) !important;
-  background-size: 2px !important;
-  fill: var(--textAccentPrimary) !important;
-  width: 12px !important;
-  background-color: var(--cautionBadge) !important;
+/* Download failed */
+#downloads-button[attention="warning"]::before {
+  content: '';
+  height: 16px;
+  width: 16px;
+  background-color: var(--criticalBadge);
+  display: block;
+  z-index: 9;
+  position: absolute;
+  border-radius: 99px;
+  animation: findbarOut 333ms cubic-bezier(0.55, 0.55, 0, 1) !important;
+}
+#downloads-button[attention="warning"]::after {
+  content: '';
+  -moz-context-properties: fill;
+  height: 22px;
+  width: 22px;
+  background-image: url(icons/error-badge.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 6px;
+  fill: var(--textAccentPrimary);
+  z-index: 9;
+  display: block;
+  position: absolute;
+  animation: drawLeft 1s cubic-bezier(0.55, 0.55, 0, 1);
 }
 
 /* Password icons */
@@ -1294,8 +1325,8 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   }
   & .tab-icon-overlay {
     display: block !important;
-    background-image: url("icons/sync-badge.svg") !important;
-    background-size: 8px !important;
+    background-image: url("icons/phone.svg") !important;
+    background-size: 6px !important;
     background-repeat: no-repeat !important;
     background-position: center center !important;
   }
@@ -1991,9 +2022,14 @@ panel[type="autocomplete-richlistbox"] {
 #downloadsSummary[inprogress="true"] {
   min-height: unset !important;
 }
-
 #downloadsSummary > .downloadTypeIcon {
   list-style-image: none !important;
+}
+
+.downloadDetails {
+  opacity: 1 !important;
+  color: var(--textSecondary) !important;
+  margin-top: 1px !important;
 }
 
 /* Create a new inner element for the spinner */
@@ -2216,7 +2252,6 @@ panel[type="autocomplete-richlistbox"] {
   border-radius: 3px !important;
   margin-block: 3px !important;
   animation: contentSlideUp .333s cubic-bezier(0, 0, 0, 1) !important;
-  line-height: 10px !important;
 }
 #downloadsListBox richlistitem:first-of-type {
   margin-top: 13px !important;
