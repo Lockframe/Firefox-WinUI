@@ -72,6 +72,8 @@
   --controlAltTertiary: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
   --controlAltQuartenary: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698)) !important;
 
+  --cardStroke: light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1)) !important;
+  
   --infoBG: light-dark(rgba(246,246,246, .5), rgba(255,255,255,.0326)) !important;
   --cautionBG: light-dark(#FFF4CE, #433519) !important;
   --successBG: light-dark(#DFF6DD, #393D1B) !important;
@@ -774,6 +776,10 @@ menu::after {
 }
 
 /* Download failed */
+#downloads-button[attention="warning"] > .toolbarbutton-badge-stack > .toolbarbutton-badge {
+  background: unset !important;
+}
+
 #downloads-button[attention="warning"]::before {
   content: '';
   height: 16px;
@@ -1796,6 +1802,13 @@ menuitem {
   }
 }
 
+/* 'No open tab' */
+.PanelUI-remotetabs-notabsforclient-label {
+  font-size: 12px !important;
+  margin-inline: auto !important;
+  text-align: center !important;
+}
+
 toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   padding-left: 12px !important;
 }
@@ -2741,6 +2754,15 @@ panel toolbarseparator {
 #appMenu-fxa-status2[fxastatus] > #appMenu-fxa-label2 > vbox > #appMenu-header-description, 
 #appMenu-fxa-text {
   font-weight: normal !important;
+}
+
+:root[fxastatus="not_configured"] #appMenu-fxa-label2 {  
+  &::before {
+    display: none !important;
+  }
+  & vbox {
+    padding-inline-start: 0 !important;
+  }
 }
 
 #appMenu-multiView {
@@ -3945,7 +3967,8 @@ button[data-l10n-id="choose-app-btn"],
 button[slot="primary"],
 button[dlgtype="accept"],
 button[default="true"],
-.dialog-button-box button[dlgtype="accept"] {
+.dialog-button-box button[dlgtype="accept"],
+:root[fxastatus="not_configured"] #appMenu-fxa-label2{
   box-shadow: none !important;
   background-color: var(--accentAuto) !important;
   color: var(--textAccentPrimary) !important;
@@ -4397,6 +4420,10 @@ html[windowtype="Toolkit:PictureInPicture"] {
   margin-top: 1px !important;
 }
 
+#urlbar[breakout][breakout-extend][open] #urlbar-searchmode-switcher {
+  margin-top: 4px !important;
+}
+
 /* Search website revert to address bar button */
 .urlbar-revert-button {
   list-style-image: none !important;
@@ -4716,35 +4743,55 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
 
 /* Navbar profile button */
 :root:not([privatebrowsingmode="temporary"]) #fxa-toolbar-menu-button {
-  scale: 90%;
+
   transition: transform 183ms linear !important;
-  
+
   &:hover {
     transform: scale(calc(100% - 10%)) !important;
   }
   &:hover:active, :active:hover {
     transform: scale(calc(100% - 17%)) !important;
   }
-  
+
   /* Remove login badge */
   .toolbarbutton-badge {
     &.feature-callout {
       display: none !important;
     }
   }
+
+  & .toolbarbutton-badge-stack {
+    width: 33px !important;
+    height: 33px !important;
+  }
+
+  & #fxa-avatar-image {
+    box-shadow: 0 0 0 1px var(--cardStroke) inset !important;
+    height: 17px !important;
+    width: 17px !important;
+    align-self: center !important;
+    margin-left: -1px !important;
+  }
 }
 
-/* Logged out account image */
-#fxa-avatar-image[fxastatus="not_configured"] {
-  list-style-image: none !important;
-  background-color: var(--controlAltQuartenary) !important;
-  background-image: url("./icons/contact.svg");
-  background-size: 9px;
+/* Logged out */
+:root[fxastatus="not_configured"] #fxa-avatar-image {
+  list-style-image: unset !important;
+  
+  background-image: url(icons/contact.svg);
   background-repeat: no-repeat;
   background-position: center center;
-  -moz-context-properties: fill;
-  fill: var(--textButton);
+  background-size: 9px;
+  background-color: var(--controlAltQuartenary);
 }
+
+:root[fxastatus="not_configured"] #fxa-toolbar-menu-button {
+  & .toolbarbutton-badge {
+    display: none !important;
+  }  
+}
+
+
 
 #appMenu-empty-profiles-button .toolbarbutton-icon {
   list-style-image: url(icons/contact.svg);
@@ -4757,10 +4804,6 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
   &::before {
     display: none !important;
   }
-}
-
-#fxa-avatar-image {
-  box-shadow: 0 0 0 1px var(--footerBorder) inset !important;
 }
 
 /* Browser notification bar */
@@ -5195,6 +5238,14 @@ panel menulist,
 button
 ):active > * {
   color: var(--textSecondary) !important;
+}
+
+/* info bar */
+.container:has(.text-container) {
+  text-align: center !important;
+  align-items: center !important;
+  margin-bottom: -10px !important;
+  font-size: 13px !important;
 }
 
 /* ============= DARK ================== */
@@ -6217,6 +6268,13 @@ button
     scale: .85 !important;
   }
   
+  /* Navbar profile button */
+  :root:not([privatebrowsingmode="temporary"]) #fxa-toolbar-menu-button {
+    & #fxa-avatar-image {
+      margin-left: 0 !important;
+    }
+  }
+  
   /* New tab button and buttons pinned to the tab area */
   #TabsToolbar .toolbarbutton-1>.toolbarbutton-icon,
   #TabsToolbar .toolbarbutton-1>.toolbarbutton-badge-stack {
@@ -6276,12 +6334,20 @@ button
   #downloads-button, 
   #PanelUI-menu-button, 
   .unified-extensions-item-action-button, 
-  #TabsToolbar *, #tabs-newtab-button, #vertical-tabs-newtab-button) image:not(menuitem *, #BMB_bookmarksPopup *) {
+  #TabsToolbar *, 
+  #tabs-newtab-button, 
+  #vertical-tabs-newtab-button) image:not(menuitem *, #BMB_bookmarksPopup *, #fxa-toolbar-menu-button *) {
     box-shadow: 0 -.5px 0 2px var(--textButtonHover) !important;
     transition: box-shadow 0s linear !important;
   }
   .toolbarbutton-1:active:not([disabled="true"], 
-  #downloads-button, #PanelUI-menu-button, .unified-extensions-item-action-button, #TabsToolbar *, :hover) image:not(menuitem *) {
+  #downloads-button, 
+  #PanelUI-menu-button, 
+  .unified-extensions-item-action-button, 
+  #TabsToolbar *,
+  #tabs-newtab-button, 
+  #vertical-tabs-newtab-button,
+  :hover) image:not(menuitem *, #BMB_bookmarksPopup *, #fxa-toolbar-menu-button *) {
     box-shadow: 0 -.5px 0 2px var(--textButtonPressed) !important;
     transition: box-shadow 0s linear !important;
   }
@@ -7251,7 +7317,7 @@ button
     }
 
     /* 138 fix for panels */
-    panel {
+    panel, #searchmode-switcher-popup {
       -moz-default-appearance: menupopup !important;
       appearance: menupopup !important;
     }
@@ -7275,6 +7341,9 @@ button
     }
     #selection-shortcut-action-panel hbox {
       background-color: transparent !important;
+    }
+    #searchmode-switcher-popup {
+      margin: 0 !important;
     }
 
     /* Acrylic panels */
