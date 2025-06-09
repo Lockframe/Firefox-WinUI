@@ -1270,6 +1270,22 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   display: none !important; 
 }
 
+/* Tab loading indicator */
+.tab-throbber[busy] {
+  &::before {
+    display: none !important;
+  }
+  &::after {
+    content: "\E176";
+    font-family: "Meiryo Boot" !important;
+    font-size: 12px;
+    color: var(--accentAuto);
+    animation: spinnerAnimationComplete 2.5s cubic-bezier(0.55, 0.55, 0, 1) infinite;
+    position: absolute;
+    z-index: 1 !important;
+  }
+}
+
 :root {
   --tab-loading-fill: var(--accentAuto) !important;
 }
@@ -2009,12 +2025,6 @@ panel[type="autocomplete-richlistbox"] {
 .downloadButton image {
   margin-right: 2px !important;
 }
-.download-state {
-  margin-bottom: 4px !important;
-}
-.download-state:last-of-type {
-  margin-bottom: 6px !important;
-}
 
 #downloadsSummary {
   margin-inline: 4px !important;
@@ -2037,12 +2047,6 @@ panel[type="autocomplete-richlistbox"] {
 }
 #downloadsSummary > .downloadTypeIcon {
   list-style-image: none !important;
-}
-
-.downloadDetails {
-  opacity: 1 !important;
-  color: var(--textSecondary) !important;
-  margin-top: 1px !important;
 }
 
 /* Create a new inner element for the spinner */
@@ -2271,6 +2275,27 @@ panel[type="autocomplete-richlistbox"] {
 }
 #downloadsListBox richlistitem:last-of-type {
   margin-bottom: 19px !important;
+}
+#downloadsListBox .download-state {
+  transition: var(--basicBGAnimation) !important;
+  
+  & .downloadDetails {
+    opacity: 1 !important;
+    color: var(--textSecondary) !important;
+    margin-top: 1px !important;
+  }
+  
+  &:hover {
+    background-color: var(--controlSecondary) !important;
+  }
+  &:active {
+    background-color: var(--controlTertiary) !important;
+    color: var(--textSecondary) !important;
+    
+    & .downloadDetails {
+      color: var(--textTertiary) !important;
+    }
+  }
 }
 .downloadTypeIcon {
   height: 24px !important;
@@ -4541,11 +4566,12 @@ html[windowtype="Toolkit:PictureInPicture"] {
 
 /* URL bar icons and notification icons color */
 .urlbar-icon:not(#translations-button-circle-arrows, 
-#star-button[starred], 
-#translations-button[translationsactive="true"] *),
-#identity-box {
+#translations-button[translationsactive="true"] *, #star-button[starred="true"]),
+#identity-box,
+#page-action-buttons{
   fill-opacity: 1 !important;
   fill: var(--textSecondary) !important;
+  opacity: 1 !important;
 }
 .notification-anchor-icon {
   fill-opacity: 1 !important;
@@ -5240,7 +5266,7 @@ button
   color: var(--textSecondary) !important;
 }
 
-/* info bar */
+/* Info bar */
 .container:has(.text-container) {
   text-align: center !important;
   align-items: center !important;
