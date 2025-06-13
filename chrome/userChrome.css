@@ -1354,6 +1354,184 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   }
 }
 
+/* Tab groups */
+tab-group[collapsed=""] .tabbrowser-tab{
+  display: none !important;
+
+  .tab-background .tab-group-line {
+    display: none !important;
+  }
+  & .tab-stack::before {
+    display: none !important;
+  }
+}
+tab-group:not([collapsed=""]) .tabbrowser-tab{
+  .tab-background .tab-group-line {
+    width: 16px !important;
+    margin-inline: 11px 0 !important;
+  }
+}
+
+.tab-group-line {
+  animation: selectorBar2 187ms forwards !important;
+}
+
+.tab-group-label-container {
+  margin-inline: 6px !important;
+  padding-inline-end: 0 !important;
+  
+  &::after {
+    display: none !important;
+  }
+}
+:root[sizemode="maximized"] .tab-group-label-container {
+  margin-block: 2px 0 !important;
+}
+:root:not([sizemode="maximized"]) .tab-group-label-container {
+  margin-block: 10px 0 !important;
+}
+
+.tab-group-line {
+  #tabbrowser-tabs[orient="horizontal"] & {
+    z-index: 999 !important;
+    height: 3px !important;
+    border-radius: 99px !important;
+  }
+}
+
+/* Tab group dialog */
+#tab-group-default-header {
+  height: 24px !important;
+  
+  & .panel-header {
+    padding: 0 !important;
+    margin-top: -9px !important;
+    margin-left: 4px !important;
+    
+    & #tab-group-editor-title-edit, #tab-group-editor-title-create {
+      font-weight: 600 !important;
+      margin: 0 !important;
+      color: var(--textSecondary) !important;
+    }
+  }
+}
+.tab-group-editor-panel {
+  & toolbarseparator{
+    margin-inline: -16px 0 !important;
+    width: 1000% !important;
+    background-color: var(--dropdownSeparator) !important;
+  }
+  & toolbarseparator {
+    display: none !important;
+  }
+}
+.tab-group-editor-name, #tab-group-main {
+  margin-inline: 4px !important;
+}
+
+input[type="text"] {
+  height: 30px !important;
+  padding: 0 0 0 8px !important;
+}
+.tab-group-editor-swatch {
+  border-radius: 99px !important;
+  border: unset !important;
+  height: 16px !important;
+  width: 16px !important;
+  background-clip: unset !important;
+  
+  &:hover {
+    box-shadow: 0 0 0 999px color-mix(in srgb, var(--buttonHover), white 10%) inset !important;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    border-radius: 99px;
+    background: transparent;
+    margin: 8px;
+    transition: all 43ms linear;
+  }
+  &:hover::before {
+    height: 6px;
+    width: 6px;
+    background: light-dark(#fff,#000);
+    margin: 5px;
+    transition: all 43ms linear;
+  }
+  &:active {
+    background-color: var(--controlAltQuartenary) !important;
+  }
+}
+
+.tab-group-editor-panel {
+  & .tab-group-editor-swatch {
+    input:checked + & {
+      outline: none !important;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        height: 8px;
+        width: 8px;
+        background: light-dark(#fff,#000);
+        border-radius: 99px;
+        margin: 4px;
+        transition: all 43ms linear;
+      }
+      &:hover::before {
+        height: 10px;
+        width: 10px;
+        margin: 3px;
+        transition: all 43ms linear;
+      }
+    }
+  }
+}
+.tab-group-edit-actions {
+  margin-inline: -5px !important;
+  
+  & toolbarbutton {
+    margin-block: 4px !important;
+    
+    &:first-of-type {
+      margin-top: 0 !important;
+    }
+    &:last-of-type {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+.tab-group-delete {
+  margin-inline: -5px !important;
+  
+  toolbarbutton {
+    color: var(--criticalBadge) !important;
+    margin-block: 4px 3px !important;
+  }
+}
+
+/* Tab group creation dialog */
+#tab-group-default-actions {
+  background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
+  border-top: 1px solid var(--footerBorder) !important;
+  padding: 16px 17px 17px !important;
+  margin: 6px -17px -13px !important;
+}
+#tab-group-editor-button-create, #tab-group-editor-button-cancel {
+  width: -moz-available !important;
+}
+.labelled {
+  font-weight: normal !important;
+}
+#tab-group-editor-button-create {
+  background-color: var(--accentAuto) !important;
+  border-radius: 4px !important;
+  transform: translateY(-1px) !important;
+  margin-right: 2px !important;
+}
+
 /* URL Tooltip */
 #statuspanel-label{
   display: block !important;
@@ -1399,6 +1577,41 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 }
 .urlbarView-row:last-of-type {
   margin-bottom: 0 !important;
+}
+
+.urlbarView-favicon {
+  fill: var(--textPrimary) !important;
+  fill-opacity: 1 !important;
+}
+.urlbarView-title {
+  transform: translateY(-1px) !important;
+}
+/* 'search with' text */
+.urlbarView-action {
+  color: var(--textSecondary) !important;
+  margin-inline: auto 4px !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Special actions such as switching to tab group */
+.urlbarView-action-btn {
+  color: var(--textPrimary) !important;
+  
+  & .urlbarView-dynamic-actions-undefined {
+    fill: var(--textPrimary) !important;
+  }
+  & img[src="chrome://browser/skin/tabbrowser/tab-groups.svg"] {
+    content: url(icons/switch.svg);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    fill: var(--textPrimary) !important;
+    fill-opacity: 1 !important;
+    transform: translateX(-2px);
+  }
+  &:hover {
+    opacity: 1 !important;
+  }
 }
 
 /* URL breakout results hover*/
@@ -2377,7 +2590,7 @@ panel[type="autocomplete-richlistbox"] {
 }
 
 /* Bookmark panel */
-#editBMPanel_namePicker, input[type="number"] {
+#editBMPanel_namePicker, input[type="number"], input[type="text"] {
   outline: none !important;
   border: none !important;
   border-radius: 3px !important;
@@ -3993,7 +4206,8 @@ button[slot="primary"],
 button[dlgtype="accept"],
 button[default="true"],
 .dialog-button-box button[dlgtype="accept"],
-:root[fxastatus="not_configured"] #appMenu-fxa-label2{
+:root[fxastatus="not_configured"] #appMenu-fxa-label2,
+#tab-group-editor-button-create{
   box-shadow: none !important;
   background-color: var(--accentAuto) !important;
   color: var(--textAccentPrimary) !important;
@@ -4894,7 +5108,7 @@ button.text-link:is(:not([disabled="true"]), :enabled),
 }
 
 .urlbarView-title-separator {
-  transform: scaleX(.7);
+  display: none !important;
 }
 
 /* Hack to prevent close button in #shadow-root from losing its glyph when hovered */
@@ -5377,11 +5591,12 @@ button
   }
 
   /* Save bookmark panel */
-  #editBMPanel_namePicker {
-    box-shadow: var(--inputBarDark) !important;
-  }
-  #editBMPanel_namePicker:focus-within {
-    box-shadow: var(--inputBarFocusDark) !important;
+  #editBMPanel_namePicker, input[type="number"], input[type="text"] {
+    box-shadow: var(--searchShadowDark) !important;
+    
+    &:focus-within {
+      box-shadow: var(--inputBarFocusDark) !important;
+    }
   }
   
   /* General notification panels */
@@ -5410,7 +5625,7 @@ button
   }
 
   /* AI panel */
-  .ask-chat-shortcuts-custom-prompt, input[type="number"] {
+  .ask-chat-shortcuts-custom-prompt {
     box-shadow: var(--searchShadowDark) !important;
     
     &:focus-within {
@@ -5541,11 +5756,12 @@ button
   }
 
   /* Save bookmark panel */
-  #editBMPanel_namePicker {
-    box-shadow: var(--inputBarLight) !important;
-  }
-  #editBMPanel_namePicker:focus-within {
-    box-shadow: var(--inputBarFocusLight) !important;
+  #editBMPanel_namePicker, input[type="number"], input[type="text"] {
+    box-shadow: var(--searchShadowLight) !important;
+    
+    &:focus-within {
+      box-shadow: var(--inputBarFocusLight) !important;
+    }
   }
   
   /* General notification panels */
@@ -5589,7 +5805,7 @@ button
   }
   
   /* AI panel */
-  .ask-chat-shortcuts-custom-prompt, input[type="number"] {
+  .ask-chat-shortcuts-custom-prompt {
     box-shadow: var(--searchShadowLight) !important;
     
     &:focus-within {

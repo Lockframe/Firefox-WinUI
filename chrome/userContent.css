@@ -62,6 +62,11 @@
 				height: 32px !important;
 			}
 		}
+		
+		.shortcuts-refresh .top-site-outer .tile .top-site-icon {
+			border-radius: 4px !important;
+		}
+		
 		@keyframes invokeUp {
 			0% {
 				transform: translateY(20%);
@@ -1112,6 +1117,29 @@
 		width: 1000% !important;
 		margin-left: -100px !important;
 	}
+	
+	/* Addon page addon panel */
+	panel-list {
+		font-size: 14px !important;
+		padding-block: 0 !important;
+
+		& panel-item {
+			border-radius: 4px !important;
+			clip-path: inset(0 round 4px) !important;
+			margin-block: 4px !important;
+			background-color: transparent !important;
+
+			&:hover {
+				background-color: var(--textButtonHover) !important;
+			}
+			&:active {
+				background-color: var(--textButtonPressed) !important;
+			}
+		}
+	}
+	button[role="menuitem"] {
+		background-color: transparent !important;
+	}
 
 	@keyframes selectorBar {
 		0% {
@@ -1727,12 +1755,10 @@
 		width: 14px !important;
 		transform: translateX(-7px) translateY(-7px) !important;
 	}
+	/* Resting ball pos */
 	input[type="checkbox"].toggle-button:checked::before, input:checked + .slider::before, .protections-popup-tp-switch[enabled]::before, .toggle-button[aria-pressed="true"]::before {
 		background: light-dark(white,black) !important;
-		transform: translateX(-3px) translateY(-6px) !important;
-	}
-	input[type="checkbox"].toggle-button:checked:hover::before, input:hover:checked + .slider:hover::before, .protections-popup-tp-switch[enabled]:hover::before, .toggle-button[aria-pressed="true"]:hover::before {
-		transform: translateX(-4px) translateY(-7px) !important;
+		margin: 0 0 0 3px !important;
 	}
 	.protections-popup-tp-switch[enabled]::before {
 		transform: translateX(23px) !important;
