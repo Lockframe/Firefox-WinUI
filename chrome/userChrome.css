@@ -1583,14 +1583,37 @@ input[type="text"] {
   fill: var(--textPrimary) !important;
   fill-opacity: 1 !important;
 }
-.urlbarView-title {
+.urlbarView-title, .urlbarView-url, .urlbarView-action  {
   transform: translateY(-1px) !important;
 }
-/* 'search with' text */
+/* 'search with' text - only works properly in a new profile - will be hidden until a solution is found */
 .urlbarView-action {
   color: var(--textSecondary) !important;
   margin-inline: auto 4px !important;
-  transform: translateY(-2px) !important;
+  
+  display: none !important;
+}
+.urlbarView-url {
+  color: var(--textSecondary) !important;
+  justify-content: right !important;
+  display: flex !important;
+}
+
+.urlbarView-row[selected=""] {
+  .urlbarView-url {
+    margin-right: -3.5px !important;
+  }
+}
+/* Enforce proper height for urlbar dropdown results */
+.urlbarView-row-inner {
+  flex-wrap: nowrap !important;
+}
+.urlbarView-results[wrap] > .urlbarView-row[has-url] > .urlbarView-row-inner > .urlbarView-url {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+}
+.urlbarView-results[wrap] > .urlbarView-row:not([rich-suggestion]) > .urlbarView-row-inner > .urlbarView-no-wrap {
+  flex-basis: unset !important;
 }
 
 /* Special actions such as switching to tab group */
@@ -1889,17 +1912,17 @@ moz-input-box > menupopup .context-menu-add-engine > .menu-iconic-left::after {
 #urlbar[breakout][breakout-extend] {
   height: 30px !important;
   transform: translateY(8px) !important;
-}
-#urlbar[breakout][breakout-extend] > #urlbar-background {
-  border-radius: 3px 3px 0 0 !important;
-  border-bottom: 1px transparent !important;
-}
 
-#urlbar[breakout][breakout-extend] > .urlbarView {
-  transform: translateY(-8px) !important;
-}
-#urlbar[breakout][breakout-extend] > .urlbar-input-container {
-  transform: translateY(-5px) !important;
+  & #urlbar-background {
+    border-radius: 3px 3px 0 0 !important;
+    border-bottom: 1px transparent !important;
+  }
+  & .urlbarView {
+    transform: translateY(-8px) !important;
+  }
+  & .urlbar-input-container {
+    transform: translateY(-5px) !important;
+  }
 }
 
 #urlbar, #urlbar-background, .urlbar-input-container {
@@ -4652,11 +4675,15 @@ html[windowtype="Toolkit:PictureInPicture"] {
   border-radius: 4px !important;
 }
 
-#urlbar[breakout][breakout-extend][open] #reader-mode-button,
-#urlbar[breakout][breakout-extend][open] #star-button-box,
 #urlbar[breakout][breakout-extend][open] #identity-box,
 #urlbar[breakout][breakout-extend][open] #permissions-granted-icon {
   margin-top: 1px !important;
+}
+
+#urlbar[breakout][breakout-extend][open] #urlbar-go-button,
+#urlbar[breakout][breakout-extend][open] #reader-mode-button,
+#urlbar[breakout][breakout-extend][open] #star-button-box{
+  margin-top: 3px !important;
 }
 
 #urlbar[breakout][breakout-extend][open] #urlbar-searchmode-switcher {
@@ -6485,11 +6512,15 @@ button
   }
   
   #urlbar:is([breakout][breakout-extend][open]) hbox[role="button"] {
-    transform: translateY(-1px) !important;
+    transform: translateY(-2px) !important;
     
     & image {
       transform: translate(-1px,-3px) !important;
     }
+  }
+
+  #urlbar[breakout][breakout-extend][open] #urlbar-go-button{
+    margin-top: 5px !important;
   }
   
   /* DRM & other notification icons */
