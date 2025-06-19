@@ -348,9 +348,12 @@ h1, h2, h3 {
 }
 
 #appMenu-zoom-controls::before {
-  content: url(icons/search-glass.svg);
+  content: url(icons/zoom.svg);
   margin-right: -16px;
+  width: 16px;
+  height: 16px;
 }
+
 #appMenu-quit-button2::before {
   content: url(icons/close.svg);
   margin-right: -16px;
@@ -455,7 +458,11 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after,
 menuitem[data-l10n-id="origin-controls-no-access"] .menu-text::after,
 menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
 #PanelUI-historyMore .toolbarbutton-text::after,
-#context-media-loop .menu-text::after{
+#context-media-loop .menu-text::after,
+#toolbar-context-toggle-vertical-tabs > .menu-text::after,
+#context_moveTabToNewGroup > .menu-text::after,
+#context_ungroupTab > .menu-text::after,
+#context_moveTabToGroup > .menu-text::after{
   content: '';
   background-repeat: no-repeat;
   background-position: center center;
@@ -486,6 +493,7 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
   background-size: 16px !important;
   background-repeat: no-repeat !important;
   background-position: 10px 6px !important;
+  -moz-context-properties: fill !important;
   fill: var(--textPrimary) !important;
   
   &[disabled] {
@@ -624,7 +632,6 @@ body:fullscreen #fullscreen {
 menuitem[data-l10n-id="origin-controls-no-access"] .menu-text::after,
 menuitem[data-l10n-id="origin-controls-options"] .menu-text::after {
   background-image: url(icons/info.svg);
-  fill: var(--textDisabled);
 }
 
 #PanelUI-historyMore .toolbarbutton-text::after {
@@ -822,6 +829,67 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   position: absolute;
   transform: translate(-25px, 0);
   fill: var(--textPrimary);
+}
+
+#context-selectall, 
+.textbox-contextmenu menuitem[cmd*="selectAll"], 
+#context_selectAllTabs, 
+#toolbar-context-selectAllTabs {
+  --menu-image: url("select-all.svg") !important;
+}
+
+#toolbar-context-customize-sidebar {
+  --menu-image: url(dock-left.svg) !important;
+}
+
+.subviewbutton > .toolbarbutton-icon {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+#PanelUI-fxa-menu-account-signout-button .toolbarbutton-icon {
+  background: url(icons/logout.svg) no-repeat center center !important;
+}
+#PanelUI-fxa-menu-sync-prefs-button .toolbarbutton-icon {
+  background: url(icons/settings.svg) no-repeat center center !important;
+}
+#PanelUI-fxa-menu-connect-device-button .toolbarbutton-icon {
+  background: url(icons/connect.svg) no-repeat center center !important;
+  background-size: 16px !important;
+}
+#PanelUI-fxa-menu-sendtab-button .toolbarbutton-icon {
+  background: url(icons/share.svg) no-repeat center center !important;
+}
+#PanelUI-fxa-menu-syncnow-button::before {
+  content: url(icons/sync.svg);
+  width: 16px;
+  height: 16px;
+  position: absolute;
+}
+#fxa-manage-account-button::before {
+  content: url(icons/open-window.svg);
+  width: 16px;
+  height: 16px;
+  position: absolute;
+}
+
+#toolbar-context-toggle-vertical-tabs > .menu-text::after {
+  background-image: url(icons/vertical-tabs.svg);
+  background-size: 15px !important;
+}
+
+#context_moveTabToNewGroup > .menu-text::after {
+  background-image: url(icons/add-to-single.svg);
+  background-size: 15px;
+}
+
+#context_moveTabToGroup > .menu-text::after {
+  background-image: url(icons/add-to-multi.svg) !important;
+  background-size: 15px !important;
+}
+#context_ungroupTab > .menu-text::after {
+  background-image: url(icons/remove-from-single.svg) !important;
+  background-size: 15px !important;
 }
 
 /* Center tab and URL text vertically */
@@ -1088,12 +1156,6 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   #tabbrowser-tabs[overflow] &:nth-last-child(1 of .tabbrowser-tab[pinned]:not([hidden])) .tab-stack::after {
     border-color: color-mix(in srgb, currentColor 06%, transparent);
   }
-}
-
-/* Change pinned one tab icon */
-.tabbrowser-tab[label="OneTab"] .tab-icon-image {
-  content: url("icons/duplicate-tab.svg") !important;
-  transform: scale(94%) !important;
 }
 
 /* Bottom tab corners are transparent when tab is hovered */
@@ -1583,13 +1645,14 @@ input[type="text"] {
   fill: var(--textPrimary) !important;
   fill-opacity: 1 !important;
 }
-.urlbarView-title, .urlbarView-url, .urlbarView-action  {
+.urlbarView-title, .urlbarView-url  {
   transform: translateY(-1px) !important;
 }
 /* 'search with' text - only works properly in a new profile - will be hidden until a solution is found */
 .urlbarView-action {
   color: var(--textSecondary) !important;
   margin-inline: auto 4px !important;
+  transform: translateY(-1px) !important;
   
   display: none !important;
 }
@@ -1715,9 +1778,9 @@ menuseparator {
   opacity: .6 !important;
 }
 
-menuitem[disabled="true"] label {
+/*menuitem[disabled="true"] label {
   color: var(--textDisabled) !important;
-}
+}*/
 
 /* Change profile button in settings menu */
 appMenu-empty-profiles-button {
@@ -2046,7 +2109,7 @@ menuitem {
 /* Align services items */
 .fxa-cta-button {
   height: 20px !important;
-  margin-inline: 4px !important;
+  margin-inline: 5px !important;
   margin-block: 2px !important;
   
   & image {
@@ -2077,6 +2140,11 @@ panel .toolbarbutton-text,
 panel[type="autocomplete-richlistbox"],
 #context-navigation > .menuitem-iconic::after{
   font-size: 14px !important;
+}
+
+/* Correct these labels */
+.sendToDevice-device .toolbarbutton-text {
+  transform: translateY(1px);
 }
 
 /* Clicked item opacity */
@@ -2533,6 +2601,15 @@ panel[type="autocomplete-richlistbox"] {
     }
   }
 }
+
+/* Prevent hovering downloaded items from display implicit action */
+.downloadDetailsHover {
+  display: none !important;
+}
+.downloadDetailsNormal {
+  display: block !important;
+}
+
 .downloadTypeIcon {
   height: 24px !important;
   width: 24px !important;
@@ -3030,6 +3107,40 @@ panel toolbarseparator {
   background-image: var(--acrylic) !important;
 }
 
+/* Destructive actions use different colors */
+#unified-extensions-context-menu-remove-extension,
+.downloadDeleteFileMenuItem,
+.downloadRemoveFromHistoryMenuItem,
+menuitem[command="downloadsCmd_clearList"]{
+  color: var(--criticalBadge) !important;
+  fill: var(--criticalBadge) !important;
+  
+  & .menu-text::after {
+    color: var(--criticalBadge) !important;
+    fill: var(--criticalBadge) !important;
+  }
+  &:hover, &:active, &:hover:active {
+    color: var(--criticalBadge) !important;
+    fill: var(--criticalBadge) !important;
+    
+    & .menu-text::after {
+      color: var(--criticalBadge) !important;
+      fill: var(--criticalBadge) !important;
+    }
+  }
+}
+
+#unified-extensions-context-menu-remove-extension{
+  order: 99;
+}
+/* Order from least destructive to most destructive */
+.downloadDeleteFileMenuItem {
+  order: 1 !important;
+}
+menuitem[command="downloadsCmd_clearList"] {
+  order: 2;
+}
+
 /* Sidebar */
 window#webextpanels-window {
   background: transparent !important;
@@ -3347,6 +3458,7 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
   height: 28px !important;
   margin-block: auto !important;
   border-radius: 99px !important;
+  margin-inline: 4px 5px !important;
   
   & #fxa-avatar-image {
     list-style-image: url(icons/account-private.svg) !important;
