@@ -1352,6 +1352,13 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   --tab-loading-fill: var(--accentAuto) !important;
 }
 
+/* Unloaded tabs */
+.tab-icon-image[pending] {
+  filter: grayscale(20%) !important;
+  opacity: 0.6 !important;
+  transition-duration: 0s !important;
+}
+
 /* Simple tab opening and closing animation */ 
 @keyframes fastInvoke {
   0% {
@@ -2603,7 +2610,7 @@ panel[type="autocomplete-richlistbox"] {
 }
 
 /* Prevent hovering downloaded items from display implicit action */
-.downloadDetailsHover {
+.downloadDetailsHover, .downloadDetailsButtonHover {
   display: none !important;
 }
 .downloadDetailsNormal {
@@ -3899,6 +3906,11 @@ menupopup#ContentSelectDropdownPopup, menuitem {
 :root:not(:-moz-window-inactive) .titlebar-close:hover,
 :root:-moz-window-inactive .titlebar-close:hover {
   background-color: #c42b1c !important;
+}
+
+/* Nightly window controls now use font icons */
+.titlebar-button {
+  font-family: 'Segoe Fluent Icons' !important;
 }
 
 /* Urlbar search mode indicator */
@@ -7319,7 +7331,16 @@ button
     padding: 0 !important;
     
     &:has(#tabbrowser-tabs[overflow]) {
-      margin-inline: -7px -7px !important;
+      margin-inline: -5px -5px !important;
+      
+      &:has(#tabbrowser-tabs[overflow]:not([expanded])) #vertical-tabs-newtab-button {
+        margin-left: 11px !important;
+        width: 40px !important;
+        
+        & image {
+          margin: auto !important;
+        }
+      }
     }
   }
   :root:not([sizemode="maximized"]) #sidebar-main:has(#tabbrowser-tabs:not([expanded])) {
@@ -7361,24 +7382,31 @@ button
       }
     }
     &:not([expanded]) {
+      &:has(.tabbrowser-tab[pinned]) #tabbrowser-arrowscrollbox {
+        margin-top: -7px !important;
+      }
+      
       & .tab-background, #tabs-newtab-button {
         width: 40px !important;
       }
       & .tab-icon-stack {
         margin-left: 22px !important;
       }
-      & .tabbrowser-tab:first-of-type .tab-icon-stack {
-        margin-left: 23px !important;
+      & .tabbrowser-tab:first-of-type:not([pinned]) .tab-icon-stack {
+        margin-left: 22px !important;
       }
       & .tabbrowser-tab:not([pinned]):hover {
           .tab-close-button {
-            margin: 7px 0 0 12px !important;
+            margin: 12px 0 0 19px !important;
             box-shadow: none !important;
-            height: 28px !important;
+            height: 18px !important;
+            width: 0 !important;
+            padding: 9px !important;
+            border-radius: 4px !important;
         }
         &:first-of-type {
           .tab-close-button {
-            margin: 7px 0 0 13px !important;
+            margin: 12px 0 0 19px !important;
           }
         }
         .tab-icon-image {
@@ -7391,8 +7419,7 @@ button
           margin-left: 0 !important;
         }
       }
-    }
-  }
+    }}
 
   /* Tab roundness */
   .tab-background {
@@ -7493,8 +7520,7 @@ button
     
     & .toolbarbutton-icon {
       background-color: transparent !important;
-      margin-left: 6px !important;
-      margin-right: -1px !important;
+      margin-inline: 11px -1px !important;
     }
     & label {
       margin-top: -3px !important;
