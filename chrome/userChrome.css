@@ -423,6 +423,7 @@ menuitem[type="radio"][checked="true"] {
     background-image: url(icons/radio-bullet.svg) !important;
     background-size: 6px !important;
     fill: var(--textSecondary) !important;
+    display: block !important;
   }
   &:hover {
     & > .menu-icon {
@@ -1806,6 +1807,13 @@ menuseparator {
 /* Change profile button in settings menu */
 appMenu-empty-profiles-button {
   padding-inline-end: fit-content !important;
+}
+
+/* 140 media menu fix */
+.menu-icon {
+  menuitem:not(.menuitem-iconic, [image]) > &, menu:not(.menu-iconic) > & {
+    display: none !important;
+  }
 }
 
 tooltip,
@@ -7384,7 +7392,7 @@ button
     }
   }
   :root:not([sizemode="maximized"]) #sidebar-main:has(#tabbrowser-tabs:not([expanded])) {
-    max-width: 61px !important;
+    max-width: 48px !important;
     
     & .tabbrowser-tab:not([pinned]) .tab-background {
       width: 39px !important;
