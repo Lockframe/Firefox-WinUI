@@ -4841,7 +4841,7 @@ html[windowtype="Toolkit:PictureInPicture"] {
 #urlbar[breakout][breakout-extend][open] #urlbar-go-button,
 #urlbar[breakout][breakout-extend][open] #reader-mode-button,
 #urlbar[breakout][breakout-extend][open] #star-button-box{
-  margin-top: 2px !important;
+  margin-top: 3px !important;
 }
 
 #urlbar[breakout][breakout-extend][open] #urlbar-searchmode-switcher {
@@ -7893,7 +7893,8 @@ button
     #OtherBookmarksPopup,
     #OtherBookmarksPopup menupopup,
     #BMB_bookmarksPopup,
-    #BMB_bookmarksPopup menupopup{
+    #BMB_bookmarksPopup menupopup,
+    menupopup{
       -moz-default-appearance: menupopup !important;
       appearance: menupopup !important;
       margin-top: 0 !important;
@@ -7901,7 +7902,7 @@ button
     }
 
     /* 138 fix for panels */
-    panel, #searchmode-switcher-popup {
+    panel, #searchmode-switcher-popup{
       -moz-default-appearance: menupopup !important;
       appearance: menupopup !important;
     }
