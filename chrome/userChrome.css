@@ -7445,7 +7445,7 @@ button
     }
 
     & #vertical-tabs-newtab-button {
-      margin-left: 12px !important;
+      margin-left: 1px !important;
         
       & image {
         transform: translateX(0px);
@@ -7461,8 +7461,8 @@ button
         transform: translateX(9px) !important;
       }
     }
-    
   }
+  
   .actions-list {
     & .expanded-button {
       width: 95% !important;
@@ -7522,6 +7522,10 @@ button
 
   :root[sizemode="maximized"] #sidebar-main:has(#tabbrowser-tabs[expanded]:not([overflow])) #tabs-newtab-button image {
     margin-inline: 8px -1px !important;
+  }
+  
+  :root:not([sizemode="maximized"]) #sidebar-main:has(#tabbrowser-tabs[expanded]:not([overflow])) #tabs-newtab-button image {
+    margin-inline: 3px -1px !important;
   }
 
   /* --- General Tab Styling --- */
@@ -7601,7 +7605,7 @@ button
   /* Tab close button */
   .tab-close-button {
     margin-right: 16px !important;
-    margin-top: 2px !important;
+    margin-top: 1px !important;
   }
 
   /* --- Indicator Bar on Active Tab --- */
