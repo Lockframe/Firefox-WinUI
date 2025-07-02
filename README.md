@@ -75,6 +75,7 @@ Create the following boolean keys as required:
 - `uc.winui.hide-with-1-tab` - Hides the tab bar if only one tab is open
 - `uc.winui.js-animations` - Enables animations that require external `.uc.js` files due to CSS limitations
 - `uc.winui.extra-animations` - Enables extra and unfinished animations
+- `uc.winui.experiments` - Enables experimental and unfinished features
 
 ### Additional Customization
 

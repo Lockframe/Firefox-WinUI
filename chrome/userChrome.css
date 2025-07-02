@@ -7406,15 +7406,18 @@ button
     width: 48px !important;
 
     & .tabbrowser-tab {
-      margin-left: -1px !important;
+      margin-left: 2px !important;
 
       & .tab-background {
         max-width: 38px !important;
       }
     }
+    .tabbrowser-tab:not([pinned]) .tab-content {
+      margin-left: -3px !important;
+    }
 
     & #vertical-tabs-newtab-button {
-      margin-left: 9px !important;
+      margin-left: 12px !important;
       width: 38px !important;
       height: 38px !important;
 
@@ -7427,22 +7430,49 @@ button
   /* Expanded & Overflowing */
   #sidebar-main:has(#tabbrowser-tabs[expanded][overflow]) {
     & .tabbrowser-tab {
-      margin-left: -1px !important;
+      margin-left: 1px !important;
       
       &:not([pinned]) .tab-background {
         margin-inline: 11px !important;
       }
     }
+    
     & .tabbrowser-tab:not([pinned], :first-of-type) .tab-content {
-      margin-left: 1px !important;
+      margin-left: -2px !important;
+    }
+    & .tabbrowser-tab:not([pinned]):first-of-type .tab-content {
+      margin-left: -3px !important;
     }
 
     & #vertical-tabs-newtab-button {
-      margin-left: 10px !important;
+      margin-left: 12px !important;
+        
+      & image {
+        transform: translateX(0px);
+      }
+    }
+  }
+  :root[sizemode="maximized"] #sidebar-main:has(#tabbrowser-tabs[expanded][overflow]) {
+    & #vertical-tabs-newtab-button {
+      margin-left: 12px !important;
 
       & image {
-        margin: -1px -1px 0 3px !important;
+        margin: auto 7px auto auto !important;
+        transform: translateX(9px) !important;
       }
+    }
+    
+  }
+  .actions-list {
+    & .expanded-button {
+      width: 95% !important;
+    }
+  }
+  .button-background.labelled {
+    height: 32px !important;
+    
+    & img {
+      margin-left: 5px !important;
     }
   }
 
@@ -7452,13 +7482,15 @@ button
     width: 48px !important;
 
     & .tabbrowser-tab:not([pinned]) .tab-content {
-      margin-left: -2px !important;
+      margin-left: -3px !important;
     }
 
     & .tabbrowser-tab {
-      margin-left: 1px !important;
+      margin-left: 2px !important;
 
       & .tab-background {
+        width: 38px !important;
+        min-width: 38px !important;
         max-width: 38px !important;
       }
     }
@@ -7483,7 +7515,7 @@ button
       margin-inline: 11px !important;
 
       & image {
-        margin-inline: 3px -2px !important;
+        transform: translateX(2px);
       }
     }
   }
@@ -7550,7 +7582,7 @@ button
   /* Space between tab icons and titles. */
   .tab-icon-stack {
     width: 23px !important;
-    margin-left: 22px !important;
+    margin-left: 24px !important;
   }
   
   .tab-throbber:not([pinned]),
@@ -7638,7 +7670,7 @@ button
     }
 
     & #tabs-newtab-button {
-      margin-left: 10px !important;
+      margin-left: 12px !important;
       & .toolbarbutton-icon {
         margin-left: 0 !important;
       }
@@ -7684,6 +7716,9 @@ button
     & .tab-close-button {
       display: none !important;
     }
+  }
+  #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned]:first-of-type {
+    padding-left: 0 !important;
   }
 
   #tabbrowser-tabs:not([expanded]) .tabbrowser-tab[pinned] {
@@ -8174,5 +8209,16 @@ button
     #bottomBox {
       background-color: var(--footer) !important;
     }
+  }
+}
+
+@media -moz-pref('uc.winui.experiments') {
+  /* URL bar dropdown acrylic - Doesn't work on built-in pages */
+  :root {
+    clip-path: inset(0 round .1px) !important; /* Affects the about firefox pop up background */
+  }
+  .urlbarView {
+    background-color: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
+    backdrop-filter: blur(100px) brightness(90%) saturate(200%) !important; /* Recreate the luminosity color changes */
   }
 }
