@@ -1166,11 +1166,15 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 }
 
 /* Always show tab close button */
-.tab-close-button { 
-  #tabbrowser-tabs[closebuttons="activetab"][orient="horizontal"] &:not([selected],[pinned]) { 
-    display: block !important;
-    fill: var(--textSecondary) !important;
-  }
+@media not -moz-pref("uc.winui.tab-close-button", 1) and
+  not -moz-pref("uc.winui.tab-close-button", 2) and
+  not -moz-pref("uc.winui.tab-close-button", 3) {
+    .tab-close-button { 
+      #tabbrowser-tabs[closebuttons="activetab"][orient="horizontal"] &:not([selected],[pinned]) { 
+        display: block !important;
+        fill: var(--textSecondary) !important;
+      }
+    }
 }
 
 /* Set separator color */
@@ -2330,12 +2334,14 @@ panel[type="autocomplete-richlistbox"] {
 }
 
 #unified-extensions-view h1 {
-  margin-top: 3px !important;
+  margin-top: 6px !important;
   color: var(--textSecondary) !important;
 }
 #unified-extensions-view toolbarseparator:first-of-type {
   display: none !important;
 }
+
+/* Footer */
 #unified-extensions-manage-extensions {
   margin: 15px 17px 17px !important;
   height: 30px !important;
@@ -2352,6 +2358,9 @@ panel[type="autocomplete-richlistbox"] {
 
 #unified-extensions-view .unified-extensions-item image {
   margin-inline: -2px -6px !important;
+}
+#unified-extensions-area {
+  margin-top: 5px !important;
 }
 
 /* Downloads panel */
@@ -3729,7 +3738,7 @@ findbar {
 	display: flex !important;
 	align-items: space-evenly !important;
 	margin-top: -4rem !important;
-	transition: all 333ms ease-out !important;
+	transition: all 333ms cubic-bezier(0, 0, 0, 1) !important;
   outline: 1px solid rgba(117,117,117,.4) !important;
   order: -1 !important;
   z-index: 99 !important;
@@ -3776,7 +3785,7 @@ findbar:not([hidden]) {
   background-color: var(--button) !important;
   border: 1px solid !important;
   border-color: light-dark(rgba(0,0,0,.08), rgba(255,255,255,.02)) !important;
-  border-bottom-color: light-dark(rgba(0,0,0,.22), rgba(255,255,255,.02)) !important;
+  border-bottom-color: light-dark(rgba(0,0,0,.22), rgba(255,255,255,.45)) !important;
   border-top-color: light-dark(rgba(0,0,0,.08), rgba(255,255,255,.045)) !important;
   margin-block: auto !important;
   
@@ -3856,7 +3865,8 @@ findbar:not([hidden]) {
   }
 }
 /* Hide matches found text if there are none */
-.findbar-label[status="notfound"] {
+.findbar-label[status="notfound"],
+.findbar-label.findbar-find-status {
   display: none !important;
 }
 
@@ -4175,7 +4185,10 @@ label[data-l10n-id="choose-other-app-description"] {
 }
 
 #reset-pbm-panel-header description {
-  font-weight: 400 !important;
+  font-weight: 600;
+  color: var(--textSecondary);
+  font-size: 14px;
+  margin-block: -4px -2px !important;
 }
 
 /* Fix end private session dialog footer */
@@ -8224,5 +8237,36 @@ button
   .urlbarView {
     background-color: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
     backdrop-filter: blur(100px) brightness(90%) saturate(200%) !important; /* Recreate the luminosity color changes */
+  }
+  
+  findbar:not([hidden]), #statuspanel-label {
+    background-color: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.5)) !important;
+    backdrop-filter: blur(60px) brightness(90%) saturate(200%) !important;
+  }
+}
+
+/* Tab close button visibility */
+/* Tab close button visible on hover and on selected table */
+@media -moz-pref("uc.winui.tab-close-button", 1) {
+ .tabbrowser-tab:not([selected="true"][visuallyselected=""]) .tab-close-button {
+    display: none !important;
+  }
+  .tabbrowser-tab:not([pinned]):hover .tab-close-button {
+    display: block !important;
+  }
+}
+/* Close button visible on hover */
+@media -moz-pref("uc.winui.tab-close-button", 2) {
+  .tab-close-button {
+    display: none !important;
+  }
+  .tabbrowser-tab:not([pinned]):hover .tab-close-button {
+    display: block !important;
+  }
+}
+/* Remove the close button entirely */
+@media -moz-pref("uc.winui.tab-close-button", 3) {
+  .tab-close-button {
+    display: none !important;
   }
 }
