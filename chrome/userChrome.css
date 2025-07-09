@@ -8251,6 +8251,9 @@ button
  .tabbrowser-tab:not([selected="true"][visuallyselected=""]) .tab-close-button {
     display: none !important;
   }
+  .tabbrowser-tab:not([selected="true"][visuallyselected=""]) .tab-label-container {
+    margin-right: 8px !important;
+  }
   .tabbrowser-tab:not([pinned]):hover .tab-close-button {
     display: block !important;
   }
@@ -8260,6 +8263,12 @@ button
   .tab-close-button {
     display: none !important;
   }
+  .tabbrowser-tab:not([selected="true"][visuallyselected=""]) .tab-label-container {
+    margin-right: 8px !important;
+  }
+  .tabbrowser-tab:is([selected="true"][visuallyselected=""]) .tab-label-container {
+    margin-right: 9px !important;
+  }
   .tabbrowser-tab:not([pinned]):hover .tab-close-button {
     display: block !important;
   }
@@ -8268,5 +8277,11 @@ button
 @media -moz-pref("uc.winui.tab-close-button", 3) {
   .tab-close-button {
     display: none !important;
+  }
+  .tabbrowser-tab:not([selected="true"][visuallyselected=""]) .tab-label-container {
+    margin-right: 8px !important;
+  }
+  .tabbrowser-tab:is([selected="true"][visuallyselected=""]) .tab-label-container {
+    margin-right: 9px !important;
   }
 }
