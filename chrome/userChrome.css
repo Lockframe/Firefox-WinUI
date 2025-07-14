@@ -855,6 +855,10 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   --menu-image: url(dock-left.svg) !important;
 }
 
+#spell-dictionaries {
+  --menu-image: url(language.svg) !important;
+}
+
 .subviewbutton > .toolbarbutton-icon {
   width: 16px !important;
   height: 16px !important;
@@ -862,13 +866,14 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
 
 #PanelUI-fxa-menu-account-signout-button .toolbarbutton-icon {
   background: url(icons/logout.svg) no-repeat center center !important;
+  background-size: 15px !important;
 }
 #PanelUI-fxa-menu-sync-prefs-button .toolbarbutton-icon {
   background: url(icons/settings.svg) no-repeat center center !important;
 }
 #PanelUI-fxa-menu-connect-device-button .toolbarbutton-icon {
   background: url(icons/connect.svg) no-repeat center center !important;
-  background-size: 16px !important;
+  background-size: 14px !important;
 }
 #PanelUI-fxa-menu-sendtab-button .toolbarbutton-icon {
   background: url(icons/share.svg) no-repeat center center !important;
@@ -881,9 +886,10 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
 }
 #fxa-manage-account-button::before {
   content: url(icons/open-window.svg);
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   position: absolute;
+  margin-left: 1px;
 }
 
 #toolbar-context-toggle-vertical-tabs > .menu-text::after,
@@ -899,7 +905,7 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
 
 #context_moveTabToNewGroup > .menu-text::after {
   background-image: url(icons/add-to-single.svg);
-  background-size: 15px;
+  background-size: 14px;
 }
 
 #context_moveTabToGroup > .menu-text::after {
@@ -2994,13 +3000,15 @@ panel toolbarseparator {
 #editBookmarkPanel[animate="open"],
 #identity-popup[animate="open"],
 #BMB_bookmarksPopup[animate="open"],
-#customizationui-widget-panel[animate="open"]{
+#customizationui-widget-panel[animate="open"],
+#widget-overflow[animate="open"]{
   animation: panelSlide2 .5s cubic-bezier(0,0,0,1) !important;
   transform-origin: top center !important;
 }
 #unified-extensions-panel[animate="open"],
 #editBookmarkPanel[animate="open"],
-#customizationui-widget-panel[animate="open"]{
+#customizationui-widget-panel[animate="open"],
+#widget-overflow[animate="open"]{
   & toolbarbutton,
   & toolbarseparator,
   & vbox,
@@ -5196,7 +5204,7 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
   }
 }
 
-/* Navbar profile button */
+/* Profile button */
 :root:not([privatebrowsingmode="temporary"]) #fxa-toolbar-menu-button {
 
   transition: transform 183ms linear !important;
@@ -5215,17 +5223,25 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
     }
   }
 
-  & .toolbarbutton-badge-stack {
-    width: 33px !important;
-    height: 33px !important;
-  }
-
   & #fxa-avatar-image {
     box-shadow: 0 0 0 1px var(--cardStroke) inset !important;
     height: 17px !important;
     width: 17px !important;
     align-self: center !important;
     margin-left: -1px !important;
+  }
+}
+/* Navbar specifics */
+:root:not([privatebrowsingmode="temporary"]) #nav-bar #fxa-toolbar-menu-button {
+  & .toolbarbutton-badge-stack {
+    width: 33px !important;
+    height: 33px !important;
+  }
+}
+/* External widgets menu overflow specifics */
+:root:not([privatebrowsingmode="temporary"]) #widget-overflow-mainView #fxa-toolbar-menu-button  {
+  &:hover, &:active {
+    transform: none !important;
   }
 }
 
@@ -6725,12 +6741,12 @@ button
   }
 
   .toolbarbutton-1 image,
-  :root:not([privatebrowsingmode="temporary"]) #fxa-toolbar-menu-button {
+  :root:not([privatebrowsingmode="temporary"]) #nav-bar #fxa-toolbar-menu-button {
     scale: .85 !important;
   }
   
   /* Navbar profile button */
-  :root:not([privatebrowsingmode="temporary"]) #fxa-toolbar-menu-button {
+  :root:not([privatebrowsingmode="temporary"]) #nav-bar #fxa-toolbar-menu-button {
     & #fxa-avatar-image {
       margin-left: 0 !important;
     }

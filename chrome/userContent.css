@@ -837,6 +837,11 @@
 	label, description {
 		font-size: 14px !important;
 	}
+	
+	/* Remove partners ad in settings */
+	.mission-message{
+		display: none !important;
+	}
 
 	/* Headers */
 	.sticky-container, .main-search, .main-heading, #toolbar {
@@ -1693,6 +1698,7 @@
 	/* Check Box Disabled */
 	checkbox[disabled="true"] > .checkbox-label-box {
 		color: var(--textDisabled) !important;
+		opacity: 1 !important;
 	}
 	checkbox[disabled="true"] > .checkbox-check {
 		background-color: transparent !important;
@@ -2717,10 +2723,6 @@
 		}
 
 		/* Addon cards */
-		.card {
-			border: none !important;
-		}
-		
 		.addon.card {
 			box-shadow: var(--cardShadowDark) !important;
 
@@ -2804,6 +2806,10 @@
 /* MARK: Preferences page */
 @-moz-document url-prefix(about:preferences),
 	url-prefix(about:addons) {
+		.card {
+			border: none !important;
+		}
+		
 		.category {
 			color: var(--textColor) !important;
 			margin-block: 2px !important;
@@ -2877,6 +2883,11 @@
 	.sidebar-footer-list a {
 		margin-right: 8px !important;
 	}
+
+	.indent.tip-caption {
+		margin-left: 30px !important;
+	}
+	
 }
 
 @-moz-document url-prefix(about:addons) {
