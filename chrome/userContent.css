@@ -1508,7 +1508,8 @@
 	.close-icon,
 	.icon-clear-input,
 	button.done,
-	[default="true"]
+	[default="true"],
+	#restoreAll
 	),
 	menulist,
 	.web-appearance-choice,
@@ -1608,7 +1609,8 @@
 	#syncNow,
 	button.primary,
 	#containersAdd,
-	button.done
+	button.done,
+	#restoreAll
 	) {
 		background-color: var(--accentAuto) !important;
 		color: light-dark(#fff, #000) !important;
@@ -2664,7 +2666,8 @@
 		.close-icon,
 		.icon-clear-input,
 		button.done,
-		[default="true"]
+		[default="true"],
+		#restoreAll
 		),
 		menulist,
 		.web-appearance-choice,
@@ -2792,7 +2795,8 @@
 		.close-icon,
 		.icon-clear-input,
 		button.done,
-		[default="true"]
+		[default="true"],
+		#restoreAll
 		),
 		menulist,
 		.web-appearance-choice,
