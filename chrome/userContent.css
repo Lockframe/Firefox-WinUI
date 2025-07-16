@@ -1400,10 +1400,6 @@
 		margin: 0 0 auto auto !important;
 	}
 
-	.collapsible-section {
-		padding: 10px 40px !important;
-	}
-
 	.container {
 		border: none !important;
 	}
@@ -2540,6 +2536,17 @@
 				padding-block: 8px !important;
 			}
 		}
+	}
+	
+	/* Crashed tab */
+	.offers {
+		display: none !important;
+	}
+	#reportBox {
+		background: transparent !important;
+		border: none !important;
+		padding: 16px 0 24px 0 !important;
+		margin: 0 !important;
 	}
 
 	/* Theme specifics */

@@ -932,6 +932,17 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   }
 }
 
+/* Crashed tab badge */
+.tab-icon-overlay {
+  &[crashed] {
+    list-style-image: unset !important;
+    background: url("icons/error-badge.svg") no-repeat center center var(--criticalBadge) !important;
+    background-size: 6px !important;
+    border-radius: 99px;
+    margin-top: 2px;
+  }
+}
+
 /* Active tab with semibold text */
 .tabbrowser-tab[selected] label { 
   font-weight: 600 !important;
@@ -4000,6 +4011,36 @@ menupopup#ContentSelectDropdownPopup, menuitem {
     &:active {
       background-color: rgba(0,0,0,.1) !important;
     }
+  }
+}
+
+#urlbar-searchmode-switcher{
+  height: 26px !important;
+  margin-top: 1px !important;
+  margin-left: 1px !important;
+  margin-right: 2px !important;
+  border-radius: 4px !important;
+}
+#searchmode-switcher-chicklet{
+  height: 26px !important;
+  margin-top: 1px!important;
+  border-radius: 4px !important;
+  margin-right: 2px !important;
+}
+#urlbar[open] #searchmode-switcher-chicklet{
+  margin-top:2px !important;
+}
+#searchmode-switcher-title{
+  margin-left: 6px !important;
+}
+#searchmode-switcher-close{
+  margin-left: 6px !important;
+  border-radius: 4px !important;
+}
+
+@media -moz-pref("browser.urlbar.scotchBonnet.enableOverride") {
+  #urlbar:has(#urlbar-searchmode-switcher) #urlbar-input {
+    margin-left: 0 !important;
   }
 }
 
