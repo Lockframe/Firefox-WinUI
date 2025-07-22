@@ -21,9 +21,9 @@
 			border-radius: 4px !important;
 			height: 100px !important;
 			width: 100px !important;
-			margin-inline-end: 36px !important;
-			margin-block-end: 36px !important;
-			margin-block-start: -2px !important;
+			margin-inline: 16px !important;
+			margin-block: 12px !important;
+			
 			transition: var(--basicBGAnimation) !important;
 			animation: invokeUp .5s cubic-bezier(0,0,0,1) !important;
 			
@@ -99,8 +99,8 @@
 
 		/* Center the pinned sites area */
 		.outer-wrapper .ds-top-sites .top-sites .top-sites-list {
-			margin: 0 -6.25% !important;
-			width: 128% !important;
+			margin: auto !important;
+			width: auto !important;
 		}
 
 		/* Padding between the pinned sites */
@@ -404,6 +404,21 @@
 			background-image: url(icons/delete.svg) !important;
 			fill: var(--textColor) !important;
 			background-size: 24px !important;
+		}
+		
+		.personalize-button {
+			& img {
+				content: url(icons/edit.svg) !important;
+				width: 16px !important;
+				height: 16px !important;
+			}
+			
+			&:hover {
+				min-width: unset !important;
+				& label {
+					display: none !important;
+				}
+			}
 		}
 
 		@media (prefers-color-scheme: light) {
