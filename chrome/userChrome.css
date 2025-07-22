@@ -2380,6 +2380,19 @@ panel[type="autocomplete-richlistbox"] {
   margin-top: 5px !important;
 }
 
+.unified-extensions-item-message-deck {
+  display: none !important;
+}
+
+.unified-extensions-item-action-button image {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.unified-extensions-item-contents {
+  margin-top: -2px !important;
+}
+
 /* Downloads panel */
 #downloadsPanel-multiView {
   background-image: var(--acrylic) !important;
@@ -5472,6 +5485,11 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   }
 }
 
+/* Move it to the left */
+.dialogFrame.printSettingsBrowser {
+  order: -1 !important;
+}
+
 #print select:not(#printer-picker) {
   font-size: 13px !important;
   padding-left: 10px !important;
@@ -5548,6 +5566,21 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
 #print hr {
   display: none !important;
+}
+
+.printPreviewNavigation {
+  padding: 9px 6px !important;
+  border-radius: 8px !important;
+}
+
+.container:has(#navigateHome) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  
+  & * {border: none !important;}
+  & button {
+    margin-inline: 4px !important;
+  }
 }
 
 /* Active tab */
@@ -5831,7 +5864,8 @@ button
   [title="Close"],
   .controls-bottom-lower button,
   #updateButton,
-  html[windowtype="Toolkit:PictureInPicture"] *), 
+  html[windowtype="Toolkit:PictureInPicture"] *,
+  .container:has(#navigateHome) button), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -5915,6 +5949,10 @@ button
       }
     }
   }
+  
+  .printPreviewNavigation {
+    box-shadow: var(--genericShadowDark) !important;
+  }
 }
 
 /* ============= LIGHT ================== */
@@ -5996,7 +6034,8 @@ button
   [title="Close"],
   .controls-bottom-lower button,
   #updateButton,
-  html[windowtype="Toolkit:PictureInPicture"] *), 
+  html[windowtype="Toolkit:PictureInPicture"] *,
+  .container:has(#navigateHome) button), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -6094,6 +6133,10 @@ button
         box-shadow: var(--searchActiveShadowLight) !important;
       }
     }
+  }
+  
+  .printPreviewNavigation {
+    box-shadow: var(--genericShadowLight) !important;
   }
 }
 
