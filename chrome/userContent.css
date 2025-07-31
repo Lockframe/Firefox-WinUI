@@ -17,7 +17,7 @@
 		
 		/* Pinned website tiles */
 		.top-site-outer {
-			background-color: light-dark(rgba(255,255,255,.7), rgb(255, 255, 255, .0512)) !important;
+			background-color: light-dark(rgba(252,252,252,.7), rgb(255, 255, 255, .0512)) !important;
 			border-radius: 4px !important;
 			height: 100px !important;
 			width: 100px !important;
@@ -36,6 +36,11 @@
 				& * {
 					color: var(--textPressed) !important;
 				}
+			}
+			
+			&:has(.context-menu) {
+				outline: 2px solid var(--accentAuto) !important;
+			  background: var(--buttonHover) !important;
 			}
 			
 			& .tile {
@@ -95,6 +100,15 @@
 		}
 		.shortcuts-refresh .top-site-outer .context-menu {
 			inset-block-start: 0 !important;
+			
+			& *{color: var(--textColor) !important;}
+			& span[data-l10n-id="newtab-menu-dismiss"], & span[data-l10n-id="newtab-menu-delete-history"] {
+				color: var(--criticalBadge) !important;
+			}
+		}
+		
+		.context-menu .context-menu-item span{
+			margin-top: -1px !important;
 		}
 
 		/* Center the pinned sites area */
@@ -182,8 +196,6 @@
 			}
 			
 			& .actions button {
-				height: 32px !important;
-				padding-block: 0 !important;
 				font-size: 14px !important;
 			}
 			
@@ -402,7 +414,7 @@
 		
 		.icon.icon-modal-delete {
 			background-image: url(icons/delete.svg) !important;
-			fill: var(--textColor) !important;
+			fill: var(--criticalBadge) !important;
 			background-size: 24px !important;
 		}
 		
@@ -800,6 +812,7 @@
 	.cell-reset .button-delete {
 		background-image: url(icons/delete.svg) !important;
 		background-size: 15px !important;
+		fill: var(--criticalBadge) !important;
 	}
 	
 	.button-add {
@@ -1067,12 +1080,12 @@
 	.menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
 		-moz-appearance: none !important;
 		padding: 4px !important;
-		background-color: light-dark(rgb(255,255,255), rgb(44,44,44)) !important;
-		/*background-clip: padding-box !important;*/
+		background-color: light-dark(rgba(255,255,255,.7), rgba(44,44,44, .7)) !important;
 		background-image: url('image/accnoise256.png') !important;
 		border: none !important;
 		border-radius: 8px !important;
 		margin: 4px !important;
+		backdrop-filter: blur(40px) saturate(130%) contrast(110%) !important;
 	}
 	menulist {
 		border-radius: 4px !important;
@@ -1999,6 +2012,7 @@
 	.topsite-form .actions button {
 		margin-inline: 4px !important;
 		width: -moz-available !important;
+		padding-bottom: 1px !important;
 	}
 
 	.in-menulist menuitem {

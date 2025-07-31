@@ -1064,6 +1064,13 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   left: 4px !important;
 }
 
+/* Ensure left-side tab scroll button doesn't overlap pinned tabs */
+#tabbrowser-tabs[orient="horizontal"]:has(.tabbrowser-tab[pinned="true"]):has(#tabbrowser-arrowscrollbox[overflowing=""]) {
+  & .tabbrowser-tab[pinned="true"]:last-of-type {
+    margin-right: 7px !important;
+  }
+}
+
 /* Bottom tab corners */
 :root,
 :root .tabbrowser-tab {
@@ -1647,6 +1654,17 @@ input[type="text"] {
   border-radius: 4px !important;
   transform: translateY(-1px) !important;
   margin-right: 2px !important;
+}
+
+/* Horizontal pinned tab container */
+#pinned-tabs-container[orient="horizontal"] {
+  margin-inline: 0 -8px !important;;
+}
+/* Applies margin-left if there are pinned tabs but no regular tabs */
+#tabbrowser-tabs:has(.tabbrowser-tab:last-of-type[pinned="true"]):not(:has(.tabbrowser-tab:not([pinned="true"]))){
+  #tabs-newtab-button {
+    margin-left: 8px !important;
+  }
 }
 
 /* URL Tooltip */
@@ -3332,26 +3350,47 @@ window#webextpanels-window {
 
 /* Sidebar search bar */
 #sidebar-search-container {
-  margin-inline: 8px !important;
+  margin: 0px 0 16px 0 !important;
+  
+  & #search-box {
+    height: 30px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-height: 18px !important;
+  }
+}
+input#input.with-icon {
+  background-color: var(--searchBackground) !important;
+  color: var(--textSecondary) !important;
+  background-position-x: 12px !important;
+  background-size: 14px !important;
+  border: none !important;
+  padding: 0 0 2px 36px !important;
+  
+  &:hover {
+    background-color: var(--searchHover) !important;
+  }
+  &:active, &:focus-within {
+    background-color: var(--inputActive) !important;
+  }
 }
 
 .sidebar-panel:not([lwt-sidebar]) {
   & #sidebar-search-container > #search-box {
-    background-color: var(--searchBackground) !important;
-    color: var(--textSecondary) !important;
+    background-color: transparent !important;
     border: none !important;
-    border-radius: 3px !important;
-    height: 30px !important;
-    
-    &:hover {
-      background-color: var(--searchHover) !important;
-    }
+
     &:focus-within {
-      background-color: var(--inputActive) !important;
       outline: none !important;
     }
   }
 }
+
+moz-input-search[data-l10n-id="firefoxview-search-text-box-tabs"] {
+  margin-top: 6px !important;
+  width: -moz-available !important;
+}
+
 /* This is misaligned in the sidebar synced tabs search bar */
 .textbox-search-sign, .textbox-search-icon {
   list-style-image: url(icons/search-glass.svg) !important;
@@ -3459,6 +3498,90 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
     border-right: none !important;
     box-shadow: none !important;
   }
+}
+
+/* Side panel history */
+.sidebar-panel:has(sidebar-panel-header[data-l10n-id="sidebar-menu-history-header"]) {
+  padding: 12px 12px 12px 16px !important;
+  background: var(--button) !important;
+  border: 1px solid var(--controlStroke) !important;
+  margin-left: 5px !important;
+  width: calc(100% - 5px) !important;
+  height: calc(100% - 10px) !important;
+}
+h4 {
+  font-weight: 600 !important;
+}
+html:has(sidebar-history) {
+  height: -moz-available !important;
+}
+
+moz-card.date-card {
+  background-color: var(--button) !important;
+  border: none !important;
+  height: 100% !important;
+  --card-border-radius: 4px !important;
+  
+  &:hover {
+    background-color: transparent !important;
+  }
+}
+moz-card {
+  border-radius: 4px !important;
+  font-weight: normal !important;
+}
+#heading-wrapper[part="moz-card-heading-wrapper"] {
+  .chevron-icon {
+    order: 2 !important;
+    margin-left: auto !important;
+    background-size: 12px !important;
+  }
+  #heading {
+    font-weight: normal !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Side panel bookmarks */
+#bookmarksPanel.sidebar-panel {
+  padding: 0 10px 0 0 !important;
+  border-radius: 8px !important;
+  margin-left: 5px !important;
+  
+  &::after {
+    content:'';
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 8px;
+    background: var(--button);
+    border: 1px solid var(--controlStroke) !important;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+  }
+  
+  & #sidebar-panel-header {
+    padding: 4px 8px 0 17px !important;
+    
+    & h4 {
+      font-size: 16px !important;
+    }
+  }
+  & #sidebar-search-container {
+    margin-top: -16px !important;
+    margin-inline: -1px -10px !important;
+  }
+}
+
+#sidebar-splitter {
+  width: 7px !important;
+  background: var(--frameBG) !important;
+  margin-left: 0px !important;
+}
+
+#bookmarks-view {
+  background: transparent !important;
+  margin-inline: 16px !important;
 }
 
 /* Remove permission icon in URL bar */
@@ -5460,6 +5583,10 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   animation: drawLeft 1s cubic-bezier(0.55, 0.55, 0, 1);
 }
 
+#downloads-indicator-start-image {
+  list-style-image: none !important;
+}
+
 /* Make selected text use the accent color*/
 *::-moz-selection, ::selection {
   background-color: var(--accentAuto) !important;
@@ -5877,7 +6004,8 @@ button
   #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
   #provider,
   select,
-  #print .toggle-group-input:checked + .toggle-group-label{
+  #print .toggle-group-input:checked + .toggle-group-label,
+  moz-card.date-card{
     box-shadow: var(--buttonShadowDark) !important;
     
     &:hover {
@@ -5940,13 +6068,11 @@ button
   }
   
   /* Sidebar search bar */
-  .sidebar-panel:not([lwt-sidebar]) {
-    & #sidebar-search-container > #search-box {
-      box-shadow: var(--searchShadowDark) !important;
+  input#input.with-icon {
+    box-shadow: var(--searchShadowDark) !important;
 
-      &:focus-within {
-        box-shadow: var(--searchActiveShadowDark) !important;
-      }
+    &:focus-within {
+      box-shadow: var(--searchActiveShadowDark) !important;
     }
   }
   
@@ -6047,7 +6173,8 @@ button
   #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
   #provider,
   select,
-  #print .toggle-group-input:checked + .toggle-group-label{
+  #print .toggle-group-input:checked + .toggle-group-label,
+  moz-card.date-card{
     box-shadow: var(--buttonShadowLight) !important;
 
     &:hover {
@@ -6125,13 +6252,11 @@ button
   }
   
   /* Sidebar search bar */
-  .sidebar-panel:not([lwt-sidebar]) {
-    & #sidebar-search-container > #search-box {
-      box-shadow: var(--searchShadowLight) !important;
+  input#input.with-icon {
+    box-shadow: var(--searchShadowLight) !important;
 
-      &:focus-within {
-        box-shadow: var(--searchActiveShadowLight) !important;
-      }
+    &:focus-within {
+      box-shadow: var(--searchActiveShadowLight) !important;
     }
   }
   
@@ -8062,11 +8187,18 @@ button
     /* Alignment */
     #back-button menupopup {
       margin-top: -8px !important;
-      margin-left: 8px !important;
+      
+      & menuitem {
+        margin-left: 6px !important;
+      }
     }
     #forward-button menupopup {
       margin-top: -8px !important;
       margin-left: 4px !important;
+      
+      & menuitem {
+        margin-inline: 2px 2px !important;
+      }
     }
     menupopup menupopup[hasbeenopened="true"] {
       margin-top: 2px !important;
@@ -8383,5 +8515,55 @@ button
   }
   .tabbrowser-tab:is([selected="true"][visuallyselected=""]) .tab-label-container {
     margin-right: 9px !important;
+  }
+}
+/* Different titlebar styles */
+@media -moz-pref("uc.winui.titlebar-style", 1) or
+  -moz-pref("uc.winui.titlebar-style", 2){
+    :is(.titlebar-close,
+    :root:not(:-moz-window-inactive) .titlebar-close,
+    :root:-moz-window-inactive .titlebar-close,
+    .titlebar-button:not(.titlebar-close)) {
+      &:hover, &:hover:active, &:active {
+        background-color: transparent !important;
+      }
+    }
+
+    .titlebar-close {
+      padding-right: 20px !important;
+    }
+
+    .titlebar-buttonbox > toolbarbutton {
+      &::after {
+        content: '';
+        width: 46px;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        display: block;
+        position: absolute;
+        inset: 1;
+        transition: background-color 83ms linear;
+      }
+      &:hover::after {
+        background-color: var(--textButtonHover);
+      }
+      &:active::after, &:hover:active::after {
+        background-color: var(--textButtonPressed);
+      }
+    }
+    .titlebar-button::after {
+      clip-path: inset(5px 2px 4px round 4px);
+    }
+}
+@media -moz-pref("uc.winui.titlebar-style", 2) {
+  /* Accent color glyphs */
+  .titlebar-button {
+    &:hover::before {
+      color: var(--accentAuto) !important;
+    }
+    &:active::before, *:hover:active::before {
+      color: var(--accentPressed) !important;
+    }
   }
 }
