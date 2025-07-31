@@ -37,7 +37,7 @@ To do this, open `about:config` and enable the following keys:
 
 ## Settings
 
-Create the following boolean keys as required:
+Create the following boolean or numeric keys as required:
 
 ### Visual
 
@@ -56,6 +56,7 @@ Create the following boolean keys as required:
 - `uc.winui.smaller-toolbar-buttons` - Shrinks the toolbar buttons to match other WinUI apps
 - `uc.winui.taller-bookmarks` - Increase the size of the bookmarks bar to match File Explorer's toolbar
 - `uc.winui.taller-urlbar` - Increase the height of the URL bar to match the early iterations of Windows 11's search bar
+- `uc.winui.titlebar-style` - 1 to add rounded corners to the titlebar buttons and 2 to add rounded corners and accent-colored glyphs when hovering over them
 - `uc.winui.transparent-urlbar` - Makes the URL bar transparent
 - `uc.winui.urlbar-extra-separators` - Add highlighted separators to either side of URL bar
 
