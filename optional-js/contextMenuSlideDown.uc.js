@@ -18,7 +18,7 @@ class AnimateContextMenus {
   :not(menulist)
   > menupopup:not([position], [type="arrow"], [animate="false"]) {
   opacity: 1;
-  clip-path: var(--animate-clip-initial, inset(75% 0 0 0));
+  clip-path: var(none, inset(75% 0 0 0));
   transform: var(--animate-transform-initial, translateY(-75%));
   transform-origin: var(--animate-origin, top);
   transition-property: transform, clip-path;
