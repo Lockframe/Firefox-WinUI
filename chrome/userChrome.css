@@ -2199,6 +2199,21 @@ menuitem {
   text-align: center !important;
 }
 
+/* Close remote tab */
+.remote-tabs-close-button {
+  min-width: 32px !important;
+  max-height: 24px !important;
+  min-height: 24px !important;
+  margin-top: 2px !important;
+
+  & image {
+    content: url(icons/close-9px.svg) !important;
+    max-height: 10px !important;
+    max-width: 10px !important;
+    margin: 0 0 0 4px !important;
+  }
+}
+
 toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   padding-left: 12px !important;
 }
@@ -8531,6 +8546,10 @@ button
 
     .titlebar-close {
       padding-right: 20px !important;
+      
+      &:hover, &:hover:active {
+        color: var(--textPrimary) !important;
+      }
     }
 
     .titlebar-buttonbox > toolbarbutton {
