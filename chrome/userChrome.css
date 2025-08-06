@@ -977,11 +977,16 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   z-index: 1 !important;
   margin-inline: .5px !important;
 }
-#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned] {
+
+/* First tab spacing from window */
+#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned="true"] {
   margin-inline: 1px !important;
 }
-#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned]:first-of-type {
+#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned="true"]:first-of-type {
   padding-left: 7px !important;
+}
+#tabbrowser-arrowscrollbox[orient="horizontal"] > .tabbrowser-tab:not([pinned="true"]):first-of-type {
+  margin-left: 7px !important;
 }
 
 /* Prevent audio playing tabs from modifying tab width */
@@ -1489,25 +1494,30 @@ tab-group[collapsed=""] .tabbrowser-tab{
     display: none !important;
   }
 }
+/* Selector bar */
 tab-group:not([collapsed=""]) .tabbrowser-tab{
   .tab-background .tab-group-line {
     width: 16px !important;
     margin-inline: 11px 0 !important;
   }
 }
-
 .tab-group-line {
   animation: selectorBar2 187ms forwards !important;
 }
 
 .tab-group-label-container {
-  margin-inline: 6px !important;
-  padding-inline-end: 0 !important;
-  
   &::after {
     display: none !important;
   }
+  
+  & label:not([aria-expanded="true"]) {
+    margin-inline: 16px !important;
+  }
+  & label[aria-expanded="true"] {
+    margin-inline: 16px 8px !important;
+  }
 }
+
 :root[sizemode="maximized"] .tab-group-label-container {
   margin-block: 2px 0 !important;
 }
@@ -1656,10 +1666,19 @@ input[type="text"] {
   margin-right: 2px !important;
 }
 
-/* Horizontal pinned tab container */
+/* Horizontal pinned tabs container */
 #pinned-tabs-container[orient="horizontal"] {
-  margin-inline: 0 -8px !important;;
+  margin-inline: 0 -7px !important;
 }
+
+/* Prevent separator from appearing if the first tab is selected/hovered */
+#tabbrowser-tabs:has(.tabbrowser-tab[selected="true"][visuallyselected=""]:not([pinned="true"]):first-of-type),
+#tabbrowser-tabs:has(.tabbrowser-tab:hover:not([pinned="true"]):first-of-type){
+  .tabbrowser-tab[pinned="true"]:first-of-type:last-of-type .tab-stack::after {
+    display: none !important;
+  }
+}
+
 /* Applies margin-left if there are pinned tabs but no regular tabs */
 #tabbrowser-tabs:has(.tabbrowser-tab:last-of-type[pinned="true"]):not(:has(.tabbrowser-tab:not([pinned="true"]))){
   #tabs-newtab-button {
@@ -4563,7 +4582,8 @@ panel menulist,
 #identity-popup-more-info,
 #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
 #provider,
-select{
+select,
+#openHandler{
   font-weight: normal !important;
   background-color: var(--button) !important;
   border-radius: 3px !important;
@@ -4919,6 +4939,7 @@ radio > .radio-label-box {
   outline: none !important;
 }
 
+/* Range slider */
 input[type="range"] {
   -moz-appearance: none !important;
   border: none !important;
@@ -6020,7 +6041,8 @@ button
   #provider,
   select,
   #print .toggle-group-input:checked + .toggle-group-label,
-  moz-card.date-card{
+  moz-card.date-card,
+  #openHandler{
     box-shadow: var(--buttonShadowDark) !important;
     
     &:hover {
@@ -6189,7 +6211,8 @@ button
   #provider,
   select,
   #print .toggle-group-input:checked + .toggle-group-label,
-  moz-card.date-card{
+  moz-card.date-card,
+  #openHandler{
     box-shadow: var(--buttonShadowLight) !important;
 
     &:hover {
@@ -8226,7 +8249,7 @@ button
     #selection-shortcut-action-panel hbox {
       background-color: transparent !important;
     }
-    #searchmode-switcher-popup {
+    #searchmode-switcher-popup, #openHandlerPopup {
       margin: 0 !important;
     }
 
@@ -8465,6 +8488,10 @@ button
       box-shadow: none !important;
     }
   }
+  
+  #updateIcon {
+    display: none !important;
+  }
 
   @media not -moz-pref("widget.windows.mica") {
     #aboutDialogContainer, window#aboutDialog {
@@ -8584,5 +8611,84 @@ button
     &:active::before, *:hover:active::before {
       color: var(--accentPressed) !important;
     }
+  }
+}
+
+/* File opening prompt */
+#unknownContentTypeWindow {
+  & #intro {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    margin-bottom: 8px !important;
+    margin-left: 15px !important;
+  }
+  
+  & #contentTypeImage {
+    order: 1 !important;
+    width: 48px !important;
+    height: 48px !important;
+    background-color: var(--cardBG) !important;
+    border-radius: 4px !important;
+    outline: 1px solid var(--cardStroke) !important;
+    padding: 16px !important;
+    margin-block: auto !important;
+    margin-right: -3px !important;
+  }
+  
+  & .header {
+    font-size: 14px !important;
+    font-weight: semibold !important;
+    margin-left: 15px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  & radio::before {
+    margin-left: 4px !important;
+  }
+  & menulist {
+    padding: 6px 8px 6px 16px !important;
+    margin-right: -3px !important;
+  }
+  
+  & .small-indent:last-of-type {
+    margin-left: 8px !important;
+  }
+  & .dialog-button-box {
+    margin-top: 0 !important;
+  }
+  & #normalBox {
+    margin-bottom: -32px !important;
+  }
+  & #rememberChoice {
+    margin-top: 10px !important;
+  }
+  
+  & #settingsChange {
+    margin-inline: 16px 12px !important;
+    margin-block: -8px 24px !important;
+    background-color: var(--cardBG) !important;
+    border-radius: 4px;
+    outline: 1px solid var(--cardStroke) !important;
+    padding-block: 4px 6px !important;
+    
+    &::after {
+      content: '';
+      background-image: url(icons/info-badge.svg);
+      background-size: 2px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 15px;
+      height: 15px;
+      order: -1;
+      margin-inline: 8px;
+      margin-top: 1px;
+      -moz-context-properties: fill;
+      fill: var(--textAccentPrimary);
+      border-radius: 99px;
+      background-color: var(--accentAuto);
+    }
+  }
+  & .thin {
+    display: none !important;
   }
 }
