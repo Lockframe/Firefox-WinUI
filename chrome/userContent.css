@@ -626,7 +626,7 @@
 		
 		--dropdownSeparator: light-dark(rgba(0,0,0,.0803), rgba(255,255,255,.0837)) !important;
 		--textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
-  		--textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+    --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
 
 		--tableOdd: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
 
@@ -761,7 +761,21 @@
 	.category[name="plugin"] {
 		background-image: url('icons/plugins.svg') !important;
 	}
-	.category[name="dictionary"],
+	.category[name="dictionary"] {
+		background-image: unset !important;
+		
+		&::before {
+			content: '';
+			position: absolute;
+			height: 17px;
+			width: 17px;
+			background-image: url(icons/dictionary.svg);
+			background-repeat: no-repeat;
+			-moz-context-properties: fill;
+			fill: var(--textColor);
+			margin-left: -24px;
+		}
+	}
 	.category[name="locale"] {
 		background-image: url('icons/language.svg') !important;
 	}
@@ -889,7 +903,8 @@
 	textarea,
 	input:not(.wallpaper-input):not([inputmode="search"],[type="checkbox"],[type="radio"]), 
 	input[type="text"],
-	#engineUrl {
+	#engineUrl{
+		appearance: none !important;
 		background-color: var(--searchBackground) !important;
 		border-radius: 3px !important;
 		border: none !important;
@@ -907,6 +922,30 @@
 			}
 		}
 	}
+	
+	search-addons {
+		background-color: transparent !important;
+		appearance: none !important;
+		border: none !important;
+	}
+	moz-button[data-l10n-id="addons-heading-search-button"] {
+		content: url(icons/search-glass.svg) !important;
+		-moz-context-properties: fill !important;
+		fill: var(--textPressed) !important;
+		position: relative !important;
+		margin-top: 5px !important;
+		margin-left: 8px !important;
+		padding: 4px 8px !important;
+		border-radius: 4px !important;
+		
+		&:hover {
+			background-color: var(--textButtonHover) !important;
+		}
+		&:active,&:hover:active {
+			background-color: var(--textButtonPressed) !important;
+		}
+	}
+
 
 	/* Disabled input bars */
 	input:disabled,
