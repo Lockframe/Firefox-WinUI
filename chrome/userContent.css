@@ -1377,17 +1377,58 @@
 		border: none !important;
 		outline: 1px solid light-dark(rgba(0,0,0,.0605),rgba(0,0,0,.1)) !important;
 		padding: 8px 16px !important;
-		padding-bottom: 16px !important;
+		padding-bottom: 12px !important;
 		margin-top: 8px !important;
-	}
-	.content-blocking-warning {
-		background-color: var(--infoBG) !important;
+		border-radius: 4px !important;
 	}
 	.info-icon {
+		content: url(icons/info-badge.svg) !important;
+		fill: var(--textInverse) !important;
+		background-color: var(--infoBadge);
+		border-radius: 99px;
+		margin-inline-end: 12px !important;
+		height: 10px !important;
+		padding-block: 3px;
 		align-self: center !important;
 	}
+	#updateSettingCrossUserWarningDesc {
+		background-color: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+		border: none !important;
+		outline: 1px solid light-dark(rgba(0,0,0,.0605),rgba(0,0,0,.1)) !important;
+		padding: 8px 16px !important;
+		padding-bottom: 12px !important;
+		margin-top: 8px !important;
+		border-radius: 4px !important;
+	}
+	.showPrivate .info{
+		outline: 1px solid light-dark(rgba(0,0,0,.0605),rgba(0,0,0,.1)) !important;
+		padding: 16px 8px 16px 64px !important;
+		&::before {
+			left: 16px !important;
+		}
+	}
+	
 	.content-blocking-warning-image {
-		fill: var(--cautionBadge) !important;
+		list-style-image: none !important;
+		background: url(icons/caution-badge.svg) no-repeat center center !important;
+		background-size: 2px !important;
+		background-color: var(--cautionBadge) !important;
+		border-radius: 99px !important;
+		height: 16px;
+		width: 16px;
+		fill: var(--textInverse) !important;
+	}
+	.content-blocking-warning > hbox {
+		margin-block: 0 -16px !important;
+	}
+	
+	.content-blocking-warning-title {
+		display: none !important;
+	}
+	
+	.content-blocking-warning {
+		background-color: var(--cautionBG) !important;
+		padding-block: 8px 6px !important;
 	}
 	.reload-tabs-button {
 		margin-top: 12px !important;
@@ -1486,6 +1527,72 @@
 		margin-inline: 0 -2px !important;
 		padding: unset !important;
 	}
+	
+	h2 {
+		font-size: 18px !important;
+		font-weight: 600 !important;
+		margin-bottom: 8px !important;
+	}
+
+	/* Remove left-side margin from indented checkboxes that don't require it */
+	#historyCustomPane .indent,
+	#passwordSettings .indent,
+	#searchSuggestionsGroup .indent,
+	#defaultBrowserBox .indent,
+	groupbox[data-category="paneGeneral"] .indent{
+		margin-left: 0px !important;
+	}
+	moz-fieldset[data-l10n-id="browsing-group-label"] {
+		margin-left: -24px !important;
+	}
+	
+	#defaultBrowserBox .indent {
+		outline: 1px solid light-dark(rgba(0,0,0,.0605),rgba(0,0,0,.1)) !important;
+		border-radius: 4px !important;
+		padding-block: 0 2px !important;
+		margin-block: 12px -6px !important;
+		
+		& * {
+			font-weight: normal !important;
+		}
+		&:has(.face-smile) {
+			background-color: var(--successBG) !important;
+		}
+		&:has(.face-sad) {
+			background-color: var(--cautionBG) !important;
+		}
+	}
+	.face-smile, .face-sad {
+		padding-left: 36px !important;
+	}
+	.face-smile::before {
+		content: '' !important;
+		background: url(icons/checkmark.svg) no-repeat center center !important;
+		background-size: 8px !important;
+		background-color: var(--successBadge) !important;
+		height: 16px !important;
+		width: 16px !important;
+		border-radius: 99px;
+		-moz-context-properties: fill;
+		fill: var(--textInverse);
+		display: block;
+		position: absolute;
+		margin: 2px 0 0 -24px;
+	}
+	.face-sad::before {
+		content: '' !important;
+		background: url(icons/caution-badge.svg) no-repeat center center !important;
+		background-size: 8px !important;
+		background-color: var(--cautionlBadge) !important;
+		height: 16px !important;
+		width: 16px !important;
+		border-radius: 99px;
+		-moz-context-properties: fill;
+		fill: var(--textInverse);
+		display: block;
+		position: absolute;
+		margin: 2px 0 0 -24px;
+	}
 
 	/* Error pages */
 	body.certerror .title {
@@ -1522,6 +1629,7 @@
 	/* Links */
 	a:not(.sidebar-footer-link, .addon-badge, .top-site-button, .card-outer a, .addon-name-link),
 	.text-link,
+	#private-browsing-myths,
 	button.text-link:is(:not([disabled="true"]), :enabled),
 	::part(support-link) {
 		padding: 0 0 !important;
@@ -1543,6 +1651,9 @@
 				0 0 99px 0 var(--textButtonPressed) inset !important;
 			color: var(--accentLight4) !important;
 		}
+	}
+	#private-browsing-myths {
+		color: var(--accentAuto) !important;
 	}
 
 	/* Base button styles to exclude */
@@ -2934,22 +3045,6 @@
 
 		.rating-star {
 			fill: var(--textColor) !important;
-		}
-		
-		/* Add slide-up animation to all content inside main pane when a category is clicked */
-		.navigation:has(.category[current="true"]:active) ~ .main-content {
-			animation: slideUpContent .187s ease-out !important;
-		}
-
-		@keyframes slideUpContent {
-			0% {
-				opacity: 0;
-				transform: translateY(5%);
-			}
-			100% {
-				opacity: 1;
-				transform: translateY(0);
-			}
 		}
 }
 @-moz-document url-prefix(about:preferences) {
