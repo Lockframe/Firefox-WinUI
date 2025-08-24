@@ -216,7 +216,7 @@
 }
 
 /* Native titlebar button metrics */
-@media -moz-pref("uc.winui.native-titlebar-button-metrics") {
+@media -moz-pref("uc.winui.shorter-titlebar-buttons") {
   .titlebar-button{
     height: 29px !important;
     width: 45px !important;

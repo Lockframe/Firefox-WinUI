@@ -53,13 +53,13 @@ Create the following boolean or numeric keys as required:
 - `uc.winui.pill-urlbar` - URL bar corners are fully rounded
 - `uc.winui.rounded-corners` - Creates a gap with rounded corners between the web content and the browser frame
 - `uc.winui.rounded-navbar` - Rounds the upper corners of the navbar
+- `uc.winui.shorter-titlebar-buttons` - Shrinks the titlebar buttons (close/maximize/restore/minimize) to match WinUI 2 apps
 - `uc.winui.smaller-toolbar-buttons` - Shrinks the toolbar buttons to match other WinUI apps
 - `uc.winui.taller-bookmarks` - Increase the size of the bookmarks bar to match File Explorer's toolbar
 - `uc.winui.taller-urlbar` - Increase the height of the URL bar to match the early iterations of Windows 11's search bar
-- `uc.winui.titlebar-style` - 1 to add rounded corners to the titlebar buttons and 2 to add rounded corners and accent-colored glyphs when hovering over them
+- `uc.winui.titlebar-style` - 1 to add rounded corners to the titlebar buttons and 2 to add rounded corners and accent-colored glyphs when hovering over them (⚠️ Incompatible with `uc.winui.shorter-titlebar-buttons`)
 - `uc.winui.transparent-urlbar` - Makes the URL bar transparent
 - `uc.winui.urlbar-extra-separators` - Add highlighted separators to either side of URL bar
-- `uc.winui.native-titlebar-button-metrics` - Changes the metrics of the titlebar buttons (close/maximize/restore/minimize) to be more like the native ones
 
 ### Layout
 

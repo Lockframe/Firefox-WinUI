@@ -954,6 +954,36 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   list-style-image: url(icons/extension.svg) !important;
 }
 
+/* Add to taskbar icon */
+#taskbar-tabs-button image {
+  content: url(icons/apps.svg) !important;
+}
+
+.persistent-storage-icon {
+  list-style-image: none !important;
+  background: url(icons/hard-drive.svg) no-repeat center center;
+  background-size: 16px;
+  -moz-context-properties: fill;
+  fill: var(--textSecondary) !important;
+}
+
+#screenshot-button::before {
+  background-image: url(icons/camera.svg) !important;
+  background-position-y: auto !important;
+  height: 100% !important;
+}
+#settings-button::before {
+  background-image: url(icons/cog.svg) !important;
+  background-position-y: auto !important;
+  height: 100% !important;
+}
+#exit-button::before {
+  background-image: url(icons/close.svg) !important;
+  background-size: 14px !important;
+  background-position-y: auto !important;
+  height: 100% !important;
+}
+
 /* Center tab and URL text vertically */
 @media not -moz-pref("uc.winui.aptos") {
   .tabbrowser-tab label, .urlbar-input-box, #identity-icon-label, .searchbar-textbox {
@@ -1968,9 +1998,6 @@ tooltip,
 /* Right-side go button */
 #urlbar-go-button {
   transition: var(--basicBGAnimation) !important;
-  height: 26px !important;
-  margin-right: 1px !important;
-  margin-block: auto !important;
   border-radius: 4px !important;
   list-style-image: none !important;
   background-image: url(icons/forward.svg) !important;
@@ -2869,8 +2896,11 @@ panel[type="autocomplete-richlistbox"] {
 #addon-webext-perm-list-optional {
   margin-left: -44px !important;
 }
+.popup-notification-description {
+  font-size: 14px !important;
+}
 .popup-notification-bottom-content {
-  margin-left: -21px;
+  margin-inline: 0 auto;
   font-size: 14px;
   margin-bottom: -19px !important;
 }
@@ -4217,12 +4247,12 @@ menupopup#ContentSelectDropdownPopup, menuitem {
 
 /* Urlbar search mode indicator */
 #urlbar-search-mode-indicator {
-  height: 26px !important;
-  margin-top: 1px !important;
+  height: 22px !important;
+  margin-top: 3px !important;
   color: var(--textPrimary) !important;
   font-weight: 600 !important;
   padding-inline: 10px 6px !important;
-  border-radius: 99px !important;
+  border-radius: 3px !important;
   outline: 1px solid var(--controlStroke) !important;
 
   #urlbar[focused] > .urlbar-input-container > &,
@@ -4236,7 +4266,7 @@ menupopup#ContentSelectDropdownPopup, menuitem {
 }
 
 #urlbar[breakout][breakout-extend][open] #urlbar-search-mode-indicator {
-  margin-top: 2px !important;
+  margin-top: 4px !important;
 }
 
 #urlbar-search-mode-indicator-close,
@@ -4616,7 +4646,6 @@ button[title="Close"]{
     }
   }
 }
-
 
 /* Notification buttons */
 #notification-popup-box {
@@ -5051,7 +5080,6 @@ html[windowtype="Toolkit:PictureInPicture"] {
   border-radius: 8px !important;
 }
 #picture-in-picture-button {
-  height: 24px !important;
   background: url(icons/media-pip.svg) no-repeat center center !important;
   -moz-context-properties: fill !important;
   fill: var(--textSecondary) !important;
@@ -5110,45 +5138,9 @@ html[windowtype="Toolkit:PictureInPicture"] {
   opacity: 1 !important;
 }
 
-/* In address-bar icons positioning */
-:is(#urlbar-input-container, .urlbar-input-container) {
-  padding-inline: unset !important;
-}
-
-#star-button-box,
-#permissions-granted-icon,
-.identity-box-button,
-#reader-mode-button,
-#translations-button,
-#translations-button-circle-arrows{
-  height: 26px !important;
-  border-radius: 4px !important;
-}
-#star-button-box {
-  margin-right: 1px !important;
-}
-#star-button,
-#reader-mode-button-icon,
-#translations-button-icon,
-#translations-button-circle-arrows {
-  transform: translate(0, -2px) !important;
-}
-
-.identity-box-button {
-  margin-left: 1px !important;
-  margin-top: 1px !important;
-  border-radius: 4px !important;
-}
-
 #urlbar[breakout][breakout-extend][open] #identity-box,
 #urlbar[breakout][breakout-extend][open] #permissions-granted-icon {
   margin-top: 1px !important;
-}
-
-#urlbar[breakout][breakout-extend][open] #urlbar-go-button,
-#urlbar[breakout][breakout-extend][open] #reader-mode-button,
-#urlbar[breakout][breakout-extend][open] #star-button-box{
-  margin-top: 3px !important;
 }
 
 #urlbar[breakout][breakout-extend][open] #urlbar-searchmode-switcher {
@@ -5245,20 +5237,52 @@ html[windowtype="Toolkit:PictureInPicture"] {
   border-radius: 0 0 4px 4px;
 }
 
-/* Reposition in-url input and right-side icons in 136 and 137 */
-#urlbar-input, .urlbar-page-action {
+:is(#urlbar-input-container, .urlbar-input-container) {
+  padding-inline: unset !important;
+}
+#urlbar-input {
   margin-bottom: 1px !important;
 }
 #urlbar[breakout][breakout-extend] { 
-  & #urlbar-input, .urlbar-page-action {
+  & #urlbar-input{
       margin-bottom: -1px !important;
   }
-  & hbox[role="button"] {
-    transform: translateY(-4px) !important;
+}
+
+/* In address-bar icons positioning */
+.urlbar-page-action,
+#star-button-box,
+#permissions-granted-icon,
+.identity-box-button,
+#reader-mode-button,
+#translations-button,
+#translations-button-circle-arrows,
+.urlbar-go-button{
+  height: 24px !important;
+  border-radius: 4px !important;
+  margin-inline: 2px !important;
+  margin-block: 0 2px !important;
+  
+  &:not(.identity-box-button) image {
+      margin-block: -2px 4px !important;
   }
-  & image {
-    transform: translateY(0px) !important;
+}
+.urlbar-go-button {
+  margin-block: 2px 0 !important;
+}
+
+#urlbar[breakout][breakout-extend] {
+  & .urlbar-page-action {
+    margin-block: 0 !important;
   }
+  & .urlbar-go-button {
+    margin-block: 3px 0 !important;
+  }
+}
+
+.identity-box-button {
+  margin-inline: 2px 0 !important;
+  margin-top: 2px !important;
 }
 
 /* Prevent in-url glyphs having a background color */
@@ -5583,6 +5607,28 @@ strong {
 /* Remove gradient left-side border */
 notification-message::before {
   background-image: none !important;
+}
+
+.container:has(.text-container) {
+  text-align: center !important;
+  align-items: center !important;
+  margin-bottom: -20px !important;
+  font-size: 13px !important;
+  
+  & .icon-container {
+    transform: translateY(1px);
+  }
+  & .close {
+    margin-top: 3px !important;
+    margin-right: 2px !important;
+  }
+}
+.notification-button-container {
+  margin-bottom: 10px;
+  
+  & .button-box {
+    margin-bottom: 2px;
+  }
 }
 
 /* Links */
@@ -6021,12 +6067,90 @@ button
   color: var(--textSecondary) !important;
 }
 
-/* Info bar */
-.container:has(.text-container) {
-  text-align: center !important;
-  align-items: center !important;
-  margin-bottom: -10px !important;
-  font-size: 13px !important;
+/* Devtools */
+.responsive-mode {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.user-agent {
+  background: var(--button) !important;
+  width: fit-content !important;
+  margin: 12px auto 0 !important;
+  border: none !important;
+  border-radius: 7px;
+  padding: 7px 6px !important;
+  height: 4rem !important;
+  
+  grid-template-columns: 0fr auto 1fr min-content !important;
+  
+  & *, & *::before {
+    color: var(--textPrimary) !important;
+  }
+}
+
+.rdm-toolbar {
+  height: 80px !important;
+}
+
+#toolbar-center-controls, #toolbar-end-controls {
+  margin-block: 2px 0 !important;
+  
+  & button {
+    padding-inline: 4px !important;
+    height: 30px !important;
+    margin-block: 0 !important;
+  }
+  & #rotate-button {
+    margin-inline: 4px 0 !important;
+  }
+  & .devtools-dropdown-button {
+    padding-inline: 12px 24px !important;
+    background-position-x: calc(100% - 8px) !important;
+    
+  }
+  & #user-agent-selector {
+    padding-inline: 12px !important;
+    margin-block: 1px 0 !important;
+  }
+  & input {
+    height: 30px !important;
+    margin-block: 2px 0 !important;
+  }
+  
+  & #device-selector {
+    transform: translateX(-20px);
+  }
+  & .viewport-dimension {
+    transform: translateX(-14px);
+  }
+  & .viewport-orientation-portrait {
+    transform: translateX(-7px);
+  }
+}
+#toolbar-end-controls {
+  & button {
+    margin-inline: 3px !important;
+  }
+  & #exit-button {
+    margin-inline: 0 2px !important;
+  }
+}
+
+#user-agent-input {
+  appearance: none !important;
+  margin-inline: 8px !important;
+}
+.devtools-separator {
+  visibility: hidden !important;
+}
+
+/* Add globe icon to webpages that have no favicons */
+.tab-icon-stack:not(:has(.tab-throbber[busy])) .tab-icon-image {
+  #tabbrowser-tabs[orient="horizontal"] &:not([src], [pinned], [crashed], [sharing], [pictureinpicture]), &[busy] {
+    display: block !important;
+    content: url(icons/globe.svg) !important;
+  }
 }
 
 /* ============= DARK ================== */
@@ -6186,7 +6310,7 @@ button
     }
   }
   
-  .printPreviewNavigation {
+  .printPreviewNavigation, .user-agent {
     box-shadow: var(--genericShadowDark) !important;
   }
 }
@@ -6371,7 +6495,7 @@ button
     }
   }
   
-  .printPreviewNavigation {
+  .printPreviewNavigation, .user-agent {
     box-shadow: var(--genericShadowLight) !important;
   }
 }
@@ -6996,7 +7120,7 @@ button
   #reader-mode-button,
   #translations-button,
   #translations-button-circle-arrows {
-    height: 24px !important;
+    height: 22px !important;
   }
   #star-button-box {
     margin-right: 1px !important;
@@ -7005,7 +7129,7 @@ button
   #reader-mode-button-icon,
   #translations-button-icon,
   #translations-button-circle-arrows {
-    transform: translate(-1px, -3px) !important;
+    transform: translate(0px, -2px) !important;
   }
 
   #star-button-box,
@@ -8372,6 +8496,10 @@ button
       margin-inline: 9px !important;
       width: 262px !important;
     }
+    
+    #notification-popup {
+      margin: 7px 0 0 0 !important;
+    }
 
     /* Acrylic tooltips */
     tooltip,
@@ -8581,14 +8709,10 @@ button
   :root {
     clip-path: inset(0 round .1px) !important; /* Affects the about firefox pop up background */
   }
-  .urlbarView {
+  .urlbarView, findbar:not([hidden]), #statuspanel-label, .user-agent {
     background-color: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
-    backdrop-filter: blur(100px) brightness(90%) saturate(200%) !important; /* Recreate the luminosity color changes */
-  }
-  
-  findbar:not([hidden]), #statuspanel-label {
-    background-color: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.5)) !important;
-    backdrop-filter: blur(60px) brightness(90%) saturate(200%) !important;
+    backdrop-filter: blur(60px) brightness(90%) saturate(200%) !important; /* Recreate the luminosity color changes */
+    background-image: var(--acrylic) !important;
   }
 }
 
