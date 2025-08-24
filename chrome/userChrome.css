@@ -4201,7 +4201,13 @@ menupopup#ContentSelectDropdownPopup, menuitem {
 .titlebar-close:hover,
 :root:not(:-moz-window-inactive) .titlebar-close:hover,
 :root:-moz-window-inactive .titlebar-close:hover {
-  background-color: #c42b1c !important;
+  background-color: #C42B1C !important
+}
+
+.titlebar-close:active,
+:root:not(:-moz-window-inactive) .titlebar-close:active,
+:root:-moz-window-inactive .titlebar-close:active {
+  background-color: #C32B1BE5 !important
 }
 
 /* Nightly window controls now use font icons */

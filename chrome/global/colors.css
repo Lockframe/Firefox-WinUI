@@ -193,23 +193,23 @@
   }
 
   .titlebar-button:not(.titlebar-close):hover {
-    background-color: color-mix(in srgb, currentColor 11%, transparent) !important;
+    background-color: light-dark(#0000000A, #FFFFFF0F) !important;
 
     &:active {
-      background-color: color-mix(in srgb, currentColor 20%, transparent) !important;
+      background-color: light-dark(#00000006, #FEFEFE0B) !important;
     }
   }
 
   .titlebar-close:hover {
     stroke: white !important;
-    background-color: #e81123 !important;
+    background-color: #C42B1C !important;
 
     &:active {
-      background-color: #DC5C66 !important;
+      background-color: #C32B1BE5 !important;
     }
 
     toolbar[brighttext] &:active {
-      background-color: #971821 !important;
+      background-color: #C32B1BE5 !important;
     }
   }
 
