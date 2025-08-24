@@ -214,6 +214,22 @@
     }
   }
 }
+
+/* Native titlebar button metrics */
+@media -moz-pref("uc.winui.native-titlebar-button-metrics") {
+  .titlebar-button{
+    height: 29px !important;
+    width: 45px !important;
+    display: block;
+  }
+  .titlebar-min, .titlebar-max, .titlebar-restore{
+    margin-right: 1px !important;
+  }
+  .titlebar-button::before{
+    margin-top: 1px;
+  }
+}
+
 /* #endregion */
 
 

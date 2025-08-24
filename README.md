@@ -59,6 +59,7 @@ Create the following boolean or numeric keys as required:
 - `uc.winui.titlebar-style` - 1 to add rounded corners to the titlebar buttons and 2 to add rounded corners and accent-colored glyphs when hovering over them
 - `uc.winui.transparent-urlbar` - Makes the URL bar transparent
 - `uc.winui.urlbar-extra-separators` - Add highlighted separators to either side of URL bar
+- `uc.winui.native-titlebar-button-metrics` - Changes the metrics of the titlebar buttons (close/maximize/restore/minimize) to be more like the native ones
 
 ### Layout
 
