@@ -225,6 +225,9 @@
   .titlebar-min, .titlebar-max, .titlebar-restore{
     margin-right: 1px !important;
   }
+  .titlebar-button::before{
+    margin-top: 1px;
+  }
 }
 
 /* #endregion */
