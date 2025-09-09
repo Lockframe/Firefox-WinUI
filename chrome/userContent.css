@@ -444,13 +444,9 @@
 			}
 
 			@media -moz-pref("uc.winui.extra-animations") {
-				.top-site-outer {
-					box-shadow: var(--buttonShadowLight),
-						0 2px 4px rgba(0,0,0,.04) !important;
-				}
 				.top-site-outer:hover {
 					box-shadow: var(--buttonShadowLightPressed),
-						0 2px 4px rgba(0,0,0,.1) !important;
+						0 3px 4px rgba(0,0,0,.06) !important;
 					transform: translateY(-3px) !important;
 				}
 				.top-site-outer:active {
@@ -493,7 +489,7 @@
 			@media -moz-pref("uc.winui.extra-animations") {
 				.top-site-outer:hover {
 					box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 -1px 0 rgba(255,255,255,.03),
-						0 2px 4px rgba(0,0,0,.26) !important;
+						0 3px 4px rgba(0,0,0,.26) !important;
 					transform: translateY(-3px) !important;
 				}
 				.top-site-outer:active {

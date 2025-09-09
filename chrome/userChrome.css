@@ -6659,53 +6659,67 @@ button
 }
 
 /* Hide tab bar with 1 tab - Needs polishing - Best without mica */
-@media -moz-pref("uc.winui.hide-with-1-tab") {
-  :root[sizemode="normal"] #nav-bar{ --uc-window-drag-space-width: 20px }
+@media not -moz-pref("sidebar.verticalTabs") {
+  @media  -moz-pref("uc.winui.hide-with-1-tab") {
 
-  #titlebar{ -moz-appearance: none !important; }
-  #TabsToolbar{ min-height: 0 !important; margin-top: -1px !important; }
+    .accessibility-indicator{ 
+      height: unset !important;
+    }
+    .accessibility-indicator > hbox{ padding-block: 0 !important }
 
-  #tabbrowser-tabs,
-  #tabbrowser-arrowscrollbox{ min-height: 0 !important; }
+    .tabbrowser-tab:only-of-type:not([pinned="true"]),
+    .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]{
+      visibility: collapse !important;
+      min-height: 0 !important;
+      height: 0;
+    }
 
-  .accessibility-indicator,
-  .private-browsing-indicator{ 
-    height: unset !important;
-  }
-  .accessibility-indicator > hbox{ padding-block: 0 !important }
+    :root:has(.tabbrowser-tab:only-of-type:not([pinned="true"]),
+    .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]) {
+      /*#tabbrowser-arrowscrollbox-periphery,*/
+      #private-browsing-indicator-with-label,
+      #TabsToolbar > .titlebar-buttonbox-container {
+        contain: strict;
+      }
 
-  .tabbrowser-tab:only-of-type,
-  .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]{
-    visibility: collapse !important;
-    min-height: 0 !important;
-    height: 0;
-  }
-  /* Fix window controls not being clickable */
-  :root[tabsintitlebar] #toolbar-menubar[autohide="true"][inactive]{
-    transition: height 0ms steps(1) 80ms;
-  }
-  :where(#nav-bar){
-    border-inline: var(--uc-window-drag-space-width,0) solid var(--toolbar-bgcolor);
-  }
+      #TabsToolbar #tabs-newtab-button {
+        display: none !important;
+      }
 
-  #tabbrowser-arrowscrollbox-periphery,
-  #private-browsing-indicator-with-label,
-  #TabsToolbar > .titlebar-buttonbox-container {
-    contain: strict;
-    contain-intrinsic-height: 0;
-  }
-  #tabbrowser-arrowscrollbox-periphery{
-    contain-intrinsic-width: 36px;
-    padding-inline-end: 4px;
-  }
-  #private-browsing-indicator-with-label{
-    contain-intrinsic-width: 116px;
-  }
-  #TabsToolbar > .titlebar-buttonbox-container{
-    contain-intrinsic-width: var(--uc-window-control-width,138px);
-    margin-bottom: 0 !important;
+      /* Push immovable panel button to make space for window controls */
+      #PanelUI-button {
+        margin-right: 140px !important;
+      }
+
+      /* Push titlebar buttons into the navbar */
+      #tabbrowser-arrowscrollbox-periphery * {
+        z-index: 99 !important;
+      }
+      .titlebar-buttonbox-container {
+        z-index: 1 !important;
+        margin-bottom: -48px !important;
+        pointer-events: all !important;
+
+      }
+      /* Make titlebar buttons clickable */
+      #nav-bar {
+        z-index: -1 !important;
+      }
+      
+      /* Spacer for window dragging */
+      .titlebar-spacer[type="post-tabs"],
+      :root[privatebrowsingmode="temporary"]:not([chromehidden~="toolbar"]) #nav-bar .titlebar-spacer[type="post-tabs"] {
+        display: block !important;
+      }
+    }
+
+    /* Match regular titlebar button box width */
+    #TabsToolbar > .titlebar-buttonbox-container{
+      contain-intrinsic-width: 140px;
+    }
   }
 }
+
 
 /* Fix Sidebar revamp causing a weird line to appear below the nav bar */
 @media -moz-pref("sidebar.revamp") {
@@ -8202,12 +8216,17 @@ button
     padding-bottom: -1px !important;
   }
   
-  #vertical-pinned-tabs-container {
+  #pinned-tabs-container[orient="vertical"] {
     min-height: 50px !important;
+    
+    & .tab-background:not(:hover, [selected]) {
+      clip-path: inset(1px round 4px) !important;
+    }
   }
 
-  #vertical-pinned-tabs-splitter {
+  splitter[orient="vertical"] {
     border-top: 1px solid var(--dropdownSeparator) !important;
+    border-bottom: none !important;
     margin-inline: 0 !important;
 
     &:hover {
