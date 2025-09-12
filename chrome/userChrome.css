@@ -6676,7 +6676,6 @@ button
 
     :root:has(.tabbrowser-tab:only-of-type:not([pinned="true"]),
     .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]) {
-      /*#tabbrowser-arrowscrollbox-periphery,*/
       #private-browsing-indicator-with-label,
       #TabsToolbar > .titlebar-buttonbox-container {
         contain: strict;
@@ -6857,8 +6856,7 @@ button
 }
 
 @media -moz-pref("uc.winui.rounded-navbar") {
-  #nav-bar,
-  #PersonalToolbar {
+  #nav-bar {
     border-radius: 8px 8px 0 0 !important;
   }
 }
@@ -7034,42 +7032,51 @@ button
     margin-inline: 5px !important;
     height: 48px !important;
   }
+  #PersonalToolbar {
+    margin-inline: 5px !important;
+  }
+  
   /* Animated refresh icon */
   .toolbarbutton-animatable-box {
     transform: scale(85%) !important;
     margin-left: -2px !important;
     margin-top: -1px !important;
   }
+  
  @media -moz-pref("uc.winui.rounded-corners") {
      :root:not([inDOMFullscreen="true"], 
     [sizemode="fullscreen"], 
     [sizemode="maximized"]) browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
-      margin: -1px 4px 4px 4px !important;
-      border-radius: 0 0 6px 6px !important;
-      border: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      border: 1px solid light-dark(rgba(0,0,0,.105), rgba(0,0,0,.25)) !important;
+      border-top: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
     }
     :root[sizemode="maximized"] browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
-      margin: 0px 4px 4px 4px !important;
-      border-radius: 0 0 8px 8px !important;
-      border: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
-      border-top: none !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      border: 1px solid light-dark(rgba(0,0,0,.105), rgba(0,0,0,.25)) !important;
+      border-top: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
     }
    
-    :root {   
-      & tabbox#tabbrowser-tabbox,
-      & #tabbrowser-tabpanels {
-        background-color: transparent !important;
+    :root {
+      & tabbox#tabbrowser-tabbox {
+        margin: 0 4px 4px 4px !important;
+        border-radius: 0 0 5px 5px !important;
+        clip-path: inset(0 round 0 0 5px 5px) !important;
       }
 
       &:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [chromehidden*="toolbar"], [chromehidden*="menubar"]) tabbox#tabbrowser-tabbox browser {
         border-radius: 0 0 5px 5px !important;
         clip-path: circle(100%) !important;
       }
-      &[sizemode="maximized"] tabbox#tabbrowser-tabbox browser {
+      &[sizemode="maximized"] tabbox#tabbrowser-tabbox {
         border-radius: 0 0 8px 8px !important;
+        clip-path: inset(0 round 0 0 7px 7px) !important;
       }
     }
   }
+  
   @media -moz-pref("uc.winui.navbar-highlights") {
     @media (prefers-color-scheme: light) {
       #nav-bar,
