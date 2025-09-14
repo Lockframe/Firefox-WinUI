@@ -440,12 +440,6 @@ menuitem[type="radio"][checked="true"] {
   }
 }
 
-#chatbot-menupopup {
-  menuitem[checked="true"] image {
-    margin-left: -24px !important;
-  }
-}
-
 /* Create space for icons */
 .customize-context-removeFromToolbar .menu-text::after,
 menuitem[command="downloadsCmd_clearList"] .menu-text::after,
@@ -1038,14 +1032,17 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
 }
 
 /* First tab spacing from window */
-#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned="true"] {
-  margin-inline: 1px !important;
-}
-#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned="true"]:first-of-type {
-  padding-left: 7px !important;
-}
-#tabbrowser-arrowscrollbox[orient="horizontal"] > .tabbrowser-tab:not([pinned="true"]):first-of-type {
-  margin-left: 7px !important;
+
+@media not -moz-pref("uc.winui.immersive-navbar") {
+  #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned="true"] {
+    margin-inline: 1px !important;
+  }
+  #tabbrowser-tabs:not([overflow]) .tabbrowser-tab[pinned="true"]:first-of-type {
+    padding-left: 7px !important;
+  }
+  #tabbrowser-arrowscrollbox[orient="horizontal"] > .tabbrowser-tab:not([pinned="true"]):first-of-type {
+    margin-left: 7px !important;
+  }
 }
 
 /* Prevent audio playing tabs from modifying tab width */
@@ -1735,13 +1732,6 @@ input[type="text"] {
 #tabbrowser-tabs:has(.tabbrowser-tab:hover:not([pinned="true"]):first-of-type){
   .tabbrowser-tab[pinned="true"]:first-of-type:last-of-type .tab-stack::after {
     display: none !important;
-  }
-}
-
-/* Applies margin-left if there are pinned tabs but no regular tabs */
-#tabbrowser-tabs:has(.tabbrowser-tab:last-of-type[pinned="true"]):not(:has(.tabbrowser-tab:not([pinned="true"]))){
-  #tabs-newtab-button {
-    margin-left: 8px !important;
   }
 }
 
@@ -5866,15 +5856,15 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 }
 
 /* Active tab */
-  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background {
-    background: var(--frameBG) !important;
-  }
+.tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background {
+  background: var(--frameBG) !important;
+}
 
-  /* Bottom corners */
-  .tab-background:is([selected], [multiselected]) {
-    --uc-tab-corner-bg: var(--frameBG);
-    --uc-tab-corner-outline: var(--tabCorner) !important;
-  }
+/* Bottom corners */
+.tab-background:is([selected], [multiselected]) {
+  --uc-tab-corner-bg: var(--frameBG);
+  --uc-tab-corner-outline: var(--tabCorner) !important;
+}
 
 /* Inactive tab text */  
 .tabbrowser-tab:not([selected]) .tab-content{
@@ -6619,9 +6609,6 @@ button
   #PersonalToolbar {
     box-shadow: 0 -1px 0 0 rgba(0,0,0,.0) inset !important;
   }
-  #statuspanel-label{
-    margin: 0 0 9px 9px !important;
-  }
   
   #sidebar-box {
     border-right: 0px !important;
@@ -6857,7 +6844,58 @@ button
 
 @media -moz-pref("uc.winui.rounded-navbar") {
   #nav-bar {
-    border-radius: 8px 8px 0 0 !important;
+    border-radius: 0 8px 0 0 !important;
+  }
+  #nav-bar::before {
+    border-radius: 0 8px 0 0;
+  }
+  
+  /* Corner-rounding logic */
+  :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"]) {
+    &:has(.tabbrowser-tab[pinned="true"]:first-of-type[selected="true"][visuallyselected=""]) {
+      & #nav-bar {
+        border-radius: 0 8px 0 0 !important;
+        &::before {
+          border-radius: 0 8px 0 0 !important;
+        }
+      }
+    }
+    &:has(.tabbrowser-tab[pinned="true"]:first-of-type:not([selected="true"][visuallyselected=""])) {
+      & #nav-bar {
+        border-radius: 8px 8px 0 0 !important;
+        &::before {
+          border-radius: 8px 8px 0 0 !important;
+        }
+      }
+    }
+    
+    &:not(:has(.tabbrowser-tab[pinned="true"])) {
+      &:has(.tabbrowser-tab:first-of-type:is([selected="true"][visuallyselected=""])) {
+        #nav-bar {
+          border-radius: 0 8px 0 0 !important;
+          &::before {
+            border-radius: 0 8px 0 0 !important;
+          }
+        }
+      }
+      &:has(.tabbrowser-tab:first-of-type:not([selected="true"][visuallyselected=""])) {
+        #nav-bar {
+          border-radius: 8px 8px 0 0 !important;
+          &::before {
+            border-radius: 8px 8px 0 0 !important;
+          }
+        }
+      }
+    }
+  }
+  
+  @media -moz-pref("uc.winui.floating-tabs") {
+    #nav-bar {
+      border-radius: 8px 8px 0 0 !important;
+    }
+    #nav-bar::before {
+      border-radius: 8px 8px 0 0 !important;
+    }
   }
 }
 
@@ -7043,36 +7081,113 @@ button
     margin-top: -1px !important;
   }
   
- @media -moz-pref("uc.winui.rounded-corners") {
-     :root:not([inDOMFullscreen="true"], 
+  /* Left-most tab positioning */
+  :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], .tabbrowser-tab[pinned="true"]) {
+    & .tabbrowser-tab[pinned="true"]:first-of-type {
+      margin-right: 4px !important;
+    }
+  }
+  :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], .tabbrowser-tab[pinned="true"]):not(:has(.tabbrowser-tab:not([pinned="true"]))) {
+    & .tabbrowser-tab[pinned="true"]:last-of-type {
+      margin-right: 8px !important;
+    }
+  }
+  :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], .tabbrowser-tab:not([pinned="true"])) {
+    & .tabbrowser-tab:first-of-type {
+      margin-left: 4px !important;
+    }
+  }
+  
+  /* First tab bottom left corner integration with the navbar */
+  .tabbrowser-tab:first-of-type:is([pinned="true"]) .tab-background:is([selected], [multiselected])::before {
+    --uc-tab-corner-bg: transparent !important;
+    --uc-tab-corner-outline: transparent !important;
+  }
+  :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], .tabbrowser-tab:first-of-type:is([pinned="true"]) .tab-background:not([selected], [multiselected])) {
+    .tabbrowser-tab:first-of-type .tab-background:is([selected], [multiselected])::before {
+      --uc-tab-corner-bg: transparent !important;
+      --uc-tab-corner-outline: transparent !important;
+    }
+  }
+  :root:has(#pinned-tabs-container .tabbrowser-tab[pinned="true"]:first-child:not([selected], [multiselected])) 
+  :has(#tabbrowser-arrowscrollbox .tabbrowser-tab:first-child[selected]) {
+    #tabbrowser-arrowscrollbox .tabbrowser-tab:first-child .tab-background::before {
+      --uc-tab-corner-bg: var(--frameBG) !important;
+      --uc-tab-corner-outline: var(--tabCorner) !important;
+    }
+  }
+  
+  /* Navbar upper shadow */
+  :root, :root .tabbrowser-tab {
+    --uc-titlebar-shadow: none !important;
+    & [brighttext], & [brighttext] .tabbrowser-tab {
+      --uc-titlebar-shadow: transparent !important;
+    }
+  }
+
+  #nav-bar::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 0 0;
+    box-shadow:  0 0 0 1px light-dark(rgba(0,0,0,.05), rgba(0,0,0,.135));
+    z-index: -1;
+  }
+  
+  /* Rounded corners tweak toggle */
+  @media -moz-pref("uc.winui.rounded-corners") {
+    :root:not([inDOMFullscreen="true"], 
     [sizemode="fullscreen"], 
     [sizemode="maximized"]) browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
-      margin: 0 !important;
-      border-radius: 0 !important;
-      border: 1px solid light-dark(rgba(0,0,0,.105), rgba(0,0,0,.25)) !important;
-      border-top: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
+      margin: unset !important;
+      border-radius: unset !important;
+      border-width: 1px 0 0 0 !important;
     }
     :root[sizemode="maximized"] browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
-      margin: 0 !important;
-      border-radius: 0 !important;
-      border: 1px solid light-dark(rgba(0,0,0,.105), rgba(0,0,0,.25)) !important;
-      border-top: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
+      margin: unset !important;
+      border-radius: unset !important;
+      border-width: 1px 0 0 0 !important;
     }
-   
-    :root {
-      & tabbox#tabbrowser-tabbox {
-        margin: 0 4px 4px 4px !important;
+
+    /* === Shared base styles for content browsers === */
+    browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser):not(.sidebar) {
+      margin: 0 !important;
+      border: 1px solid light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.25)) !important;
+      border-width: 1px 0 0 0 !important;
+
+      /* Default radius (non-fullscreen, non-maximized) */
+      :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([sizemode="maximized"]) & {
         border-radius: 0 0 5px 5px !important;
-        clip-path: inset(0 round 0 0 5px 5px) !important;
       }
 
-      &:not([inDOMFullscreen="true"], [sizemode="fullscreen"], [chromehidden*="toolbar"], [chromehidden*="menubar"]) tabbox#tabbrowser-tabbox browser {
-        border-radius: 0 0 5px 5px !important;
-        clip-path: circle(100%) !important;
-      }
-      &[sizemode="maximized"] tabbox#tabbrowser-tabbox {
+      /* Maximized state override */
+      :root[sizemode="maximized"] & {
         border-radius: 0 0 8px 8px !important;
-        clip-path: inset(0 round 0 0 7px 7px) !important;
+      }
+    }
+
+    /* === Tabbox container === */
+    :root {
+      tabbox#tabbrowser-tabbox {
+        margin: 0 5px 5px 5px !important;
+        border-radius: 0 0 5px 5px !important;
+        clip-path: inset(-1px round 0 0 7px 7px) !important;
+        box-shadow:
+          1px 0 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)),
+          -1px 0 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)),
+          0 1px 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)) !important;
+
+        /* Maximized state */
+        &[sizemode="maximized"] & {
+          border-radius: 0 0 8px 8px !important;
+        }
+
+        /* Inner browser rounding when UI is visible */
+        :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]) & browser {
+          border-radius: 0 0 5px 5px !important;
+          clip-path: circle(100%) !important;
+        }
       }
     }
   }
