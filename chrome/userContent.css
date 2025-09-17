@@ -663,6 +663,8 @@
 
 		--prefs-table-border-width: 0 !important;
 		--main-margin-start: unset !important;
+		
+		background-color: light-dark(rgba(255,255,255,.45),rgba(58,58,58,.25)) !important;
 
 		scrollbar-color:
 			light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
@@ -859,6 +861,10 @@
 			background-color: var(--textButtonPressed) !important;
 			fill: var(--textPressed) !important;
 		}
+	}
+	
+	.config-background {
+		display: none !important;
 	}
 
 	/* Parts restyling */

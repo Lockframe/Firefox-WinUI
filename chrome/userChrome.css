@@ -265,22 +265,20 @@ h1, h2, h3 {
 }
 #pageAction-panel-bookmark:not([starred]), 
 #context-bookmarkpage:not([starred]) {
-  list-style-image: url('icons/star.svg') !important;
-  list-style-image: none !important;
   background-image: url(icons/star.svg);
   background-repeat: no-repeat;
-  background-size: 16px;
+  background-size: 17px;
   background-position: 10px 6px !important;
   -moz-context-properties: fill !important;
   fill: var(--textPrimary) !important;
 }
+
 #pageAction-panel-bookmark[starred],
 #context-bookmarkpage[starred] {
-  list-style-image: url("icons/star-filled.svg") !important;
   list-style-image: none !important;
   background-image: url(icons/star-filled.svg) !important;
   background-repeat: no-repeat;
-  background-size: 16px;
+  background-size: 17px;
   background-position: 10px 5px !important;
   -moz-context-properties: fill !important;
   fill: var(--textPrimary) !important;
@@ -995,6 +993,28 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
     margin-top: 2px;
   }
 }
+
+#appMenu-empty-profiles-button .toolbarbutton-icon {
+  list-style-image: url(icons/contact.svg);
+  height: 16px;
+}
+
+/* Use web links until the local path method is found */
+#context-back {
+  --menuitem-icon: url(https://raw.githubusercontent.com/Lockframe/Firefox-WinUI/refs/heads/main/chrome/icons/back.svg) !important;
+}
+#context-forward {
+  --menuitem-icon: url(https://raw.githubusercontent.com/Lockframe/Firefox-WinUI/refs/heads/main/chrome/icons/forward.svg) !important;
+}
+#context-reload {
+  --menuitem-icon: url(https://raw.githubusercontent.com/Lockframe/Firefox-WinUI/refs/heads/main/chrome/icons/reload.svg) !important;
+}
+#context-bookmarkpage {
+  --menuitem-icon: unset !important;
+}
+
+
+/* =========================================== */
 
 /* Active tab with semibold text */
 .tabbrowser-tab[selected] label { 
@@ -1726,6 +1746,12 @@ input[type="text"] {
 #pinned-tabs-container[orient="horizontal"] {
   margin-inline: 0 -7px !important;
 }
+/* Prevent add-tab button from overlapping with the pinned tab */
+:root:has(#pinned-tabs-container[orient="horizontal"], .tabbrowser-tab[pinned="true"]):not(:has(.tabbrowser-tab:not([pinned="true"]))) {
+   .tabbrowser-tab:last-of-type {
+    margin-right: 8px !important;
+  }
+}
 
 /* Prevent separator from appearing if the first tab is selected/hovered */
 #tabbrowser-tabs:has(.tabbrowser-tab[selected="true"][visuallyselected=""]:not([pinned="true"]):first-of-type),
@@ -1745,7 +1771,7 @@ input[type="text"] {
 }
 
 /* Remove unnecessary outline */
-#urlbar-background, #searchbar {
+.urlbar-background, #searchbar {
   #urlbar[open] & {
     :root:not([lwtheme]) & {
       outline-color: transparent !important;
@@ -1962,7 +1988,7 @@ tooltip,
 }
 
 /* URL bar customization */
-#urlbar-background {
+.urlbar-background {
   outline: none !important;
   border: none !important;
   height: 30px !important;
@@ -1975,7 +2001,7 @@ tooltip,
 }
 
 /* Open URL bar & results */
-#urlbar[open]>#urlbar-background,
+#urlbar[open]>.urlbar-background,
 #urlbar[breakout][breakout-extend][open] {
   border-radius: 3px 3px 8px 8px !important;
 }
@@ -2116,7 +2142,7 @@ moz-input-box > menupopup .context-menu-add-engine > .menu-iconic-left::after {
   height: 30px !important;
   transform: translateY(8px) !important;
 
-  & #urlbar-background {
+  & .urlbar-background {
     border-radius: 3px 3px 0 0 !important;
     border-bottom: 1px transparent !important;
   }
@@ -2128,7 +2154,7 @@ moz-input-box > menupopup .context-menu-add-engine > .menu-iconic-left::after {
   }
 }
 
-#urlbar, #urlbar-background, .urlbar-input-container {
+#urlbar, .urlbar-background, .urlbar-input-container {
   animation: none !important;
 }
 
@@ -2199,6 +2225,18 @@ menuitem {
       display: none;
     }
   }
+}
+
+/* Replace colorful panel border color with the proper separator styling */
+.PanelUI-subView {
+  & toolbarseparator.proton-zap::before {
+    border-image: none !important;
+  }
+}
+
+.panel-viewcontainer toolbarseparator {
+  margin-inline: -14px !important;
+  color: var(--dropdownSeparator) !important;
 }
 
 #PanelUI-fxa h1 span::before {
@@ -3607,7 +3645,7 @@ button:has(img[src="chrome://global/skin/icons/settings.svg"]) {
 }
 
 /* Rounded upper left corner if the side panel is shown */
-:root:has(#sidebar-main:not([hidden="true"])) {
+:root:has(#sidebar-main:not([hidden=""])) {
   browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
     margin: -1px !important;
     border-radius: 8px 0 0 0 !important;
@@ -4019,7 +4057,7 @@ findbar {
   order: -1 !important;
   z-index: 99 !important;
   
-  &:has(.found-matches:not([hidden="true"])) {
+  &:has(.found-matches:not([hidden=""])) {
     width: 58rem !important;
   }
 }
@@ -4131,7 +4169,7 @@ findbar:not([hidden]) {
 
 /* Matches found */
 .findbar-find-status, .found-matches {
-  &:not([hidden="true"]) {
+  &:not([hidden=""]) {
     display: block !important;
     margin-inline: 2px 0 !important;
     font-size: 13px !important;
@@ -5212,11 +5250,11 @@ html[windowtype="Toolkit:PictureInPicture"] {
 }
 
 /* Accurate implementation of the bottom accent border when url bar is focused */
-#urlbar[breakout][breakout-extend]:not([usertyping]) > #urlbar-background,
-#urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background {
+#urlbar[breakout][breakout-extend]:not([usertyping]) > .urlbar-background,
+#urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background {
   border-radius: 3px !important;
 }
-#urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
+#urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background::after {
   content: '';
   width: 100%;
   height: 2px;
@@ -5562,13 +5600,6 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
   }  
 }
 
-
-
-#appMenu-empty-profiles-button .toolbarbutton-icon {
-  list-style-image: url(icons/contact.svg);
-  height: 16px;
-}
-
 #appMenu-fxa-label2[fxastatus="not_configured"] {
   padding-left: 0 !important;
   
@@ -5877,16 +5908,16 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 }
 
 /* URL bar customization */
-#urlbar-background, #searchbar {
+.urlbar-background, #searchbar {
   background-color: var(--searchBackground) !important;
 }
 /* Hover */
-#urlbar:hover>#urlbar-background, #searchbar:hover {
+#urlbar:hover>.urlbar-background, #searchbar:hover {
   background-color: var(--searchHover) !important;
 }
 
 /* Open */
-#urlbar[open]>#urlbar-background {
+#urlbar[open]>.urlbar-background {
   background-color: var(--inputActive) !important;
 }
 /* Results */
@@ -6165,12 +6196,12 @@ button
   }
 
   /* URL bar and search bar customization */
-  #urlbar-background, #searchbar {
+  .urlbar-background, #searchbar {
     box-shadow: var(--buttonShadowDark) !important;
   }
   
   /* Open */
-  #urlbar[open]>#urlbar-background {
+  #urlbar[open]>.urlbar-background {
     box-shadow: var(--buttonShadowDarkPressed) !important;
   }
   #searchbar:focus-within {
@@ -6335,11 +6366,11 @@ button
   }
 
   /* URL bar customization */
-  #urlbar-background, #searchbar {
+  .urlbar-background, #searchbar {
     box-shadow: var(--buttonShadowLight) !important;
   }
   /* Open */
-  #urlbar[open]>#urlbar-background {
+  #urlbar[open]>.urlbar-background {
     box-shadow: var(--buttonShadowLightPressed) !important;
   }
   #searchbar:focus-within {
@@ -6672,36 +6703,16 @@ button
         display: none !important;
       }
 
-      /* Push immovable panel button to make space for window controls */
-      #PanelUI-button {
-        margin-right: 140px !important;
-      }
-
-      /* Push titlebar buttons into the navbar */
-      #tabbrowser-arrowscrollbox-periphery * {
-        z-index: 99 !important;
-      }
-      .titlebar-buttonbox-container {
-        z-index: 1 !important;
-        margin-bottom: -48px !important;
-        pointer-events: all !important;
-
-      }
-      /* Make titlebar buttons clickable */
-      #nav-bar {
-        z-index: -1 !important;
-      }
-      
       /* Spacer for window dragging */
       .titlebar-spacer[type="post-tabs"],
       :root[privatebrowsingmode="temporary"]:not([chromehidden~="toolbar"]) #nav-bar .titlebar-spacer[type="post-tabs"] {
         display: block !important;
       }
-    }
 
-    /* Match regular titlebar button box width */
-    #TabsToolbar > .titlebar-buttonbox-container{
-      contain-intrinsic-width: 140px;
+      /* Use native implementation of navbar titlebar buttons */
+      #nav-bar .titlebar-buttonbox-container {
+        display: flex !important;
+      }
     }
   }
 }
@@ -6780,11 +6791,11 @@ button
 }
 
 @media -moz-pref("uc.winui.pill-urlbar") {
-  #urlbar-background {
+  .urlbar-background {
     border-radius: 99px !important;
   }
   #urlbar[breakout][breakout-extend][open],
-  #urlbar[breakout][breakout-extend][open] > #urlbar-background {
+  #urlbar[breakout][breakout-extend][open] > .urlbar-background {
     border-radius: 16px 16px 0 0 !important;
   }
   #identity-icon-box {
@@ -6795,11 +6806,11 @@ button
   }
   
   /* Accent bottom border */
-  #urlbar[breakout][breakout-extend]:not([usertyping]) > #urlbar-background,
-  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background {
+  #urlbar[breakout][breakout-extend]:not([usertyping]) > .urlbar-background,
+  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background {
     border-radius: 16px !important;
   }
-  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
+  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background::after {
     height: 30px !important;
     margin-top: 1px !important;
     clip-path: inset(28px 0 0 0) !important;
@@ -6836,7 +6847,7 @@ button
 }
 
 @media -moz-pref("uc.winui.transparent-urlbar") {
-  #urlbar-background {
+  .urlbar-background {
     background-color: transparent !important;
     box-shadow: none !important;
   }
@@ -7213,12 +7224,12 @@ button
 }
 
 @media -moz-pref("uc.winui.taller-urlbar") {
-  #urlbar-background {
+  .urlbar-background {
     height: 34px !important;
     margin-top: -2px !important;
   }
   /* Accent bottom border */
-  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
+  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background::after {
     height: 34px !important;
     margin-top: 1px !important;
     clip-path: inset(32px 0 0 0) !important;
@@ -7494,18 +7505,18 @@ button
   menupopup menuitem[_moz-menuactive]:not([disabled=true]),
   menupopup menu:not([disabled=true]),
   menupopup menuitem:not([disabled=true]),
-  #urlbar-background,
+  .urlbar-background,
   #searchbar,
   .download-state {
     transition: var(--basicBGAnimation) !important;
   }
 
-  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >#urlbar-background::after {
+  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background::after {
     animation: selectorBar2 187ms forwards;
   }
 
   #urlbar[breakout][breakout-extend][open],
-  #urlbar[open]>#urlbar-background {
+  #urlbar[open]>.urlbar-background {
     transition: none !important;
   }
 
@@ -8829,10 +8840,6 @@ button
       background-color: var(--accentPressed) !important;
       box-shadow: none !important;
     }
-  }
-  
-  #updateIcon {
-    display: none !important;
   }
 
   @media not -moz-pref("widget.windows.mica") {
