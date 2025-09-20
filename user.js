@@ -10,3 +10,4 @@ user_pref("browser.urlbar.groupLabels.enabled", false);
 user_pref("browser.newtabpage.activity-stream.newtabLayouts.variant-a", false);
 user_pref("browser.newtabpage.activity-stream.newtabLayouts.variant-b", false);
 user_pref("browser.startup.blankWindow", false);
+user_pref("sidebar.revamp.round-content-area", false);
