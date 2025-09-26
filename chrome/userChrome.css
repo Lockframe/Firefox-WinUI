@@ -1003,6 +1003,10 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   height: 16px;
 }
 
+#context_askChat {
+  --menu-image: url(../icons/sparkle.svg) !important;
+}
+
 /* =========================================== */
 
 /* Active tab with semibold text */
@@ -1934,9 +1938,10 @@ menuseparator {
   opacity: .6 !important;
 }
 
-/*menuitem[disabled="true"] label {
-  color: var(--textDisabled) !important;
-}*/
+/* Extension entries */
+.menu-icon[srcset] {
+  margin-right: 12px !important;
+}
 
 /* Change profile button in settings menu */
 appMenu-empty-profiles-button {
@@ -7096,12 +7101,14 @@ button
     margin-bottom: 0px !important;
   }
 
-  #nav-bar {
-    margin-inline: 5px !important;
-    height: 48px !important;
-  }
-  #PersonalToolbar {
-    margin-inline: 5px !important;
+  :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]) {
+    #nav-bar {
+      margin-inline: 5px !important;
+      height: 48px !important;
+    }
+    #PersonalToolbar {
+      margin-inline: 5px !important;
+    }
   }
   
   /* Animated refresh icon */
@@ -7200,7 +7207,7 @@ button
     }
 
     /* === Tabbox container === */
-    :root:has(#sidebar-main[hidden=""]) {
+    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]):has(#sidebar-main[hidden=""]) {
       tabbox#tabbrowser-tabbox {
         margin: 0 5px 5px 5px !important;
         border-radius: 0 0 5px 5px !important;
