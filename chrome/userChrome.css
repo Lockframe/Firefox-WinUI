@@ -334,7 +334,7 @@ h1, h2, h3 {
 #PanelUI-menu-button,
 #appMenu-more-button2,
 .unified-extensions-item-menu-button {
-  list-style-image: url("icons/cog.svg") !important;
+  list-style-image: url("icons/settings.svg") !important;
 }
 #identity-box[pageproxystate="valid"].verifiedDomain #identity-icon, 
 #identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon {
@@ -349,13 +349,16 @@ h1, h2, h3 {
   background-image: url(icons/lock.svg);
   background-repeat: no-repeat !important;
   background-position: 10px center !important;
-  background-size: 12px !important;
 }
 
 #appMenu-zoom-controls::before {
-  content: url(icons/zoom.svg);
+  content: '';
+  background-image: url(icons/zoom.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 14px;
   margin-right: -16px;
-  width: 16px;
+  width: 17px;
   height: 16px;
 }
 
@@ -389,8 +392,8 @@ h1, h2, h3 {
   list-style-image: none !important;
   background-image: url(icons/help.svg) !important;
   background-repeat: no-repeat !important;
-  background-size: 8px !important;
-  background-position: 12px 6px !important;
+  background-size: 14px !important;
+  background-position: 12px 7px !important;
 }
 
 menuitem[type="checkbox"]:not([checked="true"]){
@@ -403,16 +406,11 @@ menuitem[type="checkbox"][checked="true"] {
     margin-left: 4px !important;
   }
 }
-menuitem[type="radio"]:not([checked="true"]) {
-  .menu-text {
-    margin-left: 24px !important;
-  }
-}
-menuitem[checked="true"] {
+menuitem[type="checkbox"][checked="true"] {
   & > .menu-icon {
     content: url(icons/checkmark-small.svg) !important;
     padding: 3px !important;
-    fill: var(--textSecondary) !important;
+    fill: var(--textPrimary) !important;
     display: block !important;
   }
   &:hover {
@@ -421,17 +419,25 @@ menuitem[checked="true"] {
     }
   }
 }
-menuitem[type="radio"][checked="true"]:not(#toggle_PersonalToolbar menuitem) {
+menuitem[type="radio"]:not([checked="true"]) {
+  .menu-text {
+    margin-left: 29px !important;
+  }
+}
+menuitem[type="radio"][checked="true"] {
   & > .menu-icon {
     content: url(icons/radio-bullet.svg) !important;
-    padding: 4px !important;
-    fill: var(--textSecondary) !important;
+    padding: 6px !important;
+    fill: var(--textPrimary) !important;
     display: block !important;
   }
   &:hover {
     & > .menu-icon {
       fill: var(--textPrimary) !important;
     }
+  }
+  & .menu-text {
+    margin-left: 5px !important;
   }
 }
 
@@ -969,7 +975,7 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   height: 100% !important;
 }
 #settings-button::before {
-  background-image: url(icons/cog.svg) !important;
+  background-image: url(icons/settings.svg) !important;
   background-position-y: auto !important;
   height: 100% !important;
 }
@@ -1208,8 +1214,11 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 }
 
 /* Tabs should be at least 100px wide */
-#tabbrowser-tabs {
-  --tab-min-width: 100px !important;
+#tabbrowser-tabs[orient="horizontal"]  {
+  .tabbrowser-tab[fadein]:not([pinned]),
+  .tabbrowser-tab[fadein][soundplaying=""]:not([pinned]){
+    min-width: 100px !important;
+  }
 }
 
 /* Fix for toolbar icons pinned to the tab area */
@@ -2778,6 +2787,7 @@ panel[type="autocomplete-richlistbox"] {
   border-radius: 3px !important;
   margin-block: 3px !important;
   animation: contentSlideUp .333s cubic-bezier(0, 0, 0, 1) !important;
+  max-width: 410px !important;
 }
 #downloadsListBox richlistitem:first-of-type {
   margin-top: 13px !important;
@@ -4474,7 +4484,6 @@ label[data-l10n-id="choose-other-app-description"] {
   margin-left: 12px !important;
   margin-top: 13px !important;
   margin-bottom: 10px !important;
-  text-transform: capitalize !important;
 }
 
 #commonDialog, #commonDialogWindow {
