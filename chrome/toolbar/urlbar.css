@@ -132,7 +132,7 @@
   }
 
   .urlbarView:not([noresults]) > & {
-    border-color: var(--urlbarView-separator-color) !important;
+    border-color: var(--dropdownSeparator) !important;
   }
 
   #urlbar-anon-search-settings {

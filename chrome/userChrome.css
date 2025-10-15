@@ -261,7 +261,8 @@ h1, h2, h3 {
   list-style-image: url('icons/open-folder.svg') !important;
 }
 #reader-mode-button > .urlbar-icon {
-  list-style-image: url('icons/read.svg') !important;
+  list-style-image: url(icons/read.svg) !important;
+  width: 15px !important;
 }
 #pageAction-panel-bookmark:not([starred]), 
 #context-bookmarkpage:not([starred]) {
@@ -287,6 +288,9 @@ h1, h2, h3 {
 #star-button:not([starred]) {
   list-style-image: none !important;
   background-image: url(icons/star.svg) !important;
+  background-size: 16px !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
 }
 #star-button[starred] {
   list-style-image: none !important;
@@ -1013,6 +1017,16 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   --menu-image: url(../icons/sparkle.svg) !important;
 }
 
+/* Custom Copilot glyph if it is selected as the AI provider */
+:root:has(#context-ask-chat[data-l10n-args='{"provider":"Copilot"}']) {
+  #context-ask-chat > label::after {
+    content: url(icons/copilot.svg) !important;
+  }
+  #context_askChat {
+    --menu-image: url(../icons/copilot.svg) !important;
+  }
+}
+
 /* =========================================== */
 
 /* Active tab with semibold text */
@@ -1355,14 +1369,14 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
     background-image: url("icons/speaker2.svg") !important;
     background-size: 10px !important;
     background-repeat: no-repeat !important;
-    background-position: center 4px !important;
+    background-position: center center !important;
   }
   
   &[muted] .tab-icon-overlay {
     background-image: url("icons/mute.svg") !important;
     background-size: 10px !important;
     background-repeat: no-repeat !important;
-    background-position: center 4px !important;
+    background-position: center center !important;
   }
   
   /* Different treatment - Padding causes it to be cut off - Hidden by default */
@@ -1555,7 +1569,7 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
   & .tab-icon-overlay {
     display: block !important;
     background-image: url("icons/phone.svg") !important;
-    background-size: 6px !important;
+    background-size: 10px !important;
     background-repeat: no-repeat !important;
     background-position: center center !important;
   }
