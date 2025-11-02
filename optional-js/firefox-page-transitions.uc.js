@@ -2,16 +2,14 @@
 // @name         Firefox WinUI 3 Page Transitions
 // @description  Applies WinUI 3 style page transitions based on navigation direction
 // @author       Vibe-coded with Claude
-// @version      1.0
+// @version      1.2-fix2
 // ==/UserScript==
 
 (function() {
     'use strict';
     
-    // Debug logging
-    function log(message) {
-        console.log('[Page Transitions]', message);
-    }
+    // Logging has been removed.
+    function log(message) {}
 
     // Animation types
     const ANIMATIONS = {
@@ -30,6 +28,9 @@
     
     // Per-tab state tracking
     const tabStates = new WeakMap();
+    
+    // FIX 2: Timeout de segurança para garantir visibilidade
+    let visibilityTimeoutId = null;
     
     // Tab state structure
     function createTabState() {
@@ -122,6 +123,52 @@
         return tab === gBrowser.selectedTab;
     }
 
+    // FIX 2: Função de segurança que garante visibilidade
+    function ensureCurrentTabVisible() {
+        log('Running visibility safety check...');
+        
+        const currentTab = gBrowser.selectedTab;
+        if (!currentTab || !currentTab.linkedBrowser) {
+            log('No current tab found');
+            return;
+        }
+        
+        const browser = currentTab.linkedBrowser;
+        
+        // Remove todas as classes de animação
+        browser.classList.remove(
+            'browser-animation-prepare',
+            'browser-animation-entrance',
+            'browser-animation-slide-left',
+            'browser-animation-slide-right'
+        );
+        
+        // Force o browser a estar visível
+        browser.style.opacity = '';
+        browser.offsetHeight; // Force reflow
+        
+        log('Current tab visibility ensured');
+    }
+
+    // FIX 2: Agenda verificação de visibilidade com múltiplos timeouts
+    function scheduleVisibilityCheck() {
+        // Cancela timeout anterior se existir
+        if (visibilityTimeoutId) {
+            clearTimeout(visibilityTimeoutId);
+        }
+        
+        // Verifica imediatamente
+        ensureCurrentTabVisible();
+        
+        // Verifica novamente após 50ms
+        setTimeout(ensureCurrentTabVisible, 50);
+        
+        // Verifica novamente após 200ms (fallback final)
+        visibilityTimeoutId = setTimeout(ensureCurrentTabVisible, 200);
+        
+        log('Visibility checks scheduled');
+    }
+
     // Animation queue management
     function queueAnimation(browser, animationType, callback) {
         animationQueue.push({ browser, animationType, callback });
@@ -186,7 +233,10 @@
 
     function prepareBrowser(browser) {
         if (!browser) return;
-        browser.classList.add('browser-animation-prepare');
+        // FIX 2: Só prepara se não estivermos na inicialização
+        if (isInitialized) {
+            browser.classList.add('browser-animation-prepare');
+        }
     }
 
     function unprepareAllBrowsers() {
@@ -355,17 +405,30 @@
             // Ensure browser is visible
             if (browser) {
                 browser.classList.remove('browser-animation-prepare');
+                browser.style.opacity = '';
+                // Force reflow
+                browser.offsetHeight;
             }
+        }
+        
+        // Mark all existing tabs
+        for (const tab of gBrowser.tabs) {
+            const tabState = getTabState(tab);
+            tabState.isNew = false;
+            tabState.hasPlayedEntrance = true;
         }
         
         currentTabIndex = getCurrentTabIndex();
         isInitialized = true;
         
+        // FIX 2: Agenda verificações de visibilidade
+        scheduleVisibilityCheck();
+        
         log('Initial load complete');
     }
 
     function init() {
-        log('Initializing Page Transitions v5.0...');
+        log('Initializing Page Transitions v1.2-fix2...');
 
         if (!window.gBrowser) {
             log('gBrowser not ready, retrying...');
