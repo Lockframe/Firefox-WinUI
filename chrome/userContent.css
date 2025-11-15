@@ -664,6 +664,10 @@
 		--main-margin-start: unset !important;
 		
 		--background-color-canvas: light-dark(rgba(255,255,255,.45),rgba(58,58,58,.25)) !important;
+		
+		--border-radius-small: 3px !important;
+		--border-radius-medium: 3px !important;
+		--border-radius-large: 3px !important;
 
 		scrollbar-color:
 			light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
@@ -875,6 +879,13 @@
 	}
 	label, description {
 		font-size: 14px !important;
+	}
+	
+	/* DNS page error */
+	.trr-message-container {
+		background: unset !important;
+		border: none !important;
+		padding: 8px 0 4px !important;
 	}
 	
 	/* Remove partners ad in settings */

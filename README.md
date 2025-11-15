@@ -51,7 +51,7 @@ Create the following boolean or numeric keys as required:
 - `uc.winui.more-acrylic` - Extends the Acrylic texture into the navbar, bookmarks bar and the selected tab
 - `uc.winui.navbar-highlights` - Adds a highlight to the top of the navbar
 - `uc.winui.pill-urlbar` - URL bar corners are fully rounded
-- `uc.winui.rounded-corners` - Creates a gap with rounded corners between the web content and the browser frame
+- `uc.winui.rounded-corners` - Creates a gap with rounded corners between the web content and the browser frame (⚠️ You will not be able to scroll through the webpage while hovering over the margins. A [.uc.js script](https://github.com/Lockframe/Firefox-WinUI/blob/main/optional-js/scroll-in-browser-margins.uc.js) has been added to fix this)
 - `uc.winui.rounded-navbar` - Rounds the upper corners of the navbar
 - `uc.winui.shorter-titlebar-buttons` - Shrinks the titlebar buttons (close/maximize/restore/minimize) to match WinUI 2 apps
 - `uc.winui.smaller-toolbar-buttons` - Shrinks the toolbar buttons to match other WinUI apps
@@ -79,6 +79,7 @@ Create the following boolean or numeric keys as required:
 - `uc.winui.js-animations` - Enables animations that require external `.uc.js` files due to CSS limitations
 - `uc.winui.extra-animations` - Enables extra and unfinished animations
 - `uc.winui.experiments` - Enables experimental and unfinished features
+- `uc.winui.vtabs-close-button-style` - 1 to change the collapsed vertical tabs' close button into a small overlay on the top right and 2 to hide it entirely.
 
 ### Additional Customization
 

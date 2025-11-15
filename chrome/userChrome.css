@@ -1143,14 +1143,14 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 
 #scrollbutton-up:not(.menupopup-scrollbutton),
 #scrollbutton-down:not(.menupopup-scrollbutton) {
-  border-radius: 7px !important;
+  border-radius: 4px !important;
   padding: 0 2px !important;
-  min-width: 35px !important;
-  max-width: 35px !important;
-  min-height: 28px !important;
-  max-height: 28px !important;
+  min-width: 32px !important;
+  max-width: 32px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
   margin-top: auto !important;
-  bottom: 2px !important;
+  bottom: 4px !important;
   margin-left: -1px !important;
   fill: var(--controlStrong) !important;
   fill-opacity: 1 !important;
@@ -1171,6 +1171,12 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
 
 #scrollbutton-up:not(.menupopup-scrollbutton) {
   left: 4px !important;
+}
+
+toolbarbutton {
+  &:not([disabled]):hover > .toolbarbutton-icon {
+    background-color: transparent !important;
+  }
 }
 
 /* Ensure left-side tab scroll button doesn't overlap pinned tabs */
@@ -1377,6 +1383,16 @@ spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] {
     /* Handle the icon color */
     fill: var(--textAccentPrimary) !important;
     -moz-context-properties: fill !important;
+    
+    &::after {
+      content:'';
+      display: block;
+      position: relative;
+      z-index: 99;
+      background-color: red;
+      height: 23px;
+      width: 23px;
+    }
   }
   
   /* Apply the correct icon for each state */
@@ -6893,6 +6909,15 @@ button
 
 /* Extra highlights like MacOS */
 @media -moz-pref("uc.winui.extra-highlights") {
+  .tab-icon-overlay,
+  #PopupSearchAutoComplete richlistitem[selected="true"]::before,
+  .tab-group-line,
+  #items richlistitem[selected="true"]::before,
+  .in-menulist menuitem[selected="true"]::before {
+    border-top: 1px solid rgba(255,255,255,.08) !important;
+    border-bottom: 1px solid light-dark(rgba(0,0,0,.6), rgba(0,0,0,.4)) !important;
+  }
+  
   @media (prefers-color-scheme: dark) {
     #tabbrowser-tabs .tab-background:is([selected], 
     [multiselected]), #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
@@ -7349,11 +7374,6 @@ button
           -1px 0 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)),
           0 1px 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)) !important;
 
-        /* Maximized state */
-        &[sizemode="maximized"] & {
-          border-radius: 0 0 8px 8px !important;
-        }
-
         /* Inner browser rounding when UI is visible */
         :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]) & browser {
           border-radius: 0 0 5px 5px !important;
@@ -7361,6 +7381,14 @@ button
         }
       }
     }
+    /* Maximized state */
+    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"])[sizemode="maximized"]:has(#sidebar-main[hidden=""]) {
+      tabbox#tabbrowser-tabbox {
+        border-radius: 0 0 8px 8px !important;
+        clip-path: inset(-1px round 0 0 12px 12px) !important;
+      }
+    }
+    
     :root:has(#sidebar-main:not([hidden=""])) {
       #sidebar-main {
         margin: 0 0 5px 5px !important;
@@ -7996,41 +8024,52 @@ button
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    /* Hovering tab animated */
-    .tabbrowser-tab:not([selected]) .tab-background {
-      background-color: transparent !important;
-      box-shadow: 0 -000001px 0 rgba(255,255,255,.0000000000000000000000000001) inset !important;
-      transition: box-shadow ease-in-out 83ms !important;
-    }
-    .tabbrowser-tab:not([selected]):hover .tab-background {
-      background-color: transparent !important;
-      box-shadow: 0 -36px 0 rgba(255,255,255,.0605) inset !important;
-      transition: box-shadow ease-out 183ms !important;
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    /* Hovering tab */
-    .tab-background {
-      .tabbrowser-tab:hover &:not([selected], [multiselected]) {
-        #TabsToolbar:not([brighttext]) & {
-          background-color: transparent !important;
-        }
+  @media not -moz-pref("sidebar.verticalTabs") {
+    @media (prefers-color-scheme: dark) {
+      /* Hovering tab animated */
+      .tabbrowser-tab:not([selected]) .tab-background {
+        background-color: transparent !important;
+        box-shadow: 0 -000001px 0 rgba(255,255,255,.0000000000000000000000000001) inset !important;
+        transition: box-shadow ease-in-out 83ms !important;
+      }
+      .tabbrowser-tab:not([selected]):hover .tab-background {
+        background-color: transparent !important;
+        box-shadow: 0 -36px 0 rgba(255,255,255,.0605) inset !important;
+        transition: box-shadow ease-out 183ms !important;
       }
     }
 
-    /* Hovering tab animated */
-    .tabbrowser-tab:not([selected]) .tab-background {
-      background-color: transparent !important;
-      box-shadow: 0 -000001px 0 rgba(0,0,0,.000000000000000001) inset !important;
-      transition: box-shadow ease-in-out 83ms !important;
-    }
+    @media (prefers-color-scheme: light) {
+      /* Hovering tab */
+      .tab-background {
+        .tabbrowser-tab:hover &:not([selected], [multiselected]) {
+          #TabsToolbar:not([brighttext]) & {
+            background-color: transparent !important;
+          }
+        }
+      }
 
+      /* Hovering tab animated */
+      .tabbrowser-tab:not([selected]) .tab-background {
+        background-color: transparent !important;
+        box-shadow: 0 -000001px 0 rgba(0,0,0,.000000000000000001) inset !important;
+        transition: box-shadow ease-in-out 83ms !important;
+      }
+
+      .tabbrowser-tab:not([selected]):hover .tab-background {
+        background-color: transparent !important;
+        box-shadow: 0 -36px 0 rgba(0,0,0,.03) inset !important;
+        transition: box-shadow ease-out 183ms !important;
+      }
+    }
+  }
+  
+  @media -moz-pref("sidebar.verticalTabs") {
+    .tabbrowser-tab:not([selected]) .tab-background {
+      transition: all ease-in-out 83ms !important;
+    }
     .tabbrowser-tab:not([selected]):hover .tab-background {
-      background-color: transparent !important;
-      box-shadow: 0 -36px 0 rgba(0,0,0,.03) inset !important;
-      transition: box-shadow ease-out 183ms !important;
+      transition: all ease-out 83ms !important;
     }
   }
 }
@@ -8383,6 +8422,11 @@ button
   .tab-background, .tab-background:is([multiselected="true"]) {
     border-radius: 4px !important;
   }
+  
+  /* Move the vertical tabs space relative to the navbar */
+  #sidebar-main #vertical-tabs {
+    margin-top: 0px !important;
+  }
 
   /* Unselected tabs are 1px smaller than selected tabs */
   #vertical-pinned-tabs-container .tab-background:not([selected]),
@@ -8699,6 +8743,98 @@ button
   .tab-group-label-container:has(.tab-group-label[aria-expanded="false"]) {
     margin-bottom: 8px !important;
   }
+  
+  /* Tweaks compatibility */
+  @media -moz-pref("uc.winui.extra-highlights") {
+    /* Selector */
+    .tabbrowser-tab:is([selected], [multiselected]):not([pinned])::before {
+      box-shadow: 0 1.5px 0 rgba(255,255,255,.08) inset, 
+        0 -1.5px 0 0 light-dark(rgba(0,0,0,.6), rgba(0,0,0,.4)) inset !important;
+    }
+    
+    /* Active tab */
+    .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background,
+    .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive{
+      background: var(--button) !important;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      /* Active tab shadows */
+      #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
+      #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+        box-shadow: 0 0 0 1px rgba(255,255,255,.03) inset, 
+          0 1px 0 0 rgba(255,255,255,.07) inset, 
+          0 0 0 1px rgba(0,0,0,.15),
+          0 1px 0 0 rgba(0,0,0,.24) !important;
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      /* Active tab shadows */
+      #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
+      #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+        box-shadow: var(--buttonShadowLight), 0 1px 0 0 rgba(255,255,255,.85) inset !important;
+      }
+    }
+  }
+  @media -moz-pref("uc.winui.rounder-vertical-tabs") {
+    .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background,
+    .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive,
+    .tab-background, .tab-background:is([multiselected="true"]) {
+      border-radius: 7px !important;
+    }
+
+    #vertical-pinned-tabs-container .tab-background:not([selected]),
+    #tabbrowser-tabs[expanded] .tabbrowser-tab:hover .tab-background:not([selected]){
+      clip-path: inset(1px 1px 1px 2px round 8px) !important;
+    }
+
+    #vertical-pinned-tabs-container #tabbrowser-tabs:not([expanded]) .tab-background:not([selected]),
+    #tabbrowser-tabs:not([expanded]) .tabbrowser-tab:hover .tab-background:not([selected]) {
+      clip-path: inset(1px 0px 1px 2px round 8px) !important;
+    }
+    #pinned-tabs-container[orient="vertical"] {
+      min-height: 50px !important;
+
+      & .tab-background:not(:hover, [selected]) {
+        clip-path: inset(1px round 8px) !important;
+      }
+    }
+  }
+  
+  @media -moz-pref("uc.winui.vtabs-close-button-style", 1) {
+    #tabbrowser-tabs:not([expanded]) {
+      & .tabbrowser-tab:not([pinned]):hover {
+        .tab-icon-image {
+          opacity: 1 !important;
+        }
+        .tab-close-button {
+          margin: 0 0 0 34px !important;
+          box-shadow: none !important;
+          height: 16px !important;
+          width: 0 !important;
+          padding: 9px !important;
+          border-radius: 4px !important;
+          background-color: var(--commonBackground) !important;
+          outline: 1px solid var(--cardOutline) !important;
+        }
+        &:first-of-type .tab-close-button {
+          margin: 0 0 0 34px !important;
+        }
+      }
+    }
+  }
+  @media -moz-pref("uc.winui.vtabs-close-button-style", 2) {
+    #tabbrowser-tabs:not([expanded]) {
+      & .tabbrowser-tab:not([pinned]):hover {
+        .tab-icon-image {
+          opacity: 1 !important;
+        }
+        .tab-close-button {
+          display: none !important;
+        }
+      }
+    }
+  }  
 
   /* --- Animations --- */
   @keyframes fastInvoke {
