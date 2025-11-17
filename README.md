@@ -60,6 +60,7 @@ Create the following boolean or numeric keys as required:
 - `uc.winui.titlebar-style` - 1 to add rounded corners to the titlebar buttons and 2 to add rounded corners and accent-colored glyphs when hovering over them (⚠️ Incompatible with `uc.winui.shorter-titlebar-buttons`)
 - `uc.winui.transparent-urlbar` - Makes the URL bar transparent
 - `uc.winui.urlbar-extra-separators` - Add highlighted separators to either side of URL bar
+- `uc.winui.uc.winui.alternate-urlbar-dropdown` - Use an alternate detached version of the URL bar dropdown
 
 ### Layout
 
@@ -80,6 +81,7 @@ Create the following boolean or numeric keys as required:
 - `uc.winui.extra-animations` - Enables extra and unfinished animations
 - `uc.winui.experiments` - Enables experimental and unfinished features
 - `uc.winui.vtabs-close-button-style` - 1 to change the collapsed vertical tabs' close button into a small overlay on the top right and 2 to hide it entirely.
+- `uc.winui.alternate-urlbar-dropdown-animation` - Use an alternate, optionally staggered animation for the URL bar dropdown results. 1 for a smooth downward slide, 2 for a staggered downward slide and 3 for a staggered upward slide
 
 ### Additional Customization
 

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WinUI Theme Settings</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    :root {
+          --acrylic: url(global/accnoise256.png) !important;
+          --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
+
+          --commonBackground: light-dark(#fff,#2c2c2c) !important;
+          --frameBG: light-dark(rgba(255,255,255,.7), rgba(58,58,58,.45)) !important;
+          --dialogSmoke: rgba(0,0,0,.3) !important;
+          
+          --cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
+          --cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837)) !important;
+          --cardShadowLight: 0 0 0 1px rgba(0,0,0,.0605) !important;
+          --cardOutline: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.14)) !important;
+          --cardShadowLightHover: 0 0 0 1px rgba(0,0,0,.06), 0 4px 8px rgba(0,0,0,.03) !important;
+          --cardShadowDark: 0 0 0 1px rgba(0,0,0,.14) !important;
+          --cardShadowDarkHover: 0 0 0 1px rgba(255,255,255,.1), 0 -1px 0 rgba(255,255,255,.035), 0 4px 8px rgba(0,0,0,.1) !important;
+
+          --footer: light-dark(#f3f3f3, #202020) !important;
+          --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1)) !important;
+          --footerBorder2: light-dark(#dddddd,#1d1d1d) !important;
+          --dropdownSeparator: light-dark(rgba(0,0,0,.0803), rgba(255,255,255,.0837)) !important;
+          
+          --textPrimary: light-dark(rgba(0,0,0,.8956), rgb(255,255,255)) !important;
+          --textSecondary: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.786)) !important;
+          --textTertiary: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
+          --textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628)) !important;
+          
+          --textAccentPrimary: light-dark(#fff,#000) !important;
+          --textAccentSecondary: light-dark(rgba(255,255,255,.7),rgba(0,0,0,.5)) !important;
+          --textAccentDisabled: light-dark(#fff,rgba(255,255,255,.5302)) !important;
+
+          --searchBackground: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
+          --searchHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+          --searchActiveBorder: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0698)) !important;
+          --searchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.41) !important;
+          --searchShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.46) !important;
+          --searchActiveShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset !important;
+          --searchActiveShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset !important;
+          --disabledSearch: light-dark(rgba(249,249,249,.3),rgba(255,255,255,.0419)) !important;
+          --disabledSearchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+          --disabledSearchShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02)  !important;
+          --disabledSearchText: light-dark(rgba(0,0,0,.3614),rgba(255,255,255,.3628)) !important;
+          --searchDropdown: light-dark(#FCFCFC, #2C2C2C) !important;
+
+          --controlSolid: light-dark(#ffffff,#454545) !important;
+          --controlSecondary: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+          --controlTertiary: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326)) !important;
+          --controlQuartenary: light-dark(rgba(243,243,243,.76), rgba(255,255,255,.0605)) !important;
+          --controlStrong: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
+          --controlStroke: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0698)) !important;
+          --controlStrongStroke: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
+          --controlStrongStrokeDisabled: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
+          --controlAltSecondary: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+          --controlAltTertiary: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
+          --controlAltQuartenary: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698)) !important;
+
+          --cardStroke: light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1)) !important;
+          
+          --infoBG: light-dark(rgba(246,246,246, .5), rgba(255,255,255,.0326)) !important;
+          --cautionBG: light-dark(#FFF4CE, #433519) !important;
+          --successBG: light-dark(#DFF6DD, #393D1B) !important;
+          --criticalBG: light-dark(#FDE7E9, #442726) !important;
+          --infoOutline: 0 0 0 1px var(--footerBorder) !important;
+
+          --infoBadge: light-dark(#005FB7, #60CDFF) !important;
+          --cautionBadge: light-dark(#9D5D00,#FCE100) !important;
+          --successBadge: light-dark(#0F7B0F,#6CCB5F) !important;
+          --criticalBadge: light-dark(#C42B1C,#FF99A4) !important;
+
+          --segmentedBG: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+
+          --progressBar: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
+          --progressRing: light-dark(rgba(0,0,0,.06063), rgba(255,255,255,.06047)) !important;
+
+          --accentLight: color-mix(in srgb, accentColor 85%, black) !important; /* Main */
+          --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
+          --accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent) !important; /* Pressed */
+          --accentLight4: color-mix(in srgb, accentColor 100%, transparent) !important; /* Full saturation */
+
+          --accentDark: color-mix(in srgb, accentColor 60%, white) !important; /* Main */
+          --accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent) !important; /* Hover */
+          --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
+          --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
+
+          --accentAuto: light-dark(var(--accentLight), var(--accentDark)) !important;
+          --accentHover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+          --accentPressed: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+          --accentDarkFilter: saturate(1.55) brightness(1.05) !important;
+
+          --button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
+          --buttonHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
+          --buttonPressed: light-dark(rgba(255,255,255,.3), rgba(255,255,255,.0326)) !important;
+          --buttonShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
+          --buttonShadowLightPressed: 0 0 0 1px rgba(0,0,0,.0578) !important;
+          --buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
+          --buttonShadowDarkPressed: 0 0 0 1px rgba(255,255,255,.0698) !important;
+          
+          --textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+          --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+
+          --inputActive: light-dark(rgb(252,252,252), rgb(30,30,30)) !important;
+          --inputBarLight: 0 0 0 1px rgba(0,0,0,.0605), 0 1px 0 rgba(0,0,0,.39) !important;
+          --inputBarFocusLight: 0 0 0 1px rgba(0,0,0,.0578), 0 1px 0 var(--accentLight), 0 -1px 0 var(--accentLight) inset !important;
+          --inputBarDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(0,0,0,.46) !important;
+          --inputBarFocusDark: 0 0 0 1px rgba(255,255,255,.0698), 0 1px 0 var(--accentDark), 0 -1px 0 var(--accentDark) inset !important;
+
+          --genericShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
+          --genericShadowDark: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26) !important;
+          --tooltipShadowColor: light-dark(rgba(0,0,0,.14), rgba(0,0,0,.26)) !important;
+          --tooltipShadow: 0 4px 8px var(--tooltipShadowColor) !important;
+          --flyoutStroke: light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.2)) !important;
+          
+          --link-color: var(--accentAuto) !important;
+    }
+    
+    body {
+      font-family: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+      padding: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      background: transparent;
+      color: var(--textPrimary);
+    }
+    
+    h1 {
+      font-size: 2em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .description {
+      color: GrayText;
+      margin-bottom: 30px;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+    }
+    
+    .section h2 {
+      font-size: 1.3em;
+      font-weight: 600;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+    }
+    
+    .pref-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px;
+      margin-bottom: 8px;
+      background: var(--button);
+      outline: 1px solid var(--cardOutline);
+      border-radius: 4px;
+      transition: background 0.15s ease;
+    }
+    
+    .pref-item:hover {
+      background: var(--buttonHover);
+    }
+    
+    .pref-checkbox {
+      margin: 4px 12px 0 0;
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+    }
+    
+    .pref-select {
+      margin: 4px 12px 0 0;
+      flex-shrink: 0;
+      padding: 4px 8px;
+      background: var(--button);
+      color: var(--textPrimary);
+      border: 1px solid;
+      transition: background 0.15s ease;
+      font-size: 0.95em;
+
+      &:hover {
+        background-color: var(--buttonHover);
+      }
+    }
+    
+    .pref-info {
+      flex-grow: 1;
+    }
+    
+    .pref-label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+      user-select: none;
+    }
+    
+    .pref-desc {
+      font-size: 0.9em;
+      color: var(--textSecondary);
+      line-height: 1.4;
+    }
+
+    .pref-warning {
+      font-size: 0.85em;
+      color: var(--textPrimary);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    
+    .action-buttons {
+      margin-top: 30px;
+      padding-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    
+    .button {
+      padding: 8px 16px;
+      background: var(--button);
+      color: var(--textPrimary);
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      font-family: inherit;
+      font-weight: 600;
+      transition: opacity 0.1s ease;
+    }
+    
+    .button-secondary {
+      background: var(--button);
+      color: var(--textPrimary);
+    }
+
+    .error-message {
+      background: var(--criticalBG);
+      border: 1px solid var(--infoOutline);
+      padding: 15px;
+      border-radius: 4px;
+      color: var(--textPrimary);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>WinUI Theme Settings</h1>
+  <p class="description">Customize your tweaks for Firefox-WinUI. Changes take effect immediately. Some settings may require restarting Firefox.</p>
+
+  <div id="error-container"></div>
+
+  <div class="section">
+    <h2>Visual</h2>
+    <div id="visual-prefs"></div>
+  </div>
+
+  <div class="section">
+    <h2>Layout</h2>
+    <div id="layout-prefs"></div>
+  </div>
+
+  <div class="section">
+    <h2>Icon and Navigation</h2>
+    <div id="navigation-prefs"></div>
+  </div>
+
+  <div class="section">
+    <h2>Experimental</h2>
+    <div id="experimental-prefs"></div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="button button-secondary" onclick="resetAll()">Reset All to Defaults</button>
+    <button class="button" onclick="window.location.href='about:support'">Open about:support</button>
+    <button class="button button-secondary" onclick="window.close()">Close</button>
+  </div>
+
+  <script>
+    // Import Services using the correct modern Firefox API
+    let Services;
+    try {
+      Services = ChromeUtils.importESModule("resource://gre/modules/Services.sys.mjs").Services;
+    } catch (e) {
+      try {
+        Services = ChromeUtils.import("resource://gre/modules/Services.jsm").Services;
+      } catch (e2) {
+        if (typeof window.Services !== 'undefined') {
+          Services = window.Services;
+        } else {
+          console.error("Failed to load Services module:", e, e2);
+          document.getElementById('error-container').innerHTML = 
+            '<div class="error-message">Error: Could not load Firefox preferences API. Please check browser console for details.</div>';
+        }
+      }
+    }
+
+    const PREFS = {
+      visual: [
+        { key: "uc.winui.aptos", label: "Aptos Font", desc: "Use the new MS Aptos font (Download and install the font from Microsoft first)", type: "boolean" },
+        { key: "uc.winui.borderless-bookmarks-bar", label: "Borderless Bookmarks Bar", desc: "Remove the border between the navbar and bookmarks bar", type: "boolean" },
+        { key: "uc.winui.centered-url", label: "Centered URL", desc: "Center aligns the URL in the URL Bar", type: "boolean" },
+        { key: "uc.winui.centered-url-alt", label: "Centered URL (Alt)", desc: "Center aligns the URL in the URL Bar but moves it back to the left when selected", type: "boolean" },
+        { key: "uc.winui.extra-highlights", label: "Extra Highlights", desc: "Adds more highlights to the active tab and context menu", type: "boolean" },
+        { key: "uc.winui.grayer-tabbed", label: "Grayer Tabs", desc: "Reduces the saturation of the Mica backdrop in dark mode", type: "boolean" },
+        { key: "uc.winui.hide-shortcuts", label: "Hide Shortcuts", desc: "Hide shortcut hints in menus and panels", type: "boolean" },
+        { key: "uc.winui.more-acrylic", label: "More Acrylic", desc: "Extends the Acrylic texture into the navbar, bookmarks bar and the selected tab", type: "boolean" },
+        { key: "uc.winui.navbar-highlights", label: "Navbar Highlights", desc: "Adds a highlight to the top of the navbar", type: "boolean" },
+        { key: "uc.winui.pill-urlbar", label: "Pill URL Bar", desc: "URL bar corners are fully rounded", type: "boolean" },
+        { key: "uc.winui.rounded-corners", label: "Rounded Corners", desc: "Creates a gap with rounded corners between the web content and the browser frame", type: "boolean", warning: "You will not be able to scroll through the webpage while hovering over the margins. A .uc.js script is available to fix this." },
+        { key: "uc.winui.rounded-navbar", label: "Rounded Navbar", desc: "Rounds the upper corners of the navbar", type: "boolean" },
+        { key: "uc.winui.shorter-titlebar-buttons", label: "Shorter Titlebar Buttons", desc: "Shrinks the titlebar buttons (close/maximize/restore/minimize) to match WinUI 2 apps", type: "boolean" },
+        { key: "uc.winui.smaller-toolbar-buttons", label: "Smaller Toolbar Buttons", desc: "Shrinks the toolbar buttons to match other WinUI apps", type: "boolean" },
+        { key: "uc.winui.taller-bookmarks", label: "Taller Bookmarks", desc: "Increase the size of the bookmarks bar to match File Explorer's toolbar", type: "boolean" },
+        { key: "uc.winui.taller-urlbar", label: "Taller URL Bar", desc: "Increase the height of the URL bar to match the early iterations of Windows 11's search bar", type: "boolean" },
+        { key: "uc.winui.titlebar-style", label: "Titlebar Style", desc: "0 = Default, 1 = Rounded corners on titlebar buttons, 2 = Rounded corners with accent-colored glyphs on hover", type: "int", options: [0, 1, 2], warning: "Incompatible with 'Shorter Titlebar Buttons'" },
+        { key: "uc.winui.transparent-urlbar", label: "Transparent URL Bar", desc: "Makes the URL bar transparent", type: "boolean" },
+        { key: "uc.winui.urlbar-extra-separators", label: "URL Bar Extra Separators", desc: "Add highlighted separators to either side of URL bar", type: "boolean" },
+        { key: "uc.winui.alternate-urlbar-dropdown", label: "Detached URL bar dropdown", desc: "Use an alternate detached version of the URL bar dropdown", type: "boolean" }
+      ],
+      layout: [
+        { key: "uc.winui.floating-tabs", label: "Floating Tabs", desc: "Disconnects the tabs from the navbar similar to Edge's deprecated Phoenix redesign", type: "boolean" },
+        { key: "uc.winui.extension-tray", label: "Extension Tray", desc: "Compacts the extension menu into a grid of icons similar to the system tray found on Windows 11", type: "boolean" },
+        { key: "uc.winui.immersive-navbar", label: "Immersive Navbar", desc: "Adds a margin to either side of the navbar to match the margin created by the rounded corners tweak", type: "boolean" },
+        { key: "uc.winui.tab-close-button", label: "Tab Close Button", desc: "0 = Default, 1 = On selected tab and when hovering unselected tabs, 2 = Only when hovering a tab, 3 = Remove entirely", type: "int", options: [0, 1, 2, 3] }
+      ],
+      navigation: [
+        { key: "uc.winui.mac-back-forward", label: "Mac Back/Forward", desc: "Changes the back/forward glyphs to the ones seen on MacOS", type: "boolean" }
+      ],
+      experimental: [
+        { key: "uc.winui.acrylic-animations", label: "Acrylic Animations", desc: "Enables acrylic animations", type: "boolean" },
+        { key: "uc.winui.hide-with-1-tab", label: "Hide with 1 Tab", desc: "Hides the tab bar if only one tab is open", type: "boolean" },
+        { key: "uc.winui.js-animations", label: "JS Animations", desc: "Enables animations that require external .uc.js files due to CSS limitations", type: "boolean" },
+        { key: "uc.winui.extra-animations", label: "Extra Animations", desc: "Enables extra and unfinished animations", type: "boolean" },
+        { key: "uc.winui.experiments", label: "Experiments", desc: "Enables experimental and unfinished features", type: "boolean" },
+        { key: "uc.winui.vtabs-close-button-style", label: "VTabs Close Button Style", desc: "0 = Default, 1 = Small overlay on top right, 2 = Hide entirely", type: "int", options: [0, 1, 2] },
+        { key: "uc.winui.alternate-urlbar-dropdown-animation", label: "Use an alternate, staggered animation for the URL bar dropdown results", desc: "0 = Default, 1 = Smooth downward slide, 2 = Staggered downward slide, 3 = Staggered upward slide", type: "int", options: [0, 1, 2, 3]}
+      ]
+    };
+
+    function initializePrefs() {
+      if (!Services) return;
+      
+      Object.values(PREFS).flat().forEach(pref => {
+        try {
+          if (!Services.prefs.prefHasUserValue(pref.key)) {
+            if (pref.type === "int") {
+              Services.prefs.setIntPref(pref.key, 0);
+            } else {
+              Services.prefs.setBoolPref(pref.key, false);
+            }
+          }
+        } catch (e) {
+          console.error(`Error initializing pref ${pref.key}:`, e);
+        }
+      });
+    }
+
+    function createPrefItem(pref) {
+      const item = document.createElement("div");
+      item.className = "pref-item";
+
+      const info = document.createElement("div");
+      info.className = "pref-info";
+
+      const label = document.createElement("label");
+      label.className = "pref-label";
+      label.textContent = pref.label;
+
+      const desc = document.createElement("div");
+      desc.className = "pref-desc";
+      desc.textContent = pref.desc;
+
+      info.appendChild(label);
+      info.appendChild(desc);
+
+      if (pref.warning) {
+        const warning = document.createElement("div");
+        warning.className = "pref-warning";
+        warning.textContent = "⚠️ " + pref.warning;
+        info.appendChild(warning);
+      }
+
+      if (pref.type === "int" && pref.options) {
+        // Create dropdown for integer options
+        const select = document.createElement("select");
+        select.id = pref.key;
+        select.className = "pref-select";
+        
+        pref.options.forEach(optionValue => {
+          const option = document.createElement("option");
+          option.value = optionValue;
+          option.textContent = optionValue;
+          select.appendChild(option);
+        });
+
+        try {
+          select.value = Services.prefs.getIntPref(pref.key, 0);
+        } catch (e) {
+          console.error(`Error reading pref ${pref.key}:`, e);
+          select.value = 0;
+        }
+        
+        select.addEventListener("change", (e) => {
+          try {
+            Services.prefs.setIntPref(pref.key, parseInt(e.target.value));
+            console.log(`Set ${pref.key} to ${e.target.value}`);
+          } catch (err) {
+            console.error(`Error setting pref ${pref.key}:`, err);
+            alert(`Failed to save preference: ${pref.key}`);
+          }
+        });
+
+        label.htmlFor = pref.key;
+        item.appendChild(select);
+        item.appendChild(info);
+      } else {
+        // Create checkbox for boolean options
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = pref.key;
+        checkbox.className = "pref-checkbox";
+        
+        try {
+          checkbox.checked = Services.prefs.getBoolPref(pref.key, false);
+        } catch (e) {
+          console.error(`Error reading pref ${pref.key}:`, e);
+          checkbox.checked = false;
+        }
+        
+        checkbox.addEventListener("change", (e) => {
+          try {
+            Services.prefs.setBoolPref(pref.key, e.target.checked);
+            console.log(`Set ${pref.key} to ${e.target.checked}`);
+          } catch (err) {
+            console.error(`Error setting pref ${pref.key}:`, err);
+            alert(`Failed to save preference: ${pref.key}`);
+          }
+        });
+
+        label.htmlFor = pref.key;
+        item.appendChild(checkbox);
+        item.appendChild(info);
+      }
+
+      return item;
+    }
+
+    function loadSettings() {
+      if (!Services) {
+        console.error("Services not available, cannot load settings");
+        return;
+      }
+
+      Object.entries(PREFS).forEach(([category, prefs]) => {
+        const container = document.getElementById(`${category}-prefs`);
+        if (container) {
+          prefs.forEach(pref => {
+            container.appendChild(createPrefItem(pref));
+          });
+        }
+      });
+    }
+
+    function resetAll() {
+      if (!Services) {
+        alert("Cannot reset preferences: Services API not available");
+        return;
+      }
+
+      if (confirm("Reset all WinUI theme settings to defaults?")) {
+        Object.values(PREFS).flat().forEach(pref => {
+          try {
+            if (pref.type === "int") {
+              Services.prefs.setIntPref(pref.key, 0);
+            } else {
+              Services.prefs.setBoolPref(pref.key, false);
+            }
+          } catch (e) {
+            console.error(`Error resetting pref ${pref.key}:`, e);
+          }
+        });
+        location.reload();
+      }
+    }
+
+    // Initialize on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        initializePrefs();
+        loadSettings();
+      });
+    } else {
+      initializePrefs();
+      loadSettings();
+    }
+  </script>
+</body>
+</html>

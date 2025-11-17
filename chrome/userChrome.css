@@ -1043,6 +1043,10 @@ span.button-background[part="button"] {
 }
 
 /* =========================================== */
+/* Prevent tab background from becoming gray for 1 frame after switching tabs */
+.tab-background[fadein="true"] {
+  background-color: transparent !important;
+}
 
 /* Active tab with semibold text */
 .tabbrowser-tab[selected] label { 
@@ -2851,7 +2855,7 @@ panel[type="autocomplete-richlistbox"] {
   margin-bottom: 19px !important;
 }
 #downloadsListBox .download-state {
-  transition: var(--basicBGAnimation) !important;
+  transition: background-color 83ms ease-out !important;
   
   & .downloadDetails {
     opacity: 1 !important;
@@ -3238,12 +3242,6 @@ panel[type="autocomplete-richlistbox"] {
   padding-left: 13px !important;
 }
 
-/* Minor panel margin adjustments */
-.panel-header {
-  margin-block: 2px -2px !important;
-  padding-top: 0 !important;
-}
-
 /* Remove inexistent icon */
 #identity-popup-clear-sitedata-button {
   & .toolbarbutton-icon {
@@ -3254,15 +3252,26 @@ panel[type="autocomplete-richlistbox"] {
   }
 }
 
+
+/* Minor panel margin adjustments */
+.panel-header {
+  margin-block: 2px -2px !important;
+  padding-top: 0 !important;
+}
+
+#downloadsPanel:not([animate="open"]) {
+  margin-top: -24px !important;
+}
+
 /* Ensure all panels have the same margin from the top of the screen when opened */
 #unified-extensions-panel {
   margin-top: -22px !important;
 }
 #editBookmarkPanel {
-  margin-top: -20px !important;
+  margin-top: -3px !important;
 }
 #identity-popup {
-  margin-top: -19px !important;
+  margin-top: -4px !important;
 }
 
 .PanelUI-remotetabs-clientcontainer {
@@ -4146,8 +4155,10 @@ menupopup, panel {
 }
 
 /* Space for panel shadows */
-panel {
-  --panel-shadow-margin: 24px !important;
+@media not -moz-pref('uc.winui.experiments') {
+  panel {
+    --panel-shadow-margin: 24px !important;
+  }
 }
 
 #PopupSearchAutoComplete {
@@ -6375,20 +6386,20 @@ button
   #searchbar:focus-within {
     box-shadow: 0 0 0 1px rgba(255,255,255,.0698), 0 -2px 0 var(--accentAuto) inset !important;
   }
-
+  
   /* Panel shadows */
   menupopup, panel {
     --panel-shadow: var(--genericShadowDark) !important;
   }
 
-  /* URL bar bottom border when opened */
-  .urlbarView {
-    box-shadow: 0 2px 0 0 var(--accentAuto) inset, var(--genericShadowDark) !important;
-  }
-
   /* Context menu */
   .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
     box-shadow: var(--genericShadowDark) !important;
+  }
+
+  /* URL bar bottom border when opened */
+  .urlbarView {
+    box-shadow: 0 2px 0 0 var(--accentAuto) inset, var(--genericShadowDark) !important;
   }
 
   /* Translator buttons */
@@ -6967,6 +6978,27 @@ button
       background-image: var(--extraacrylic) !important;
     }
   }
+  
+  @media -moz-pref("uc.winui.floating-tabs") {
+    @media (prefers-color-scheme: dark) {
+      /* Active tab shadows */
+      #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
+      #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+        box-shadow: 0 1px 0 0 rgba(255,255,255,.0605) inset, 
+          0 0 0 1px rgba(0,0,0,.25),
+          0 1px 0 0 rgba(0,0,0,.2) !important;
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      /* Active tab shadows */
+      #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
+      #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+        box-shadow: var(--buttonShadowLight), 0 1px 0 0 rgba(255,255,255,.85) inset !important;
+      }
+    }
+  }
+  
+  
 }
 
 @media -moz-pref("uc.winui.pill-urlbar") {
@@ -6995,13 +7027,10 @@ button
     clip-path: inset(28px 0 0 0) !important;
     border-radius: 0 0 16px 16px !important;
   }
-  
-  @media -moz-pref("uc.winui.pill-urlbar") {
-    /* Reposition in-url buttons */
-    #urlbar { 
-      & hbox[role="button"] {
-        transform: translateY(-1px) !important;
-      }
+  /* Reposition in-url buttons */
+  #urlbar { 
+    & hbox[role="button"] {
+      transform: translateY(-1px) !important;
     }
   }
 }
@@ -7160,6 +7189,17 @@ button
     margin-bottom: 1px !important;
     margin-left: -1px !important;
   }
+  
+  @media -moz-pref("uc.winui.immersive-navbar") {
+    :root[sizemode="normal"] #toolbar-menubar,
+    :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
+      margin-top: -4.5px !important;
+    }
+    :root[sizemode="maximized"] #toolbar-menubar,
+    :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
+      margin-top: -.5px !important;
+    }
+  }
 
   /* Select tab by clicking on the empty space above it */
   #tabbrowser-tabs {
@@ -7174,12 +7214,12 @@ button
   /* Tab scroll buttons */
   #scrollbutton-up:not(.menupopup-scrollbutton),
   #scrollbutton-down:not(.menupopup-scrollbutton) {
-    bottom: 4px !important;
+    bottom: 8px !important;
   }
   
   /* Fix window control glyphs alignment in windowed mode */
-  :root:not([sizemode=maximized]) .titlebar-button .toolbarbutton-icon {
-    margin-top: 8px !important;
+  :root:not([sizemode=maximized]) .titlebar-button {
+    margin-top: 9px !important;
   }
 }
 
@@ -7252,7 +7292,11 @@ button
 
 @media -moz-pref("uc.winui.immersive-navbar") {
   #urlbar[breakout][breakout-extend] {
-    transform: translateY(8px) !important;
+    transform: translateY(8px);
+    
+    & .urlbar-page-action {
+      margin-top: 1px !important;
+    }
   }
   #identity-box, #star-button-box, #reader-mode-button{
     margin-bottom: 0px !important;
@@ -7361,6 +7405,10 @@ button
       :root[sizemode="maximized"] & {
         border-radius: 0 0 8px 8px !important;
       }
+      /* Prevent border from overlapping with full screen videos */
+      :root[inDOMFullscreen="true"] & {
+        border-top-width: 0 !important;
+      }
     }
 
     /* === Tabbox container === */
@@ -7368,26 +7416,37 @@ button
       tabbox#tabbrowser-tabbox {
         margin: 0 5px 5px 5px !important;
         border-radius: 0 0 5px 5px !important;
-        clip-path: inset(-1px round 0 0 7px 7px) !important;
-        box-shadow:
-          1px 0 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)),
-          -1px 0 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)),
-          0 1px 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)) !important;
 
         /* Inner browser rounding when UI is visible */
         :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]) & browser {
           border-radius: 0 0 5px 5px !important;
-          clip-path: circle(100%) !important;
+          box-shadow:
+            1px 0 0 0 light-dark(rgba(0,0,0,.1), rgba(0,0,0,.135)),
+            -1px 0 0 0 light-dark(rgba(0,0,0,.1), rgba(0,0,0,.135)),
+            0 1px 0 0 light-dark(rgba(0,0,0,.125), rgba(0,0,0,.135)) !important;
         }
+      }
+      
+      & tabbox#tabbrowser-tabbox,
+      & #tabbrowser-tabpanels {
+        border-radius: 0 0 5px 5px !important;
       }
     }
     /* Maximized state */
     :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"])[sizemode="maximized"]:has(#sidebar-main[hidden=""]) {
       tabbox#tabbrowser-tabbox {
         border-radius: 0 0 8px 8px !important;
-        clip-path: inset(-1px round 0 0 12px 12px) !important;
+      }
+      & tabbox#tabbrowser-tabbox,
+      & #tabbrowser-tabpanels {
+        border-radius: 0 0 8px 8px !important;
       }
     }
+    
+    /* Inner browser rounding when UI is visible */
+        :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]) & browser {
+          border-radius: 0 0 8px 8px !important;
+        }
     
     :root:has(#sidebar-main:not([hidden=""])) {
       #sidebar-main {
@@ -7430,16 +7489,18 @@ button
       #nav-bar,
       #PersonalToolbar {
         box-shadow: 0 1px 0 rgba(255,255,255,.85) inset,
-          1px 0 0 rgba(0,0,0,.0605), -1px 0 0 rgba(0,0,0,.0605), 0 -1px 0 rgba(0,0,0,.0605),
-          0 -1px 0 rgba(0,0,0,.0805) inset !important;
+          1px 0 0 rgba(0,0,0,.0605), 
+          -1px 0 0 rgba(0,0,0,.0605), 
+          0 -1px 0 rgba(0,0,0,.0605) !important;
       }
     }
     @media (prefers-color-scheme: dark) {
       #nav-bar,
       #PersonalToolbar {
         box-shadow: 0 1px 0 rgba(255,255,255,.0605) inset,
-          1px 0 0 rgba(0,0,0,.25), -1px 0 0 rgba(0,0,0,.25), 0 -1px 0 rgba(0,0,0,.25),
-          0 -2px 0 rgba(0,0,0,.1) inset, 0 -1px 0 rgba(255,255,255,.0605) inset !important;
+          1px 0 0 rgba(0,0,0,.25), 
+          -1px 0 0 rgba(0,0,0,.25), 
+          0 -1px 0 rgba(0,0,0,.25) !important;
       }
     }
   }
@@ -7457,9 +7518,30 @@ button
     clip-path: inset(32px 0 0 0) !important;
   }
   /* Reposition in-url buttons */
+  #urlbar {
+    & .urlbar-page-action {
+      height: 28px !important;
+      margin-top: 3px !important;
+      
+      & image {
+        transform: translateY(1px);
+      }
+    }
+    & #star-button-box,
+    #identity-icon-box {
+      margin-top: 0 !important;
+    }
+    & #identity-icon-box {
+      height: 28px !important;
+    }
+  }
+  
   #urlbar[breakout][breakout-extend] { 
     & hbox[role="button"] {
-      transform: translateY(-3px) !important;
+      transform: translateY(0px) !important;
+    }
+    & #star-button-box {
+      transform: translateY(0px) !important;
     }
   }
 }
@@ -9225,7 +9307,7 @@ button
 }
 
 @media -moz-pref('uc.winui.experiments') {
-  /* URL bar dropdown acrylic - Doesn't work on built-in pages */
+  /* URL bar dropdown acrylic - Doesn't work on built-in pages and with vertical tabs */
   :root {
     clip-path: inset(0 round .1px) !important; /* Affects the about firefox pop up background */
   }
@@ -9234,7 +9316,214 @@ button
     backdrop-filter: blur(60px) brightness(90%) saturate(200%) !important; /* Recreate the luminosity color changes */
     background-image: var(--acrylic) !important;
   }
+
+  /* ========================== */
+  /* Experimental alternate slide-down animations with shadow drawing */
+  /* Currently causes position flickering due to --panel-shadow-margin */
+  #appMenu-popup .panel-subview-body:first-child{
+    animation: unset !important;
+  }
+
+  #appMenu-popup[animate="open"] {
+    will-change: transform !important;
+    animation: slideDown .5s cubic-bezier(0, 0, 0, 1) forwards !important;
+    overflow: visible !important;
+  }
+
+  panel {
+    overflow: visible !important;
+    overflow-clip-margin: 24px !important;
+    transform-origin: top center !important;
+  }
+
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-100%) translateZ(0px);
+    }
+    100% {
+      transform: translateY(0%) translateZ(0px);
+    }
+  }
+
+  #unified-extensions-panel[animate="open"],
+  #editBookmarkPanel[animate="open"],
+  #identity-popup[animate="open"],
+  #BMB_bookmarksPopup[animate="open"],
+  #customizationui-widget-panel[animate="open"],
+  #widget-overflow[animate="open"],
+  #downloadsPanel[animate="open"],
+  #downloadsPanel:has(richlistitem)[animate="open"],
+  #editBookmarkPanel[animate="open"],
+  #unified-extensions-panel[animate="open"],
+  #identity-popup[animate="open"],
+  #BMB_bookmarksPopup[animate="open"],
+  #ContentSelectDropdownPopup[animate="open"]{
+    animation: slideDown .25s cubic-bezier(0, 0, 0, 1) forwards !important;
+    will-change: transform !important;
+    overflow: visible !important;
+    margin-top: -9999px !important; /* For some reason, this fixes their positioning(????) */
+
+    & toolbarbutton,
+    & toolbarseparator,
+    & vbox,
+    & box,
+    & h1,
+    & box > toolbarbutton,
+    & menuitem,
+    & menu,
+    & menuseparator{
+      animation: none !important;
+    }
+  }
+
+  /* Animated shadow drawing like in UWP */
+  @media -moz-pref("widget.windows.mica.popups", 0) {
+    #appMenu-popup[animate="open"],
+    #unified-extensions-panel[animate="open"],
+    #editBookmarkPanel[animate="open"],
+    #identity-popup[animate="open"],
+    #BMB_bookmarksPopup[animate="open"],
+    #customizationui-widget-panel[animate="open"],
+    #widget-overflow[animate="open"],
+    #downloadsPanel[animate="open"],
+    #downloadsPanel:has(richlistitem)[animate="open"],
+    #editBookmarkPanel[animate="open"],
+    #unified-extensions-panel[animate="open"],
+    #identity-popup[animate="open"],
+    #BMB_bookmarksPopup[animate="open"],
+    #ContentSelectDropdownPopup[animate="open"]{
+      --panel-shadow-margin: 1px;
+      animation: slideDown .25s cubic-bezier(0, 0, 0, 1) forwards,
+        restoreShadow 0s .5s forwards !important;
+    }
+    :is(panel,
+    #unified-extensions-panel[animate="open"],
+    #editBookmarkPanel[animate="open"],
+    #identity-popup[animate="open"],
+    #BMB_bookmarksPopup[animate="open"],
+    #customizationui-widget-panel[animate="open"],
+    #widget-overflow[animate="open"],
+    #downloadsPanel[animate="open"],
+    #downloadsPanel:has(richlistitem)[animate="open"],
+    #editBookmarkPanel[animate="open"],
+    #unified-extensions-panel[animate="open"],
+    #identity-popup[animate="open"],
+    #BMB_bookmarksPopup[animate="open"],
+    #ContentSelectDropdownPopup[animate="open"])::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      z-index: -1;
+      pointer-events: none;
+      border-radius: 8px;
+      opacity: 1;
+      transition: opacity .183s .5s linear !important;
+      overflow: visible !important;
+    }
+
+    :is(panel,
+    #unified-extensions-panel[animate="open"],
+    #editBookmarkPanel[animate="open"],
+    #identity-popup[animate="open"],
+    #BMB_bookmarksPopup[animate="open"],
+    #customizationui-widget-panel[animate="open"],
+    #widget-overflow[animate="open"],
+    #downloadsPanel[animate="open"],
+    #downloadsPanel:has(richlistitem)[animate="open"],
+    #editBookmarkPanel[animate="open"],
+    #unified-extensions-panel[animate="open"],
+    #identity-popup[animate="open"],
+    #BMB_bookmarksPopup[animate="open"],
+    #ContentSelectDropdownPopup):not([animate])::before {
+      opacity: 0 !important;
+    }
+
+    @keyframes restoreShadow {
+      from {
+        --panel-shadow-margin: 1px;
+      }
+      to {
+        --panel-shadow-margin: 24px;
+      }
+    }
+    
+
+    @media (prefers-color-scheme: light) {
+      :is(panel,
+      #unified-extensions-panel[animate="open"],
+      #editBookmarkPanel[animate="open"],
+      #identity-popup[animate="open"],
+      #BMB_bookmarksPopup[animate="open"],
+      #customizationui-widget-panel[animate="open"],
+      #widget-overflow[animate="open"],
+      #downloadsPanel[animate="open"],
+      #downloadsPanel:has(richlistitem)[animate="open"],
+      #editBookmarkPanel[animate="open"],
+      #unified-extensions-panel[animate="open"],
+      #identity-popup[animate="open"],
+      #BMB_bookmarksPopup[animate="open"],
+      #ContentSelectDropdownPopup[animate="open"]) {
+        --panel-shadow: 0 0 0 1px rgba(0,0,0,.0605) !important;
+      }
+      :is(panel,
+      #unified-extensions-panel[animate="open"],
+      #editBookmarkPanel[animate="open"],
+      #identity-popup[animate="open"],
+      #BMB_bookmarksPopup[animate="open"],
+      #customizationui-widget-panel[animate="open"],
+      #widget-overflow[animate="open"],
+      #downloadsPanel[animate="open"],
+      #downloadsPanel:has(richlistitem)[animate="open"],
+      #editBookmarkPanel[animate="open"],
+      #unified-extensions-panel[animate="open"],
+      #identity-popup[animate="open"],
+      #BMB_bookmarksPopup[animate="open"],
+      #ContentSelectDropdownPopup[animate="open"])::before {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,.14) !important;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :is(panel,
+      #unified-extensions-panel[animate="open"],
+      #editBookmarkPanel[animate="open"],
+      #identity-popup[animate="open"],
+      #BMB_bookmarksPopup[animate="open"],
+      #customizationui-widget-panel[animate="open"],
+      #widget-overflow[animate="open"],
+      #downloadsPanel[animate="open"],
+      #downloadsPanel:has(richlistitem)[animate="open"],
+      #editBookmarkPanel[animate="open"],
+      #unified-extensions-panel[animate="open"],
+      #identity-popup[animate="open"],
+      #BMB_bookmarksPopup[animate="open"],
+      #ContentSelectDropdownPopup[animate="open"]) {
+        --panel-shadow: 0 0 0 1px rgba(0,0,0,.2) !important;
+      }
+      :is(panel,
+      #unified-extensions-panel[animate="open"],
+      #editBookmarkPanel[animate="open"],
+      #identity-popup[animate="open"],
+      #BMB_bookmarksPopup[animate="open"],
+      #customizationui-widget-panel[animate="open"],
+      #widget-overflow[animate="open"],
+      #downloadsPanel[animate="open"],
+      #downloadsPanel:has(richlistitem)[animate="open"],
+      #editBookmarkPanel[animate="open"],
+      #unified-extensions-panel[animate="open"],
+      #identity-popup[animate="open"],
+      #BMB_bookmarksPopup[animate="open"],
+      #ContentSelectDropdownPopup[animate="open"])::before {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,.26) !important;
+      }
+    }
+  }
 }
+
 
 /* Tab close button visibility */
 /* Tab close button visible on hover and on selected table */
@@ -9407,5 +9696,276 @@ button
   }
   & .thin {
     display: none !important;
+  }
+}
+
+/* Experimental detached url dropdown */
+@media -moz-pref('uc.winui.alternate-urlbar-dropdown') {
+  #urlbar[breakout][breakout-extend] {
+    & .urlbarView {
+      transform: translateY(-5px) !important;
+    }
+  }
+  .urlbarView {
+    border-radius: 8px !important;
+  }
+  
+  /* Accent bottom border */
+  #urlbar[breakout][breakout-extend]:focus-within >.urlbar-background::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: var(--accentAuto);
+    position: absolute;
+    display: inline;
+    margin-top: 29px;
+    border-radius: 0 0 4px 4px;
+  }
+  
+  @media (prefers-color-scheme: light) {
+    .urlbarView {
+      box-shadow: var(--genericShadowLight) !important;
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    .urlbarView {
+      box-shadow: var(--genericShadowDark) !important;
+    }
+  }
+  
+  @media -moz-pref("uc.winui.pill-urlbar") {
+    #urlbar[breakout][breakout-extend][open], 
+    #urlbar[breakout][breakout-extend][open] > .urlbar-background {
+      border-radius: 16px !important;
+    }
+    
+    /* Accent bottom border */
+    #urlbar[breakout][breakout-extend]:focus-within >.urlbar-background::after {
+      height: 30px !important;
+      margin-top: 1px !important;
+      clip-path: inset(28px 0 0 0) !important;
+      border-radius: 0 0 16px 16px !important;
+    }
+  }
+  
+  @media -moz-pref("uc.winui.taller-urlbar") {
+    #urlbar[breakout][breakout-extend] {
+      & .urlbarView {
+        transform: translateY(-3px) !important;
+      }
+    }
+    /* Accent bottom border */
+    #urlbar[breakout][breakout-extend]:focus-within >.urlbar-background::after {
+      height: 34px !important;
+      margin-top: 1px !important;
+      clip-path: inset(32px 0 0 0) !important;
+    }
+  }
+}
+
+/* Smooth slide-down animation for the urlbar, does not include the bounce from uc.winui-extra-animations */
+@media -moz-pref("uc.winui.alternate-urlbar-dropdown-animation", 1) {
+  .urlbarView {
+    will-change: clip-path !important;
+    animation: urlSlide .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+  }
+
+  @keyframes urlSlide {
+    0% {
+      clip-path: inset(0 0 125% 0);
+    }
+    100% {
+      clip-path: inset(-20px -16px -20px -16px);
+    }
+  }
+
+  #urlbar-results {
+    will-change: transform !important;
+    animation: resultSlide .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+  }
+
+  @keyframes resultSlide {
+    0% {
+      transform: translateY(-100%) translateZ(0px);
+    }
+    100% {
+      transform: translateY(0%) translateZ(0px);
+    }
+  }
+
+  @keyframes resultOpacity {
+    from {
+      opacity: 0;
+      translate: 0 -50%;
+    }
+    to {
+      opacity: 100%;
+      translate: 0 0;
+    }
+  }
+}
+
+/* Staggered */
+@media -moz-pref("uc.winui.alternate-urlbar-dropdown-animation", 2) {
+  .urlbarView {
+    will-change: clip-path !important;
+    animation: urlSlide .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+  }
+
+  @keyframes urlSlide {
+    0% {
+      clip-path: inset(0 0 125% 0);
+    }
+    100% {
+      clip-path: inset(-20px -16px -20px -16px);
+    }
+  }
+
+  #urlbar-results {
+    will-change: transform !important;
+    animation: resultSlide .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+  }
+
+  @keyframes resultSlide {
+    0% {
+      transform: translateY(-100%) translateZ(0px);
+    }
+    100% {
+      transform: translateY(0%) translateZ(0px);
+    }
+  }
+
+  /* Staggered animation */
+  .urlbarView-row {
+    opacity: 0;
+  }
+  .urlbarView-row:nth-child(1) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 0ms !important;
+  }
+  .urlbarView-row:nth-child(2) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 50ms !important;
+  }
+  .urlbarView-row:nth-child(3) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 100ms !important;
+  }
+  .urlbarView-row:nth-child(4) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 150ms !important;
+  }
+  .urlbarView-row:nth-child(5) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 200ms !important;
+  }
+  .urlbarView-row:nth-child(6) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 250ms !important;
+  }
+  .urlbarView-row:nth-child(7) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 300ms !important;
+  }
+  .urlbarView-row:nth-child(8) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 350ms !important;
+  }
+  .urlbarView-row:nth-child(9) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 400ms !important;
+  }
+
+  @keyframes resultOpacity {
+    from {
+      opacity: 0;
+      translate: 0 -50%;
+    }
+    to {
+      opacity: 100%;
+      translate: 0 0;
+    }
+  }
+}
+/* Inverted staggered animation */
+@media -moz-pref("uc.winui.alternate-urlbar-dropdown-animation", 3) {
+  .urlbarView {
+    will-change: clip-path !important;
+    animation: urlSlide .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+  }
+
+  @keyframes urlSlide {
+    0% {
+      clip-path: inset(0 0 125% 0);
+    }
+    100% {
+      clip-path: inset(-20px -16px -20px -16px);
+    }
+  }
+
+  #urlbar-results {
+    will-change: transform !important;
+    animation: resultSlide .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+  }
+
+  @keyframes resultSlide {
+    0% {
+      transform: translateY(-100%) translateZ(0px);
+    }
+    100% {
+      transform: translateY(0%) translateZ(0px);
+    }
+  }
+  
+  .urlbarView-row {
+    opacity: 0;
+  }
+
+  .urlbarView-row:nth-child(1) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 600ms !important;
+  }
+  .urlbarView-row:nth-child(2) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 350ms !important;
+  }
+  .urlbarView-row:nth-child(3) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 300ms !important;
+  }
+  .urlbarView-row:nth-child(4) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 250ms !important;
+  }
+  .urlbarView-row:nth-child(5) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 200ms !important;
+  }
+  .urlbarView-row:nth-child(6) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 150ms !important;
+  }
+  .urlbarView-row:nth-child(7) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 100ms !important;
+  }
+  .urlbarView-row:nth-child(8) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 50ms !important;
+  }
+  .urlbarView-row:nth-child(9) {
+    animation: resultOpacity .333s cubic-bezier(0, 0, 0, 1) forwards !important;
+    animation-delay: 0ms !important;
+  }
+
+  @keyframes resultOpacity {
+    from {
+      opacity: 0;
+      translate: 0 -50%;
+    }
+    to {
+      opacity: 100%;
+      translate: 0 0;
+    }
   }
 }

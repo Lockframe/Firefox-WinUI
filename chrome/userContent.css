@@ -1002,6 +1002,10 @@
 		background-size: 16px !important;
 		background-position-y: center !important;
 		margin-right: 8px !important;
+		
+		&:hover {
+			background-color: var(--textButtonHover) !important;
+		}
 	}
 	#categories .category-name {
 		padding-inline-start: 2px !important;
@@ -2556,10 +2560,11 @@
 		background-color: var(--button) !important;
 	}
 	select {
-		border-radius: 0 0 4px 4px !important;
-		border-color: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.2)) !important;
+		border-radius: 4px !important;
+		border-width: 0 !important;
 		background-color: var(--button) !important;
 		font-weight: normal !important;
+		padding-inline: 8px !important;
 	}
 	fieldset {
 		margin-inline: 24px !important;
@@ -2778,6 +2783,10 @@
 				box-shadow: var(--searchActiveShadowLight) !important;
 			}
 		}
+		
+		select{
+			box-shadow: var(--buttonShadowLight) !important;
+		}
 
 		/* Disabled */
 		input:disabled, 
@@ -2910,6 +2919,10 @@
 			&:focus-within {
 				box-shadow: var(--searchActiveShadowDark) !important;
 			}
+		}
+		
+		select{
+			box-shadow: var(--buttonShadowDark) !important;
 		}
 
 		/* Disabled */
