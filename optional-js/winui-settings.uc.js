@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name           WinUI Settings Button
 // @description    Adds toolbar button and menu item for WinUI theme settings
-// @author         YourName
+// @author         Vibe-coded with Claude Sonnet 4.5
+// @version        1.0
 // @include        main
 // @shutdown       UC_API.Runtime.goQuitApplication
 // ==/UserScript==
@@ -110,6 +111,4 @@
       Services.wm.removeListener(windowListener);
     };
   }
-
-  console.log("WinUI Settings: Toolbar button and menu item created");
 })();
