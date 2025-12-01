@@ -46,7 +46,6 @@ Create the following boolean or numeric keys as required:
 - `uc.winui.centered-url` - Center aligns the URL in the URL Bar
 - `uc.winui.centered-url-alt` - Center aligns the URL in the URL Bar but moves it back to the left when selected
 - `uc.winui.extra-highlights` - Adds more highlights to the active tab and context menu
-- `uc.winui.grayer-tabbed` - Reduces the saturation of the Mica backdrop in dark mode
 - `uc.winui.hide-shortcuts` - Hide shortcut hints in menus and panels
 - `uc.winui.more-acrylic` - Extends the Acrylic texture into the navbar, bookmarks bar and the selected tab
 - `uc.winui.navbar-highlights` - Adds a highlight to the top of the navbar
@@ -68,6 +67,7 @@ Create the following boolean or numeric keys as required:
 - `uc.winui.extension-tray` - Compacts the extension menu into a grid of icons similar to the system tray found on Windows 11
 - `uc.winui.immersive-navbar` - Adds a margin to either side of the navbar to match the margin created by the rounded corners tweak
 - `uc.winui.tab-close-button` - Changes how tab close buttons are displayed, 1 to have it appear on the selected tab and when hovering unselected tabs, 2 to have it appear only when hovering a tab and 3 to remove it entirely
+- `uc.winui.transparent-navbar` - Enables Microsoft Edge's scrapped Phoenix redesign, with its own separate floating tabs implementation
 
 ### Icon and Navigation
 

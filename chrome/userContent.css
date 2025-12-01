@@ -1520,10 +1520,6 @@
 		margin: 0 0 auto auto !important;
 	}
 
-	.container {
-		border: none !important;
-	}
-
 	.container .content {
 		gap: unset !important;
 	}
@@ -1532,6 +1528,18 @@
 		background-color: transparent !important;
 		padding: unset !important;
 		margin-left: auto !important;
+	}
+	
+	#web-appearance-manage-themes-link {
+		border: none !important;
+	}
+	.button[data-l10n-id="moz-box-link-anchor"]{
+		background-color: transparent !important;
+		color: var(--accentAuto) !important;
+		
+		& .nav-icon[src="chrome://global/skin/icons/open-in-new.svg"] {
+		  display: none !important;
+		}
 	}
 
 	.category[badge-count]::after {
@@ -2057,8 +2065,8 @@
 		padding: 1px !important;
 		margin-right: 5px !important;
 		box-shadow: none !important;
-		width: 18px !important;
-		height: 18px !important;
+		width: 20px !important;
+		height: 20px !important;
 	}
 	radio:hover > .radio-check {
 		background-color: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
@@ -2087,14 +2095,19 @@
 
 	radio[selected="true"]::before {
 		position: absolute !important;
-		left: 5px !important;
+		left: 4px !important;
 		display: block !important;
 		content: "" !important;
 		background: light-dark(#fff,#000) !important;
-		height: 8px !important;
-		width: 8px !important;
+		height: 12px !important;
+		width: 12px !important;
 		border-radius: 100% !important;
 		transition: all 43ms linear !important;
+	}
+	radio[selected="true"]:hover::before {
+		height: 14px !important;
+		width: 14px !important;
+		left: 3px !important;
 	}
 	radio::before {
 		animation: scaleIn 100ms forwards !important;
@@ -2789,7 +2802,7 @@
 		}
 
 		/* Disabled */
-		input:disabled, 
+		input:not([type="checkbox"],[type="radio"]):disabled, 
 		textarea:disabled, 
 		search-textbox[disabled="true"] {
 			box-shadow: var(--disabledSearchShadowLight) !important;
@@ -3019,6 +3032,14 @@
 	url-prefix(about:addons) {
 		.card {
 			border: none !important;
+		}
+		
+		.container {
+			appearance: none !important;
+			background-color: var(--infoBG) !important;
+			outline: 1px solid var(--cardOutline) !important;
+			border: none !important;
+			border-radius: 4px !important;
 		}
 		
 		.category {

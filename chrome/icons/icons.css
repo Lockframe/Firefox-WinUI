@@ -121,7 +121,6 @@
 #PopupAutoComplete richlistitem[originaltype="generatedPassword"] .ac-site-icon,
 #PopupAutoComplete richlistitem[originaltype="loginWithOrigin"] .ac-site-icon:not([src^="page-icon:"]),
 #PopupAutoComplete richlistitem[originaltype="login"] .ac-site-icon:not([src^="page-icon:"]) {
-  /* content property doesn't work on xul|image, only html|img. */
   background: url("passwords.svg") no-repeat center !important;
   padding-left: 16px !important;
 }
@@ -133,7 +132,7 @@
 #PanelUI-menu-button,
 #appMenu-more-button2,
 .unified-extensions-item-menu-button {
-  list-style-image: url("menu.svg") !important;
+  list-style-image: url("settings.svg") !important;
 }
 
 #appMenu-help-button2 {
@@ -186,6 +185,10 @@
 #appMenu-translate-button,
 #translations-button-icon {
   list-style-image: url("translate.svg") !important;
+}
+
+#taskbar-tabs-button > .urlbar-icon {
+  list-style-image: url(apps.svg) !important;
 }
 
 #open-file-button {
@@ -318,11 +321,6 @@
   list-style-image: url("extension.svg") !important;
 }
 
-#identity-box[pageproxystate="valid"].verifiedDomain #identity-icon,
-#identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon {
-  list-style-image: url("security.svg") !important;
-}
-
 :is(#urlbar-input-container, .urlbar-input-container)[pageproxystate="valid"] > #tracking-protection-icon-container > #tracking-protection-icon-box > #tracking-protection-icon {
   list-style-image: url("tracking-protection.svg") !important;
 }
@@ -346,8 +344,10 @@
   list-style-image: url("page-portrait.svg") !important;
 }
 
+#identity-box[pageproxystate="valid"].verifiedDomain #identity-icon,
+#identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon,
 #identity-popup[connection^=secure] .identity-popup-security-connection {
-  list-style-image: url("security.svg") !important;
+  list-style-image: url("lock.svg") !important;
 }
 
 #identity-popup[ciphers=weak] .identity-popup-security-connection,
@@ -407,12 +407,12 @@
 
 #pageAction-panel-bookmark,
 #star-button {
-  list-style-image: url("bookmark-hollow.svg") !important;
+  list-style-image: url("star.svg") !important;
 }
 
 #pageAction-panel-bookmark[starred],
 #star-button[starred] {
-  list-style-image: url("bookmark.svg") !important;
+  list-style-image: url("star-filled.svg") !important;
 }
 
 #sidebar-box[sidebarcommand="viewTabsSidebar"] > #sidebar-header > #sidebar-switcher-target > #sidebar-icon,
@@ -1105,4 +1105,10 @@ treechildren::-moz-tree-image(query, OrganizerQuery_history____v) {
 
 treechildren::-moz-tree-image(title, query, folder) {
   list-style-image: url("folder.svg") !important;
+}
+
+/* others */
+
+#taskbar-tabs-button > .urlbar-icon {
+  list-style-image: url(apps.svg) !important;
 }
