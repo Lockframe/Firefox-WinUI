@@ -921,11 +921,12 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   position: absolute;
 }
 #fxa-manage-account-button::before {
-  content: url(icons/open-window.svg);
-  width: 14px;
-  height: 14px;
+  content: '';
+  background: url(icons/open-window.svg) no-repeat center center;
+  background-size: 14px !important;
+  width: 16px;
+  height: 16px;
   position: absolute;
-  margin-left: 1px;
 }
 
 #toolbar-context-toggle-vertical-tabs > .menu-text::after,
@@ -3699,6 +3700,12 @@ button:active {
   border-right: 1px solid var(--footerBorder) !important;
 }
 
+:root:has(#sidebar-main:not([hidden=""])):not([inFullscreen]) {
+  #sidebar-main:not([sidebar-launcher-expanded=""]) {
+    width: 48px !important;
+  }
+}
+
 .sidebar-panel-header {
   margin-top: -8px !important;
 }
@@ -3734,7 +3741,7 @@ splitter[orient="vertical"] {
 
 /* Sidebar bottom buttons */
 .actions-list moz-button {
-  margin: 4px !important;
+  margin: 0 0 0 -4px !important;
 }
 
 .wrapper > .buttons-wrapper {
@@ -7163,118 +7170,140 @@ button
   }
 }
 
-@media -moz-pref("uc.winui.floating-tabs") {
-  .tab-background:not([selected]) {
-    clip-path: inset(1px round 7px) !important;
-  }
-
-  /* Fix alignment of private window label */
-  .private-browsing-indicator-with-label {
-    margin-top: 17px !important;
-  }
-  :root[sizemode="maximized"] .private-browsing-indicator-with-label {
-    margin-top: 9px !important;
-  }
-
-  /* Tab roundness */
-  .tab-background {
-    border-radius: 8px !important;
-  }
-
-  /* Bottom tab corners */
-  .tabbrowser-tab .tab-stack, .tab-background {
-    &::before, &::after {
-      content: none !important;
+@media -moz-pref("uc.winui.floating-tabs") or -moz-pref('uc.winui.transparent-navbar') {
+  @media not -moz-pref('sidebar.VerticalTabs') {
+    .tab-background:not([selected]) {
+      clip-path: inset(1px round 7px) !important;
     }
-  }
 
-  /* Tab height */
-  :root {
-    --tab-min-height: 46px !important;
-  }
-  :root[sizemode="maximized"] {
-    --tab-min-height: 36px !important;
-  }
-
-  /* New tab button - seems to have different effects in 23h2 and 24h2 */
-  #TabsToolbar #tabs-newtab-button>.toolbarbutton-icon {
-    margin-bottom: -4px !important;
-  }
-
-  /* Tab close button */
-  .tab-close-button {
-    margin-top: 2px !important;
-    margin-right: 4px !important;
-  }
-
-  /* Toolbar icons pinned to the tab area */
-  #TabsToolbar .toolbarbutton-1 {
-    margin-bottom: 6px !important;
-  }
-
-  /* Tab gap up and down */
-  :root[sizemode="normal"] #toolbar-menubar,
-  :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
-    padding-left: 5px !important;
-    margin-top: -5px !important;
-  }
-  :root[sizemode="maximized"] #toolbar-menubar,
-  :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
-    padding-left: 6px !important;
-    margin-top: -1px !important;
-  }
-  #tabbrowser-arrowscrollbox,
-  #tabbrowser-arrowscrollbox > * {
-    margin-bottom: 3px !important;
-    margin-top: 3px !important;
-  }
-  .tab-content {
-    margin-bottom: 1px !important;
-    margin-left: -1px !important;
-  }
-  
-  /* Pinned tabs */
-  :root {
-    .tabbrowser-tab[pinned="true"] {
-      margin: 6px 1px 6px 8px !important;
+    /* Fix alignment of private window label */
+    .private-browsing-indicator-with-label {
+      margin-top: 17px !important;
     }
-    &[sizemode="maximized"] {
-      .tabbrowser-tab[pinned="true"] {
-        margin: 6px 1px 6px 7px !important;
+    :root[sizemode="maximized"] .private-browsing-indicator-with-label {
+      margin-top: 9px !important;
+    }
+
+    /* Tab roundness */
+    .tab-background {
+      border-radius: 8px !important;
+    }
+
+    /* Bottom tab corners */
+    .tabbrowser-tab .tab-stack, .tab-background {
+      &::before, &::after {
+        content: none !important;
       }
     }
-  }
-  
-  @media -moz-pref("uc.winui.immersive-navbar") {
+    
+    /* Improve tab outline */
+    @media (prefers-color-scheme: light) {
+      #tabbrowser-tabs .tab-background:is([selected], [multiselected]), 
+      #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+        box-shadow: var(--buttonShadowLight) !important;
+      }
+    }
+    @media (prefers-color-scheme: dark) {
+      #tabbrowser-tabs .tab-background:is([selected], [multiselected]), 
+      #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+        box-shadow: var(--buttonShadowDark) !important;
+      }
+
+      :root, :root .tabbrowser-tab {
+        & [brighttext], & [brighttext] .tabbrowser-tab {
+          --uc-titlebar-shadow: none !important;
+        }
+      }
+    }
+
+    /* Tab height */
+    :root {
+      --tab-min-height: 46px !important;
+    }
+    :root[sizemode="maximized"] {
+      --tab-min-height: 36px !important;
+    }
+
+    /* New tab button - seems to have different effects in 23h2 and 24h2 */
+    #TabsToolbar #tabs-newtab-button>.toolbarbutton-icon {
+      margin-bottom: -4px !important;
+    }
+
+    /* Tab close button */
+    .tab-close-button {
+      margin-top: 2px !important;
+      margin-right: 4px !important;
+    }
+
+    /* Toolbar icons pinned to the tab area */
+    #TabsToolbar .toolbarbutton-1 {
+      margin-bottom: 6px !important;
+    }
+
+    /* Tab gap up and down */
     :root[sizemode="normal"] #toolbar-menubar,
     :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
-      margin-top: -4.5px !important;
+      padding-left: 5px !important;
+      margin-top: -5px !important;
     }
     :root[sizemode="maximized"] #toolbar-menubar,
     :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
-      margin-top: -.5px !important;
+      padding-left: 6px !important;
+      margin-top: -1px !important;
     }
-  }
-
-  /* Select tab by clicking on the empty space above it */
-  #tabbrowser-tabs {
-    margin-top: -9px !important;
-
-    & .tabbrowser-tab,
-    & #tabs-newtab-button {
-      padding-top: 9px !important;
+    #tabbrowser-arrowscrollbox,
+    #tabbrowser-arrowscrollbox > * {
+      margin-bottom: 3px !important;
+      margin-top: 3px !important;
     }
-  }
-  
-  /* Tab scroll buttons */
-  #scrollbutton-up:not(.menupopup-scrollbutton),
-  #scrollbutton-down:not(.menupopup-scrollbutton) {
-    bottom: 8px !important;
-  }
-  
-  /* Fix window control glyphs alignment in windowed mode */
-  :root:not([sizemode=maximized]) .titlebar-button {
-    margin-top: 9px !important;
+    .tab-content {
+      margin-bottom: 1px !important;
+      margin-left: -1px !important;
+    }
+
+    /* Pinned tabs */
+    :root {
+      .tabbrowser-tab[pinned="true"] {
+        margin: 6px 1px 6px 8px !important;
+      }
+      &[sizemode="maximized"] {
+        .tabbrowser-tab[pinned="true"] {
+          margin: 6px 1px 6px 7px !important;
+        }
+      }
+    }
+
+    @media -moz-pref("uc.winui.immersive-navbar") {
+      :root[sizemode="normal"] #toolbar-menubar,
+      :root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
+        margin-top: -4.5px !important;
+      }
+      :root[sizemode="maximized"] #toolbar-menubar,
+      :root[sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] + toolbar{
+        margin-top: -.5px !important;
+      }
+    }
+
+    /* Select tab by clicking on the empty space above it */
+    #tabbrowser-tabs {
+      margin-top: -9px !important;
+
+      & .tabbrowser-tab,
+      & #tabs-newtab-button {
+        padding-top: 9px !important;
+      }
+    }
+
+    /* Tab scroll buttons */
+    #scrollbutton-up:not(.menupopup-scrollbutton),
+    #scrollbutton-down:not(.menupopup-scrollbutton) {
+      bottom: 8px !important;
+    }
+
+    /* Fix window control glyphs alignment in windowed mode */
+    :root:not([sizemode=maximized]) .titlebar-button {
+      margin-top: 9px !important;
+    }
   }
 }
 
@@ -9565,7 +9594,6 @@ button
   }
 }
 
-
 /* Tab close button visibility */
 /* Tab close button visible on hover and on selected table */
 @media -moz-pref("uc.winui.tab-close-button", 1) {
@@ -9941,67 +9969,38 @@ button
 }
 /* Transparent navbar to mimic Edge's scrapped phoenix design */
 @media -moz-pref('uc.winui.transparent-navbar') {
-  #nav-bar {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    margin-top: -2px !important;
+  #nav-bar{
+    box-shadow: 0 -1px 0 0 var(--footerBorder) inset !important;
+    margin-top: -5px !important;
 
     &::before {
       content: none;
     }
   }
+  #PersonalToolbar,
+  #nav-bar,
+  #sidebar-main,
+  #sidebar-box, 
+  #sidebar-splitter,
   #nav-bar:-moz-window-inactive, 
-  #PersonalToolbar:-moz-window-inactive {
+  #PersonalToolbar:-moz-window-inactive,
+  #sidebar-box:-moz-window-inactive, 
+  #sidebar-splitter:-moz-window-inactive{
     background-color: transparent !important;
   }
   
-  .tab-stack {
-    margin-bottom: 2px !important;
-  }
-  
-  /* Tabs bar buttons */
-  #TabsToolbar .toolbarbutton-1 {
-    margin-bottom: 1px !important;
-  }
-  #scrollbutton-up:not(.menupopup-scrollbutton),
-  #scrollbutton-down:not(.menupopup-scrollbutton) {
-    bottom: 6px !important;
-  }
-  
-  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background,
-  .tabbrowser-tab:is([selected], [multiselected]) > .tab-stack > .tab-background:-moz-window-inactive {
-    background-color: var(--button) !important;
-    border-radius: 7px !important;
-  }
-  #tabbrowser-tabs[orient="horizontal"] .tab-background:not([selected]) {
-    clip-path: inset(0px 1px round 7px) !important;
-  }
-  
-  /* Bottom corners */
-  .tabbrowser-tab .tab-stack, .tab-background {
-    &::before, &::after {
-      content: none !important;
+  /* Rounded upper left corner if the side panel is shown */
+  :root:has(#sidebar-main:not([hidden=""])):not([inFullscreen]) {
+    & tabbox#tabbrowser-tabbox,
+    & #tabbrowser-tabpanels {
+      border-radius: 8px 0 0 0 !important;
     }
   }
-  
-  @media (prefers-color-scheme: light) {
-    #tabbrowser-tabs .tab-background:is([selected], [multiselected]), 
-    #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-      box-shadow: var(--buttonShadowLight) !important;
-    }
+
+  #TabsToolbar {
+    box-shadow: unset !important;
   }
-  @media (prefers-color-scheme: dark) {
-    #tabbrowser-tabs .tab-background:is([selected], [multiselected]), 
-    #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-      box-shadow: var(--buttonShadowDark) !important;
-    }
-    
-    :root, :root .tabbrowser-tab {
-      & [brighttext], & [brighttext] .tabbrowser-tab {
-        --uc-titlebar-shadow: none !important;
-      }
-    }
-  }
+
 
   /* Rounded corners compatibility */
   @media -moz-pref("uc.winui.rounded-corners") {
@@ -10107,6 +10106,12 @@ button
           clip-path: circle(100%) !important;
         }
       }
+    }
+  }
+  /* Vertical tabs compatibility */
+  @media -moz-pref('sidebar.verticalTabs') {
+    #nav-bar {
+      margin-top: 0 !important;
     }
   }
 }
