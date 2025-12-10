@@ -685,6 +685,11 @@
 			background-color: light-dark(#fff, #2c2c2c)!important;
 		}
 	}
+	
+	h1 {
+		font-size: 24px !important;
+		margin-bottom: 16px !important;
+	}
 
 	/* Fluent icons */
 	#category-privacy > .category-icon {
@@ -806,7 +811,7 @@
 		fill: var(--textColor) !important;
 		width: 8px;
 		position: absolute;
-		margin-left: 16px;
+		margin-left: 12px;
 		margin-top: 2px;
 	}
 
@@ -1039,6 +1044,17 @@
 		&:hover {
 			background-color: var(--buttonPressed) !important;
 		}
+		
+		& a {
+			color: var(--textPrimary) !important;
+		}
+	}
+	
+	.theme-enable-button {
+		height: 32px !important;
+		padding-inline: 16px !important;
+		padding-bottom: 2px !important;
+		font-size: 14px !important;
 	}
 	
 	.addon.card[active="false"] {
@@ -1678,6 +1694,7 @@
 
 	/* Base button styles to exclude */
 	:where(button):not(
+	.theme-enable-button,
 	.toggle-button,
 	.category,
 	[role="menuitem"],
@@ -1808,8 +1825,8 @@
 	button.primary,
 	#containersAdd,
 	button.done,
-	#restoreAll
-	) {
+	#restoreAll,
+	.theme-enable-button) {
 		background-color: var(--accentAuto) !important;
 		color: light-dark(#fff, #000) !important;
 		transition: var(--basicBGAnimation) !important;
@@ -2811,18 +2828,6 @@
 		/* Addon cards */
 		.addon.card {
 			box-shadow: var(--cardShadowLight) !important;
-
-			&:hover {
-				box-shadow: var(--buttonShadowLight) !important;
-			}
-
-			&:active {
-				box-shadow: var(--cardShadowLight) !important;
-			}
-		}
-
-		.addon-card:not([expanded]) > .addon.card:hover {
-			box-shadow: var(--cardShadowLightHover) !important;
 		}
 		.addon-detail-sitepermissions, .addon-detail-row {
 			border-top: 1px solid rgba(0,0,0,.06) !important;
@@ -2846,6 +2851,7 @@
 
 		/* Buttons */
 		:where(button):not(
+		.theme-enable-button,
 		.arrow-button,
 		.toggle-button,
 		.category,
@@ -2948,18 +2954,8 @@
 		/* Addon cards */
 		.addon.card {
 			box-shadow: var(--cardShadowDark) !important;
-
-			&:hover {
-				box-shadow: var(--buttonShadowDark) !important;
-			}
-
-			&:active {
-				box-shadow: var(--cardShadowDark) !important;
-			}
 		}
-		addon-card:not([expanded]) > .addon.card:hover {
-			box-shadow: var(--cardShadowDarkHover) !important;
-		}
+		
 		.addon-detail-sitepermissions, .addon-detail-row {
 			border-top: 1px solid rgba(0,0,0,.2) !important;
 		}
@@ -2979,6 +2975,7 @@
 
 		/* Buttons */
 		:where(button):not(
+		.theme-enable-button,
 		.arrow-button,
 		.toggle-button,
 		.category,
@@ -3112,5 +3109,13 @@
 	}
 	.sidebar-footer-list li {
 		margin-right: 8px !important;
+	}
+	.sidebar-footer-link {
+		height: 32px !important;
+		margin-bottom: 4px !important;
+
+		&:hover {
+			background-color: var(--textButtonHover) !important;
+		}
 	}
 }

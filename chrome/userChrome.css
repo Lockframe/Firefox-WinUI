@@ -475,7 +475,9 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
 #context_moveTabToGroup > .menu-text::after,
 #sidebar-context-menu-enable-vertical-tabs > .menu-text::after,
 #sidebar-context-menu-customize-sidebar > .menu-text::after,
-#sidebar-context-menu-hide-sidebar > .menu-text::after{
+#sidebar-context-menu-hide-sidebar > .menu-text::after,
+#context-previewlink > .menu-text::after,
+#context-visual-search > .menu-text::after{
   content: '';
   background-repeat: no-repeat;
   background-position: center center;
@@ -487,6 +489,13 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
   position: absolute;
   order: -1;
   transform: translate(-28px, 2px);
+}
+
+#context-previewlink > .menu-text::after {
+  background-image: url(icons/eye.svg);
+}
+#context-visual-search > .menu-text::after {
+  background-image: url(icons/lens.svg);
 }
 
 /* Iconize tab group panel */
@@ -2815,7 +2824,7 @@ panel[type="autocomplete-richlistbox"] {
   background-color: var(--cardBG) !important;
   outline: 1px solid var(--cardOutline) !important;
   margin-inline: 13px !important;
-  border-radius: 7px !important;
+  border-radius: 3px !important;
   margin-block: 3px !important;
   animation: contentSlideUp .333s cubic-bezier(0, 0, 0, 1) !important;
   max-width: 410px !important;
@@ -5789,6 +5798,7 @@ a,
 .text-link,
 button.text-link:is(:not([disabled="true"]), :enabled),
 ::part(support-link) {
+  color: var(--accentAuto) !important;
   border-radius: 4px !important;
   transition: var(--basicBGAnimation) !important;
   position: relative;
@@ -6400,6 +6410,87 @@ button
   }
   & .thin {
     display: none !important;
+  }
+}
+
+/* Link preview panel */
+#link-preview-panel {
+  --panel-border-radius: 8px !important;
+  --panel-background: var(--commonBackground) !important;
+}
+link-preview-card {
+  outline: none !important;
+}
+
+@media -moz-pref("widget.windows.mica.popups", 0) {
+  #link-preview-panel {
+    --panel-shadow-margin: 24px !important;
+  }
+}
+
+.og-card-content {
+  color: var(--textSecondary) !important;
+  background: transparent !important;
+  outline: none !important;
+}
+.og-card {
+  font-size: 14px !important;
+  --og-main-font-size: 16px !important;
+  background: transparent !important;
+  
+  & .og-card-title {
+    margin-left: 0 !important;
+    font-size: 24px !important;
+    padding-inline: 4px;
+    overflow: visible !important;
+    order: -3;
+  }
+  & .page-info-and-card-setting-container {
+    order: -2;
+    padding-inline: 4px;
+    margin-block: -12px 0;
+  }
+  
+  & .reading-time-settings-container {
+    margin-left: 288px;
+    position: absolute;
+  }
+}
+
+.og-card-title,
+.reading-time-settings-container,
+.page-info-and-card-setting-container,
+.og-card-img,
+.og-card-description{
+  animation: staggeredSlideUp .5s cubic-bezier(0,0,0,1) forwards;
+  opacity: 0;
+}
+
+.og-card-title {
+  animation-delay: .03s;
+}
+.reading-time-settings-container {
+  animation-delay: .06s;
+}
+.page-info-and-card-setting-container {
+  animation-delay: .15s; 
+  /* Necessary, otherwise the link appears too quick due to being so small*/
+}
+.og-card-img {
+  animation-delay: .12s;
+}
+.og-card-description {
+  animation-delay: .15s;
+}
+
+@keyframes staggeredSlideUp {
+  0% {
+    transform: translateY(100%) translateZ(0px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%) translateZ(0px);
+    opacity: 1;
   }
 }
 
@@ -7077,12 +7168,6 @@ button
     clip-path: inset(28px 0 0 0) !important;
     border-radius: 0 0 16px 16px !important;
   }
-  /* Reposition in-url buttons */
-  #urlbar { 
-    & hbox[role="button"] {
-      transform: translateY(-1px) !important;
-    }
-  }
 }
 
 @media -moz-pref("uc.winui.aptos") {
@@ -7224,7 +7309,7 @@ button
       --tab-min-height: 36px !important;
     }
 
-    /* New tab button - seems to have different effects in 23h2 and 24h2 */
+    /* New tab button */
     #TabsToolbar #tabs-newtab-button>.toolbarbutton-icon {
       margin-bottom: -4px !important;
     }
@@ -7301,8 +7386,8 @@ button
     }
 
     /* Fix window control glyphs alignment in windowed mode */
-    :root:not([sizemode=maximized]) .titlebar-button {
-      margin-top: 9px !important;
+    :root:not([sizemode=maximized]) .titlebar-button::before {
+      margin-top: 4px !important;
     }
   }
 }
@@ -9387,6 +9472,45 @@ button
     background-image: var(--acrylic) !important;
   }
 
+  /* Staggered animation for downloaded items in the downloads flyout */  
+  #downloadsListBox {
+    overflow: hidden !important;
+    
+    & richlistitem {
+      opacity: 0;
+    }
+  }
+  #downloadsListBox richlistitem {
+    animation: staggeredSlideUp .5s cubic-bezier(0, 0, 0, 1) forwards !important;
+  }
+  
+  #downloadsListBox richlistitem:nth-child(1) {
+    animation-delay: .2s !important;
+  }
+  #downloadsListBox richlistitem:nth-child(2) {
+    animation-delay: .25s !important;
+  }
+  #downloadsListBox richlistitem:nth-child(3) {
+    animation-delay: .3s !important;
+  }
+  #downloadsListBox richlistitem:nth-child(4) {
+    animation-delay: .35s !important;
+  }
+  #downloadsListBox richlistitem:nth-child(5) {
+    animation-delay: .4s !important;
+  }
+
+  @keyframes staggeredSlideUp {
+    0% {
+      transform: translateY(100%) translateZ(0px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0%) translateZ(0px);
+      opacity: 1;
+    }
+  }
+  
   /* ========================== */
   /* Experimental alternate slide-down animations with shadow drawing */
   /* Currently causes position flickering due to --panel-shadow-margin */
@@ -9402,7 +9526,6 @@ button
 
   panel {
     overflow: visible !important;
-    overflow-clip-margin: 24px !important;
     transform-origin: top center !important;
   }
 
@@ -9448,6 +9571,10 @@ button
 
   /* Animated shadow drawing like in UWP */
   @media -moz-pref("widget.windows.mica.popups", 0) {
+    panel {
+      overflow-clip-margin: 24px !important;
+    }
+    
     #appMenu-popup[animate="open"],
     #unified-extensions-panel[animate="open"],
     #editBookmarkPanel[animate="open"],
