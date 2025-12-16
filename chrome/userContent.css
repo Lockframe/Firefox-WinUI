@@ -27,16 +27,11 @@
 			transition: var(--basicBGAnimation) !important;
 			animation: invokeUp .5s cubic-bezier(0,0,0,1) !important;
 			
-			&:hover {
-				background-color: var(--buttonHover) !important;
+			& * {
+				cursor: default !important;
 			}
-			&:active {
-				background-color: var(--buttonPressed) !important;
-				
-				& * {
-					color: var(--textPressed) !important;
-				}
-			}
+			
+			
 			
 			&:has(.context-menu) {
 				outline: 2px solid var(--accentAuto) !important;
@@ -53,10 +48,27 @@
 					border-radius: 4px !important;
 					width: 32px !important;
 					height: 32px !important;
+					transition: transform 83ms linear;
+					will-change: transform;
 
 					&.letter-fallback::before {
 						font-size: 32px !important;
 					}
+				}
+			}
+			
+			&:hover {
+				background-color: var(--buttonHover) !important;
+			}
+			&:active {
+				background-color: var(--buttonPressed) !important;
+				
+				& .icon-wrapper {
+					transform: scale(90%);
+				}
+				
+				& * {
+					color: var(--textPressed) !important;
 				}
 			}
 

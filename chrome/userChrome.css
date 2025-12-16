@@ -21,6 +21,7 @@
   --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
 
   --commonBackground: light-dark(#fff,#2c2c2c) !important;
+  --acrylicBackground: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
   --frameBG: light-dark(rgba(255,255,255,.7), rgba(58,58,58,.45)) !important;
   --dialogSmoke: rgba(0,0,0,.3) !important;
   
@@ -376,7 +377,7 @@ h1, h2, h3 {
   list-style-image: none !important;
 }
 #appMenu-more-button2::before {
-  content: url(icons/repair.svg);
+  content: url(icons/tools.svg);
   width: 15px;
   height: 15px;
   margin-right: -15px;
@@ -395,11 +396,7 @@ h1, h2, h3 {
 }
 
 #appMenu-help-button2 {
-  list-style-image: none !important;
-  background-image: url(icons/help.svg) !important;
-  background-repeat: no-repeat !important;
-  background-size: 14px !important;
-  background-position: 12px 7px !important;
+  list-style-image: url(icons/help-circle.svg) !important;
 }
 
 menuitem[type="checkbox"]:not([checked="true"]){
@@ -448,6 +445,14 @@ menuitem[type="radio"][checked="true"] {
 }
 
 /* Create space for icons */
+.panel-subview-body {
+  toolbarbutton {
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+  }
+}
+
 .customize-context-removeFromToolbar .menu-text::after,
 menuitem[command="downloadsCmd_clearList"] .menu-text::after,
 #context-searchselect-private .menu-text::after,
@@ -628,11 +633,11 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after {
 }
 
 #controls:not(.playing) #playpause {
-  background-image: url(icons/play.svg) !important;
+  background-image: url(icons/play-solid.svg) !important;
   background-size: 16px !important;
 }
 #controls.playing #playpause {
-  background-image: url(icons/pause.svg) !important;
+  background-image: url(icons/pause-solid.svg) !important;
   background-size: 16px !important;
 }
 #controls:not(.muted) #audio {
@@ -875,7 +880,7 @@ menu::after {
 /* Password icons */
 #password-notification-icon {
   list-style-image: none !important;
-  background-image: url(icons/passwords.svg) !important;
+  background-image: url(icons/key.svg) !important;
   background-size: 15px;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1012,6 +1017,8 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
     background-size: 6px !important;
     border-radius: 99px;
     margin-top: 2px;
+    -moz-context-properties: fill !important;
+    fill: var(--textAccentPrimary) !important;
   }
 }
 
@@ -1051,6 +1058,137 @@ span.button-background[part="button"] {
 
 img[src="chrome://global/skin/icons/highlights.svg"] {
   content: url(icons/sparkle.svg) !important;
+}
+
+#context-saveimage {
+  --menu-image: url(save-image.svg);
+  background-size: 17px !important;
+}
+
+#context-copyimage-contents {
+  --menu-image: url(copy-image.svg);
+  background-size: 17px !important;  
+}
+
+#context-savepage {
+  --menu-image: url(save-2.svg) !important;
+}
+
+#context-savelink {
+  --menu-image: url(save-link.svg) !important;
+}
+
+#context-viewimage {
+  --menu-image: url(image-tab.svg);
+  background-size: 15px !important;
+}
+
+#context-video-saveimage {
+  --menu-image: url(screenshot.svg);
+}
+
+#context-copyvideourl {
+  --menu-image: url(video-link.svg);
+}
+
+#context-copyimage {
+  --menu-image: url(image-link.svg);
+}
+
+#context-viewvideo {
+  --menu-image: url(video-tab.svg);
+}
+
+#context-savevideo {
+  --menu-image: url(video-save-2.svg);
+  background-size: 16px !important;
+}
+
+#seekForward {
+  background-image: url(icons/skip-5-forward.svg) !important;
+}
+#seekBackward {
+  background-image: url(icons/skip-5-back.svg) !important;
+}
+
+#context-video-pictureinpicture:not([checked="true"]) {
+  background-image: url(icons/pip-enter.svg) !important;
+}
+
+/* App panel sub menus icons */
+#appmenu-developer-tools-view {
+  toolbarbutton[key="key_toggleToolbox"] {
+    background-image: url(icons/settings.svg);
+  }
+  toolbarbutton[key="key_aboutProcesses"] {
+    background-image: url(icons/height-map.svg);
+  }
+  /* Remote debugging does not have a key value */
+  toolbarbutton:nth-child(3) {
+    background-image: url(icons/remote.svg);
+  }
+  toolbarbutton[key="key_browserToolbox"] {
+    background-image: url(icons/toolbox.svg);
+  }
+  toolbarbutton[key="key_browserConsole"] {
+    background-image: url(icons/console.svg);
+  }
+  toolbarbutton[key="key_responsiveDesignMode"] {
+    background-image: url(icons/accessibility.svg);
+  }
+  /* Color picker */
+  toolbarbutton:nth-child(7) {
+    background-image: url(icons/themes.svg);
+  }
+  toolbarbutton[key="key_viewSource"] {
+    background-image: url(icons/source-code.svg);
+  }
+  toolbarbutton[data-l10n-id="appmenu-developer-tools-extensions"] {
+    background-image: url(icons/extension.svg);
+  }
+}
+#PanelUI-helpItems {  
+  #appMenu_menu_openHelp {
+    background-image: url(icons/help-circle.svg);
+  }
+  #appMenu_feedbackPage {
+    background-image: url(icons/share.svg);
+  }
+  #appMenu_helpSafeMode {
+    background-image: url(icons/repair.svg);
+  }
+  #appMenu_troubleShooting {
+    background-image: url(icons/plugins.svg);
+  }
+  #appMenu_menu_HelpPopup_reportPhishingtoolmenu {
+    background-image: url(icons/report.svg);
+  }
+  #appMenu_helpSwitchDevice {
+    background-image: url(icons/devices.svg);
+  }
+  #appMenu_aboutName {
+    background-image: url(icons/info.svg);
+  }
+}
+
+#panelMenuBookmarkThisPage {
+  background-image: url(icons/star-add.svg);
+}
+#panelMenu_searchBookmarks, #appMenuSearchHistory {
+  background-image: url(icons/search-glass.svg);
+}
+#panelMenu_viewBookmarksToolbar {
+  background-image: url(icons/top-bar.svg);
+}
+
+#appMenuRecentlyClosedTabs {
+  background-image: url(icons/recent-tabs.svg);
+}
+#appMenuRecentlyClosedWindows {
+  background-image: url(icons/recent-windows.svg);
+}
+#appMenuClearRecentHistory {
+  background-image: url(icons/delete.svg);
 }
 
 /* =========================================== */
@@ -2263,6 +2401,11 @@ menuitem {
   }
 }
 
+/* Remove misleading 'report website issues' chevron*/
+#appMenu-report-broken-site-button::after {
+  display: none !important;
+}
+
 .panel-viewcontainer toolbarseparator {
   margin-inline: -14px !important;
   color: var(--dropdownSeparator) !important;
@@ -2348,6 +2491,18 @@ menuitem {
 
 toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
   padding-left: 12px !important;
+}
+
+/* Dropdowns */
+menulist {
+  border: none !important;
+  border-radius: 3px !important;
+}
+menulist:not([disabled="true"]):hover {
+  background-color: var(--buttonHover) !important;
+}
+menulist[open="true"]:not([disabled="true"]) {
+  background-color: var(--buttonPressed) !important;
 }
 
 /* Standardize font size */
@@ -4746,6 +4901,22 @@ label[data-l10n-id="choose-other-app-description"] {
   }
 }
 
+/* Clear data dialog window */
+#SanitizeDialog {
+  font-size: 14px !important;
+}
+#titleText {
+  margin: 6px 14px 16px !important;
+}
+#SanitizeDurationBox,#clearPrivateDataGroupbox {
+  margin-inline: 16px !important;
+  
+  & description {
+    margin-top: -4px !important;
+    margin-left: 6px !important;
+  }
+}
+
 @keyframes selectorBar {
   0% {
     opacity: 0;
@@ -4817,9 +4988,9 @@ button[title="Close"]{
 
 /* Notification buttons */
 #notification-popup-box {
-  margin-block: auto !important;
+  margin: 2px 4px 0 !important;
   border-radius: 4px !important;
-  height: 26px !important;
+  height: 24px !important;
 
   & image {
     padding-inline: 16px !important;
@@ -5223,11 +5394,18 @@ input[type="range"]::-moz-range-progress {
 }
 input[type="range"]::-moz-range-thumb {
   background: var(--accentAuto) !important;
-  border: none !important;
   width: 12px !important;
   height: 12px !important;
   border-radius: 50% !important;
-  outline: 4px solid var(--controlSolid) !important;
+  border: 4px solid var(--controlSolid) !important;
+  transform-origin: center center;
+  transition: all 83ms linear;
+}
+input[type="range"]::-moz-range-thumb:hover {
+  width: 14px !important;
+  height: 14px !important;
+  border: 3px solid var(--controlSolid) !important;
+  transition: all 83ms linear;
 }
 
 /* Minor adjustments to number input boxes */
@@ -5259,15 +5437,24 @@ html[windowtype="Toolkit:PictureInPicture"] {
 }
 
 #unpip, #close {
-  background-image: url(icons/unpip.svg) !important;
+  background-image: url(icons/pip-exit.svg) !important;
   -moz-context-properties: fill !important;
   fill: white !important;
-  background-size: 16px !important;
+  background-size: 18px !important;
   background-color: transparent !important;
-  box-shadow: none !important;
+  transition: background-color 83ms linear !important;
+  
+  &:not([disabled]):hover {
+    background-color: var(--textButtonHover) !important;
+  }
 }
 #close {
   background-image: url(icons/close.svg) !important;
+  transition: background-color 83ms linear !important;
+  
+  &:not([disabled]):hover {
+    background-color: var(--textButtonHover) !important;
+  }
 }
 
 .controls-bottom-lower button {
@@ -5275,7 +5462,58 @@ html[windowtype="Toolkit:PictureInPicture"] {
   box-shadow: none !important;
   outline: none !important;
   border: none !important;
+  transition: background-color 83ms linear !important;
+  
+  &:not([disabled]):hover {
+    background-color: var(--textButtonHover) !important;
+  }
 }
+/* Prevent cursor from changing when hovering buttons */
+.controls-bottom-lower button {
+  cursor: default !important;
+}
+
+/* Prevent opacity changes in PiP controls */
+body:not(:fullscreen) #controls:hover .control-item:not(:hover), 
+#controls[donthide] .control-item,
+#controls[keying] #controls-bottom-gradient, 
+#controls[showing] #controls-bottom-gradient, 
+#controls-bottom-gradient:hover{
+  opacity: 1 !important;
+}
+
+/* Acrylic background for the controls */
+#controls-bottom-gradient {
+  background: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
+  backdrop-filter: blur(60px) brightness(90%) saturate(200%) !important;
+  background-image: var(--acrylic) !important;
+  width: calc(100% - 16px) !important;
+  max-width: 720px !important;
+  margin-bottom: 8px !important;
+  margin-inline: 0 !important;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 7px;
+}
+/* Disable acrylic in full screen due to it being disfunctional */
+body:fullscreen #controls-bottom-gradient {
+  background: var(--commonBackground) !important;
+}
+
+/* Center the buttons inside the acrylic background */
+#controls-bottom {
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 26px) !important;
+  max-width: 720px !important;
+  position: absolute !important;
+}
+#controls-bottom > .controls-bottom-upper,
+#controls-bottom > .controls-bottom-lower{
+  margin-bottom: 8px !important;
+}
+
+/* --- */
 
 /* Toolbar button states */
 .toolbarbutton-1:not(#widget-overflow-mainView .toolbarbutton-1):hover > .toolbarbutton-icon,
@@ -5476,6 +5714,7 @@ html[windowtype="Toolkit:PictureInPicture"] {
   fill-opacity: 1 !important;
   width: 32px !important;
   fill: var(--textSecondary);
+  margin-top: 1px !important;
 }
 
 /* 'Search with *' button inside the urlbar */
@@ -6494,6 +6733,25 @@ link-preview-card {
   }
 }
 
+/* Recreate acrylic in some areas */
+:root {
+  clip-path: inset(0 round .1px) !important; /* Affects the about firefox pop up background */
+}
+findbar:not([hidden]), #statuspanel-label, .user-agent {
+  background-color: var(--acrylicBackground) !important;
+  backdrop-filter: blur(60px) brightness(90%) saturate(200%) !important; /* Recreate the luminosity color changes */
+  background-image: var(--acrylic) !important;
+}
+
+/* Disable acrylic url bar dropdown when vertical tabs are enabled since it doesn't work */
+@media not -moz-pref("sidebar.verticalTabs"){
+  .urlbarView {
+    background-color: var(--acrylicBackground) !important;
+    backdrop-filter: blur(60px) brightness(90%) saturate(200%) !important; /* Recreate the luminosity color changes */
+    background-image: var(--acrylic) !important;
+  }
+}
+
 /* ============= DARK ================== */
 
 @media (prefers-color-scheme: dark) {
@@ -6581,7 +6839,8 @@ link-preview-card {
   select,
   #print .toggle-group-input:checked + .toggle-group-label,
   moz-card.date-card,
-  #openHandler{
+  #openHandler,
+  menulist{
     box-shadow: var(--buttonShadowDark) !important;
     
     &:hover {
@@ -6652,8 +6911,12 @@ link-preview-card {
     }
   }
   
-  .printPreviewNavigation, .user-agent {
+  .printPreviewNavigation, .user-agent, #controls-bottom-gradient {
     box-shadow: var(--genericShadowDark) !important;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    box-shadow: var(--buttonShadowDark) !important;
   }
 }
 
@@ -6752,7 +7015,8 @@ link-preview-card {
   select,
   #print .toggle-group-input:checked + .toggle-group-label,
   moz-card.date-card,
-  #openHandler{
+  #openHandler,
+  menulist{
     box-shadow: var(--buttonShadowLight) !important;
 
     &:hover {
@@ -6838,8 +7102,12 @@ link-preview-card {
     }
   }
   
-  .printPreviewNavigation, .user-agent {
+  .printPreviewNavigation, .user-agent, #controls-bottom-gradient {
     box-shadow: var(--genericShadowLight) !important;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    box-shadow: var(--buttonShadowLight) !important;
   }
 }
 
@@ -9207,7 +9475,9 @@ link-preview-card {
     #selection-shortcut-action-panel hbox {
       background-color: transparent !important;
     }
-    #searchmode-switcher-popup, #openHandlerPopup {
+    #searchmode-switcher-popup,
+    #openHandlerPopup,
+    #sanitizeDurationPopup{
       margin: 0 !important;
     }
 
@@ -9462,16 +9732,6 @@ link-preview-card {
 }
 
 @media -moz-pref('uc.winui.experiments') {
-  /* URL bar dropdown acrylic - Doesn't work on built-in pages and with vertical tabs */
-  :root {
-    clip-path: inset(0 round .1px) !important; /* Affects the about firefox pop up background */
-  }
-  .urlbarView, findbar:not([hidden]), #statuspanel-label, .user-agent {
-    background-color: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
-    backdrop-filter: blur(60px) brightness(90%) saturate(200%) !important; /* Recreate the luminosity color changes */
-    background-image: var(--acrylic) !important;
-  }
-
   /* Staggered animation for downloaded items in the downloads flyout */  
   #downloadsListBox {
     overflow: hidden !important;
@@ -10131,17 +10391,21 @@ link-preview-card {
 
   /* Rounded corners compatibility */
   @media -moz-pref("uc.winui.rounded-corners") {
+    #nav-bar{
+      box-shadow: none !important;
+    }
+    
     :root:not([inDOMFullscreen="true"], 
     [sizemode="fullscreen"], 
     [sizemode="maximized"]) browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
       margin: unset !important;
       border-radius: unset !important;
-      border-width: 1px 0 0 0 !important;
+      border-width: 0 !important;
     }
     :root[sizemode="maximized"] browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
       margin: unset !important;
       border-radius: unset !important;
-      border-width: 1px 0 0 0 !important;
+      border-width: 0 !important;
     }
 
     browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser):not(.sidebar) {
@@ -10151,7 +10415,7 @@ link-preview-card {
 
       /* Default radius (non-fullscreen, non-maximized) */
       :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([sizemode="maximized"]) & {
-        border-radius: 0 0 5px 5px !important;
+        border-radius: 5px !important;
       }
 
       /* Prevent border from overlapping with full screen videos */
@@ -10169,10 +10433,7 @@ link-preview-card {
         /* Inner browser rounding when UI is visible */
         :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]) & browser {
           border-radius: 7px 7px 5px 5px !important;
-          box-shadow:
-            1px 0 0 0 light-dark(rgba(0,0,0,.1), rgba(0,0,0,.135)),
-            -1px 0 0 0 light-dark(rgba(0,0,0,.1), rgba(0,0,0,.135)),
-            0 1px 0 0 light-dark(rgba(0,0,0,.125), rgba(0,0,0,.135)) !important;
+          box-shadow: 0 0 0 1px light-dark(rgba(0,0,0,.125), rgba(0,0,0,.135)) !important;
         }
         /* Maximized */
         :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]):is([sizemode="maximized"]) & browser {
