@@ -646,14 +646,14 @@
 		--cardShadowDarkHover: 0 0 0 1px rgba(255,255,255,.1), 0 -1px 0 rgba(255,255,255,.035), 0 4px 8px rgba(0,0,0,.1) !important;
 
 		--infoBG: light-dark(rgba(246,246,246, .5), rgba(255,255,255,.0326)) !important;
-		--cautionBG: light-dark(#FFF4CE, #433519) !important;
-		--successBG: light-dark(#DFF6DD, #393D1B) !important;
-		--criticalBG: light-dark(#FDE7E9, #442726) !important;
-		--infoShadow: 0 0 0 1px var(--footerBorder) !important;
-		--infoBadge: light-dark(#005FB7, #60CDFF) !important;
-		--cautionBadge: light-dark(#9D5D00, #FCE100) !important;
-		--successBadge: light-dark(#0F7B0F, #6CCB5F) !important;
-		--criticalBadge: light-dark(#C42B1C, #FF99A4) !important;
+		--cautionBG: light-dark(#FFF4CE, #433519);
+		--successBG: light-dark(#DFF6DD, #393D1B);
+		--criticalBG: light-dark(#FDE7E9, #442726);
+		--infoShadow: 0 0 0 1px var(--footerBorder);
+		--infoBadge: light-dark(#005FB7, #60CDFF);
+		--cautionBadge: light-dark(#9D5D00, #FCE100);
+		--successBadge: light-dark(#0F7B0F, #6CCB5F);
+		--criticalBadge: light-dark(#C42B1C, #FF99A4);
 
 		--button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
 		--buttonHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
@@ -663,6 +663,9 @@
 		--buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
 		--buttonShadowDarkPressed: 0 0 0 1px rgba(255,255,255,.0698) !important;
 
+		--closeHover: #C42B1C;
+		--closePressed: rgba(192,43,28,.9);
+		
 		--textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
 		--textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
 		--textPressed: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786)) !important;
@@ -862,6 +865,10 @@
 		background-image: url("icons/lock.svg") !important;
 		opacity: 1 !important;
 		color: var(--textDisabled) !important;
+	}
+	
+  .close-icon {
+		list-style-image: url(icons/close.svg) !important;
 	}
 
 	.textbox-search-clear {
@@ -2259,6 +2266,8 @@
 	.dialogTitleBar {
 		background-color: var(--commonBackground) !important;
 		border-bottom: none !important;
+		padding: 0 !important;
+		height: 30px !important;
 	}
 	h3, .heading-medium {
 		font-weight: 600 !important;
@@ -2277,20 +2286,23 @@
 	}
 	.dialogClose {
 		margin: 0px !important;
-		width: 40px !important;
-		height: 25px !important;
+		width: 46px !important;
+		height: 32px !important;
+		border-radius: 0 !important;
 	}
+	
 	button.dialogClose, .close-icon {
 		background-color: transparent !important;
 		color: var(--textColor) !important;
-		translate: -1px -2px !important;
+		transition: background-color 83ms linear !important;
 	}
 	button.dialogClose:hover, .close-icon:hover {
-		background-color: var(--textButtonHover) !important;
+		background-color: var(--closeHover) !important;
+		color: #fff !important;
 	}
 	button.dialogClose:active, .close-icon:active {
-		background-color: var(--textButtonPressed) !important;
-		color: var(--textPressed) !important;
+		background-color: var(--closePressed) !important;
+		color: rgba(255,255,255,.7) !important;
 	}
 
 	window, dialog {
@@ -2332,6 +2344,10 @@
 		border-bottom: 1px solid blue !important;
 		background-color: black !important;
 		background-clip: padding-box !important;
+	}
+	
+	profile-selector {
+		background-color: var(--commonBackground) !important;
 	}
 
 	.dialog-button-box {

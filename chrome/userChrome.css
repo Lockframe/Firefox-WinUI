@@ -1191,6 +1191,20 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
   background-image: url(icons/delete.svg);
 }
 
+#controls.muted #audio {
+  background-image: url(icons/mute.svg) !important;
+  background-size: 16px !important;
+}
+
+/* Chat header button icons */
+#main-button > span[part="button"] > img[src="chrome://global/skin/icons/close.svg"] {
+  content: url(icons/close.svg) !important;
+}
+#main-button > span[part="button"] > img[src="chrome://global/skin/icons/more.svg"] {
+  content: url(icons/menu.svg) !important;
+}
+
+
 /* =========================================== */
 /* Prevent tab background from becoming gray for 1 frame after switching tabs */
 .tab-background[fadein="true"] {
@@ -1258,7 +1272,7 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
 
 /* Unselected tabs are 1px smaller than selected tabs */
 #tabbrowser-tabs[orient="horizontal"] .tab-background:not([selected]) {
-  clip-path: inset(1px 0 1px 0 round 7px 7px 0 0) !important;
+  clip-path: inset(1px 0 1px 0 round 7px 7px 0 0);
 }
 #tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[pinned]:not([selected]) .tab-background {
   clip-path: inset(1px round 7px 7px 0 0) !important;
@@ -3672,19 +3686,40 @@ window#webextpanels-window {
 }
 #header {
   background-color: transparent !important;
-  padding-inline: 8px !important;
+  padding-inline: 1px !important;
   padding-block: 5px !important;
+  border: none !important;
+  order: -2 !important;
   
   & #provider {
     margin-right: 6px !important;
     height: 25px !important;
     font-size: 14px !important;
-    background-position-x: 8px !important;
-    --start-padding: 24px !important;
+    background-position-x: 95.5% !important;
+    --start-padding: 8px !important;
+    background-image: url(icons/chevron-down.svg) !important;
+    background-size: 10px !important;
   }
     
   & #header-close {
     margin-left: 2px !important;
+  }
+}
+
+/* Remove summarize button due to redundancy (already available in context menu) and difficulty to style (shadow-root limitations) */
+#summarize-btn-container {
+  display: none !important;
+}
+
+body:has(#header, #message-container, #summarize-btn-container) {
+  & #browser-container {
+    margin-bottom: 8px;
+    
+    & browser {
+      border-radius: 8px;
+      outline: 1px solid var(--footerBorder) !important;
+      margin-inline: 1px;
+    }
   }
 }
 
@@ -4012,7 +4047,6 @@ moz-card {
 #sidebar-splitter {
   width: 7px !important;
   background: var(--frameBG) !important;
-  margin-left: 0px !important;
 }
 
 #bookmarks-view {
@@ -5392,20 +5426,23 @@ input[type="range"]::-moz-range-progress {
   background: var(--accentAuto) !important;
   height: 4px !important;
 }
+
 input[type="range"]::-moz-range-thumb {
-  background: var(--accentAuto) !important;
+  background-color: var(--accentAuto) !important;
   width: 12px !important;
   height: 12px !important;
   border-radius: 50% !important;
   border: 4px solid var(--controlSolid) !important;
-  transform-origin: center center;
-  transition: all 83ms linear;
 }
 input[type="range"]::-moz-range-thumb:hover {
   width: 14px !important;
   height: 14px !important;
-  border: 3px solid var(--controlSolid) !important;
-  transition: all 83ms linear;
+  border-width: 3px !important;
+}
+input[type="range"]::-moz-range-thumb:active {
+  width: 10px !important;
+  height: 10px !important;
+  border-width: 5px !important;
 }
 
 /* Minor adjustments to number input boxes */
@@ -5425,6 +5462,10 @@ input[type="number"]::-moz-number-spin-down {
 /* Picture in Picture */
 html[windowtype="Toolkit:PictureInPicture"] { 
   border-radius: 8px !important;
+  
+  & * {
+    cursor: default !important;
+  }
 }
 #picture-in-picture-button {
   background: url(icons/media-pip.svg) no-repeat center center !important;
@@ -5436,25 +5477,33 @@ html[windowtype="Toolkit:PictureInPicture"] {
   }
 }
 
+#controls {
+  & .control-button {
+    fill: var(--textPrimary) !important;
+  }
+  & div {
+    color: var(--textPrimary) !important;
+  }
+}
+
 #unpip, #close {
   background-image: url(icons/pip-exit.svg) !important;
   -moz-context-properties: fill !important;
-  fill: white !important;
   background-size: 18px !important;
-  background-color: transparent !important;
   transition: background-color 83ms linear !important;
+  outline: 1px solid var(--footerBorder) !important;
+  background-color: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
+  backdrop-filter: blur(60px) brightness(90%) saturate(200%);
   
   &:not([disabled]):hover {
-    background-color: var(--textButtonHover) !important;
+    background-color: light-dark(rgba(255,255,255,.6), rgba(32,32,32,.5)) !important;
+  }
+  &:not([disabled]):active {
+    background-color: light-dark(rgba(255,255,255,.65), rgba(32,32,32,.55)) !important;
   }
 }
 #close {
   background-image: url(icons/close.svg) !important;
-  transition: background-color 83ms linear !important;
-  
-  &:not([disabled]):hover {
-    background-color: var(--textButtonHover) !important;
-  }
 }
 
 .controls-bottom-lower button {
@@ -5467,6 +5516,9 @@ html[windowtype="Toolkit:PictureInPicture"] {
   &:not([disabled]):hover {
     background-color: var(--textButtonHover) !important;
   }
+  &:not([disabled]):active {
+    background-color: var(--textButtonPressed) !important;
+  }
 }
 /* Prevent cursor from changing when hovering buttons */
 .controls-bottom-lower button {
@@ -5474,11 +5526,14 @@ html[windowtype="Toolkit:PictureInPicture"] {
 }
 
 /* Prevent opacity changes in PiP controls */
-body:not(:fullscreen) #controls:hover .control-item:not(:hover), 
-#controls[donthide] .control-item,
-#controls[keying] #controls-bottom-gradient, 
-#controls[showing] #controls-bottom-gradient, 
-#controls-bottom-gradient:hover{
+#controls[keying] #controls-bottom-gradient,
+#controls[showing] #controls-bottom-gradient,
+#controls-bottom-gradient:hover,
+#controls[keying] .control-item,
+#controls[showing] .control-item,
+.control-item:hover,
+body:not(:fullscreen) #controls:hover .control-item:not(:hover),
+#controls[donthide] .control-item{
   opacity: 1 !important;
 }
 
@@ -5495,9 +5550,22 @@ body:not(:fullscreen) #controls:hover .control-item:not(:hover),
   transform: translateX(-50%);
   border-radius: 7px;
 }
-/* Disable acrylic in full screen due to it being disfunctional */
-body:fullscreen #controls-bottom-gradient {
-  background: var(--commonBackground) !important;
+/* Disable acrylic in full screen due to it being dysfunctional */
+body:fullscreen {
+  #controls-bottom-gradient {
+    background: var(--commonBackground) !important;
+  }
+  
+  #unpip, #close {
+    background-color: var(--commonBackground) !important;
+
+    &:not([disabled]):hover {
+      background-color: color-mix(in srgb, var(--commonBackground), white 6%) !important;
+    }
+    &:not([disabled]):active {
+      background-color: color-mix(in srgb, var(--commonBackground), white 10%)  !important;
+    }
+  }
 }
 
 /* Center the buttons inside the acrylic background */
@@ -5513,16 +5581,63 @@ body:fullscreen #controls-bottom-gradient {
   margin-bottom: 8px !important;
 }
 
+/* Compact PiP */
+@media (max-width: 850px) and (max-height: 850px) {
+  #seekForward,
+  #seekBackward,
+  #timestamp,
+  .end-controls #audio-scrubber{
+    display: none !important;
+  }
+  .center-controls {
+    justify-self: start !important;
+    grid-template-columns: unset !important;
+    gap: 0 !important;
+    order: -1 !important;
+    margin-left: -16px !important;
+  }
+  #controls-bottom {
+    transform: translateX(-50%) translateY(7px);
+  }
+  #controls-bottom-gradient {
+    height: 48px !important;
+  }
+  .end-controls {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas: "audio fullscreen" !important;
+    gap: 4px !important;
+    margin-right: -16px !important;
+  }
+  /* Move slider to the bottom */
+  .controls-bottom-upper {
+    transform: translateY(38px) !important;
+    width: calc(100% - 132px) !important;
+    margin-inline: 48px 0 !important;
+  }
+}
+
+/* Tooltips */
+.control-item:focus-visible::after,
+.control-item:hover::after {
+  padding: .4em .75em .5em !important;
+  background-color: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
+  background-image: var(--acrylic) !important;
+  color: var(--textPrimary) !important;
+  box-shadow: var(--tooltipShadow) !important;
+  outline: 1px solid var(--flyoutStroke) !important;
+  backdrop-filter: blur(60px) brightness(90%) saturate(200%) !important;
+}
+
 /* --- */
 
 /* Toolbar button states */
-.toolbarbutton-1:not(#widget-overflow-mainView .toolbarbutton-1):hover > .toolbarbutton-icon,
-.toolbarbutton-1:not(#widget-overflow-mainView .toolbarbutton-1):hover > stack{
+.toolbarbutton-1:not(#widget-overflow-mainView .toolbarbutton-1):not([disabled]):not([disabled="true"]):hover > .toolbarbutton-icon,
+.toolbarbutton-1:not(#widget-overflow-mainView .toolbarbutton-1):hover > stack {
   background-color: var(--textButtonHover) !important;
 }
-.toolbarbutton-1:not(#widget-overflow-mainView .toolbarbutton-1):active > .toolbarbutton-icon,
+.toolbarbutton-1:not(#widget-overflow-mainView .toolbarbutton-1):not([disabled]):not([disabled="true"]):active > .toolbarbutton-icon,
 .toolbarbutton-1:not(#widget-overflow-mainView .toolbarbutton-1):active > stack,
-#downloads-button:not(#widget-overflow-mainView *):active .toolbarbutton-badge-stack{
+#downloads-button:not(#widget-overflow-mainView *):active .toolbarbutton-badge-stack {
   background-color: var(--textButtonPressed) !important;
   fill: var(--textSecondary) !important;
 }
@@ -7755,19 +7870,24 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   
   /* Left-most tab positioning */
   @media not -moz-pref("uc.winui.floating-tabs") {
-    :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], .tabbrowser-tab[pinned="true"]) {
-      & .tabbrowser-tab[pinned="true"]:first-of-type {
+    :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], 
+    .tabbrowser-tab[pinned="true"]) {
+      & .tabbrowser-tab[pinned="true"] {
         margin-right: 4px !important;
+        
+        &:last-of-type {
+          margin-right: 8px !important;
+        }
       }
     }
-    :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], .tabbrowser-tab[pinned="true"]):not(:has(.tabbrowser-tab:not([pinned="true"]))) {
-      & .tabbrowser-tab[pinned="true"]:last-of-type {
-        margin-right: 8px !important;
-      }
-    }
-    :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], .tabbrowser-tab:not([pinned="true"])) {
+    :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], 
+    .tabbrowser-tab:not([pinned="true"])) {
       & .tabbrowser-tab:first-of-type {
         margin-left: 4px !important;
+        
+        &:not([selected]):hover {
+          clip-path: inset(1px 0 1px 0 round 7px 7px 0 7px) !important;
+        }
       }
     }
   }
@@ -7777,7 +7897,8 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     --uc-tab-corner-bg: transparent !important;
     --uc-tab-corner-outline: transparent !important;
   }
-  :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], .tabbrowser-tab:first-of-type:is([pinned="true"]) .tab-background:not([selected], [multiselected])) {
+  :root:has(#tabbrowser-arrowscrollbox[orient="horizontal"], 
+  .tabbrowser-tab:first-of-type:is([pinned="true"]) .tab-background:not([selected], [multiselected])) {
     .tabbrowser-tab:first-of-type .tab-background:is([selected], [multiselected])::before {
       --uc-tab-corner-bg: transparent !important;
       --uc-tab-corner-outline: transparent !important;
@@ -7792,7 +7913,8 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   }
   
   /* Navbar upper shadow */
-  :root, :root .tabbrowser-tab {
+  :root, 
+  :root .tabbrowser-tab {
     --uc-titlebar-shadow: none !important;
     & [brighttext], & [brighttext] .tabbrowser-tab {
       --uc-titlebar-shadow: transparent !important;
@@ -8441,17 +8563,54 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
       translate: 0 0;
     }
   }
+  
+  /* Staggered animation for downloaded items in the downloads flyout */  
+  #downloadsListBox {
+    overflow: hidden !important;
+
+    & richlistitem {
+      opacity: 0;
+    }
+  }
+  #downloadsListBox richlistitem {
+    animation: staggeredSlideUp .5s cubic-bezier(0, 0, 0, 1) forwards !important;
+  }
+
+  #downloadsListBox richlistitem:nth-child(1) {
+    animation-delay: .2s !important;
+  }
+  #downloadsListBox richlistitem:nth-child(2) {
+    animation-delay: .25s !important;
+  }
+  #downloadsListBox richlistitem:nth-child(3) {
+    animation-delay: .3s !important;
+  }
+  #downloadsListBox richlistitem:nth-child(4) {
+    animation-delay: .35s !important;
+  }
+  #downloadsListBox richlistitem:nth-child(5) {
+    animation-delay: .4s !important;
+  }
+
+  @keyframes staggeredSlideUp {
+    0% {
+      transform: translateY(100%) translateZ(0px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0%) translateZ(0px);
+      opacity: 1;
+    }
+  }
 
   /* Other panel animations, require manual user editing if the buttons are placed differently in the toolbar */
   #unified-extensions-panel[animate="open"],
-  #downloadsPanel[animate="open"],
   #editBookmarkPanel[animate="open"] {
     animation: popIn .333s cubic-bezier(0, 0, 0, 1) !important;
     transform-origin: top right !important;
   }
 
   #unified-extensions-panel:not([animate="open"]),
-  #downloadsPanel:not([animate="open"]),
   #editBookmarkPanel:not([animate="open"]) {
     animation: popOut .187s ease-in !important;
     transform-origin: top right !important;
@@ -9362,7 +9521,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
 @media -moz-pref("widget.windows.mica.popups", 1) or
   -moz-pref("widget.windows.mica.popups", 2) {
     .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
-      background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+      background-color: var(--acrylicBackground) !important;
       box-shadow: none !important;
       margin: -3px -12px -19px !important;
       border-radius: 0 !important;
@@ -9374,7 +9533,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     
     @media -moz-pref("uc.winui.extra-highlights") {
       .panel-viewstack {
-        background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+        background-color: var(--acrylicBackground) !important;
       }
       
       @media (prefers-color-scheme: dark) {
@@ -9484,10 +9643,10 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     /* Acrylic panels */
     * {
       /* Panel colors */
-      --arrowpanel-background: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+      --arrowpanel-background: var(--acrylicBackground) !important;
       --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
       --arrowpanel-border-color: none !important;
-      --panel-background: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+      --panel-background: var(--acrylicBackground) !important;
     }
     panel:not(.autoscroller) {
       appearance: auto !important;
@@ -9508,7 +9667,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
 
     #autoscroller, .autoscroller {
       border-radius: 0 !important;
-      background-color: light-dark(rgba(255,255,255,.85), rgba(10,10,10,.48)) !important;
+      background-color: var(--acrylicBackground) !important;
     }
 
     /* Move misaligned panels */
@@ -9732,45 +9891,6 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
 }
 
 @media -moz-pref('uc.winui.experiments') {
-  /* Staggered animation for downloaded items in the downloads flyout */  
-  #downloadsListBox {
-    overflow: hidden !important;
-    
-    & richlistitem {
-      opacity: 0;
-    }
-  }
-  #downloadsListBox richlistitem {
-    animation: staggeredSlideUp .5s cubic-bezier(0, 0, 0, 1) forwards !important;
-  }
-  
-  #downloadsListBox richlistitem:nth-child(1) {
-    animation-delay: .2s !important;
-  }
-  #downloadsListBox richlistitem:nth-child(2) {
-    animation-delay: .25s !important;
-  }
-  #downloadsListBox richlistitem:nth-child(3) {
-    animation-delay: .3s !important;
-  }
-  #downloadsListBox richlistitem:nth-child(4) {
-    animation-delay: .35s !important;
-  }
-  #downloadsListBox richlistitem:nth-child(5) {
-    animation-delay: .4s !important;
-  }
-
-  @keyframes staggeredSlideUp {
-    0% {
-      transform: translateY(100%) translateZ(0px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0%) translateZ(0px);
-      opacity: 1;
-    }
-  }
-  
   /* ========================== */
   /* Experimental alternate slide-down animations with shadow drawing */
   /* Currently causes position flickering due to --panel-shadow-margin */
