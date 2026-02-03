@@ -141,6 +141,8 @@
   --toolbarbutton-outer-padding: 4px !important;
   --toolbarbutton-inner-padding: 8.5px !important;
   
+  --content-area-shadow: unset !important;
+  
   /* Tabs height */
   --tab-min-height: 32px !important;
   
@@ -191,6 +193,7 @@
       background-color: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
     }
   }
+  .browserContainer {background: transparent !important;}
 }
 
 /* Titles */
@@ -5480,9 +5483,17 @@ html[windowtype="Toolkit:PictureInPicture"] {
 #controls {
   & .control-button {
     fill: var(--textPrimary) !important;
+    
+    &:not([disabled]):active {
+      fill: var(--textSecondary) !important;
+    }
   }
   & div {
     color: var(--textPrimary) !important;
+    
+    &:not([disabled]):active {
+      color: var(--textSecondary) !important;
+    }
   }
 }
 
@@ -5586,7 +5597,8 @@ body:fullscreen {
   #seekForward,
   #seekBackward,
   #timestamp,
-  .end-controls #audio-scrubber{
+  .end-controls #audio-scrubber,
+  #closed-caption{
     display: none !important;
   }
   .center-controls {
@@ -6672,6 +6684,18 @@ button
     background: transparent !important;
     box-shadow: none !important;
   }
+  
+  /* Drag window through urlbar, since it's not interactive */
+  .urlbar-input-box,.urlbar-input,#urlbar-scheme,#urlbar-container{
+    -moz-window-dragging: drag;
+    cursor: default;
+  }
+  #page-action-buttons,
+  .identity-box-button,
+  .urlbar-page-action{
+    -moz-window-dragging: no-drag;
+    cursor: auto;
+  }
 }
 
 #autoscroller, .autoscroller {
@@ -7234,10 +7258,6 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   --uc-tweak-rounded-corners-radius: 0 !important;
   --uc-tweak-rounded-corners-shadow: unset !important;
   --lwt-tab-line-color: unset !important;
-  background: none !important;
-}
-
-#tabbrowser-tabbox .browserStack {
   background: none !important;
 }
 
@@ -9147,7 +9167,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   }
 
   /* Tab label clipped when not hovered */
-  #tabbrowser-tabs .tabbrowser-tab:not([selected], :hover) .tab-label {
+  #tabbrowser-tabs .tabbrowser-tab:not(:hover) .tab-label {
     clip-path: inset(0 16px 0 0) !important;
   }
 
@@ -9249,10 +9269,12 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
 
     & .tab-background {
       width: -moz-available !important;
-      background-color: var(--textButtonPressed) !important;
 
       &:hover {
         background-color: var(--textButtonHover) !important;
+      }
+      &:active {
+        background-color: var(--textButtonPressed) !important;
       }
     }
 
@@ -9530,12 +9552,12 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
         margin-right: -10px !important;
       }
     }
-    
+
     @media -moz-pref("uc.winui.extra-highlights") {
       .panel-viewstack {
         background-color: var(--acrylicBackground) !important;
       }
-      
+
       @media (prefers-color-scheme: dark) {
         .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
           background-color: light-dark(rgba(255,255,255,.85), rgba(0,0,0,.57)) !important;
@@ -9571,7 +9593,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     menupopup#ContentSelectDropdownPopup {
       margin-left: 0 !important;
     }
-    
+
     #contentAreaContextMenu menu,
     #contentAreaContextMenu menuitem,
     #context-navigation,
@@ -9610,7 +9632,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     /* Alignment */
     #back-button menupopup {
       margin-top: -8px !important;
-      
+
       & menuitem {
         margin-left: 6px !important;
       }
@@ -9618,7 +9640,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     #forward-button menupopup {
       margin-top: -8px !important;
       margin-left: 4px !important;
-      
+
       & menuitem {
         margin-inline: 2px 2px !important;
       }
@@ -9641,12 +9663,11 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     }
 
     /* Acrylic panels */
+    /* Panel colors */
     * {
-      /* Panel colors */
       --arrowpanel-background: var(--acrylicBackground) !important;
       --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
       --arrowpanel-border-color: none !important;
-      --panel-background: var(--acrylicBackground) !important;
     }
     panel:not(.autoscroller) {
       appearance: auto !important;
@@ -9658,16 +9679,16 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
         margin-inline: 5px !important;
       }
     }
+    .autoscroller {
+      appearance: none !important;
+      --panel-shadow: none !important;
+    }
+    
     #PanelUI-fxa-remotetabs-deck .all-tabs-button {
       margin-inline: -3px !important;
     }
     #PanelUI-fxa-remotetabs-deck .all-tabs-close-button {
       margin-inline: 6px -3px !important;
-    }
-
-    #autoscroller, .autoscroller {
-      border-radius: 0 !important;
-      background-color: var(--acrylicBackground) !important;
     }
 
     /* Move misaligned panels */
@@ -9686,7 +9707,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
       margin-inline: 9px !important;
       width: 262px !important;
     }
-    
+
     #notification-popup {
       margin: 7px 0 0 0 !important;
     }

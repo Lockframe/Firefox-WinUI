@@ -30,9 +30,7 @@
 			& * {
 				cursor: default !important;
 			}
-			
-			
-			
+
 			&:has(.context-menu) {
 				outline: 2px solid var(--accentAuto) !important;
 			  background: var(--buttonHover) !important;
