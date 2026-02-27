@@ -701,7 +701,7 @@
 	
 	h1 {
 		font-size: 24px !important;
-		margin-bottom: 16px !important;
+		margin-bottom: 8px !important;
 	}
 
 	/* Fluent icons */
@@ -1053,18 +1053,40 @@
 	}
 
 	/* Addon cards */
-	.addon.card {
-		background-color: var(--cardBG) !important;
-		margin-block: 5px !important;
-		transition: var(--basicBGAnimation) !important;
+	addon-card {
+		.addon.card {
+			background-color: var(--cardBG) !important;
+			margin-block: 5px !important;
+			transition: var(--basicBGAnimation) !important;
 
-		&:hover {
-			background-color: var(--buttonPressed) !important;
+			&:hover {
+				background-color: var(--buttonPressed) !important;
+			}
+
+			& a {
+				color: var(--textColor) !important;
+			}
+
+			.addon-name {
+				margin: 0 !important;
+			}
 		}
+
+		&:is([expanded="true"]) {
+			.card.addon{
+				padding-top: 24px !important;
+
+				.card-heading-icon {
+					margin-top: -16px !important;
+				}
+			}
+		}
+	}
 		
-		& a {
-			color: var(--textPrimary) !important;
-		}
+	
+	
+	.addon-card-collapsed {
+		align-items: center !important;
 	}
 	
 	.theme-enable-button {
@@ -1456,7 +1478,7 @@
 	.content-blocking-warning-image {
 		list-style-image: none !important;
 		background: url(icons/caution-badge.svg) no-repeat center center !important;
-		background-size: 2px !important;
+		background-size: 8px !important;
 		background-color: var(--cautionBadge) !important;
 		border-radius: 99px !important;
 		height: 16px;
@@ -1464,7 +1486,7 @@
 		fill: var(--textInverse) !important;
 	}
 	.content-blocking-warning > hbox {
-		margin-block: 0 -16px !important;
+		margin: 0 0 -18px 0 !important;
 	}
 	
 	.content-blocking-warning-title {
@@ -1474,6 +1496,10 @@
 	.content-blocking-warning {
 		background-color: var(--cautionBG) !important;
 		padding-block: 8px 6px !important;
+		
+		& description {
+			margin-left: 26px !important;
+		}
 	}
 	.reload-tabs-button {
 		margin-top: 12px !important;
@@ -2609,8 +2635,9 @@
 	}
 	
 	/* Addresses & payment dialog */
-	/* Table */
-	legend {
+	/* Table - disabled since Mozilla completely reworked it into parts*/
+	
+	/*legend[part="label"] {
 		border-radius: 4px 4px 0 0 !important;
 		border-color: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.2)) !important;
 		background-color: var(--button) !important;
@@ -2624,7 +2651,8 @@
 	}
 	fieldset {
 		margin-inline: 24px !important;
-	}
+	}*/
+	
 	
 	.editAddressForm, .editCreditCardForm {
 		padding-inline: 24px !important;

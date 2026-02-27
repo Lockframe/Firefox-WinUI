@@ -10,127 +10,127 @@
 @import url("global/browser.css");
 @import url("global/tree.css");
 
-/*Import custom stylesheet instead of modifying Edge-Frfox theme files.*/
+/*Import custom stylesheet instead of modifying theme files.*/
 @import url("custom.css");
 
 /* ========== Firefox-WinUI GLOBAL ========== */
 
 /* MICA */
 :root {
-  --acrylic: url(global/accnoise256.png) !important;
-  --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
+  --acrylic: url(global/accnoise256.png);
+  --extraacrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 
-  --commonBackground: light-dark(#fff,#2c2c2c) !important;
-  --acrylicBackground: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
-  --frameBG: light-dark(rgba(255,255,255,.7), rgba(58,58,58,.45)) !important;
-  --dialogSmoke: rgba(0,0,0,.3) !important;
+  --commonBackground: light-dark(#fff,#2c2c2c);
+  --acrylicBackground: light-dark(#fff,#2c2c2c);
+  --frameBG: light-dark(rgba(255,255,255,.7), rgba(58,58,58,.45));
+  --dialogSmoke: rgba(0,0,0,.3);
   
-  --cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
-  --cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837)) !important;
-  --cardShadowLight: 0 0 0 1px rgba(0,0,0,.0605) !important;
-  --cardOutline: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.14)) !important;
-  --cardShadowLightHover: 0 0 0 1px rgba(0,0,0,.06), 0 4px 8px rgba(0,0,0,.03) !important;
-  --cardShadowDark: 0 0 0 1px rgba(0,0,0,.14) !important;
-  --cardShadowDarkHover: 0 0 0 1px rgba(255,255,255,.1), 0 -1px 0 rgba(255,255,255,.035), 0 4px 8px rgba(0,0,0,.1) !important;
+  --cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605));
+  --cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837));
+  --cardShadowLight: 0 0 0 1px rgba(0,0,0,.0605);
+  --cardOutline: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.14));
+  --cardShadowLightHover: 0 0 0 1px rgba(0,0,0,.06), 0 4px 8px rgba(0,0,0,.03);
+  --cardShadowDark: 0 0 0 1px rgba(0,0,0,.14);
+  --cardShadowDarkHover: 0 0 0 1px rgba(255,255,255,.1), 0 -1px 0 rgba(255,255,255,.035), 0 4px 8px rgba(0,0,0,.1);
 
-  --footer: light-dark(#f3f3f3, #202020) !important;
-  --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1)) !important;
-  --footerBorder2: light-dark(#dddddd,#1d1d1d) !important;
-  --dropdownSeparator: light-dark(rgba(0,0,0,.0803), rgba(255,255,255,.0837)) !important;
+  --footer: light-dark(#f3f3f3, #202020);
+  --footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1));
+  --footerBorder2: light-dark(#dddddd,#1d1d1d);
+  --dropdownSeparator: light-dark(rgba(0,0,0,.0803), rgba(255,255,255,.0837));
   
-  --textPrimary: light-dark(rgba(0,0,0,.8956), rgb(255,255,255)) !important;
-  --textSecondary: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.786)) !important;
-  --textTertiary: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
-  --textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628)) !important;
+  --textPrimary: light-dark(rgba(0,0,0,.8956), rgb(255,255,255));
+  --textSecondary: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.786));
+  --textTertiary: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442));
+  --textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628));
   
-  --textAccentPrimary: light-dark(#fff,#000) !important;
-  --textAccentSecondary: light-dark(rgba(255,255,255,.7),rgba(0,0,0,.5)) !important;
-  --textAccentDisabled: light-dark(#fff,rgba(255,255,255,.5302)) !important;
+  --textAccentPrimary: light-dark(#fff,#000);
+  --textAccentSecondary: light-dark(rgba(255,255,255,.7),rgba(0,0,0,.5));
+  --textAccentDisabled: light-dark(#fff,rgba(255,255,255,.5302));
 
-  --searchBackground: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605)) !important;
-  --searchHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
-  --searchActiveBorder: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0698)) !important;
-  --searchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.41) !important;
-  --searchShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.46) !important;
-  --searchActiveShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset !important;
-  --searchActiveShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset !important;
-  --disabledSearch: light-dark(rgba(249,249,249,.3),rgba(255,255,255,.0419)) !important;
-  --disabledSearchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
-  --disabledSearchShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02)  !important;
-  --disabledSearchText: light-dark(rgba(0,0,0,.3614),rgba(255,255,255,.3628)) !important;
-  --searchDropdown: light-dark(#FCFCFC, #2C2C2C) !important;
+  --searchBackground: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605));
+  --searchHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837));
+  --searchActiveBorder: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0698));
+  --searchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.41);
+  --searchShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.46);
+  --searchActiveShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset;
+  --searchActiveShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset;
+  --disabledSearch: light-dark(rgba(249,249,249,.3),rgba(255,255,255,.0419));
+  --disabledSearchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1);
+  --disabledSearchShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) ;
+  --disabledSearchText: light-dark(rgba(0,0,0,.3614),rgba(255,255,255,.3628));
+  --searchDropdown: light-dark(#FCFCFC, #2C2C2C);
 
-  --controlSolid: light-dark(#ffffff,#454545) !important;
-  --controlSecondary: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
-  --controlTertiary: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326)) !important;
-  --controlQuartenary: light-dark(rgba(243,243,243,.76), rgba(255,255,255,.0605)) !important;
-  --controlStrong: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442)) !important;
-  --controlStroke: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0698)) !important;
-  --controlStrongStroke: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
-  --controlStrongStrokeDisabled: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581)) !important;
-  --controlAltSecondary: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
-  --controlAltTertiary: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419)) !important;
-  --controlAltQuartenary: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698)) !important;
+  --controlSolid: light-dark(#ffffff,#454545);
+  --controlSecondary: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837));
+  --controlTertiary: light-dark(rgba(249,249,249,.3), rgba(255,255,255,.0326));
+  --controlQuartenary: light-dark(rgba(243,243,243,.76), rgba(255,255,255,.0605));
+  --controlStrong: light-dark(rgba(0,0,0,.4458), rgba(255,255,255,.5442));
+  --controlStroke: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0698));
+  --controlStrongStroke: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047));
+  --controlStrongStrokeDisabled: light-dark(rgba(0,0,0,.2169), rgba(255,255,255,.1581));
+  --controlAltSecondary: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1));
+  --controlAltTertiary: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0419));
+  --controlAltQuartenary: light-dark(rgba(0,0,0,.0924), rgba(255,255,255,.0698));
 
-  --cardStroke: light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1)) !important;
+  --cardStroke: light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.1));
   
-  --infoBG: light-dark(rgba(246,246,246, .5), rgba(255,255,255,.0326)) !important;
-  --cautionBG: light-dark(#FFF4CE, #433519) !important;
-  --successBG: light-dark(#DFF6DD, #393D1B) !important;
-  --criticalBG: light-dark(#FDE7E9, #442726) !important;
-  --infoOutline: 0 0 0 1px var(--footerBorder) !important;
+  --infoBG: light-dark(rgba(246,246,246, .5), rgba(255,255,255,.0326));
+  --cautionBG: light-dark(#FFF4CE, #433519);
+  --successBG: light-dark(#DFF6DD, #393D1B);
+  --criticalBG: light-dark(#FDE7E9, #442726);
+  --infoOutline: 0 0 0 1px var(--footerBorder);
 
-  --infoBadge: light-dark(#005FB7, #60CDFF) !important;
-  --cautionBadge: light-dark(#9D5D00,#FCE100) !important;
-  --successBadge: light-dark(#0F7B0F,#6CCB5F) !important;
-  --criticalBadge: light-dark(#C42B1C,#FF99A4) !important;
+  --infoBadge: light-dark(#005FB7, #60CDFF);
+  --cautionBadge: light-dark(#9D5D00,#FCE100);
+  --successBadge: light-dark(#0F7B0F,#6CCB5F);
+  --criticalBadge: light-dark(#C42B1C,#FF99A4);
 
-  --segmentedBG: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
+  --segmentedBG: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1));
 
-  --tabCorner: light-dark(rgba(0,0,0,.0405),rgba(0,0,0,.1)) !important;
+  --tabCorner: light-dark(rgba(0,0,0,.0405),rgba(0,0,0,.1));
 
-  --progressBar: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047)) !important;
-  --progressRing: light-dark(rgba(0,0,0,.06063), rgba(255,255,255,.06047)) !important;
+  --progressBar: light-dark(rgba(0,0,0,.6063), rgba(255,255,255,.6047));
+  --progressRing: light-dark(rgba(0,0,0,.06063), rgba(255,255,255,.06047));
 
-  --accentLight: color-mix(in srgb, accentColor 85%, black) !important; /* Main */
-  --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent) !important; /* Hover */
-  --accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent) !important; /* Pressed */
-  --accentLight4: color-mix(in srgb, accentColor 100%, transparent) !important; /* Full saturation */
+  --accentLight: color-mix(in srgb, accentColor 85%, black); /* Main */
+  --accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent); /* Hover */
+  --accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent); /* Pressed */
+  --accentLight4: color-mix(in srgb, accentColor 100%, transparent); /* Full saturation */
 
-  --accentDark: color-mix(in srgb, accentColor 60%, white) !important; /* Main */
-  --accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent) !important; /* Hover */
-  --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent) !important; /* Pressed */
-  --accentDark4: color-mix(in srgb, accentColor 40%, white) !important; /* Extra */
+  --accentDark: color-mix(in srgb, accentColor 60%, white); /* Main */
+  --accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent); /* Hover */
+  --accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent); /* Pressed */
+  --accentDark4: color-mix(in srgb, accentColor 40%, white); /* Extra */
 
-  --accentAuto: light-dark(var(--accentLight), var(--accentDark)) !important;
-  --accentHover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
-  --accentPressed: light-dark(var(--accentLight3), var(--accentDark3)) !important;
-  --accentDarkFilter: saturate(1.55) brightness(1.05) !important;
+  --accentAuto: light-dark(var(--accentLight), var(--accentDark));
+  --accentHover: light-dark(var(--accentLight2), var(--accentDark2));
+  --accentPressed: light-dark(var(--accentLight3), var(--accentDark3));
+  --accentDarkFilter: saturate(1.55) brightness(1.05);
 
-  --button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605)) !important;
-  --buttonHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837)) !important;
-  --buttonPressed: light-dark(rgba(255,255,255,.3), rgba(255,255,255,.0326)) !important;
-  --buttonShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1) !important;
-  --buttonShadowLightPressed: 0 0 0 1px rgba(0,0,0,.0578) !important;
-  --buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) !important;
-  --buttonShadowDarkPressed: 0 0 0 1px rgba(255,255,255,.0698) !important;
+  --button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605));
+  --buttonHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837));
+  --buttonPressed: light-dark(rgba(255,255,255,.3), rgba(255,255,255,.0326));
+  --buttonShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1);
+  --buttonShadowLightPressed: 0 0 0 1px rgba(0,0,0,.0578);
+  --buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02);
+  --buttonShadowDarkPressed: 0 0 0 1px rgba(255,255,255,.0698);
   
-  --textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
-  --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+  --textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605));
+  --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419));
 
-  --inputActive: light-dark(rgb(252,252,252), rgb(30,30,30)) !important;
-  --inputBarLight: 0 0 0 1px rgba(0,0,0,.0605), 0 1px 0 rgba(0,0,0,.39) !important;
-  --inputBarFocusLight: 0 0 0 1px rgba(0,0,0,.0578), 0 1px 0 var(--accentLight), 0 -1px 0 var(--accentLight) inset !important;
-  --inputBarDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(0,0,0,.46) !important;
-  --inputBarFocusDark: 0 0 0 1px rgba(255,255,255,.0698), 0 1px 0 var(--accentDark), 0 -1px 0 var(--accentDark) inset !important;
+  --inputActive: light-dark(rgb(252,252,252), rgb(30,30,30));
+  --inputBarLight: 0 0 0 1px rgba(0,0,0,.0605), 0 1px 0 rgba(0,0,0,.39);
+  --inputBarFocusLight: 0 0 0 1px rgba(0,0,0,.0578), 0 1px 0 var(--accentLight), 0 -1px 0 var(--accentLight) inset;
+  --inputBarDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(0,0,0,.46);
+  --inputBarFocusDark: 0 0 0 1px rgba(255,255,255,.0698), 0 1px 0 var(--accentDark), 0 -1px 0 var(--accentDark) inset;
 
-  --genericShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
-  --genericShadowDark: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26) !important;
-  --tooltipShadowColor: light-dark(rgba(0,0,0,.14), rgba(0,0,0,.26)) !important;
-  --tooltipShadow: 0 4px 8px var(--tooltipShadowColor) !important;
-  --flyoutStroke: light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.2)) !important;
+  --genericShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14);
+  --genericShadowDark: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26);
+  --tooltipShadowColor: light-dark(rgba(0,0,0,.14), rgba(0,0,0,.26));
+  --tooltipShadow: 0 4px 8px var(--tooltipShadowColor);
+  --flyoutStroke: light-dark(rgba(0,0,0,.0578), rgba(0,0,0,.2));
 
-  --basicBGAnimation: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear !important;
+  --basicBGAnimation: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear;
   
   --tab-loading-fill: var(--accentAuto) !important;
   
@@ -187,6 +187,7 @@
   /* Window-wide transparency */
   :root {
     background-color: transparent !important;
+    --acrylicBackground: light-dark(rgba(255,255,255,.7), rgba(32,32,32,.6)) !important;
 
     & tabbox#tabbrowser-tabbox,
     & #tabbrowser-tabpanels {
@@ -3285,27 +3286,28 @@ panel[type="autocomplete-richlistbox"] {
 
 /* Tab preview panel */
 .tab-preview-text-container {
-  padding: 12px 16px 15px 16px !important;
+  padding: 12px 16px 10px 16px !important;
   background-image: var(--acrylic) !important;
 }
 
-.tab-preview-thumbnail-container canvas {
-  /* Default */
-  /*height: 140px !important;
-  width: 280px !important;*/
-
-  background-color: transparent !important;
-  height: 126px !important;
-  width: 264px !important;
-  border-radius: 3px !important;
-  margin: 0 9px 0 8px !important;
-}
 .tab-preview-thumbnail-container {
-  border: none !important;
   background-color: var(--commonBackground) !important;
   background-image: var(--acrylic) !important;
-  margin-bottom: -6px !important;
-  margin-top: -7px !important;
+  margin: 0 0 0 0 !important;
+  padding: 0 13px 13px 8px !important;
+  
+  & canvas {
+    /* Default
+    height: 140px !important;
+    width: 280px !important; */
+
+    background-color: transparent !important;
+    height: 126px !important;
+    width: 264px !important;
+    border-radius: 4px !important;
+    border: unset !important;
+    clip-path: unset !important;
+  }
 }
 
 .tab-preview-title {
@@ -6671,7 +6673,10 @@ button
 }
 
 /* PWA */
-#main-window[chromehidden="menubar directories extrachrome "] #nav-bar[fullscreentoolbar="true"]:has(#taskbar-tabs-favicon, .titlebar-spacer[type="pre-tabs"]) {
+#main-window[chromehidden="menubar directories extrachrome "] 
+#nav-bar[fullscreentoolbar="true"]:has(
+#taskbar-tabs-favicon, 
+.titlebar-spacer[type="pre-tabs"]) {
   & .titlebar-spacer[type="pre-tabs"] {
     display: none !important;
   }
@@ -6680,13 +6685,16 @@ button
     height: 16px !important;
     width: 16px !important;
   }
-  &  .urlbar-background {
+  & .urlbar-background {
     background: transparent !important;
     box-shadow: none !important;
   }
   
   /* Drag window through urlbar, since it's not interactive */
-  .urlbar-input-box,.urlbar-input,#urlbar-scheme,#urlbar-container{
+  .urlbar-input-box,
+  .urlbar-input,
+  #urlbar-scheme,
+  #urlbar-container{
     -moz-window-dragging: drag;
     cursor: default;
   }
@@ -9357,7 +9365,8 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   }
   
   #sidebar-main,
-  #nav-bar,
+  #nav-bar:not(:has(#taskbar-tabs-favicon, 
+.titlebar-spacer[type="pre-tabs"])),
   #PersonalToolbar,
   #sidebar-box {
     border-right: none !important;
@@ -9704,8 +9713,8 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     }
 
     .tab-preview-thumbnail-container canvas {
-      margin-inline: 9px !important;
-      width: 262px !important;
+      margin-inline: auto !important;
+      width: auto !important;
     }
 
     #notification-popup {
