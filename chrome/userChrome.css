@@ -10,7 +10,7 @@
 @import url("global/browser.css");
 @import url("global/tree.css");
 
-/*Import custom stylesheet instead of modifying theme files.*/
+/*Import custom stylesheet instead of modifying Edge-Frfox theme files.*/
 @import url("custom.css");
 
 /* ========== Firefox-WinUI GLOBAL ========== */
@@ -56,7 +56,7 @@
   --searchActiveShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset;
   --disabledSearch: light-dark(rgba(249,249,249,.3),rgba(255,255,255,.0419));
   --disabledSearchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1);
-  --disabledSearchShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) ;
+  --disabledSearchShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02);
   --disabledSearchText: light-dark(rgba(0,0,0,.3614),rgba(255,255,255,.3628));
   --searchDropdown: light-dark(#FCFCFC, #2C2C2C);
 
@@ -159,6 +159,9 @@
     --tab-min-height: 22px !important;
   }
   
+  /* Override minimum window size limit */
+  min-width: 320px !important;
+  min-height: 320px !important;
 }
 
 /* Global overrides */
@@ -1057,6 +1060,9 @@ span.button-background[part="button"] {
   }
   & img[src="chrome://browser/skin/bookmark-hollow.svg"] {
     content: url(icons/bookmark-hollow.svg) !important;
+  }
+  & img[src="chrome://browser/skin/login.svg"] {
+    content: url(icons/key.svg) !important;
   }
 }
 
@@ -2105,6 +2111,10 @@ meupopup {
   --uc-contextmenu-border-radius: 8px;
 }
 
+#contentAreaContextMenu {
+  margin: -11px 0 0 -18px !important;
+}
+
 .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
   background-image: var(--acrylic) !important;
   background-color: var(--commonBackground) !important;
@@ -2119,9 +2129,6 @@ menuseparator {
   border-top: 1px solid var(--dropdownSeparator) !important;
 }
 
-.subviewbutton {
-  box-shadow: none !important;
-}
 .subviewbutton:active {
   background-color: var(--textButtonPressed) !important;
 }
@@ -2403,13 +2410,18 @@ menuitem {
   & h1, #fxa-menu-header-description {
     font-size: 14px !important;
     font-weight: 600 !important;
-    color: var(--textSecondary) !important;
+    color: var(--textPrimary) !important;
     margin-left: 12px !important;
 
     & span::before {
       display: none;
     }
   }
+}
+
+/* Listed extensions in the extension panel */
+.unified-extensions-item-row-wrapper {
+  font-size: 14px !important;
 }
 
 /* Replace colorful panel border color with the proper separator styling */
@@ -2432,11 +2444,6 @@ menuitem {
 #PanelUI-fxa h1 span::before {
   margin-right: 18px !important;
   translate: 0 -2px !important;
-}
-
-#unified-extensions-view h1, #identity-popup-mainView-panel-header-span {
-  font-weight: 600 !important;
-  color: var(--textSecondary) !important;
 }
 
 #PanelUI-fxa-menu-syncnow-button, #PanelUI-fxa-menu-empty-profiles-button {
@@ -2601,6 +2608,8 @@ panel[type="autocomplete-richlistbox"] {
 
 /* Panels' keyboard shortcuts - Includes unused boxed look */
 .subviewbutton {
+  box-shadow: none !important;
+  
   &[shortcut]:not([disabled])::after {
     color: var(--textSecondary) !important;
     opacity: 1 !important;
@@ -2694,7 +2703,7 @@ panel[type="autocomplete-richlistbox"] {
 
 #unified-extensions-view h1 {
   margin-top: 6px !important;
-  color: var(--textSecondary) !important;
+  color: var(--textPrimary) !important;
 }
 #unified-extensions-view toolbarseparator:first-of-type {
   display: none !important;
@@ -2715,8 +2724,9 @@ panel[type="autocomplete-richlistbox"] {
   background-image: var(--acrylic) !important;
 }
 
+/* Addon logo margin */
 #unified-extensions-view .unified-extensions-item image {
-  margin-inline: -2px -6px !important;
+  margin-inline: 2px -2px !important;
 }
 #unified-extensions-area {
   margin-top: 5px !important;
@@ -2726,6 +2736,7 @@ panel[type="autocomplete-richlistbox"] {
   display: none !important;
 }
 
+/* Addon logo */
 .unified-extensions-item-action-button image {
   width: 16px !important;
   height: 16px !important;
@@ -2989,7 +3000,7 @@ panel[type="autocomplete-richlistbox"] {
   font-weight: 600;
   font-size: 14px;
   margin: 7px 0 0 11.5px;
-  color: var(--textSecondary);
+  color: var(--textPrimary);
 }
 
 /* Downloaded items */
@@ -3096,8 +3107,15 @@ panel[type="autocomplete-richlistbox"] {
   display: none !important;
 }
 #identity-popup-mainView .panel-subview-body image {
-  margin-inline: -2px -6px !important;
+  margin-inline: -2px !important;
 }
+
+/* No need for compact item height here since there are so few elements */
+#identity-popup-mainView toolbarbutton.subviewbutton-iconic {
+  min-height: 36px !important;
+  max-height: 36px !important;
+}
+
 #identity-popup-clear-sitedata-button {
   margin: 15px 17px 13px !important;
   height: 30px !important;
@@ -3190,12 +3208,16 @@ panel[type="autocomplete-richlistbox"] {
   display: none !important;
 }
 
-/* Bookmark panel */
-#editBMPanel_namePicker, input[type="number"], input[type="text"] {
+/* Bookmark panel & other search bars */
+#editBMPanel_namePicker, 
+input[type="number"], 
+input[type="text"]:not(#login-line-input),
+.search-container{
   outline: none !important;
   border: none !important;
   border-radius: 3px !important;
   background-color: var(--button) !important;
+  height: 30px !important;
   
   &:hover {
     background-color: var(--searchHover) !important;
@@ -3208,15 +3230,15 @@ panel[type="autocomplete-richlistbox"] {
   }
 }
 
+#editBookmarkPanelContent label {
+  color: var(--textSecondary);
+}
+
 #editBookmarkHeaderSeparator {
   display: none !important;
 }
-#editBookmarkPanel {
-  margin-top: -21px !important;
-  
+#editBookmarkPanel {  
   & h1 {
-    font-weight: 600 !important;
-    color: var(--textSecondary) !important;
     padding-top: 12px !important;
   }
 }
@@ -3286,15 +3308,15 @@ panel[type="autocomplete-richlistbox"] {
 
 /* Tab preview panel */
 .tab-preview-text-container {
-  padding: 12px 16px 10px 16px !important;
+  padding: 8px 12px !important;
   background-image: var(--acrylic) !important;
 }
 
 .tab-preview-thumbnail-container {
   background-color: var(--commonBackground) !important;
   background-image: var(--acrylic) !important;
-  margin: 0 0 0 0 !important;
-  padding: 0 13px 13px 8px !important;
+  margin: 0 !important;
+  padding: 0 13px 8px 8px !important;
   
   & canvas {
     /* Default
@@ -3302,11 +3324,9 @@ panel[type="autocomplete-richlistbox"] {
     width: 280px !important; */
 
     background-color: transparent !important;
-    height: 126px !important;
-    width: 264px !important;
-    border-radius: 4px !important;
+    height: 131px !important;
+    border-radius: 2px !important;
     border: unset !important;
-    clip-path: unset !important;
   }
 }
 
@@ -3315,57 +3335,39 @@ panel[type="autocomplete-richlistbox"] {
   margin-bottom: 4px !important;
 }
 .tab-preview-uri {
-  opacity: .6 !important;
+  color: var(--textSecondary) !important;
 }
 
-/* Different animation speeds for tabs with and without preview images */
+/* Different animation for tabs with and w/o preview images */
 #tab-preview-panel[animate="open"] {
-  animation: panelSlide2 .9s cubic-bezier(0, 0, 0, 1) !important;
+  margin-top: 0 !important;
+  animation: imgTabPreview .25s cubic-bezier(0, 0, 0, 1) forwards !important;
+  transform-origin: top center !important;
   
   & * {
-    color: var(--textPrimary) !important;
+    opacity: 1 !important;
   }
   
   &:not(:has(canvas)) {
-    & .tab-preview-title, .tab-preview-uri {
-      animation: extremeSlideDown .35s cubic-bezier(0, 0, 0, 1) !important;
-      transform-origin: top center !important;
-    }
-  }
-
-  &:has(canvas) {
-    animation: panelSlide2 .5s cubic-bezier(0, 0, 0, 1) !important;
-    transform-origin: top center !important;
-
-    & .tab-preview-title {
-      animation: panelContentSlide3 .35s cubic-bezier(0, 0, 0, 1) !important;
-      transform-origin: top center !important;
-    }
-    & .tab-preview-uri {
-      animation: extremeSlideDown .35s cubic-bezier(0, 0, 0, 1) !important;
-      transform-origin: top center !important;
-    }
-    & canvas {
-      animation: subtleSlideDown .3s cubic-bezier(0, 0, 0, 1) !important;
-      transform-origin: top center !important;
-    }
+    animation: TabPreview .25s cubic-bezier(0, 0, 0, 1) forwards !important;
   }
 }
 
-@keyframes subtleSlideDown {
-  0% {
-    transform: translateY(-45%);
+@keyframes TabPreview {
+  from {
+    transform: translateY(-100%);
   }
-  100% {
-    transform: translateY(0);
+  to {
+    transform: translateY(-19%);
   }
 }
-@keyframes extremeSlideDown {
-  0% {
-    transform: translateY(-180%);
+
+@keyframes imgTabPreview {
+  from {
+    transform: translateY(-100%);
   }
-  100% {
-    transform: translateY(0);
+  to {
+    transform: translateY(-9%);
   }
 }
 
@@ -3419,13 +3421,13 @@ panel[type="autocomplete-richlistbox"] {
 
 /* Ensure all panels have the same margin from the top of the screen when opened */
 #unified-extensions-panel {
-  margin-top: -22px !important;
+  margin-top: -24px !important;
 }
 #editBookmarkPanel {
-  margin-top: -3px !important;
+  margin-top: -18px !important;
 }
 #identity-popup {
-  margin-top: -4px !important;
+  margin-top: -19px !important;
 }
 
 .PanelUI-remotetabs-clientcontainer {
@@ -3626,11 +3628,9 @@ panel toolbarseparator {
   background-image: var(--acrylic) !important;
 }
 
-/* Destructive actions use different colors */
+/* Destructive actions use different colors - But don't overuse it */
 #unified-extensions-context-menu-remove-extension,
-.downloadDeleteFileMenuItem,
-.downloadRemoveFromHistoryMenuItem,
-menuitem[command="downloadsCmd_clearList"]{
+.downloadDeleteFileMenuItem{
   color: var(--criticalBadge) !important;
   fill: var(--criticalBadge) !important;
   
@@ -3652,12 +3652,9 @@ menuitem[command="downloadsCmd_clearList"]{
 #unified-extensions-context-menu-remove-extension{
   order: 99;
 }
-/* Order from least destructive to most destructive */
+/* Most destructive is last */
 .downloadDeleteFileMenuItem {
-  order: 1 !important;
-}
-menuitem[command="downloadsCmd_clearList"] {
-  order: 2;
+  order: 9 !important;
 }
 
 /* Sidebar */
@@ -3809,7 +3806,9 @@ input#input.with-icon {
   color: var(--textSecondary) !important;
   background-position-x: 12px !important;
   background-size: 14px !important;
+  min-height: 30px !important;
   border: none !important;
+  border-radius: 3px !important;
   padding: 0 0 2px 36px !important;
   
   &:hover {
@@ -3818,6 +3817,10 @@ input#input.with-icon {
   &:active, &:focus-within {
     background-color: var(--inputActive) !important;
   }
+}
+
+.sidebar-panel-scrollable-content {
+  margin-left: -2px !important;
 }
 
 .sidebar-panel:not([lwt-sidebar]) {
@@ -3834,6 +3837,10 @@ input#input.with-icon {
 moz-input-search[data-l10n-id="firefoxview-search-text-box-tabs"] {
   margin-top: 6px !important;
   width: -moz-available !important;
+}
+
+.sidebar-panel-heading {
+  font-size: 24px !important;
 }
 
 /* This is misaligned in the sidebar synced tabs search bar */
@@ -3910,8 +3917,85 @@ button:active {
   }
 }
 
-.sidebar-panel-header {
-  margin-top: -8px !important;
+/* Isolated panels */
+panel-list[aria-labelledby="more-options-menubutton"] {
+  padding: 2px 0 !important;
+  background-color: var(--commonBackground) !important;
+  border: unset !important;
+  
+  & hr {
+    background-color: var(--dropdownSeparator) !important;
+  }
+}
+
+/* Style buttons inside certain isolated panels */
+button[role="menuitem"] {
+  border-radius: 4px !important;
+  height: 30px !important;
+  padding: 0 12px !important;
+  margin: 2px 4px !important;
+  font-size: 14px !important;
+  
+  &:hover {
+    background-color: var(--textButtonHover) !important;
+  }
+  &:active {
+    background-color: var(--textButtonPressed) !important;
+  }
+}
+
+/* Passwords panel */
+div[data-l10n-id="contextual-manager-passwords-radiogroup-label"] {
+  & input[type="radio"] {
+    translate: 0 6px !important;
+  }
+  
+  & label {
+    margin-right: 16px !important;
+  }
+}
+
+/* Disabled search bars */
+input[type="text"][readonly=""] {
+  background-color: var(--disabledSearch) !important;
+  border-radius: 3px !important;
+  outline: 1px solid var(--controlStroke) !important;
+  
+  color: var(--textDisabled) !important;
+} 
+
+password-card {
+  background-color: var(--cardBG) !important;
+  border: unset !important;
+  outline: 1px solid var(--cardOutline) !important;
+  padding: 8px !important;
+  border-radius: 3px !important;
+}
+
+login-line {
+  padding: 0 0 !important;
+  --inner-border-radius: 4px !important;
+  margin-block: 0 4px;
+}
+
+.line-container {
+  & label {
+    font-size: 14px !important;
+    text-transform: none !important;
+  }
+  /* Fav icons are all globes, no need to show them */
+  & .fav-icon {
+    display: none !important;
+  }
+  --line-container-height: 76px !important;
+}
+
+#main-button:has(.button-background.labelled) {
+  padding: 0 20px !important;
+}
+
+sidebar-panel-header {
+  padding: 2px 0 16px 0 !important;
 }
 
 /* Icons adjustments */
@@ -3977,13 +4061,14 @@ span.button-background[part="button"] {
 }
 
 /* Side panel history */
-.sidebar-panel:has(sidebar-panel-header[data-l10n-id="sidebar-menu-history-header"]) {
+.sidebar-panel {
   padding: 12px 12px 12px 16px !important;
   background: var(--button) !important;
-  border: 1px solid var(--controlStroke) !important;
-  margin-left: 5px !important;
+  border: 0px solid var(--controlStroke) !important;
+  outline: 1px solid var(--cardOutline) !important;
   width: calc(100% - 5px) !important;
   height: calc(100% - 10px) !important;
+  margin: 1px 1px 14px 1px !important;
 }
 h4 {
   font-weight: 600 !important;
@@ -3998,14 +4083,30 @@ moz-card.date-card {
   height: 100% !important;
   --card-border-radius: 4px !important;
   
+  
   &:hover {
-    background-color: transparent !important;
+    background-color: var(--buttonHover) !important;
+  }
+  &:active {
+    background-color: var(--buttonPressed) !important;
   }
 }
 moz-card {
   border-radius: 4px !important;
   font-weight: normal !important;
 }
+
+/* These cards use nested elements to fake real :hover events */
+details {
+  & > summary {
+    cursor: default !important;
+    
+    &:hover {
+      background-color: unset !important;
+    }
+  }
+}
+
 #heading-wrapper[part="moz-card-heading-wrapper"] {
   .chevron-icon {
     order: 2 !important;
@@ -4022,25 +4123,12 @@ moz-card {
 #bookmarksPanel.sidebar-panel {
   padding: 0 10px 0 0 !important;
   border-radius: 8px !important;
-  margin-left: 5px !important;
-  
-  &::after {
-    content:'';
-    position: absolute;
-    z-index: -1;
-    pointer-events: none;
-    border-radius: 8px;
-    background: var(--button);
-    border: 1px solid var(--controlStroke) !important;
-    width: calc(100% - 8px);
-    height: calc(100% - 8px);
-  }
   
   & #sidebar-panel-header {
     padding: 4px 8px 0 17px !important;
     
     & h4 {
-      font-size: 16px !important;
+      font-size: 24px !important;
     }
   }
   & #sidebar-search-container {
@@ -5053,7 +5141,8 @@ button:not([slot="primary"],
 [title="Close"],
 #updateButton,
 html[windowtype="Toolkit:PictureInPicture"] *,
-button:has(span.button-background[part="button"])), 
+button:has(span.button-background[part="button"]),
+[role="menuitem"]), 
 #editBookmarkPanelRemoveButton, 
 button.popup-notification-secondary-button,
 panel menulist,
@@ -5064,7 +5153,8 @@ panel menulist,
 #PopupAutoComplete .autocomplete-richlistitem[originaltype="loginsFooter"],
 #provider,
 select,
-#openHandler{
+#openHandler,
+#main-button:has(.button-background.labelled){
   font-weight: normal !important;
   background-color: var(--button) !important;
   border-radius: 3px !important;
@@ -5078,6 +5168,9 @@ select,
   &:active {
     background-color: var(--buttonPressed) !important;
     border-radius: 3px !important;
+  }
+  & label {
+    font-size: 14px !important;
   }
 }
 
@@ -6972,7 +7065,8 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   #updateButton,
   html[windowtype="Toolkit:PictureInPicture"] *,
   .container:has(#navigateHome) button,
-  button:has(span.button-background[part="button"])), 
+  button:has(span.button-background[part="button"]),
+  [role="menuitem"]), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -6987,7 +7081,8 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   #print .toggle-group-input:checked + .toggle-group-label,
   moz-card.date-card,
   #openHandler,
-  menulist{
+  menulist,
+  #main-button:has(.button-background.labelled){
     box-shadow: var(--buttonShadowDark) !important;
     
     &:hover {
@@ -7006,8 +7101,11 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     box-shadow: 0 32px 64px 0 rgba(0,0,0,.37), 0 2px 21px rgba(0,0,0,.37) !important;
   }
 
-  /* Save bookmark panel */
-  #editBMPanel_namePicker, input[type="number"], input[type="text"] {
+  /* Save bookmark panel & other search bars */
+  #editBMPanel_namePicker, 
+  input[type="number"], 
+  input[type="text"]:not(#login-line-input),
+  .search-container{
     box-shadow: var(--searchShadowDark) !important;
     
     &:focus-within {
@@ -7148,7 +7246,8 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   #updateButton,
   html[windowtype="Toolkit:PictureInPicture"] *,
   .container:has(#navigateHome) button,
-  button:has(span.button-background[part="button"])), 
+  button:has(span.button-background[part="button"]),
+  [role="menuitem"]), 
   #editBookmarkPanelRemoveButton,
   button.popup-notification-secondary-button,
   panel menulist,
@@ -7163,7 +7262,8 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   #print .toggle-group-input:checked + .toggle-group-label,
   moz-card.date-card,
   #openHandler,
-  menulist{
+  menulist,
+  #main-button:has(.button-background.labelled){
     box-shadow: var(--buttonShadowLight) !important;
 
     &:hover {
@@ -7182,8 +7282,11 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     box-shadow: 0 32px 64px 0 rgba(0,0,0,.19), 0 2px 21px rgba(0,0,0,.15) !important;
   }
 
-  /* Save bookmark panel */
-  #editBMPanel_namePicker, input[type="number"], input[type="text"] {
+  /* Save bookmark panel & other search bars */
+  #editBMPanel_namePicker, 
+  input[type="number"], 
+  input[type="text"]:not(#login-line-input),
+  .search-container{
     box-shadow: var(--searchShadowLight) !important;
     
     &:focus-within {
@@ -8787,14 +8890,14 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   #back-button::after {
     content: url('icons/back.svg') !important;
     position: absolute !important;
-    margin-top: 4px !important;
+    margin-top: 3px !important;
     transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
   }
 
   #forward-button::after {
     content: url('icons/forward.svg') !important;
     position: absolute !important;
-    margin-top: 4px !important;
+    margin-top: 3px !important;
     transition: transform 0.167s cubic-bezier(0, 0, 0, 1) !important;
   }
 
@@ -9002,10 +9105,13 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   /* Expanded & Overflowing */
   #sidebar-main:has(#tabbrowser-tabs[expanded][overflow]) {
     & .tabbrowser-tab {
-      margin-left: 1px !important;
+      margin-inline: 1px -2px !important;
       
       &:not([pinned]) .tab-background {
         margin-inline: 11px !important;
+      }
+      &:is([pinned]) {
+        margin-inline: 1px 0 !important;
       }
     }
     
@@ -9017,7 +9123,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     }
 
     & #vertical-tabs-newtab-button {
-      margin-left: 1px !important;
+      margin-inline: 11px 10px !important;
         
       & image {
         transform: translateX(0px);
@@ -9084,7 +9190,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
       }
     }
     & #tabs-newtab-button {
-      margin-inline: 11px !important;
+      margin-inline: 11px 10px !important;
 
       & image {
         transform: translateX(2px);
@@ -9366,7 +9472,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   
   #sidebar-main,
   #nav-bar:not(:has(#taskbar-tabs-favicon, 
-.titlebar-spacer[type="pre-tabs"])),
+ .titlebar-spacer[type="pre-tabs"])),
   #PersonalToolbar,
   #sidebar-box {
     border-right: none !important;
@@ -9437,6 +9543,15 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   }
   .tab-group-label-container:has(.tab-group-label[aria-expanded="false"]) {
     margin-bottom: 8px !important;
+  }
+  
+  /* Align tab preview panels */
+  #tab-preview-panel[animate="open"] {
+    margin-top: -2px !important;
+    
+    &:not(:has(canvas)) {
+      margin-top: -6px !important;
+    }
   }
   
   /* Tweaks compatibility */
@@ -9551,7 +9666,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
 /* Acrylic menus and panels */
 @media -moz-pref("widget.windows.mica.popups", 1) or
   -moz-pref("widget.windows.mica.popups", 2) {
-    .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+    .menupopup-arrowscrollbox, panel-list:not([aria-labelledby="more-options-menubutton"]), .context-menu, ul[role="menu"].menu {
       background-color: var(--acrylicBackground) !important;
       box-shadow: none !important;
       margin: -3px -12px -19px !important;
@@ -9838,6 +9953,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
 }
 
 /* Chrome pages */
+/* About firefox pop up */
 @-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
   window#aboutDialog {
     background-color: transparent !important;
@@ -9846,29 +9962,49 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   #aboutDialogContainer {
     background-color: color-mix(in srgb, var(--commonBackground) 60%, transparent) !important;
     color: var(--textPrimary) !important;
-    color-scheme: normal !important;
+    color-scheme: light-dark !important;
     font-size: 13px !important;
+    
+    &::before {
+      content: '';
+      width: 100%;
+      height: 123px;
+      background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
+      border-block: 1px solid var(--footerBorder) !important;
+      position: absolute;
+    }
+  }
+  
+  #detailsBox {
+    padding-inline: 20px !important;
+    margin-block: 20px -10px;
   }
 
+  #trademark {
+    font-size: 14px !important;
+  }
+  
+  #leftBox {
+    background-image: url(chrome://branding/content/about-logo.png) !important;
+    background-size: 64px !important;
+    background-position: center center !important;
+    min-height: 64px !important;
+    min-width: 64px !important;
+    left: 146px !important;
+    position: absolute !important;
+  }
   #rightBox {
     background-image: none !important;
   }
   #rightBox::before {
-    content: url("chrome://branding/content/about-wordmark.svg") !important;
-    margin-top: -38px !important;
-  }
-  #leftBox::after {
-    content: 'WinUI';
-    font-size: 26px;
-    width: fit-content;
-    background-color: var(--accentAuto);
-    border-radius: 4px;
-    padding-inline: 8px;
-    padding-block: 1px 3px;
-    color: var(--textAccentPrimary);
-    position: absolute;
-    transform: translate(105px, 195px);
+    content: 'Firefox';
+    filter: none !important;
+    color: var(--textPrimary) !important;
+    font-size: 52px;
     font-weight: 600;
+    position: absolute;
+    top: 24px;
+    left: 258px;
   }
 
   #updateIcon {
