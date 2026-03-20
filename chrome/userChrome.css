@@ -9814,6 +9814,16 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
     #PanelUI-fxa-remotetabs-deck .all-tabs-close-button {
       margin-inline: 6px -3px !important;
     }
+    
+    @keyframes TabPreview {
+      from {transform: translateY(-100%);}
+      to {transform: translateY(0%);}
+    }
+
+    @keyframes imgTabPreview {
+      from {transform: translateY(-100%);}
+      to {transform: translateY(0%);}
+    }
 
     /* Move misaligned panels */
     #unified-extensions-panel {
