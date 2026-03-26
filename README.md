@@ -53,9 +53,9 @@ Create the following boolean or numeric keys as required:
 - `uc.winui.rounded-corners` - Creates a gap with rounded corners between the web content and the browser frame (⚠️ You will not be able to scroll through the webpage while hovering over the margins. A [.uc.js script](https://github.com/Lockframe/Firefox-WinUI/blob/main/optional-js/scroll-in-browser-margins.uc.js) has been added to fix this)
 - `uc.winui.rounded-navbar` - Rounds the upper corners of the navbar
 - `uc.winui.shorter-titlebar-buttons` - Shrinks the titlebar buttons (close/maximize/restore/minimize) to match WinUI 2 apps
-- `uc.winui.smaller-toolbar-buttons` - Shrinks the toolbar buttons to match other WinUI apps
-- `uc.winui.taller-bookmarks` - Increase the size of the bookmarks bar to match File Explorer's toolbar
-- `uc.winui.taller-urlbar` - Increase the height of the URL bar to match the early iterations of Windows 11's search bar
+- `uc.winui.smaller-toolbar-buttons` - Shrinks the toolbar buttons to match certain inconsistent WinUI apps (❌ Deprecated - Will be removed in the next release)
+- `uc.winui.taller-bookmarks` - Increase the size of the bookmarks bar to match File Explorer's toolbar (❌ Deprecated - Will be removed in the next release)
+- `uc.winui.taller-urlbar` - Increase the height of the URL bar to match the early iterations of Windows 11's search bar (❌ Deprecated - Will be removed in the next release)
 - `uc.winui.titlebar-style` - 1 to add rounded corners to the titlebar buttons and 2 to add rounded corners and accent-colored glyphs when hovering over them (⚠️ Incompatible with `uc.winui.shorter-titlebar-buttons`)
 - `uc.winui.transparent-urlbar` - Makes the URL bar transparent
 - `uc.winui.urlbar-extra-separators` - Add highlighted separators to either side of URL bar
