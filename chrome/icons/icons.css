@@ -327,13 +327,13 @@
 
 /* security */
 .identity-popup-security-connection {
-  list-style-image: url("security-broken.svg") !important;
+  list-style-image: url("lock.svg") !important;
 }
 
 #identity-box[pageproxystate="valid"].notSecure #identity-icon,
 #identity-box[pageproxystate="valid"].mixedActiveContent #identity-icon,
 #identity-box[pageproxystate="valid"].httpsOnlyErrorPage #identity-icon {
-  list-style-image: url("security-broken.svg") !important;
+  list-style-image: url("lock.svg") !important;
 }
 
 #identity-popup[connection=chrome] .identity-popup-security-connection {
@@ -346,15 +346,23 @@
 
 #identity-box[pageproxystate="valid"].verifiedDomain #identity-icon,
 #identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon,
-#identity-popup[connection^=secure] .identity-popup-security-connection {
+#identity-popup[connection^=secure] .identity-popup-security-connection,
+#trust-icon{
   list-style-image: url("lock.svg") !important;
+  fill-opacity: 1 !important;
 }
 
 #identity-popup[ciphers=weak] .identity-popup-security-connection,
 #identity-popup[mixedcontent~=passive-loaded][isbroken] .identity-popup-security-connection,
 #identity-popup[connection=secure-cert-user-overridden] .identity-popup-security-connection,
 #identity-popup[connection=cert-error-page] .identity-popup-security-connection {
-  list-style-image: url("security-warning.svg") !important;
+  list-style-image: url("unlock.svg") !important;
+}
+
+:root:has(.notSecure) {
+  #trust-icon {
+    list-style-image: url(unlock.svg) !important;
+  }
 }
 
 #identity-popup[connection=net-error-page] .identity-popup-security-connection {
@@ -1110,5 +1118,38 @@ treechildren::-moz-tree-image(title, query, folder) {
 /* others */
 
 #taskbar-tabs-button > .urlbar-icon {
-  list-style-image: url(apps.svg) !important;
+  list-style-image: url(app-add.svg) !important;
 }
+:root:is([taskbartab]){
+  #taskbar-tabs-button > .urlbar-icon {
+    list-style-image: url(app-remove.svg) !important;
+  }
+}
+
+#context_moveTabToSplitView {
+  --menu-image: url(split-view.svg);
+}
+
+#search-button-bookmarks > .menu-icon,
+.searchmode-switcher-icon[style='list-style-image: url("chrome://browser/skin/bookmark.svg");']{
+  content: url(bookmark-star-on-tray.svg) !important;
+}
+#search-button-tabs > .menu-icon,
+.searchmode-switcher-icon[style='list-style-image: url("chrome://browser/skin/tabs.svg");']{
+  content: url(tab.svg) !important;
+}
+#search-button-history > .menu-icon,
+.searchmode-switcher-icon[style='list-style-image: url("chrome://browser/skin/history.svg");']{
+  content: url(history.svg) !important;
+}
+#search-button-actions > .menu-icon,
+.searchmode-switcher-icon[style='list-style-image: url("chrome://browser/skin/quickactions.svg");']{
+  content: url(bolt.svg) !important;
+}
+
+
+
+
+
+
+

@@ -93,7 +93,8 @@
 		}
 
 		/* Site icons background color and context menu button */
-		.top-site-outer .top-site-icon, .top-site-outer .context-menu-button {
+		.top-site-outer .top-site-icon,
+		.top-site-outer .context-menu-button {
 			background-color: transparent !important;
 		}
 
@@ -635,7 +636,7 @@
 
 		--tableOdd: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419));
 
-		--cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605));
+		--cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605));		
 		--cardOutline: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.14));
 		--cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837));
 		--cardShadowLight: 0 0 0 1px rgba(0,0,0,.06);
@@ -682,6 +683,8 @@
 		--border-radius-medium: 4px !important;
 		--border-radius-large: 4px !important;
 		--addon-icon-size: 24px !important;
+		
+		--background-color-box: var(--cardBG) !important;
 
 		scrollbar-color:
 			light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
@@ -703,6 +706,11 @@
 	h1 {
 		font-size: 24px !important;
 		margin-bottom: 8px !important;
+	}
+	
+	/* Kit image in error pages */
+	img[src="chrome://global/skin/illustrations/no-connection.svg"] {
+		display: none !important;
 	}
 
 	/* Fluent icons */
@@ -1105,7 +1113,6 @@
 		font-size: 14px !important;
 	}
 	.addon-description {
-		font-size: 12px !important;
 		line-height: 16px !important;
 	}	
 
@@ -1182,12 +1189,11 @@
 	.menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
 		-moz-appearance: none !important;
 		padding: 4px !important;
-		background-color: light-dark(rgba(255,255,255,.7), rgba(44,44,44, .7)) !important;
+		background-color: var(--commonBackground) !important;
 		background-image: url('image/accnoise256.png') !important;
 		border: none !important;
 		border-radius: 8px !important;
 		margin: 4px !important;
-		backdrop-filter: blur(40px) saturate(130%) contrast(110%) !important;
 	}
 	menulist {
 		border-radius: 4px !important;
@@ -1734,6 +1740,7 @@
 	/* Base button styles to exclude */
 	:where(button):not(
 	.theme-enable-button,
+	.arrow-button,
 	.toggle-button,
 	.category,
 	[role="menuitem"],
@@ -1763,8 +1770,8 @@
 	.icon-clear-input,
 	button.done,
 	[default="true"],
-	#restoreAll
-	),
+	#restoreAll,
+	#main-button),
 	menulist,
 	.web-appearance-choice,
 	treecol {
@@ -1865,7 +1872,8 @@
 	#containersAdd,
 	button.done,
 	#restoreAll,
-	.theme-enable-button) {
+	.theme-enable-button,
+	#main-button) {
 		background-color: var(--accentAuto) !important;
 		color: light-dark(#fff, #000) !important;
 		transition: var(--basicBGAnimation) !important;
@@ -1875,6 +1883,8 @@
 			rgba(0, 0, 0, .14)
 		) !important;
 		font-weight: normal !important;
+		font-size: 14px !important;
+		border-radius: 4px !important;
 		
 		&:hover {
 			background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
@@ -1882,6 +1892,10 @@
 		&:active {
 			background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
 			opacity: .8 !important;
+		}
+		& * {
+			font-weight: normal !important;
+			font-size: 14px !important;
 		}
 	}
 
@@ -2932,8 +2946,8 @@
 		.icon-clear-input,
 		button.done,
 		[default="true"],
-		#restoreAll
-		),
+		#restoreAll,
+		#main-button),
 		menulist,
 		.web-appearance-choice,
 		treecol {
@@ -3056,8 +3070,8 @@
 		.icon-clear-input,
 		button.done,
 		[default="true"],
-		#restoreAll
-		),
+		#restoreAll,
+		#main-button),
 		menulist,
 		.web-appearance-choice,
 		treecol {
@@ -3079,6 +3093,25 @@
 	url-prefix(about:addons) {
 		.card {
 			border: none !important;
+			
+			&:has(.disco-addon-author, .card-heading-image:not([hidden=""])) {
+				padding-block: 28px !important;
+			}
+			& * {
+				font-size: 14px !important;
+			}
+			
+			& .disco-description-statistics {
+				display: none !important;
+			}
+			& .addon-description:has(.disco-description-main) {
+				line-height: -moz-block-height !important;
+				margin-top: 20px !important;
+			}
+			
+			.card-heading-image {
+				margin-top: -28px !important;
+			}
 		}
 		
 		.container {

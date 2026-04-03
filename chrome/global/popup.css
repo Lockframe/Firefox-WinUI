@@ -582,10 +582,10 @@ panel[type="autocomplete-richlistbox"] {
     opacity: var(--button-opacity-disabled) !important;
   }
 
-  menupopup menu:hover:not([disabled=true]),
-  menupopup menuitem:hover:not([disabled=true]),
-  menupopup menu[_moz-menuactive]:not([disabled=true]),
-  menupopup menuitem[_moz-menuactive]:not([disabled=true]) {
+  menupopup menu:hover:not([disabled]),
+  menupopup menuitem:hover:not([disabled]),
+  menupopup menu[_moz-menuactive]:not([disabled]),
+  menupopup menuitem[_moz-menuactive]:not([disabled]) {
     background-color: var(--button-background-color-ghost-hover) !important;
     color: var(--button-text-color-ghost-hover) !important;
   }

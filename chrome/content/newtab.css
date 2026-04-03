@@ -7,7 +7,7 @@
 url-prefix("about:home"),
 url-prefix("about:firefoxview") {
   :root:not([lwt-newtab], [lwt-newtab-brighttext]) {
-    --newtab-background-color: #F7F7F7 !important;
+    --newtab-background-color: transparent !important;
     --newtab-background-color-secondary: #fff !important;
     --newtab-text-primary-color: #252525 !important;
     --newtab-primary-action-background: #0078D4 !important;
@@ -35,7 +35,7 @@ url-prefix("about:firefoxview") {
   }
 
   :root:not([style*="color"])[lwt-newtab-brighttext] {
-    --newtab-background-color: #252525 !important;
+    --newtab-background-color: transparent !important;
     --newtab-background-color-secondary: #4A4A4A !important;
     --newtab-text-primary-color: #fff !important;
     --newtab-primary-action-background: #75B6E8 !important;
