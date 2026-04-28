@@ -484,7 +484,6 @@
 			.modal {
 				box-shadow: var(--dialogShadowLight) !important;
 			}
-
 		}
 
 		@media (prefers-color-scheme: dark) {
@@ -1194,6 +1193,8 @@
 		border: none !important;
 		border-radius: 8px !important;
 		margin: 4px !important;
+		outline: 1px solid light-dark(rgba(0,0,0,.06), rgba(0,0,0,.2)) !important;
+		box-shadow: none !important;
 	}
 	menulist {
 		border-radius: 4px !important;
@@ -1737,6 +1738,7 @@
 		color: var(--accentAuto) !important;
 	}
 
+	/* Default buttons */
 	/* Base button styles to exclude */
 	:where(button):not(
 	.theme-enable-button,
@@ -1781,11 +1783,13 @@
 		transition: var(--basicBGAnimation) !important;
 		font-weight: normal !important;
 		
-		&:hover {
-			background-color: light-dark(rgba(249, 249, 249, .5), rgba(255, 255, 255, .0837)) !important;
-		}
-		&:active {
-			background-color: light-dark(rgba(249, 249, 249, .3), rgba(255, 255, 255, .0326)) !important;
+		&:not([disabled]) {
+			&:hover {
+				background-color: var(--buttonHover) !important;
+			}
+			&:active {
+				background-color: var(--buttonPressed) !important;
+			}
 		}
 	}
 
@@ -1896,6 +1900,7 @@
 		& * {
 			font-weight: normal !important;
 			font-size: 14px !important;
+			color: light-dark(#fff, #000) !important;
 		}
 	}
 
@@ -2908,11 +2913,6 @@
 			box-shadow: var(--cardShadowLight) !important;
 		}
 
-		/* Context menu */
-		.menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
-			box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14) !important;
-		}
-
 		/* Buttons */
 		:where(button):not(
 		.theme-enable-button,
@@ -3030,11 +3030,6 @@
 
 		.sync-group {
 			box-shadow: var(--cardShadowDark) !important;
-		}
-
-		/* Context menu */
-		.menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
-			box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26) !important;
 		}
 
 		/* Buttons */
