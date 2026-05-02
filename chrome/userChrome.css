@@ -3402,7 +3402,7 @@ splitter[orient="vertical"] {
     box-shadow: none !important;
   }
 
-  @media -moz-pref('sidebar.verticalTabs') {
+  @media -moz-pref('sidebar.revamp.round-content-area') {
     browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
       border: 2px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
       border-bottom: none !important;
