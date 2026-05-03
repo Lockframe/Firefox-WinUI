@@ -6675,7 +6675,7 @@ span.button-background[part="button"][type="primary"] {
   /* Navbar upper shadow */
   :root, :root .tabbrowser-tab {
     & [brighttext], & [brighttext] .tabbrowser-tab {
-      --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.135) inset !important;
+      --uc-titlebar-shadow: none !important;
     }
   }
 
@@ -6850,7 +6850,7 @@ span.button-background[part="button"][type="primary"] {
 
   /* Navbar upper shadow */
   :root, :root .tabbrowser-tab {
-    --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.05) inset !important;
+    --uc-titlebar-shadow: none !important;
   }
 
   /* Fix active tab color in inactive window 133 */
@@ -7593,34 +7593,42 @@ span.button-background[part="button"][type="primary"] {
 
 @media -moz-pref("uc.winui.navbar-highlights") {
   @media (prefers-color-scheme: light) {
-    #nav-bar,
     #PersonalToolbar {
       box-shadow: 0 -1px 0 0 rgba(0,0,0,.0578) inset,
         0 1px 0 rgba(255,255,255,.85) inset,
         0 -1px 0 rgba(0,0,0,.1) !important;
     }
+    #nav-bar {
+      box-shadow: 0 -1px 0 0 rgba(0,0,0,.0578) inset !important;
+    }
 
     @media -moz-pref("uc.winui.rounded-corners") {
-      #nav-bar,
       #PersonalToolbar {
         box-shadow: 0 1px 0 rgba(255,255,255,.85) inset,
           0 -1px 0 rgba(0,0,0,.1) !important;
       }
+      #nav-bar {
+        box-shadow: none !important;
+      }
     }
   }
   @media (prefers-color-scheme: dark) {
-    #nav-bar,
     #PersonalToolbar {
       box-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset,
         0 1px 0 rgba(255,255,255,.0605) inset,
         0 -1px 0 rgba(0,0,0,.1) !important;
     }
+    #nav-bar {
+      box-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset !important;
+    }
 
     @media -moz-pref("uc.winui.rounded-corners") {
-      #nav-bar,
       #PersonalToolbar {
         box-shadow: 0 1px 0 rgba(255,255,255,.0605) inset,
           0 -1px 0 rgba(0,0,0,.1) !important;
+      }
+      #nav-bar {
+        box-shadow: none !important;
       }
     }
   }
@@ -7743,7 +7751,10 @@ span.button-background[part="button"][type="primary"] {
     width: 100%;
     height: 100%;
     border-radius: 0 0 0 0;
-    box-shadow:  0 0 0 1px light-dark(rgba(0,0,0,.05), rgba(0,0,0,.135));
+    box-shadow:
+      1px 0 0 0 light-dark(rgba(0,0,0,.05), rgba(0,0,0,.135)),
+      -1px 0 0 0 light-dark(rgba(0,0,0,.05), rgba(0,0,0,.135)),
+      0 1px 0 0 light-dark(rgba(0,0,0,.05), rgba(0,0,0,.135));
     z-index: -1;
   }
 
@@ -7857,21 +7868,27 @@ span.button-background[part="button"][type="primary"] {
 
   @media -moz-pref("uc.winui.navbar-highlights") {
     @media (prefers-color-scheme: light) {
-      #nav-bar,
       #PersonalToolbar {
         box-shadow: 0 1px 0 rgba(255,255,255,.85) inset,
           1px 0 0 rgba(0,0,0,.0605), 
           -1px 0 0 rgba(0,0,0,.0605), 
           0 -1px 0 rgba(0,0,0,.0605) !important;
       }
+      #nav-bar {
+        box-shadow: 1px 0 0 rgba(0,0,0,.0605),
+          -1px 0 0 rgba(0,0,0,.0605) !important;
+      }
     }
     @media (prefers-color-scheme: dark) {
-      #nav-bar,
       #PersonalToolbar {
         box-shadow: 0 1px 0 rgba(255,255,255,.0605) inset,
           1px 0 0 rgba(0,0,0,.25), 
           -1px 0 0 rgba(0,0,0,.25), 
           0 -1px 0 rgba(0,0,0,.25) !important;
+      }
+      #nav-bar {
+        box-shadow: 1px 0 0 rgba(0,0,0,.25),
+          -1px 0 0 rgba(0,0,0,.25) !important;
       }
     }
   }
