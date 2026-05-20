@@ -80,6 +80,26 @@
 		.top-site-outer .tile .top-site-icon {
 			border-radius: 4px !important;
 		}
+		.nova-enabled .top-sites-list {
+			column-gap: 0 !important;
+			row-gap: 10px !important;
+		}
+		.top-sites-list-wrapper{
+			--mrec-height: 100% !important; /* Barely ever works */
+			margin-top: 100px !important;
+		}
+		.nova-enabled .top-site-outer .tile {
+			align-self: start !important;
+			margin-top: 0px !important;
+		}
+		.nova-enabled .top-site-outer .context-menu-button {
+			inset-block-start: 12px !important;
+		}
+		@media -moz-pref("browser.newtabpage.activity-stream.nova.enabled") {
+			.top-site-outer .title {
+				margin-top: -32px !important;
+			}
+		}
 		
 		@keyframes invokeUp {
 			0% {
@@ -136,7 +156,7 @@
 		.top-site-outer .title {
 			color: var(--textColor) !important;
 			text-shadow: none !important;
-			font-size: 13px !important;
+			font-size: 14px !important;
 			margin-inline: 12px !important;
 		}
 		
