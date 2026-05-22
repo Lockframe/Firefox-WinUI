@@ -1570,16 +1570,20 @@ menu::after {
   background-repeat: no-repeat !important;
   background-position: center center !important;
 }
-#protections-popup-mainView .subviewbutton-nav:not(.notFound), .widget-overflow-list .subviewbutton-nav, .PanelUI-subView .subviewbutton-nav {
+#protections-popup-mainView .subviewbutton-nav:not(.notFound), 
+.widget-overflow-list .subviewbutton-nav, 
+.PanelUI-subView .subviewbutton-nav {
   &::after {
     content: "" !important;
     color: var(--textSecondary) !important;
     opacity: 1 !important;
     font-size: 13px !important;
-    margin-bottom: -8px !important;
-    margin-top: -8px !important;
+    margin-block: auto !important;
     font-family: 'Segoe Fluent Icons', 'Segoe MDL2 Assets' !important;
   }
+}
+#trustpanel-popup-connection::after {
+  padding: 0 0 4px 0 !important;
 }
 
 #BMB_bookmarksPopup menu[container=true]{
@@ -1636,12 +1640,14 @@ menu::after {
 }
 
 /* Bookmark list icon */
-#editBMPanel_folderMenuList[selectedGuid="toolbar_____"], #editBMPanel_toolbarFolderItem {
+#editBMPanel_folderMenuList {
   list-style-image: none !important;
   background-image: url("star.svg") !important;
   background-size: 16px !important;
-  background-position: 6px center !important;
+  background-position: 10px center !important;
   background-repeat: no-repeat !important;
+  padding-left: 24px !important;
+  font-size: 14px !important;
 }
 
 /* End private session icon */
@@ -1783,7 +1789,7 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   content: url(sync.svg);
   width: 16px;
   height: 16px;
-  position: absolute;
+  margin-right: -16px !important;
 }
 #fxa-manage-account-button::before {
   content: '';
@@ -1791,7 +1797,7 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
   background-size: 14px !important;
   width: 16px;
   height: 16px;
-  position: absolute;
+  margin-right: -16px !important;
 }
 
 #toolbar-context-toggle-vertical-tabs > .menu-text::after,
@@ -2048,6 +2054,14 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
 #controls.muted #audio {
   background-image: url(mute.svg) !important;
   background-size: 16px !important;
+}
+
+#editBookmarkPanel .expander-down {
+  list-style-image: none !important;
+  background-image: url(chevron-down.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 12px;
 }
 
 /* Chat header button icons */
