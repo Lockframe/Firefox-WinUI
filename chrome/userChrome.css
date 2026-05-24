@@ -1417,7 +1417,7 @@ richlistitem:active {
     margin-inline: 6px 0 !important;
     width: calc(100% - 12px) !important;
   }
-  #urlbar-searchmode-switcher {
+  .searchmode-switcher {
     margin-left: 8px !important;
   }
   /* 'Press tab to search with' website entry - seemingly removed in 150 */
@@ -4908,24 +4908,24 @@ input[type="checkbox"]:active {
   background-color: var(--controlAltQuartenary) !important;
   border-color: var(--controlStrongStrokeDisabled) !important;
 }
-input[type="checkbox"][checked], 
-checkbox[checked] > .checkbox-check {
+input[type="checkbox"]:checked, 
+checkbox:checked > .checkbox-check {
   background: var(--accentAuto) !important;
   border-color: var(--accentAuto) !important;
 }
-input[type="checkbox"][checked]:hover, 
-checkbox[checked]:hover > .checkbox-check {
+input[type="checkbox"]:checked:hover, 
+checkbox:checked:hover > .checkbox-check {
   background-color: var(--accentHover) !important;
   border-color: var(--accentHover) !important;
 }
-input[type="checkbox"][checked]:active, 
-checkbox[checked]:hover:active > .checkbox-check {
+input[type="checkbox"]:checked:active, 
+checkbox:checked:hover:active > .checkbox-check {
   background-color: var(--accentPressed) !important;
   border-color: var(--accentPressed) !important;
   fill: light-dark(rgba(255,255,255,.7), rgba(0,0,0,.5)) !important;
 }
-checkbox[checked] > .checkbox-check , 
-input[type="checkbox"][checked] {
+checkbox:checked > .checkbox-check , 
+input[type="checkbox"]:checked {
   background-image: url("icons/checkmark-small.svg") !important;
   background-repeat: no-repeat !important;
   background-size: 10px !important;
@@ -4941,16 +4941,16 @@ input[type="checkbox"]:-moz-focusring {
   margin-left: 10px !important;
 }
 /* Check Box Disabled */
-checkbox[disabled="true"] > .checkbox-label-box {
+checkbox[disabled] > .checkbox-label-box {
   color: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3614)) !important;
 }
-checkbox[disabled="true"] > .checkbox-check {
+checkbox[disabled] > .checkbox-check {
   background-color: transparent !important;
   border: 1px solid var(--controlStrongStrokeDisabled) !important;
   fill: transparent !important;
 }
-checkbox[disabled="true"][checked="true"] > .checkbox-check, 
-checkbox[disabled="true"][checked="true"]:is(:hover, :hover:active) > .checkbox-check  {
+checkbox[disabled]:checked > .checkbox-check, 
+checkbox[disabled]:checked:is(:hover, :hover:active) > .checkbox-check  {
   background-color: var(--controlStrongStrokeDisabled) !important;
   border: var(--controlStrongStrokeDisabled) !important;
   fill: light-dark(#fff,rgba(255,255,255,.53)) !important;
@@ -9370,6 +9370,12 @@ span.button-background[part="button"][type="primary"] {
       --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
       --arrowpanel-border-color: none !important;
     }
+    
+    #searchmode-switcher-panel-list-searchbar,
+    #searchmode-switcher-panel-list-urlbar{
+      padding: 10px 12px 21px 13px !important;
+    }
+    
     panel:not(.autoscroller) {
       appearance: auto !important;
       box-shadow: none !important;
