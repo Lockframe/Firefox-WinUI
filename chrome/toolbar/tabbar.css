@@ -228,10 +228,17 @@
   .titlebar-button::before{
     margin-top: 3px;
   }
+  
+  @media -moz-pref("uc.winui.floating-tabs") {
+    :root:not([sizemode="maximized"]) {
+      .titlebar-button{
+        margin-top: 9px !important;
+      }
+    }
+  }
 }
 
 /* #endregion */
-
 
 /*
   MARK: Tab inner content

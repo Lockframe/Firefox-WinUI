@@ -14,6 +14,9 @@
 		.info {
 			background-color: light-dark(rgba(0,0,0,.0605), rgba(255,255,255,.0605)) !important;
 		}
+
+		/* Remove useless search bar */
+		.search-wrapper {display: none !important;}
 		
 		/* Pinned website tiles */
 		.top-site-outer {
@@ -22,7 +25,7 @@
 			height: 100px !important;
 			width: 100px !important;
 			margin-inline: 16px !important;
-			margin-block: 12px !important;
+			margin-block: 12px var(--space-medium) !important;
 			
 			transition: var(--basicBGAnimation) !important;
 			animation: invokeUp .5s cubic-bezier(0,0,0,1) !important;
@@ -271,6 +274,8 @@
 			}
 		}
 		
+		/* Hide search bar until Mozilla makes it useful */
+		.search-inner-wrapper{display: none !important;}
 		.fake-editable {
 			padding-block: 22px !important;
 			border-radius: 4px !important;
@@ -700,10 +705,20 @@
 		
 		--border-radius-small: 4px !important;
 		--border-radius-medium: 4px !important;
-		--border-radius-large: 4px !important;
+		--border-radius-large: 8px !important;
 		--addon-icon-size: 24px !important;
 		
 		--background-color-box: var(--cardBG) !important;
+		
+		--splitview-opentabs-card-width: 700px !important;
+		--border-width: 0 !important;
+		--background-color-box: var(--button) !important;
+		--card-border-width: 0 !important;
+		--card-padding: 400px !important;
+		--card-box-shadow: 0 0 0 1px var(--cardOutline) !important;
+		--fxviewtabrow-element-background-hover: transparent !important;
+		--button-background-color-ghost-active: transparent !important;
+		--button-background-color-ghost-hover: transparent !important;
 
 		scrollbar-color:
 			light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
@@ -1937,7 +1952,9 @@
 	checkbox {
 		opacity: 1 !important;
 	}
-	checkbox > .checkbox-check, input[type="checkbox"] {
+	:is(
+	checkbox > .checkbox-check, 
+	input[type="checkbox"]) {
 		background-color: light-dark(rgba(0,0,0,.0241),rgba(0,0,0,.1)) !important;
 		border: 1px solid light-dark(rgba(0,0,0,.6), rgba(255,255,255,.6)) !important;
 		background-clip: padding-box !important;
@@ -1951,30 +1968,40 @@
 		box-shadow: none !important;
 		transition: background-color 43ms linear !important;
 	}
-	checkbox:hover > .checkbox-check, input[type="checkbox"]:hover {
+	checkbox:hover > .checkbox-check, 
+	input[type="checkbox"]:hover {
 		background-color: light-dark(rgba(0,0,0,.0578),rgba(255,255,255,.0419)) !important;
 	}
-	checkbox:active > .checkbox-check, input[type="checkbox"]:active {
+	checkbox:active > .checkbox-check, 
+	input[type="checkbox"]:active {
 		background-color: light-dark(rgba(0,0,0,.0924),rgba(255,255,255,.0698)) !important;
 		border-color: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
 	}
-	input[type="checkbox"]:checked, checkbox[checked="true"] > .checkbox-check {
-		background: light-dark(var(--accentLight), var(--accentDark)) !important;
-		border-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+	input[type="checkbox"]:checked, 
+	checkbox:checked > .checkbox-check[checked] {
+		background: var(--accentAuto) !important;
+		border-color: var(--accentAuto) !important;
+		background-image: url("icons/checkmark-small.svg") !important;
+		background-repeat: no-repeat !important;
+		background-size: 10px !important;
+		background-position: center center !important;
 	}
-	input[type="checkbox"]:checked:hover, checkbox[checked="true"]:hover > .checkbox-check {
+	input[type="checkbox"]:checked:hover, 
+	checkbox:checked:hover > .checkbox-check {
 		background-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
 		border-color: light-dark(var(--accentLight2), var(--accentDark2)) !important;
 	}
-	input[type="checkbox"]:checked:active, checkbox[checked="true"]:hover:active > .checkbox-check {
+	input[type="checkbox"]:checked:active, 
+	checkbox:checked:hover:active > .checkbox-check {
 		background-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
 		border-color: light-dark(var(--accentLight3), var(--accentDark3)) !important;
 		fill: light-dark(rgba(255,255,255,.7), rgba(0,0,0,.5)) !important;
 	}
-	checkbox[checked="true"] > .checkbox-check , input[type="checkbox"]:checked {
-		background-image: url("chrome://global/skin/icons/check.svg") !important;
+	checkbox:checked > .checkbox-check,
+	input[type="checkbox"]:checked {
+		background-image: url("icons/checkmark-small.svg") !important;
 		background-repeat: no-repeat !important;
-		background-size: 12px !important;
+		background-size: 10px !important;
 		background-position: center center !important;
 	}
 	input[type="checkbox"] {
@@ -1983,11 +2010,17 @@
 	input[type="checkbox"]:-moz-focusring {
 		outline: none !important;
 	}
+	checkbox:checked[disabled] > .checkbox-check,
+	input[type="checkbox"][disabled]:checked{
+		background-color: var(--textDisabled) !important;
+		border-color: transparent !important;
+		fill: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3614)) !important;
+	}
 	.checkbox-label-box {
 		margin-left: 10px !important;
 	}
 	/* Check Box Disabled */
-	checkbox[disabled="true"] > .checkbox-label-box {
+	checkbox[disabled] > .checkbox-label-box {
 		color: var(--textDisabled) !important;
 		opacity: 1 !important;
 	}
@@ -1996,14 +2029,16 @@
 		border: 1px solid light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
 		fill: transparent !important;
 	}
-	checkbox[disabled="true"][checked="true"] > .checkbox-check, checkbox[disabled="true"][checked="true"]:is(:hover, :hover:active) > .checkbox-check  {
+	checkbox[disabled="true"]:checked > .checkbox-check, 
+	checkbox[disabled="true"]:checked:is(:hover, :hover:active) > .checkbox-check  {
 		background-color: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
 		border: light-dark(rgba(0,0,0,.2169),rgba(255,255,255,.1581)) !important;
 		fill: light-dark(#fff,rgba(255,255,255,.53)) !important;
 	}
 
 	/* Toggle Switch */
-	input[type="checkbox"].toggle-button, input[type="checkbox"] + .slider, .protections-popup-tp-switch, .toggle-button {
+	input[type="checkbox"].toggle-button, input[type="checkbox"] + .slider, 
+	.protections-popup-tp-switch, .toggle-button {
 		background-clip: padding-box !important;
 		background-color: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1)) !important;
 		background-image: none !important;
@@ -2861,6 +2896,47 @@
 		padding: 16px 0 24px 0 !important;
 		margin: 0 !important;
 	}
+	
+	/*** Split view ***/
+	html:has(splitview-opentabs) {
+		background: var(--button) !important;
+	}
+	.sticky-header:has(h3[data-l10n-id="opentabs-page-title"]) {
+		background: none !important;
+		margin-left: 48px !important;
+		margin-top: 8px !important;
+		position: static !important;
+		
+		& h3 {
+			font-size: 20px !important;
+			color: var(--textColor) !important;
+		}
+		
+		& moz-input-search {
+			max-width: 400px !important;
+			margin: 0 0 32px 0 !important;
+		}
+	}
+
+	/* Prevent titles from overflowing the bg */
+	#fxview-tab-row-main {
+		overflow: clip !important;
+		text-overflow: ellipsis !important;
+		max-width: 670px !important;
+	}
+	sidebar-tab-row {
+		cursor: default !important;
+		height: 38px !important;
+		max-height: 100% !important;
+		line-height: 36px !important;
+		padding: 0 0 0 4px !important;
+	}
+	#fxview-tab-row-favicon {
+		margin-inline: 8px !important;
+		margin-bottom: -2px !important;
+	}
+	
+	/*****************/
 
 	/* Theme specifics */
 	@media (prefers-color-scheme: light) {

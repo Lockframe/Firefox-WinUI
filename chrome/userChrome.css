@@ -16,12 +16,13 @@
 /* ========== Firefox-WinUI GLOBAL ========== */
 
 :root {
-  --acrylic: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' style='opacity: 0.08' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' stitchTiles='stitch '/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  --acrylic: url(global/noise.png);
 
   --acrylicBackground: var(--commonBackground);
   --commonBackground: light-dark(#fff,#2c2c2c);
   --frameBG: light-dark(rgba(255,255,255,.7), rgba(58,58,58,.45));
   --dialogSmoke: rgba(0,0,0,.3);
+  --dialogOutline: rgba(117,117,117,.4) !important;
 
   --cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605));
   --cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837));
@@ -202,17 +203,28 @@
   
   /* Colors */
   --button-background-color: transparent !important;
-  --button-background-color-active var(--textButtonPressed) !important;
-  --button-background-color-hover: var(--textButtonHover) !important;
+  --button-background-color-active: transparent !important;
+  --button-background-color-hover: transparent !important;
   --button-border-radius: 4px !important;
-  --button-background-color-selected: var(--textButtonPressed) !important;
+  --button-background-color-selected: transparent !important;
   --button-background-color-primary: var(--accentAuto) !important;
   --button-text-color: var(--textPrimary) !important;
   --button-font-weight: 400 !important;
   --button-border: none !important;
   
+  --border-color-deemphasized: var(--cardOutline) !important;
+  
   --button-badge-background-color: var(--accentPrimary) !important;
   --button-attention-dot-color: var(--textAccentPrimary) !important;
+  
+  --button-badge-background-color: var(--accentAuto) !important;
+  --button-attention-dot-color: var(--accentAuto) !important;
+  --button-background-color-ghost-hover: var(--textButtonHover) !important;
+  --button-background-color-ghost-active: var(--textButtonPressed) !important;
+  --button-background-color-ghost-selected: var(--textButtonPressed) !important;
+  --button-text-color-ghost-hover: var(--textPrimary) !important;
+  
+  --toolbarbutton-active-background: var(--textButtonPressed) !important;
   
   --button-text-color-hover: var(--textPrimary) !important;
   --button-text-color-active: var(--textSecondary) !important;
@@ -250,6 +262,10 @@
   --button-font-size-small: 14px !important;
   --button-min-height: 24px !important;
   --button-alignment: center !important;
+  --splitview-opentabs-card-width: 10000px !important;
+  --border-radius-medium: 8px !important;
+  --border-radius-large: 8px !important;
+  --border-radius-small: 4px !important;
 }
 
 @media -moz-pref("widget.windows.mica") {
@@ -950,6 +966,8 @@ tab-group:not([collapsed=""]) .tabbrowser-tab{
     }
   }
 }
+
+
 .tab-group-editor-panel {
   & toolbarseparator{
     margin-inline: -16px 0 !important;
@@ -960,8 +978,8 @@ tab-group:not([collapsed=""]) .tabbrowser-tab{
     display: none !important;
   }
 }
-.tab-group-editor-name, #tab-group-main {
-  margin-inline: 4px !important;
+.tab-group-editor-name {
+  margin-inline: 16px !important;
 }
 
 input[type="text"] {
@@ -1001,13 +1019,15 @@ input[type="text"] {
 }
 
 .tab-group-editor-panel {
-  & .tab-group-editor-swatch {
+  & .tab-group-editor-swatches {
+    padding-inline: 16px !important;
+    
     input:checked + & {
       outline: none !important;
 
       &::before {
         content: '';
-        position: absolute;
+        position: block;
         height: 8px;
         width: 8px;
         background: light-dark(#fff,#000);
@@ -1051,13 +1071,21 @@ input[type="text"] {
 #tab-group-default-actions {
   background-color: light-dark(rgba(0,0,0,.0512), rgba(0,0,0,.16)) !important;
   border-top: 1px solid var(--footerBorder) !important;
-  padding: 16px 17px 17px !important;
-  margin: 6px -17px -13px !important;
+  margin: 16px 0px -2px !important;
 }
+
 #tab-group-editor-button-create, 
 #tab-group-editor-button-cancel {
   width: -moz-available !important;
+  height: 30px !important;
 }
+
+#tab-group-editor-button-cancel {
+  padding: 2px 0 !important;
+}
+
+
+
 .labelled {
   font-weight: normal !important;
   /*! padding-left: 24px !important; */
@@ -1065,6 +1093,11 @@ input[type="text"] {
 #tab-group-editor-button-create {
   transform: translateY(-1px) !important;
   margin-right: 2px !important;
+}
+
+#tab-group-editor-button-create {
+  background-color: transparent !important;
+  appearance: none !important;
 }
 
 /* Horizontal pinned tabs container */
@@ -2729,6 +2762,9 @@ input[type="text"]:not(#login-line-input),
     --panel-shadow-margin: 1px !important;
     --panel-shadow: 0 0 0 1px var(--footerBorder) !important;
   }
+  #tab-preview-panel[animate="open"] {
+    transition: all 250ms cubic-bezier(0,0,0,1) !important;
+  }
 
   /* Tab note header */
   #tab-preview-panel:has(.tab-preview-add-note) {
@@ -2848,7 +2884,7 @@ input[type="text"]:not(#login-line-input),
 
 /* Minor panel margin adjustments */
 .panel-header {
-  margin-block: 2px 0 !important;
+  margin-block: 6px 0 !important;
   padding-top: 0 !important;
 }
 
@@ -3134,16 +3170,17 @@ window#webextpanels-window {
 }
 #header {
   background-color: transparent !important;
-  padding-inline: 1px !important;
-  padding-block: 5px !important;
+  padding-inline: 2px !important;
+  padding-block: 2px 0 !important;
   border: none !important;
   order: -2 !important;
 
   & #provider {
     margin-right: 6px !important;
-    height: 25px !important;
+    height: 30px !important;
+    padding: 4px 8px 6px 10px !important;
     font-size: 14px !important;
-    background-position-x: 95.5% !important;
+    background-position-x: 96.5% !important;
     --start-padding: 8px !important;
     background-image: url(icons/chevron-down.svg) !important;
     background-size: 10px !important;
@@ -3161,11 +3198,10 @@ window#webextpanels-window {
 
 body:has(#header, #message-container, #summarize-btn-container) {
   & #browser-container {
-    margin-bottom: 8px;
 
     & browser {
       border-radius: 8px;
-      outline: 1px solid var(--footerBorder) !important;
+      outline: 1px solid var(--cardOutline) !important;
       margin-inline: 1px;
     }
   }
@@ -3357,9 +3393,48 @@ button:active {
   border-right: 1px solid var(--footerBorder) !important;
 }
 
+#sidebar {
+  margin-block: 1px 8px !important;
+}
+
 :root:has(#sidebar-main:not([hidden=""])):not([inFullscreen]) {
   #sidebar-main:not([sidebar-launcher-expanded=""]) {
     width: 48px !important;
+  }
+}
+
+/* Select AI provider panel */
+#multi-stage-message-root {
+  .tiles-single-select-container::before,
+  .tiles-single-select-container::after {
+    opacity: 0 !important;
+  }
+  
+  & .screen {
+    --border-radius-medium: 8px !important;
+    outline: 1px solid var(--dialogOutline) !important;
+    box-shadow: var(--genericShadow) !important;
+  }
+  
+  
+  & label {
+    background-color: var(--button) !important;
+    background-clip: padding-box !important;
+    padding: var(--space-small);
+    font-size: 14px !important;
+    font-weight: normal !important;
+    cursor: default !important;
+    
+    &:hover {background-color: var(--buttonHover) !important;}
+    &:active {background-color: var(--buttonPressed) !important;}
+    &:active .text {color: var(--textSecondary) !important;}
+    
+    & .icon {
+      background-size: 24px !important;
+    }
+    & .text {
+      font-weight: normal !important;
+    }
   }
 }
 
@@ -3452,6 +3527,14 @@ sidebar-panel-header {
       background: var(--textButtonHover) !important;
       transition: var(--basicBGAnimation) !important;
     }
+  }
+}
+img[src="chrome://global/skin/icons/search-glass.svg"] {
+  fill: var(--textSecondary) !important;
+}
+.searchmode-switcher {
+  & > .searchmode-switcher-content {
+    color: var(--textSecondary) !important;
   }
 }
 
@@ -3592,6 +3675,7 @@ details {
 #sidebar-splitter {
   width: 7px !important;
   background: var(--frameBG) !important;
+  margin-block-end: 0 !important;
 }
 
 #bookmarks-view {
@@ -3927,7 +4011,7 @@ findbar {
   align-items: space-evenly !important;
   margin-top: -4rem !important;
   transition: all 333ms cubic-bezier(0, 0, 0, 1) !important;
-  outline: 1px solid rgba(117,117,117,.4) !important;
+  outline: 1px solid var(--dialogOutline) !important;
   order: -1 !important;
   z-index: 99 !important;
 
@@ -4271,6 +4355,9 @@ menuitem[disabled] {color: var(--textDisabled) !important;}
     margin-top: 2px !important;
     margin-left: 2px !important;
   }
+  #search-container .searchmode-switcher {
+    margin-top: 1px !important;
+  }
 }
 
 #urlbar-search-mode-indicator span {
@@ -4369,6 +4456,12 @@ dialog:not(#window-modal-dialog) {
   }
 }
 
+.dialogBox {
+  :not(.content-prompt-dialog) > .dialogOverlay > &:not(.spotlightBox) {
+    margin-block: auto !important;
+  }
+}
+
 
 @keyframes fadeInScale {
   0% {
@@ -4391,7 +4484,7 @@ dialog:not(#window-modal-dialog) {
 .box-inherit[part="content-box"] {
   flex: 1px 0 0 !important;
   padding: 0 !important;
-  margin: 0 !important;
+  margin: 0 0 22px 0 !important;
   min-height: fit-content !important;
   max-height: fit-content !important;
 }
@@ -4476,7 +4569,7 @@ label[data-l10n-id="choose-other-app-description"] {
   display: none !important;
 }
 .dialogBox:not(.spotlightBox) {
-  outline: 1px solid rgba(117,117,117,.4) !important;
+  outline: 1px solid var(--dialogOutline) !important;
 }
 /* Causes some dialogues to take 100% of vh - Needs fixing
 .dialogBox {
@@ -4515,15 +4608,11 @@ min-height: calc(100% + 21px) !important;
   background-color: var(--footer) !important;
   border-top: 1px solid var(--footerBorder) !important;
   margin-inline: -12px !important;
-  margin-block-end: -16px !important;
-  padding-block-start: 10px !important;
   min-width:  unset !important;
 
-  margin-block-start: -12px !important;
-  padding-block-start: 24px !important;
-  padding-block-end: 14px !important;
+  padding-block: 24px 14px !important;
   padding-inline: 14px !important;
-  margin-top: 24px !important;
+  margin-block: 16px -16px !important;
 
   & button {
     height: 32px !important;
@@ -4532,6 +4621,10 @@ min-height: calc(100% + 21px) !important;
     overflow: visible !important;
   }
 }
+
+
+
+
 
 #reset-pbm-panel-header description {
   font-weight: 600;
@@ -4724,15 +4817,31 @@ html:moz-button,
 #editBMPanel_namePicker {
   font-size: 14px !important;
 }
+/* Icon buttons — fixed size */
+span.button-background[part="button"][type~="icon"]:not(.labelled, [type="primary"]) {
+  height: 36px !important;
+  width: 36px !important;
+  border-radius: 4px !important;
+}
 
-
-/* Default buttons */
+/* Standard default buttons */
 #unified-extensions-manage-extensions,
 button#downloadsHistory,
 button#editBookmarkPanelRemoveButton,
 #editBMPanel_folderMenuList,
 .dialog-button,
-.autocomplete-richlistitem[type="loginsFooter"]{
+.autocomplete-richlistitem[type="loginsFooter"],
+#customization-toolbar-visibility-button,
+#customization-uidensity-button,
+#customization-reset-button,
+#trustpanel-clear-cookie-cancel,
+#tab-group-editor-button-cancel,
+#tab-note-editor-button-cancel,
+#print .toggle-group-label,
+select,
+#cancel-button,
+#additional_button,
+#editBMPanel_newFolderButton{
   background-color: var(--button) !important;
   border-radius: 3px !important;
   box-shadow: var(--buttonShadow) !important;
@@ -4742,15 +4851,47 @@ button#editBookmarkPanelRemoveButton,
   appearance: none !important;
   -moz-appearance: none !important;
   font-size: 14px !important;
+  color: var(--textPrimary) !important;
   
-  &:hover {
+  &:not([disabled]):hover {
     background-color: var(--buttonHover) !important;
   }
-  &:active {
+  &:not([disabled]):active {
     background-color: var(--buttonPressed) !important;
     box-shadow: var(--buttonShadowPressed) !important;
+    color: var(--textSecondary) !important;
+  }
+  &([disabled]) {
+    background-color: var(--buttonDisabled) !important;
+    color: var(--textDisabled) !important;
   }
 }
+
+#customization-toolbar-visibility-button .button-menu-dropmarker,
+#customization-uidensity-button .button-menu-dropmarker{
+  margin-left: 10px !important;
+}
+
+#tab-note-editor-button-cancel {
+  padding: 5px 10px !important;
+}
+
+#additional_button, button[data-l10n-id="genai-onboarding-primary"] {
+  padding: 8px !important;
+  width: 200px !important;
+  min-width: 200px !important;
+}
+
+#editBMPanel_newFolderButton {
+  padding-block: 4px !important;
+  
+  & * {
+    color: var(--textPrimary) !important;
+    font-size: 12px !important;
+  }
+}
+
+/******/
 
 #editBMPanel_folderMenuList menupopup {
   margin: -24px -24px -24px -36px !important;
@@ -4804,8 +4945,23 @@ button#editBookmarkPanelRemoveButton,
 button:active * {
   opacity: .768 !important;
 }
+/* Expand button is redundant since the dropdown has an entry for it */
 #editBMPanel_foldersExpander {
   margin-left: 8px !important;
+  display: none !important;
+}
+
+/* Badged lit buttons, like sidebar AI button */
+.button-background.badged::after {
+  content: '' !important;
+  width: 12px !important;
+  height: 12px !important;
+  background-image: url(icons/asterisk-badge.svg);
+  -moz-context-properties: fill;
+  fill: var(--textAccentPrimary);
+  background-size: 8px;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 /* Accent buttons */
@@ -4823,9 +4979,7 @@ button[slot="primary"],
 button[dlgtype="accept"],
 button[default="true"],
 .dialog-button-box button[dlgtype="accept"],
-:root[fxastatus="not_configured"] #appMenu-fxa-label2,
-#tab-group-editor-button-create,
-#main-button:has(span.button-background[type="primary"]){
+:root[fxastatus="not_configured"] #appMenu-fxa-label2{
   box-shadow: none !important;
   background-color: var(--accentAuto) !important;
   color: var(--textAccentPrimary) !important;
@@ -4836,11 +4990,11 @@ button[default="true"],
   appearance: none !important;
   font-size: 14px !important;
 
-  &:hover {
+  &:not([disabled]):hover {
     background-color: var(--accentHover) !important;
     box-shadow: none !important;
   }
-  &:active {
+  &:not([disabled]):active {
     background-color: var(--accentPressed) !important;
     box-shadow: none !important;
     color: var(--textAccentSecondary) !important;
@@ -4851,16 +5005,68 @@ button[default="true"],
   }
 }
 
-#main-button:has(span.button-background[type="primary"])[disabled] {
-  background-color: var(--buttonDisabled) !important;
-  border-color: var(--buttonDisabled) !important;
-  background-clip: padding-box !important;
-  margin-top: -1px !important;
-
-  & span {
-    opacity: 1 !important;
-    color: var(--textDisabled) !important;
+/* Tricky accent-colored buttons FF uses with lit */
+.button-background {
+  &[type="primary"]:not([type~="icon"], [type~="ghost"]) {
+    padding: 0 32px !important;
   }
+}
+
+#main-button {
+  span.button-background[part="button"][type="primary"] {
+    height: 36px !important;
+    width: fit-content !important;
+    min-width: fit-content !important;
+    border-radius: 4px !important;
+    border: 1px solid var(--accentButtonBorder) !important;
+    border-bottom-color: var(--accentButtonBorderBottom) !important;
+    margin: -1px 0 0 0 !important;
+
+    &:hover {
+      background-color: var(--accentHover) !important;
+      box-shadow: none !important;
+    }
+    &:active {
+      background-color: var(--accentPressed) !important;
+      box-shadow: none !important;
+      color: var(--textAccentSecondary) !important;
+
+      & * {
+        color: var(--textAccentSecondary) !important;
+      }
+    }
+  }
+  
+  &[disabled] {
+    background-color: transparent !important;
+    border-color: var(--buttonDisabled) !important;
+    background-clip: padding-box !important;
+
+    & span {
+      opacity: 1 !important;
+      color: var(--textDisabled) !important;
+    }
+    
+    span.button-background[part="button"][type="primary"] {
+      border-color: var(--buttonDisabled) !important;
+
+      &:hover {
+        background-color: var(--buttonDisabled) !important;
+      }
+      &:active {
+        background-color: var(--buttonDisabled) !important;
+        color: var(--textDisabled) !important;
+
+        & * {
+          color: var(--textDisabled) !important;
+        }
+      }
+    }
+  }
+}
+
+span.button-background {
+  font-size: 14px !important;
 }
 
 /* Panel login button */
@@ -5677,7 +5883,7 @@ toolbar .toolbarbutton-1 {
       color: var(--textSecondary) !important;
     }
   }
-  &:is(#sidebar-button) {
+  &:is(#sidebar-button) {    
     &:not([disabled]) {
       &:is([open], [checked]) > :is(.toolbarbutton-badge-stack) {
         background-color: transparent !important;
@@ -5686,6 +5892,18 @@ toolbar .toolbarbutton-1 {
       &:is(:hover) > :is(.toolbarbutton-badge-stack) {
         background-color: var(--textButtonHover) !important;
       }
+    }
+  }
+  
+  &:is([badged], [badged="true"]) {
+    & .toolbarbutton-badge.feature-callout {
+      width: 12px !important;
+      height: 12px !important;
+      background-image: url(icons/asterisk-badge.svg) !important;
+      background-size: 8px !important;
+      background-repeat: no-repeat !important;
+      background-position: center center !important;
+      fill: var(--textAccentPrimary) !important;
     }
   }
 }
@@ -6164,7 +6382,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   color: var(--textAccentPrimary) !important;
 }
 
-/* Print panel */
+/*** Print panel ***/
 #print, .header-container {
   background-color: var(--commonBackground) !important;
   margin-top: -1px !important;
@@ -6194,18 +6412,19 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   padding-block: 0 1px !important;
   height: 28px !important;
   background-image: url(icons/chevron-down.svg) !important;
-  background-size: 11px !important;
-  background-position-x: 93% !important;
+  background-size: 10px !important;
+  background-position-x: 95% !important;
 }
 #printer-picker {
   padding-left: 35px !important;
+  padding-block: 6px !important;
   background-image: url(icons/print.svg), url(icons/chevron-down.svg) !important;
-  background-position-x: 10px, 93% !important;
-  background-size: 16px, 11px !important;
+  background-position-x: 10px, 95% !important;
+  background-size: 16px, 10px !important;
 
   &[output="pdf"] {
     background-image: url(icons/document.svg), url(icons/chevron-down.svg) !important;
-    background-size: 12px, 11px !important;
+    background-size: 16px, 10px !important;
   }
 }
 
@@ -6215,6 +6434,7 @@ toolbarbutton[itemtype="showinactivebutton"] label {
 
   & button {
     width: -moz-available !important;
+    padding-block: 6px !important;
   }
 }
 
@@ -6270,6 +6490,28 @@ toolbarbutton[itemtype="showinactivebutton"] label {
   padding: 9px 6px !important;
   border-radius: 8px !important;
 }
+
+/* Fix - Print preview */
+
+hbox.dialogBox.printDialogBox {
+  overflow: hidden !important;
+}
+
+browser.printSettingsBrowser,
+browser.dialogFrame.printSettingsBrowser {
+  flex: 0 0 320px !important;
+  min-width: 320px !important;
+  max-width: 320px !important;
+  z-index: 999 !important;
+}
+
+print-preview {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+/******/
 
 .container:has(#navigateHome) {
   background-color: transparent !important;
@@ -6788,10 +7030,9 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
   clip-path: var(--browser-clip-region) !important;
 }
 
-/* === Bookmarks Sidebar === */
-
+/* === Legacy trees === */
 /* Items */
-.sidebar-placesTree treechildren::-moz-tree-row {
+treechildren::-moz-tree-row {
   border-radius: 4px !important;
   margin: 1px 0px !important;
   min-width: 100% !important;
@@ -6800,7 +7041,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
 }
 
 /* Hover */
-.sidebar-placesTree treechildren::-moz-tree-row(hover) {
+treechildren::-moz-tree-row(hover) {
   border-radius: 4px !important;
   margin: 1px 0px !important;
   min-width: 100% !important;
@@ -6810,7 +7051,7 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
 }
 
 /* Highlight/Sel */
-.sidebar-placesTree treechildren::-moz-tree-row(selected) {
+treechildren::-moz-tree-row(selected) {
   border-radius: 4px !important;
   margin: 1px 0px !important;
   min-width: 100% !important;
@@ -6822,19 +7063,19 @@ findbar:not([hidden]), #statuspanel-label, .user-agent {
 }
 
 /* Text */
-.sidebar-placesTree treechildren::-moz-tree-cell-text(selected) {
+treechildren::-moz-tree-cell-text(selected) {
   color: var(--textAccentPrimary) !important;
 }
 
 /* Hover */
-.sidebar-placesTree treechildren::-moz-tree-row(hover) {
+treechildren::-moz-tree-row(hover) {
   background-color: color-mix(in srgb, var(--accentAuto) 25%, transparent) !important;
 }
 
 /* Cell */
-.sidebar-placesTree treechildren::-moz-tree-cell,
-.sidebar-placesTree treechildren::-moz-tree-cell(selected),
-.sidebar-placesTree treechildren::-moz-tree-cell(hover) {
+treechildren::-moz-tree-cell,
+treechildren::-moz-tree-cell(selected),
+treechildren::-moz-tree-cell(hover) {
   width: 100% !important;
   min-width: 100% !important;
   box-sizing: border-box !important;
@@ -6858,19 +7099,15 @@ treechildren::-moz-tree-twisty(selected, closed){
   fill: var(--textAccentPrimary) !important;
 }
 
-/* Icon buttons — fixed size */
-span.button-background[part="button"][type~="icon"]:not(.labelled, [type="primary"]) {
-  height: 36px !important;
-  width: 36px !important;
-  border-radius: 4px !important;
+#editBMPanel_folderTree {
+  border-radius: 8px !important;
+  background-color: var(--button) !important;
+  outline: 1px solid var(--cardOutline) !important;
+  padding: 8px !important;
 }
 
-/* Buttons with text — automatic width */
-span.button-background[part="button"][type="primary"] {
-  height: 36px !important;
-  width: fit-content !important;
-  min-width: fit-content !important;
-  border-radius: 4px !important;
+treechild {
+  clip-path: inset(0 round 4px) !important;
 }
 
 /* Menubar */
@@ -6905,6 +7142,74 @@ span.button-background[part="button"][type="primary"] {
 /* Split view */
 .split-view-splitter {
   background-color: transparent !important;
+}
+
+:root:has(#tabbrowser-tabpanels[splitview]) {
+  #nav-bar {
+    box-shadow: none !important;
+  }
+  hbox.split-view-panel-active {
+    outline: 1px solid var(--cardOutline) !important;
+    border-radius: 8px !important;
+    margin-block: 1px 5px !important;
+  }
+}
+
+/* Adds shadow to active split tab view */
+#tabbrowser-tabpanels {
+  &[splitview] {
+    & .browserContainer {
+      border-radius: 8px !important;
+      box-shadow: 0 4px 4px 0 var(--tooltipShadowColor) !important;
+    }
+  }
+}
+
+/* Indicator for tabs that are split/linked together */
+tab-split-view-wrapper {
+  padding: 0 0 0 0 !important;
+  border-radius: 10px 10px 0 0 !important;
+  margin: 0 0 0 -4px !important;
+  background: none !important;
+  
+  &::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-color: var(--accentAuto);
+    border-radius: 99px;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    z-index: 99 !important;
+    outline: 1px solid var(--cardOutline);
+    background-image: url(icons/split-view.svg);
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    -moz-context-properties: fill;
+    fill: var(--textAccentPrimary);
+    pointer-events: none !important;
+    margin-left: 2px;
+  }
+}
+
+/* Fix left tab margin in split view */
+#tabbrowser-tabs {
+  &:not([overflow]) {
+    margin-inline-start: -8px !important;
+    margin-inline-end: calc(-1 * var(--tab-border-radius)) !important;
+
+    :where(#tabbrowser-arrowscrollbox .tabbrowser-tab:nth-child(1 of .tabbrowser-tab:not([hidden]))) {
+      margin-inline-start: 1px !important;
+    }
+  }
+}
+
+#tabbrowser-tabs tab-split-view-wrapper {
+  &:not([hasactivetab]) .tabbrowser-tab:last-child {
+    border-inline-start-color: transparent !important;
+  }
 }
 
 /* ============= DARK ================== */

@@ -681,7 +681,8 @@
   }
 
   #context-stripOnShareLink,
-  #strip-on-share {
+  #strip-on-share,
+  #context-copy-clean-link-to-highlight {
     --menu-image: url("edit-copy-without-tracking.svg");
   }
 
@@ -1917,7 +1918,7 @@ span.button-background[part="button"] {
 }
 
 img[src="chrome://global/skin/icons/highlights.svg"] {
-  display: none !important;
+  content: url(sparkle.svg) !important;
 }
 
 #context-saveimage {
@@ -2088,3 +2089,106 @@ img[src="chrome://global/skin/icons/highlights.svg"] {
 #context-savelink {
   --menu-image: url("../icons/downloads.svg") !important;
 }
+
+img[src="chrome://global/skin/icons/search-glass.svg"] {
+  content: url(search-glass.svg);
+}
+
+#split-view-button {
+  & > #split-view-button-icon {
+    list-style-image: url(split-view.svg) !important;
+  }
+}
+
+#context_reverseSplitView,
+menuitem[command="splitViewCmd_reverseTabs"] {
+  --menu-image: url(move-tab.svg) !important;
+}
+
+#context_separateSplitView,
+menuitem[command="splitViewCmd_separateTabs"]{
+  --menu-image: url(split-view.svg) !important;
+}
+
+menuitem[command="splitViewCmd_closeTabs"] {
+  --menu-image: url(close.svg) !important;
+}
+
+#context_moveSplitViewToNewGroup {
+  --menu-image: url(add-to-multi.svg) !important;
+}
+
+#context-copy-link-to-highlight {
+  --menu-image: url(copy-link.svg) !important;
+}
+
+#appmenu-abouttranslations-button {
+  list-style-image: url(translate.svg) !important;
+}
+
+#fill-login-generated-password {
+  --menu-image: url(sparkle.svg) !important;
+}
+
+toolbarbutton[label="Eyedropper"] {
+  --menu-image: url(eyedropper.svg) !important;
+}
+
+#context-reveal-password {
+  --menu-image: url(eye.svg) !important;
+}
+
+menuitem[anonid="clear-search-history"] {
+  --menu-image: url(broom.svg) !important;
+}
+
+/* Fix - Permissions icons */
+
+#permissions-granted-icon,
+.geo-icon,
+.geo-icon.blocked-permission-icon,
+.xr-icon,
+.xr-icon.blocked-permission-icon,
+.popup-notification-icon[popupid="web-notifications"],
+.desktop-notification-icon,
+.desktop-notification-icon.blocked-permission-icon,
+.camera-icon,
+.camera-icon.blocked-permission-icon,
+.microphone-icon,
+.microphone-icon.blocked-permission-icon,
+.screen-icon,
+.screen-icon.blocked-permission-icon,
+.canvas-icon,
+.canvas-icon.blocked-permission-icon,
+.persistent-storage-icon,
+.persistent-storage-icon.blocked-permission-icon,
+.autoplay-media-icon,
+.autoplay-media-icon.blocked-permission-icon{
+  list-style-image: none !important;
+  -webkit-mask-size: var(--size-item-small) !important;
+  -webkit-mask-repeat: no-repeat !important;
+  -webkit-mask-position: center !important;
+  background-color: currentColor !important;
+  height: 24px !important;
+}
+
+#permissions-granted-icon { -webkit-mask-image: url("permissions.svg") !important; }
+.geo-icon { -webkit-mask-image: url("geo.svg") !important; }
+.geo-icon.blocked-permission-icon { -webkit-mask-image: url("geo-blocked.svg") !important; }
+.xr-icon { -webkit-mask-image: url("xr.svg") !important; }
+.xr-icon.blocked-permission-icon { -webkit-mask-image: url("xr-blocked.svg") !important; }
+.popup-notification-icon[popupid="web-notifications"],
+.desktop-notification-icon { -webkit-mask-image: url("desktop-notification.svg") !important; }
+.desktop-notification-icon.blocked-permission-icon { -webkit-mask-image: url("desktop-notification-blocked.svg") !important; }
+.camera-icon { -webkit-mask-image: url("camera.svg") !important; }
+.camera-icon.blocked-permission-icon { -webkit-mask-image: url("camera-blocked.svg") !important; }
+.microphone-icon { -webkit-mask-image: url("microphone.svg") !important; }
+.microphone-icon.blocked-permission-icon { -webkit-mask-image: url("microphone-blocked.svg") !important; }
+.screen-icon { -webkit-mask-image: url("screen.svg") !important; }
+.screen-icon.blocked-permission-icon { -webkit-mask-image: url("screen-blocked.svg") !important; }
+.canvas-icon { -webkit-mask-image: url("canvas.svg") !important; }
+.canvas-icon.blocked-permission-icon { -webkit-mask-image: url("canvas-blocked.svg") !important; }
+.persistent-storage-icon { -webkit-mask-image: url("persistent-storage.svg") !important; }
+.persistent-storage-icon.blocked-permission-icon { -webkit-mask-image: url("persistent-storage-blocked.svg") !important; }
+.autoplay-media-icon { -webkit-mask-image: url("autoplay-media.svg") !important; }
+.autoplay-media-icon.blocked-permission-icon { -webkit-mask-image: url("autoplay-media-blocked.svg") !important; }
