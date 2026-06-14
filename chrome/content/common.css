@@ -5,6 +5,7 @@
 */
 @-moz-document url-prefix(about:) {
   :root {
+    --button-background-color-hover: transparent !important; 
     --in-content-page-color: light-dark(#252525, #fff) !important;
     --in-content-page-background: light-dark(#f7f7f7, #252525) !important;
     --in-content-deemphasized-text: light-dark(#666, #bbb) !important;
@@ -102,4 +103,174 @@ url-prefix(about:addons) {
     --toggle-dot-background-color-on-pressed: #fff !important;
     --toggle-dot-transform-x: calc(var(--toggle-width) - 2 * var(--toggle-dot-margin) - 2 * var(--toggle-border-width) - var(--toggle-dot-width)) !important;
   }
+}
+/* Extracted from userContent.css */
+@-moz-document regexp("chrome:\/\/(?!devtools).*"), regexp("about:(?!(blank|devtools)).*") {
+	:root {
+		--accentLight: color-mix(in srgb, accentColor 90%, black); /* Main */
+		--accentLight2: color-mix(in srgb, var(--accentLight) 90%, transparent); /* Hover */
+		--accentLight3: color-mix(in srgb, var(--accentLight) 80%, transparent); /* Pressed */
+		--accentLight4: color-mix(in srgb, accentColor 100%, transparent); /* Full saturation */
+		--accentWarningLight: color-mix(in srgb, var(--accentLight3) 50%, white);
+
+		--accentDark: color-mix(in srgb, accentColor 60%, white); /* Main */
+		--accentDark2: color-mix(in srgb, var(--accentDark) 90%, transparent); /* Hover */
+		--accentDark3: color-mix(in srgb, var(--accentDark) 80%, transparent); /* Pressed */
+		--accentDark4: color-mix(in srgb, accentColor 40%, white); /* Extra */
+		--accentWarningDark: color-mix(in srgb, var(--accentDark3) 50%, black);
+
+		--accentAuto: light-dark(var(--accentLight), var(--accentDark));
+
+		--in-content-page-color: light-dark(#252525, #fff) !important;
+		--in-content-page-background: light-dark(rgba(255,255,255,.45),rgba(58, 58, 58, .25)) !important;
+		--in-content-deemphasized-text: light-dark(#666, #bbb) !important;
+		--in-content-box-background: light-dark(#fff, #333) !important;
+		--in-content-box-background-odd: light-dark(rgb(0 0 0 / .05), rgb(255 255 255 / .05)) !important;
+		--in-content-box-info-background: light-dark(#f7f7f7, rgb(255 255 255 / 0.15)) !important;
+		--in-content-icon-color: light-dark(#666, #fff) !important;
+
+		--in-content-accent-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+		--in-content-accent-color-active: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+
+		--in-content-border-hover: light-dark(rgb(0 0 0 / .5), rgb(255 255 255 / .3)) !important;
+		--in-content-border-invalid: var(--red-50) !important;
+		--in-content-border-color: light-dark(#bebebe, rgb(255 255 255 / .2)) !important;
+		--in-content-error-text-color: light-dark(#FF848A, #FF9AA2) !important;
+
+		--in-content-link-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+		--in-content-link-color-hover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+		--in-content-link-color-active: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+		--in-content-link-color-visited: light-dark(var(--accentLight), var(--accentDark)) !important;
+
+		--link-color: var(--in-content-link-color) !important;
+		--link-color-hover: var(--in-content-link-color-hover) !important;
+		--link-color-active: var(--in-content-link-color-active) !important;
+		--link-color-visited: var(--in-content-link-color-visited) !important;
+
+		--in-content-button-text-color: var(--in-content-text-color) !important;
+		--in-content-button-text-color-hover: var(--in-content-text-color) !important;
+		--in-content-button-text-color-active: var(--in-content-button-text-color-hover) !important;
+
+		--in-content-button-background: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+		--in-content-button-background-hover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605)) !important;
+		--in-content-button-background-active: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419)) !important;
+
+		--in-content-primary-button-text-color: light-dark(#fff, #000) !important;
+		--in-content-primary-button-background: light-dark(var(--accentLight), var(--accentDark)) !important;
+		--in-content-primary-button-background-hover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+		--in-content-primary-button-background-active: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+
+		--color-accent-primary: light-dark(var(--accentLight), var(--accentDark)) !important;
+		--color-accent-primary-hover: light-dark(var(--accentLight2), var(--accentDark2)) !important;
+		--color-accent-primary-active: light-dark(var(--accentLight3), var(--accentDark3)) !important;
+
+		--in-content-danger-button-background: light-dark(#DF4951, #E12424) !important;
+		--in-content-danger-button-background-hover: light-dark(#EA656C, #F94343) !important;
+		--in-content-danger-button-background-active: light-dark(#BB353C, #AA1E1E) !important;
+
+		--in-content-focus-outline-color: light-dark(var(--accentLight), var(--accentDark)) !important;
+
+		--focus-outline-color: var(--in-content-focus-outline-color) !important;
+		--in-content-table-background: light-dark(#f7f7f7, #252525) !important;
+		--in-content-text-color: var(--in-content-page-color) !important;
+		--border-interactive-color: light-dark(#929292, #858585) !important;
+
+		--commonBackground: light-dark(#fff,#2c2c2c);
+		--separatorColor: light-dark(rgba(0,0,0,.06), rgba(255,255,255,.0605));
+		--genericShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 8px 16px 0 rgba(0,0,0,.14);
+		--genericShadowDark: 0 0 0 1px rgba(0,0,0,.2), 0 8px 16px 0 rgba(0,0,0,.26);
+
+		--searchBackground: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605));
+		--searchHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837));
+		--searchActive: light-dark(#fff, rgba(30,30,30,.7));
+		--searchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.41);
+		--searchShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.46);
+		--searchActiveShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset;
+		--searchActiveShadowDark: 0 0 0 1px rgba(255,255,255,.08), 0 1px 0 var(--accentAuto), 0 -1px 0 var(--accentAuto) inset;
+		--disabledSearch: light-dark(rgba(249,249,249,.3),rgba(255,255,255,.0419));
+		--disabledSearchShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1);
+		--disabledSearchShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02) ;
+		--disabledSearchText: light-dark(rgba(0,0,0,.3614),rgba(255,255,255,.3628));
+
+		--dialogShadowDark: 0 32px 64px 0 rgba(0,0,0,.37), 0 2px 21px rgba(0,0,0,.37);
+		--dialogShadowLight: 0 32px 64px 0 rgba(0,0,0,.19), 0 2px 21px rgba(0,0,0,.15);
+		--dialogOutline: rgba(117,117,117,.4);
+		--dialogSmoke: rgba(0,0,0,.3);
+		--footer: light-dark(#f3f3f3, #202020);
+		--footerBorder: light-dark(rgba(0,0,0,.0578),rgba(0,0,0,.1));
+
+		--textPrimary: light-dark(rgba(0,0,0,.89), rgb(255,255,255));
+		--textAccentPrimary: light-dark(#fff, #000);
+		--textDisabled: light-dark(rgba(0,0,0,.3614), rgba(255,255,255,.3628));
+		
+		--dropdownSeparator: light-dark(rgba(0,0,0,.0803), rgba(255,255,255,.0837));
+		--textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605));
+    --textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419));
+
+		--tableOdd: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419));
+
+		--cardBG: light-dark(rgba(255,255,255,.7), rgba(255,255,255,.0605));		
+		--cardOutline: light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.14));
+		--cardBGHover: light-dark(rgba(255,255,255,.49), rgba(255,255,255,.0837));
+		--cardShadowLight: 0 0 0 1px rgba(0,0,0,.06);
+		--cardShadowLightHover: 0 0 0 1px rgba(0,0,0,.06), 0 4px 8px rgba(0,0,0,.03);
+		--cardShadowDark: 0 0 0 1px rgba(0,0,0,.14);
+		--cardShadowDarkHover: 0 0 0 1px rgba(255,255,255,.1), 0 -1px 0 rgba(255,255,255,.035), 0 4px 8px rgba(0,0,0,.1);
+
+		--infoBG: light-dark(rgba(246,246,246, .5), rgba(255,255,255,.0326));
+		--cautionBG: light-dark(#FFF4CE, #433519);
+		--successBG: light-dark(#DFF6DD, #393D1B);
+		--criticalBG: light-dark(#FDE7E9, #442726);
+		--infoShadow: 0 0 0 1px var(--footerBorder);
+		--infoBadge: light-dark(#005FB7, #60CDFF);
+		--cautionBadge: light-dark(#9D5D00, #FCE100);
+		--successBadge: light-dark(#0F7B0F, #6CCB5F);
+		--criticalBadge: light-dark(#C42B1C, #FF99A4);
+
+		--button: light-dark(rgba(255,255,255,.7),rgba(255,255,255,.0605));
+		--buttonHover: light-dark(rgba(249,249,249,.5), rgba(255,255,255,.0837));
+		--buttonPressed: light-dark(rgba(255,255,255,.3), rgba(255,255,255,.0326));
+		--buttonShadowLight: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1);
+		--buttonShadowLightPressed: 0 0 0 1px rgba(0,0,0,.0578);
+		--buttonShadowDark: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02);
+		--buttonShadowDarkPressed: 0 0 0 1px rgba(255,255,255,.0698);
+
+		--closeHover: #C42B1C;
+		--closePressed: rgba(192,43,28,.9);
+		
+		--textButtonHover: light-dark(rgba(0,0,0,.0373), rgba(255,255,255,.0605));
+		--textButtonPressed: light-dark(rgba(0,0,0,.0241), rgba(255,255,255,.0419));
+		--textSecondary: light-dark(rgba(0,0,0,.6), rgba(255,255,255,.786));
+
+		--segmentedBG: light-dark(rgba(0,0,0,.0241), rgba(0,0,0,.1));
+		--segmentedBorder: light-dark(rgba(0,0,0,.0578), rgba(255,255,255,.0698));
+
+		--basicBGAnimation: background-color 83ms linear, box-shadow 83ms linear, height 83ms linear, transform 83ms linear;
+
+		--prefs-table-border-width: 0 !important;
+		--main-margin-start: unset !important;
+		
+		--background-color-canvas: light-dark(rgba(255,255,255,.45),rgba(58,58,58,.25)) !important;
+		
+		--border-radius-small: 4px !important;
+		--border-radius-medium: 4px !important;
+		--border-radius-large: 4px !important;
+		--addon-icon-size: 24px !important;
+		
+		--background-color-box: var(--cardBG) !important;
+		
+		--splitview-opentabs-card-width: 700px !important;
+		--border-width: 0 !important;
+		--background-color-box: var(--button) !important;
+		--card-border-width: 0 !important;
+		--card-padding: 16px !important;
+		--card-box-shadow: 0 0 0 1px var(--cardOutline) !important;
+		--fxviewtabrow-element-background-hover: transparent !important;
+		--button-background-color-ghost-active: transparent !important;
+		--button-background-color-ghost-hover: transparent !important;
+
+		scrollbar-color:
+			light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
+			light-dark(#f7f7f7, #252525) !important;
+	}
 }

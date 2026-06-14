@@ -1153,25 +1153,33 @@ treechildren::-moz-tree-image(title, query, folder) {
   list-style-image: url(read.svg) !important;
   width: 15px !important;
 }
-#pageAction-panel-bookmark:not([starred]), 
-#context-bookmarkpage:not([starred]) {
-  background-image: url(star.svg);
-  background-repeat: no-repeat;
-  background-size: 17px;
-  background-position: 10px 6px !important;
+
+#context-bookmarkpage,
+#pageAction-panel-bookmark{
+  background-repeat: no-repeat !important;
+  background-size: 17px !important;
   -moz-context-properties: fill !important;
   fill: var(--textPrimary) !important;
 }
 
-#pageAction-panel-bookmark[starred],
+#pageAction-panel-bookmark:not([starred]) {
+  background-image: url(star.svg);
+  background-position: 10px 6px !important;
+}
+#pageAction-panel-bookmark[starred] {
+  background-image: url(star-filled.svg) !important;
+  background-position: 10px 5px !important;
+}
+
+#context-bookmarkpage:not([starred]) {
+  background-image: url(star.svg);
+  background-position: 10px 5px !important;
+}
+
 #context-bookmarkpage[starred] {
   list-style-image: none !important;
   background-image: url(star-filled.svg) !important;
-  background-repeat: no-repeat;
-  background-size: 17px;
   background-position: 10px 5px !important;
-  -moz-context-properties: fill !important;
-  fill: var(--textPrimary) !important;
 }
 
 #context_bookmarkTab, 
@@ -1261,22 +1269,23 @@ treechildren::-moz-tree-image(title, query, folder) {
   list-style-image: url(help-circle.svg) !important;
 }
 
-menuitem[type="checkbox"]:not([checked="true"]){
+menuitem[type="checkbox"]:not([checked]){
   .menu-text {
     margin-left: 28px !important;
   }
 }
-menuitem[type="checkbox"][checked="true"] {
+menuitem[type="checkbox"][checked] {
   .menu-text {
     margin-left: 4px !important;
   }
 }
-menuitem[type="checkbox"][checked="true"] {
+menuitem[type="checkbox"][checked] {
   & > .menu-icon {
     content: url(checkmark-small.svg) !important;
-    padding: 3px !important;
     fill: var(--textPrimary) !important;
-    display: block !important;
+    display: inline !important;
+    height: 8px !important;
+    margin-top: -1px !important;
   }
   &:hover {
     & > .menu-icon {
@@ -1284,12 +1293,12 @@ menuitem[type="checkbox"][checked="true"] {
     }
   }
 }
-menuitem[type="radio"]:not([checked="true"]) {
+menuitem[type="radio"]:not([checked]) {
   .menu-text {
     margin-left: 29px !important;
   }
 }
-menuitem[type="radio"][checked="true"] {
+menuitem[type="radio"][checked] {
   & > .menu-icon {
     content: url(radio-bullet.svg) !important;
     padding: 6px !important;
