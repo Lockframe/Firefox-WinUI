@@ -267,6 +267,9 @@
   --button-text-color-destructive-selected: var(--textSecondary) !important;
   --button-background-color-destructive-disabled: var(--buttonDisabled) !important;
   --button-text-color-destructive-disabled: var(--textTertiary) !important;
+  
+  --panel-background-color: var(--commonBackground) !important;
+  --panel-box-shadow: var(--genericShadow) !important;
 
 /* ========== Measures ========== */
 
@@ -2874,6 +2877,16 @@ input[type="text"]:not(#login-line-input),
   }
 }
 
+#tab-preview-panel {
+  --panel-shadow: none !important;
+  box-shadow: none !important;
+  
+  & * {
+    box-shadow: none !important;
+    --panel-shadow: none !important;
+  }
+}
+
 /* ========== Footer ========== */
 
 .panel-footer {
@@ -3965,6 +3978,11 @@ details {
       display: none !important;
     }
   }
+  & .autocomplete-richlistitem[ac-comment='{"fillMessageName":"PasswordManager:OpenImportableLearnMore"}'] {
+    margin-inline: 8px !important;
+    padding-inline: 38px 0 !important;
+    padding-block: 2px 0 !important;
+  }
 }
 
 #PopupAutoComplete > richlistbox > richlistitem {
@@ -3989,6 +4007,7 @@ menupopup, panel {
 @media not -moz-pref('uc.winui.experiments') {
   panel {
     --panel-shadow-margin: 24px !important;
+    --panel-box-shadow-margin: 24px !important;
   }
 }
 
