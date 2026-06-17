@@ -1336,26 +1336,26 @@ input[type="text"] {
 /* ========== WinUI blue border on the left of URL bar result ========== */
 
 .urlbarView-row[selected] .urlbarView-row-inner {
-  padding-left: 6.5px !important;
-  position: relative !important;
-  padding-right: 18px !important;
-&::before {
-  content: "";
-  border-radius: 16px !important;
-  display: block !important;
-  position: absolute !important;
-  padding: 8px 1.5px !important;
-  margin-inline: -6px 12px !important;
-  margin-top: 2px !important;
-  animation: selectorBar 187ms forwards !important;
+  padding-inline: 16px !important;
+  
+  &::before {
+    content: "";
+    border-radius: 99px;
+    position: absolute;
+    height: 16px;
+    width: 3px;
+    margin-inline: -16px 0;
+    margin-top: 2px;
+    animation: selectorBar 187ms forwards;
+  }
 }
-}
-.urlbarView-row[selected] .urlbarView-no-wrap, .urlbarView-results[wrap] .urlbarView-row[selected] .urlbarView-url {
-  padding-left: 8px !important;
-}
+
 /* Remove ... button since it's the same as right clicking on the result */
 .urlbarView-button, .urlbarView-button-menu {
   display: none !important;
+}
+.urlbarView-row:not([selected]) .urlbarView-row-inner {
+  padding-inline: 16px 12.5px !important;
 }
 
 /* ========== SVG icons inside the url bar results ========== */

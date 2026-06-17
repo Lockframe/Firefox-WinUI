@@ -664,8 +664,13 @@
 	}
 
 	h1 {
-		font-size: 24px !important;
+		font-size: 20px !important;
 		margin-bottom: 8px !important;
+	}
+	
+	.info-border {
+		background-color: transparent !important;
+		box-shadow: none !important;
 	}
 
 	/* Kit image in error pages */

@@ -48,6 +48,11 @@
     --in-content-table-background: light-dark(#f7f7f7, #252525) !important;
     --in-content-text-color: var(--in-content-page-color) !important;
     --border-interactive-color: light-dark(#929292, #858585) !important;
+		
+		--panel-background-color: var(--commonBackground) !important;
+		
+		--font-weight-bold: 600 !important;
+		
     scrollbar-color:
       light-dark(rgb(37 37 37 / .4), rgb(255 255 255 / .4))
       light-dark(#f7f7f7, #252525) !important;
@@ -57,6 +62,14 @@
     background-color: light-dark(#0078D4, #93B8E7);
     color: light-dark(#fff, #000);
   }
+	
+	@media -moz-pref("browser.privatebrowsing.felt-privacy-v1") {
+		@media not (prefers-contrast) {
+			html.private {
+				background: transparent !important;
+			}
+		}
+	}
 }
 
 /*

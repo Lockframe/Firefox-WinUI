@@ -35,6 +35,23 @@
   }
 }
 
+.toolbarbutton-1 {
+  &:not([disabled], [disabled="true"]) {
+    fill: var(--textPrimary) !important;
+    color: var(--textPrimary) !important;
+    
+    &:active {
+      fill: var(--textSecondary) !important;
+      color: var(--textSecondary) !important;
+    }
+  }
+  
+  &:is([disabled], [disabled="true"]) {
+    fill: var(--textDisabled) !important;
+    color: var(--textDisabled) !important;
+  }
+}
+
 .subviewbutton {
   -moz-context-properties: fill, fill-opacity !important;
   fill: currentColor !important;
