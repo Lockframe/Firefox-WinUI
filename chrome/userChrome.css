@@ -203,6 +203,8 @@
   --arrowpanel-background: var(--commonBackground) !important;
   --background-color-canvas: var(--commonBackground) !important;
   --panel-background: var(--commonBackground) !important;
+  --panel-background-color: var(--commonBackground) !important;
+  
   --toolbox-bgcolor: transparent !important;
   --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
   --arrowpanel-border-color: light-dark(rgba(0,0,0,.125), rgba(0,0,0,.2)) !important;
@@ -10125,7 +10127,9 @@ tab-split-view-wrapper {
 /* Acrylic menus and panels */
 @media -moz-pref("widget.windows.mica.popups", 1) or
   -moz-pref("widget.windows.mica.popups", 2) {
-    .menupopup-arrowscrollbox, panel-list:not([aria-labelledby="more-options-menubutton"]), .context-menu, ul[role="menu"].menu {
+    .menupopup-arrowscrollbox, panel-list:not([aria-labelledby="more-options-menubutton"]), 
+    .context-menu, 
+    ul[role="menu"].menu {
       background-color: var(--acrylicBackground) !important;
       box-shadow: none !important;
       margin: -3px -12px -19px !important;
@@ -10142,7 +10146,10 @@ tab-split-view-wrapper {
       }
 
       @media (prefers-color-scheme: dark) {
-        .menupopup-arrowscrollbox, panel-list, .context-menu, ul[role="menu"].menu {
+        .menupopup-arrowscrollbox, 
+        panel-list, 
+        .context-menu, 
+        ul[role="menu"].menu {
           background-color: light-dark(rgba(255,255,255,.85), rgba(0,0,0,.57)) !important;
           box-shadow: 0 1px 0 0 rgba(255,255,255,.1) inset !important;
           border-radius: 7px !important;
@@ -10167,9 +10174,13 @@ tab-split-view-wrapper {
       }
     }
 
-    /* Potential fix for unscrollable menulists */
+    /* Fix margins */
     menupopup {
       --panel-shadow-margin: -12px !important;
+      --panel-box-shadow-margin: -12px !important;
+    }
+    panel {
+      --panel-box-shadow-margin: 0 !important;
     }
 
     /* A way to increase the bottom padding exclusively for long lists is required */
@@ -10253,6 +10264,10 @@ tab-split-view-wrapper {
       --arrowpanel-background: var(--acrylicBackground) !important;
       --arrowpanel-color: light-dark(rgba(0, 0, 0, 0.89), #fff) !important;
       --arrowpanel-border-color: none !important;
+      
+      --background-color-canvas: var(--acrylicBackground) !important;
+      --panel-background: var(--acrylicBackground) !important;
+      --panel-background-color: var(--acrylicBackground) !important;
     }
     
     #searchmode-switcher-panel-list-searchbar,
