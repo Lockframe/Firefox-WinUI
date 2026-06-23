@@ -272,6 +272,8 @@
   
   --panel-background-color: var(--commonBackground) !important;
   --panel-box-shadow: var(--genericShadow) !important;
+  
+  --toolbar-field-background-color: var(--button) !important;
 
 /* ========== Measures ========== */
 
@@ -1176,8 +1178,6 @@ input[type="text"] {
 #tab-group-editor-button-cancel {
   padding: 2px 0 !important;
 }
-
-
 
 .labelled {
   font-weight: normal !important;
@@ -6779,6 +6779,11 @@ print-preview {
   background-color: var(--textButtonHover) !important;
 }
 
+/* -- Remove search engine suggestion ad -- */
+.urlbarView-row[dynamicType="onboardTabToSearch"] {
+  display: none !important;
+}
+
 /* ========== WinUI blue border on the left of URL bar result ========== */
 
 .urlbarView-row[selected] .urlbarView-row-inner::before {
@@ -8385,7 +8390,7 @@ tab-split-view-wrapper {
 }
 
 @media -moz-pref("uc.winui.pill-urlbar") {
-  .urlbar-background {
+  #urlbar .urlbar-background {
     border-radius: 99px !important;
   }
   #urlbar[breakout][breakout-extend][open],
@@ -11496,6 +11501,76 @@ tab-split-view-wrapper {
       content: 'Add' !important;
       margin-top: 12px !important;
       margin-inline: -13px 0 !important;
+    }
+  }
+}
+
+
+/* Prevent nova from breaking the theme */
+@media -moz-pref('browser.nova.enabled') {
+  :root {
+    --chrome-content-separator-color: unset !important;
+    --chrome-window-gap: 0px !important;
+    --chrome-block-radius: 0px !important;
+  }
+
+  #browser {
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+  
+  .chrome-block {
+    border: 0px !important;
+  }
+
+  .browserContainer {
+    border: 0px !important;
+  }
+
+  #navigator-toolbox {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+
+  #tabbrowser-tabbox {
+    border-radius: 0 !important;
+  }
+
+  #nav-bar {
+    border-top: none !important;
+  }
+
+  #tabbrowser-tabpanels > :not(.split-view-panel) .browserContainer {
+    border-radius: 0 !important;
+    border: none !important;
+  }
+  
+  /* URL bar looks unfinished since it's using both old url-background + input container depending on state - update later */
+  .urlbar:not(moz-smartbar)[breakout] {
+    & > .urlbar-input-container {
+      margin-block-start: 8px !important;
+      padding: 1px 0 !important;
+      
+      outline: none !important;
+      border: none !important;
+      height: 30px !important;
+      transform: translateY(1px) !important;
+      border-radius: 3px !important;
+      transition: none !important;
+      box-shadow: var(--buttonShadow) !important;
+      
+      & .urlbar-page-action {
+        margin-top: 2px !important;
+        padding-top: 6px !important;
+        
+        &:last-of-type {
+          margin-right: 3px !important;
+        }
+      }
+      & .identity-box-button, #trust-icon-container {
+        margin-left: 3px !important;
+      }
     }
   }
 }
