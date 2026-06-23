@@ -8549,19 +8549,13 @@ tab-split-view-wrapper {
       }
     }
 
-    /* Improve tab outline */
-    @media (prefers-color-scheme: light) {
-      #tabbrowser-tabs .tab-background:is([selected], [multiselected]), 
-      #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-        box-shadow: var(--buttonShadowLight) !important;
-      }
+    #tabbrowser-tabs .tab-background:is([selected], [multiselected]), 
+    #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+      box-shadow: var(--buttonShadow) !important;
     }
+    
+    /* Improve tab outline */
     @media (prefers-color-scheme: dark) {
-      #tabbrowser-tabs .tab-background:is([selected], [multiselected]), 
-      #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-        box-shadow: var(--buttonShadowDark) !important;
-      }
-
       :root, :root .tabbrowser-tab {
         & [brighttext], & [brighttext] .tabbrowser-tab {
           --uc-titlebar-shadow: none !important;
@@ -10048,7 +10042,7 @@ tab-split-view-wrapper {
       /* Active tab shadows */
       #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
       #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-        box-shadow: var(--buttonShadowLight), 0 1px 0 0 rgba(255,255,255,.85) inset !important;
+        box-shadow: var(--buttonShadow), 0 1px 0 0 rgba(255,255,255,.85) inset !important;
       }
     }
   }
