@@ -14,6 +14,9 @@
 		.info {
 			background-color: light-dark(rgba(0,0,0,.0605), rgba(255,255,255,.0605)) !important;
 		}
+		.top-sites-list {
+			--top-sites-max-per-row: 8; /* Change amount of pinned sites per row */
+		}
 
 		/* Remove useless search bar */
 		.search-wrapper {
@@ -140,10 +143,6 @@
 				inset-block-start: 12px !important;
 			}
 		}
-		.top-sites-list-wrapper{
-			--mrec-height: 100% !important; /* Barely ever works */
-			margin-top: 100px !important;
-		}
 		@media -moz-pref("browser.newtabpage.activity-stream.nova.enabled") {
 			.top-site-outer{
 				& .title {
@@ -151,6 +150,20 @@
 				}
 			}
 		}
+		
+		.nova-enabled.container {
+			grid-template-columns: auto-fill !important;
+			grid-auto-rows: 0 !important;
+			gap: 0 !important;
+			justify-content: center !important;
+			margin-inline: 0 !important;
+			padding-inline: 0 !important;
+		}
+
+		/* Remove empty space above shortcuts */
+		.logo-and-wordmark-wrapper {display: none !important;}
+		.nova-outer-wrapper {padding-top: 250px !important;}
+		
 
 		@keyframes invokeUp {
 			0% {
@@ -1624,11 +1637,6 @@
 	}
 
 	.container{
-
-		& .content {
-			gap: unset !important;
-		}
-
 		& .actions.active {
 			background-color: transparent !important;
 			padding: unset !important;
