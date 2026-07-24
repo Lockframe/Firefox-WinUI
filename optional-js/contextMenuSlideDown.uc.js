@@ -18,8 +18,8 @@ class AnimateContextMenus {
   :not(menulist)
   > menupopup:not([position], [type="arrow"], [animate="false"]) {
   opacity: 1;
-  clip-path: var(none, inset(75% 0 0 0));
-  transform: var(--animate-transform-initial, translateY(-75%));
+  clip-path: var(none, inset(100% 0 0 0));
+  transform: var(--animate-transform-initial, translateY(-100%));
   transform-origin: var(--animate-origin, top);
   transition-property: transform, clip-path;
   transition-duration: 333ms;
@@ -30,8 +30,8 @@ class AnimateContextMenus {
 
 :root[animate-menupopups]
   menu > menupopup:not([position], [type="arrow"], [animate="false"]) {
-    --animate-clip-initial: inset(75% 0 0 0);
-    --animate-transform-initial: translateY(-75%);
+    --animate-clip-initial: inset(100% 0 0 0);
+    --animate-transform-initial: translateY(-100%);
     --animate-origin: top;
 }
 
@@ -64,8 +64,8 @@ class AnimateContextMenus {
 
   setMainAnimationDirection(menu, direction) {
       if (direction === "up") {
-          menu.style.setProperty('--animate-clip-initial', 'inset(0 0 75% 0)');
-          menu.style.setProperty('--animate-transform-initial', 'translateY(75%)');
+          menu.style.setProperty('--animate-clip-initial', 'inset(0 0 100% 0)');
+          menu.style.setProperty('--animate-transform-initial', 'translateY(100%)');
           menu.style.setProperty('--animate-origin', 'bottom');
       } else {
           menu.style.removeProperty('--animate-clip-initial');

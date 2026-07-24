@@ -17,6 +17,10 @@
 		.top-sites-list {
 			--top-sites-max-per-row: 8; /* Change amount of pinned sites per row */
 		}
+		
+		html.private {
+			background: none !important;
+		}
 
 		/* Remove useless search bar */
 		.search-wrapper {

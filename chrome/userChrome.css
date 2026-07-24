@@ -1886,12 +1886,14 @@ toolbarbutton[data-l10n-id="appmenu-remote-tabs-show-inactive-tabs"] {
 menulist {
   border: none !important;
   border-radius: 3px !important;
-&:not([disabled="true"]):hover {
-  background-color: var(--buttonHover) !important;
-}
-&[open="true"]:not([disabled="true"]) {
-  background-color: var(--buttonPressed) !important;
-}
+  background-color: var(--button) !important;   /* added */
+
+  &:not([disabled="true"]):hover {
+    background-color: var(--buttonHover) !important;
+  }
+  &[open="true"]:not([disabled="true"]) {
+    background-color: var(--buttonPressed) !important;
+  }
 }
 
 /* ========== Standardize font size ========== */
@@ -2447,6 +2449,13 @@ panel[type="autocomplete-richlistbox"] {
   & * {
     font-size: 14px !important;
   }
+  & #trustpanel-header-section {
+    margin-right: 0 !important;
+  }
+}
+
+#identity-popup, #permission-popup, #trustpanel-popup, #protections-popup {
+  --panel-width: 431px !important;
 }
 
 #trustpanel-popup-mainView {
@@ -2536,6 +2545,12 @@ panel[type="autocomplete-richlistbox"] {
     label[data-l10n-id="trustpanel-clear-cookies-description"] {
       margin-bottom: 16px !important;
     }
+  }
+  #trustpanel-clear-cookie-cancel {
+    height: 36px !important;
+    min-width: fit-content !important;
+    padding-inline: 12px !important;
+    margin-top: -1px !important;
   }
 }
 
@@ -2898,12 +2913,18 @@ input[type="text"]:not(#login-line-input),
   padding-block: 16px !important;
   padding-inline: 12px 14px !important;
 
-& button {
-  width: -moz-available !important;
-  margin-inline: 4.5px !important;
-  padding-bottom: auto !important;
-  font-size: 14px !important;
+  & button {
+    width: -moz-available !important;
+    margin-inline: 4.5px !important;
+    padding-bottom: auto !important;
+    font-size: 14px !important;
+  }
 }
+
+#select-translations-panel-translate-full-page-button {
+  width: auto !important;
+  min-width: max-content !important;
+  flex-shrink: 0 !important;
 }
 
 /* Back/forward panels */
@@ -2916,6 +2937,13 @@ input[type="text"]:not(#login-line-input),
 }
 #forward-button menupopup {
   padding-left: 13px !important;
+}
+
+/* ========== History panel scroll ========== */
+
+panelview#PanelUI-history .panel-subview-body {
+  max-height: calc(90vh - 100px) !important;
+  overflow-y: auto !important;
 }
 
 /* ========== Remove inexistent icon ========== */
@@ -3167,7 +3195,7 @@ window#webextpanels-window {
   margin-left: -6px !important;
   background-color: transparent !important;
 }
-#sidebar-box {
+#sidebar-box, #sidebar-container {
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
@@ -3397,7 +3425,7 @@ button:active {
 
 /* ========== Side panel ========== */
 
-#sidebar-main {
+#sidebar-container {
   background-color: var(--frameBG) !important;
   border-right: 1px solid var(--footerBorder) !important;
 }
@@ -3406,8 +3434,8 @@ button:active {
   margin-block: 1px 8px !important;
 }
 
-:root:has(#sidebar-main:not([hidden=""])):not([inFullscreen]) {
-  #sidebar-main:not([sidebar-launcher-expanded=""]) {
+:root:has(#sidebar-container:not([hidden=""])):not([inFullscreen]) {
+  #sidebar-container:not([sidebar-launcher-expanded=""]) {
     width: 48px !important;
   }
 }
@@ -3585,14 +3613,14 @@ splitter[orient="vertical"] {
 }
 
 /* Rounded upper left corner if the side panel is shown */
-:root:has(#sidebar-main:not([hidden=""])):not([inFullscreen]) {
+:root:has(#sidebar-container:not([hidden=""])):not([inFullscreen]) {
   browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
     border-radius: 8px 0 0 0 !important;
     border: 1px solid light-dark(rgba(0,0,0,.08), var(--uc-custom-color-3)) !important;
     border-bottom: none !important;
     border-right: none !important;
   }
-  & #sidebar-main,
+  & #sidebar-container,
   #nav-bar,
   #PersonalToolbar,
   #sidebar-box {
@@ -3801,7 +3829,7 @@ details {
     height: 22px !important;
     width: 22px !important;
     scale: 100% !important;
-    margin: 0 0 1px -9px !important;
+    margin: 0 0 1px -7px !important;
   }
 
   &::after {
@@ -4214,8 +4242,10 @@ menupopup#ContentSelectDropdownPopup {
   }
 }
 
-
 menuitem[disabled] {color: var(--textDisabled) !important;}
+menupopup menu[disabled="true"], menupopup menuitem[disabled="true"] {
+  color: var(--textDisabled) !important;
+}
 
 #ContentSelectDropdown > menupopup > menuitem > .menu-iconic-text {
   margin-inline-start: -16px !important;
@@ -4431,7 +4461,7 @@ menuitem[disabled] {color: var(--textDisabled) !important;}
     padding: 0 !important;
     max-width: 120px !important;
     max-height: 24px !important;
-    margin-top: 2px !important;
+    margin-block: 0 2px !important;
     margin-left: 2px !important;
   }
   #search-container .searchmode-switcher {
@@ -4455,9 +4485,6 @@ menuitem[disabled] {color: var(--textDisabled) !important;}
   margin-block: 2px 0 !important;
   height: 24px !important;
   font-size: 16px !important;
-}
-#urlbar[breakout][breakout-extend][open] .searchmode-switcher {
-  margin-block: 3px 0 !important;
 }
 
 #urlbar-search-mode-indicator-close,
@@ -4899,6 +4926,8 @@ span.button-background[part="button"][type~="icon"]:not(.labelled, [type="primar
 button#downloadsHistory,
 button#editBookmarkPanelRemoveButton,
 #editBMPanel_folderMenuList,
+#full-page-translations-panel-from,
+#full-page-translations-panel-to,
 .dialog-button,
 .autocomplete-richlistitem[type="loginsFooter"],
 #customization-toolbar-visibility-button,
@@ -4912,9 +4941,10 @@ select,
 #cancel-button,
 #additional_button,
 #editBMPanel_newFolderButton,
-.footer-button.secondary{
+.footer-button.secondary,
+.footer-button:not([disabled], [default], [slot="primary"], .primary) {
   background-color: var(--button) !important;
-  border-radius: 3px !important;
+  border-radius: 4px !important;
   box-shadow: var(--buttonShadow) !important;
   font-weight: normal !important;
   border: none !important;
@@ -4923,7 +4953,7 @@ select,
   -moz-appearance: none !important;
   font-size: 14px !important;
   color: var(--textPrimary) !important;
-  
+
   &:not([disabled]):hover {
     background-color: var(--buttonHover) !important;
   }
@@ -4932,7 +4962,7 @@ select,
     box-shadow: var(--buttonShadowPressed) !important;
     color: var(--textSecondary) !important;
   }
-  &([disabled]) {
+  &[disabled] {
     background-color: var(--buttonDisabled) !important;
     color: var(--textDisabled) !important;
   }
@@ -5001,7 +5031,7 @@ select,
 
 #editBookmarkPanelRemoveButton {
   label::before {
-    margin-left: -6px;
+    margin-left: 0;
   }
 }
 #main-button .button-background[part="button"]:not([type="icon ghost"], [type="icon"]) {
@@ -5314,6 +5344,7 @@ input[type="checkbox"] + .slider,
     outline: none !important;
     margin: 0px !important;
     border-radius: 99px !important;
+    transform: translateX(-6px) translateY(-6px) !important;
     transition: transform 200ms, height 83ms linear, width 83ms linear !important;
   }
   &:hover::before {
@@ -5852,15 +5883,6 @@ body:fullscreen {
   opacity: 1 !important;
 }
 
-#urlbar[breakout][breakout-extend][open] #identity-box,
-#urlbar[breakout][breakout-extend][open] #permissions-granted-icon {
-  margin-top: 1px !important;
-}
-
-#urlbar[breakout][breakout-extend][open] #urlbar-searchmode-switcher {
-  margin-top: 4px !important;
-}
-
 /* ========== Search website revert to address bar button ========== */
 
 .urlbar-revert-button {
@@ -5927,11 +5949,11 @@ body:fullscreen {
 }
 
 /* Accurate implementation of the bottom accent border when url bar is focused */
-#urlbar[breakout][breakout-extend]:not([usertyping]) > .urlbar-background,
-#urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background {
+#urlbar[breakout="true"]:not([usertyping]) > .urlbar-background,
+#urlbar[breakout="true"]:not([usertyping]):focus-within >.urlbar-background {
   border-radius: 3px !important;
 }
-#urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background::after {
+#urlbar[breakout="true"]:not([usertyping]):focus-within >.urlbar-background::after {
   content: '';
   width: 100%;
   height: 2px;
@@ -5970,14 +5992,14 @@ body:fullscreen {
   margin-block: 0 2px !important;
 
   &:not(.identity-box-button) image {
-    margin-block: -2px 4px !important;
+    margin-block: 4px 4px !important;
   }
 }
 
 #trust-icon-container {
   padding: 0 8px !important;
   height: 24px !important;
-  margin-block: 2px 0 !important;
+  margin-block: 0 2px !important;
   margin-inline: 2px !important;
   border-radius: 4px !important;
 
@@ -6009,7 +6031,6 @@ body:fullscreen {
 .toolbarbutton-1 > .toolbarbutton-badge-stack,
 :not(.panel-subview-body > toolbaritem) > .bookmark-item:not(menu, menuitem),
 #tracking-protection-icon-container,
-.downloadButton,
 button[title="Close"]{
   transition: var(--basicBGAnimation) !important;
   border: none !important;
@@ -6022,6 +6043,7 @@ button[title="Close"]{
     color: var(--textSecondary) !important;
   }
 }
+
 toolbar .toolbarbutton-1 {
   &:not([disabled]) {
     &:is(:hover:active, [open], [checked]) > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
@@ -6029,7 +6051,7 @@ toolbar .toolbarbutton-1 {
       color: var(--textSecondary) !important;
     }
   }
-  &:is(#sidebar-button) {    
+  &:is(#sidebar-button) {
     &:not([disabled]) {
       &:is([open], [checked]) > :is(.toolbarbutton-badge-stack) {
         background-color: transparent !important;
@@ -6054,25 +6076,9 @@ toolbar .toolbarbutton-1 {
   }
 }
 
-.urlbar-go-button {
-  margin-block: 2px 0 !important;
-}
-
-#urlbar[breakout][breakout-extend] {
-  & .urlbar-page-action {
-    margin-block: 0 !important;
-  }
-  & .urlbar-go-button {
-    margin-block: 3px 0 !important;
-  }
-  & #trust-icon-container {
-    margin-block: 3px 0 !important;
-  }
-}
-
 .identity-box-button {
   margin-inline: 2px 0 !important;
-  margin-top: 2px !important;
+  margin-block: 0 2px !important;
 }
 
 /* ========== Prevent in-url glyphs having a background color ========== */
@@ -7415,6 +7421,43 @@ tab-split-view-wrapper {
   }
 }
 
+/* ==== FIX URL BAR BUTTONS SHIFTING DEPENDING ON STATE === */
+#urlbar {
+  .urlbar-page-action,
+  #identity-icon-box,
+  #trust-icon-container,
+  .searchmode-switcher{
+    margin-block: 0 1px !important;
+  }
+  
+  &[breakout] {
+    .urlbar-page-action,
+    #identity-icon-box,
+    #trust-icon-container,
+    .searchmode-switcher{
+      margin-block: 1px 0 !important;
+    }
+  }
+  &[breakout]:not([open=""]) {
+    .urlbar-page-action,
+    #identity-icon-box,
+    #trust-icon-container,
+    .searchmode-switcher{
+      margin-block: 0 1px !important;
+    }
+  }
+  &[focused]:not([breakout-extended]) {
+    .urlbar-input {
+      margin-block: 0 0 !important;
+    }
+  }
+  &[focused] {
+    .urlbar-input {
+      transform: translateY(-2px) !important;
+    }
+  }
+}
+
 /* ========== DARK ========== */
 
 @media (prefers-color-scheme: dark) {
@@ -8176,7 +8219,7 @@ tab-split-view-wrapper {
   }
 
   /* Sidebar compatibility */
-  :root:has(#sidebar-main:not([hidden=""])):not([inFullscreen]) {
+  :root:has(#sidebar-container:not([hidden=""])):not([inFullscreen]) {
     browser[contextmenu="contentAreaContextMenu"]:not(.webextension-popup-browser, .sidebar) {
       border-radius: 8px !important;
       border: 1px solid light-dark(rgba(0,0,0,.08), rgba(0,0,0,.1)) !important;
@@ -8228,16 +8271,9 @@ tab-split-view-wrapper {
 /* Safari-style centered URL unless active */
 @media -moz-pref("uc.winui.centered-url-alt") {
   #urlbar-input {
-    position: absolute;
-    width: 50%;
-    height: 100%;
     text-align: center !important;
-    transform: translateX(50%);
-    transition: transform 0.3s cubic-bezier(0, 0.7, 0.3, 1);
   }
   #urlbar[focused] #urlbar-input {
-    transform: translateX(0);
-    width: 100%;
     text-align: left !important;
   }
   #urlbar[breakout][breakout-extend] #urlbar-input {
@@ -8390,14 +8426,14 @@ tab-split-view-wrapper {
 }
 
 @media -moz-pref("uc.winui.pill-urlbar") {
-  #urlbar .urlbar-background {
+  #urlbar[breakout="true"]:not([usertyping]) > .urlbar-background, #urlbar[breakout="true"]:not([usertyping]):focus-within > .urlbar-background {
     border-radius: 99px !important;
   }
   #urlbar[breakout][breakout-extend][open],
   #urlbar[breakout][breakout-extend][open] > .urlbar-background {
     border-radius: 16px 16px 0 0 !important;
   }
-  #identity-icon-box {
+  #identity-icon-box, #identity-box {
     border-radius: 99px 24px 24px 99px !important;
   }
   #star-button-box {
@@ -8843,7 +8879,7 @@ tab-split-view-wrapper {
     }
 
     /* === Tabbox container === */
-    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]):has(#sidebar-main[hidden=""]) {
+    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]):has(#sidebar-container[hidden=""]) {
       tabbox#tabbrowser-tabbox {
         margin: 0 5px 5px 5px !important;
         border-radius: 0 0 5px 5px !important;
@@ -8868,7 +8904,7 @@ tab-split-view-wrapper {
       }
     }
     /* Maximized state */
-    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"])[sizemode="maximized"]:has(#sidebar-main[hidden=""]) {
+    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"])[sizemode="maximized"]:has(#sidebar-container[hidden=""]) {
       tabbox#tabbrowser-tabbox {
         border-radius: 0 0 8px 8px !important;
       }
@@ -8883,8 +8919,8 @@ tab-split-view-wrapper {
       border-radius: 0 0 8px 8px !important;
     }
 
-    :root:has(#sidebar-main:not([hidden=""])) {
-      #sidebar-main {
+    :root:has(#sidebar-container:not([hidden=""])) {
+      #sidebar-container {
         margin: 0 0 5px 5px !important;
         box-shadow:
           1px 0 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)),
@@ -8893,7 +8929,7 @@ tab-split-view-wrapper {
         border-radius: 0 0 0 5px !important;
       }
       &[sizemode="maximized"] {
-        #sidebar-main {border-radius: 0 0 0 8px !important;}
+        #sidebar-container {border-radius: 0 0 0 8px !important;}
       }
 
       tabbox#tabbrowser-tabbox {
@@ -8945,7 +8981,7 @@ tab-split-view-wrapper {
   #PersonalToolbar,
   #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
   .sidebar-browser-stack,
-  #sidebar-main,
+  #sidebar-container,
   .browserStack,
   #sidebar-splitter{
     background-image: var(--acrylic) !important;
@@ -9466,32 +9502,23 @@ tab-split-view-wrapper {
   :root {
     --tabstrip-inner-border: none !important;
   }
-
-  .urlbar-page-action, 
-  #star-button-box, 
-  #permissions-granted-icon, 
-  #reader-mode-button, 
-  #translations-button, 
-  #translations-button-circle-arrows, 
-  .urlbar-go-button {
-    margin-block: 0 !important;
-
-    & image {
-      transform: translateY(-1px) !important;
-    }
-  }
-  #urlbar[breakout][breakout-extend][open]:focus-within {
-    .urlbar-page-action, 
-    #star-button-box, 
-    #permissions-granted-icon, 
-    #reader-mode-button, 
-    #translations-button, 
-    #translations-button-circle-arrows, 
-    .urlbar-go-button {
-      & image {
-        transform: translateY(0px) !important;
+  
+  /* ==== FIX URL BAR BUTTONS SHIFTING DEPENDING ON STATE === */
+  #urlbar {
+    &[focused]:not([breakout-extended]) {
+      .urlbar-input {
+        margin-block: 2px 0 !important;
       }
     }
+    &[focused] {
+      .urlbar-input {
+        transform: translateY(-2px) !important;
+      }
+    }
+  }
+  
+  .searchmode-switcher {
+    padding: 0 0 0 0 !important;
   }
 
   /* Spacer on the right to drag the window */
@@ -9518,7 +9545,7 @@ tab-split-view-wrapper {
     }
   }
 
-  :root:not([sizemode="maximized"]) #sidebar-main:has(#tabbrowser-tabs:not([expanded])) {
+  :root:not([sizemode="maximized"]) #sidebar-container:has(#tabbrowser-tabs:not([expanded])) {
     max-width: 49px !important;
 
     & .tabbrowser-tab:not([pinned]) .tab-background {
@@ -9528,7 +9555,7 @@ tab-split-view-wrapper {
 
   /* --- STATE: Overflowing Tabs --- */
   /* Collapsed & Overflowing */
-  #sidebar-main:has(#tabbrowser-tabs:not([expanded])[overflow]) {
+  #sidebar-container:has(#tabbrowser-tabs:not([expanded])[overflow]) {
     width: 48px !important;
 
     & .tabbrowser-tab {
@@ -9555,7 +9582,7 @@ tab-split-view-wrapper {
   }
 
   /* Expanded & Overflowing */
-  #sidebar-main:has(#tabbrowser-tabs[expanded][overflow]) {
+  #sidebar-container:has(#tabbrowser-tabs[expanded][overflow]) {
     & .tabbrowser-tab {
       margin-inline: 1px -2px !important;
 
@@ -9582,7 +9609,7 @@ tab-split-view-wrapper {
       }
     }
   }
-  :root[sizemode="maximized"] #sidebar-main:has(#tabbrowser-tabs[expanded][overflow]) {
+  :root[sizemode="maximized"] #sidebar-container:has(#tabbrowser-tabs[expanded][overflow]) {
     & #vertical-tabs-newtab-button {
       margin-left: 12px !important;
 
@@ -9598,17 +9625,10 @@ tab-split-view-wrapper {
       width: 95% !important;
     }
   }
-  .button-background.labelled {
-    height: 32px !important;
-
-    & img {
-      margin-left: 5px !important;
-    }
-  }
 
   /* --- STATE: Non-Overflowing Tabs --- */
   /* Collapsed */
-  #sidebar-main:has(#tabbrowser-tabs:not([expanded],[overflow])) {
+  #sidebar-container:has(#tabbrowser-tabs:not([expanded],[overflow])) {
     width: 48px !important;
 
     & .tabbrowser-tab:not([pinned]) .tab-content {
@@ -9634,7 +9654,7 @@ tab-split-view-wrapper {
   }
 
   /* Expanded */
-  #sidebar-main:has(#tabbrowser-tabs[expanded]:not([overflow])) {
+  #sidebar-container:has(#tabbrowser-tabs[expanded]:not([overflow])) {
     & .tabbrowser-tab:not([pinned]) .tab-content {
       margin-left: -2px !important;
     }
@@ -9657,11 +9677,11 @@ tab-split-view-wrapper {
     }
   }
 
-  :root[sizemode="maximized"] #sidebar-main:has(#tabbrowser-tabs[expanded]:not([overflow])) #tabs-newtab-button image {
+  :root[sizemode="maximized"] #sidebar-container:has(#tabbrowser-tabs[expanded]:not([overflow])) #tabs-newtab-button image {
     margin-inline: 8px -1px !important;
   }
 
-  :root:not([sizemode="maximized"]) #sidebar-main:has(#tabbrowser-tabs[expanded]:not([overflow])) #tabs-newtab-button image {
+  :root:not([sizemode="maximized"]) #sidebar-container:has(#tabbrowser-tabs[expanded]:not([overflow])) #tabs-newtab-button image {
     margin-inline: 3px -1px !important;
   }
 
@@ -9682,7 +9702,7 @@ tab-split-view-wrapper {
   }
 
   /* Move the vertical tabs space relative to the navbar */
-  #sidebar-main #vertical-tabs {
+  #sidebar-container #vertical-tabs {
     margin-top: 0px !important;
   }
 
@@ -9801,7 +9821,7 @@ tab-split-view-wrapper {
 
     & .tabbrowser-tab:not([pinned]):hover {
       .tab-icon-image {
-        opacity: 0 !important;
+        /*! opacity: 0 !important; */
       }
       .tab-close-button {
         margin: 12px 0 0 21px !important;
@@ -9930,7 +9950,7 @@ tab-split-view-wrapper {
     border-right: none !important;
   }
 
-  #sidebar-main,
+  #sidebar-container,
   #nav-bar:not(:has(#taskbar-tabs-favicon, 
   .titlebar-spacer[type="pre-tabs"])),
   #PersonalToolbar,
@@ -9940,7 +9960,7 @@ tab-split-view-wrapper {
   }
 
   /* Expand-on-hover fixes */
-  :root:has(#tabbrowser-tabbox[sidebar-launcher-hovered=""]) #sidebar-main {
+  :root:has(#tabbrowser-tabbox[sidebar-launcher-hovered=""]) #sidebar-container {
     background-color: light-dark(#f3f3f3, #202020) !important;
     border-radius: 0 8px 8px 0 !important;
     border: 1px solid var(--controlStroke) !important;
@@ -9964,7 +9984,7 @@ tab-split-view-wrapper {
     }
   }
 
-  :root:not([sizemode="maximized"]):has(#tabbrowser-tabbox[sidebar-launcher-hovered=""]) #sidebar-main #tabs-newtab-button .toolbarbutton-icon {
+  :root:not([sizemode="maximized"]):has(#tabbrowser-tabbox[sidebar-launcher-hovered=""]) #sidebar-container #tabs-newtab-button .toolbarbutton-icon {
     margin-left: 6px !important;
   }
 
@@ -10313,13 +10333,12 @@ tab-split-view-wrapper {
       margin-top: 4px !important;
     }
 
-    .tab-preview-thumbnail-container canvas {
-      margin-inline: auto !important;
-      width: auto !important;
-    }
-
     #notification-popup {
       margin: 7px 0 0 0 !important;
+    }
+    
+    #editBMPanel_folderMenuList menupopup {
+      margin: 0px -24px -24px 0px !important;
     }
 
     /* Acrylic tooltips */
@@ -10335,6 +10354,7 @@ tab-split-view-wrapper {
       appearance: auto !important;
       -moz-default-appearance: menupopup;
       box-shadow: none !important;
+      padding-top: 6px !important;
     }
 
     #editBookmarkPanel {
@@ -10350,6 +10370,9 @@ tab-split-view-wrapper {
     /* Tab preview panel */
     .tab-preview-thumbnail-container {
       background-color: transparent !important;
+    }
+    .tab-preview-content-main {
+      padding-block: 8px 5px !important;
     }
 
     /* Disable animations by modifying them into being blank */
@@ -10790,6 +10813,12 @@ tab-split-view-wrapper {
   .tabbrowser-tab:is([selected="true"][visuallyselected=""]) .tab-label-container {
     margin-right: 9px !important;
   }
+  
+  @media -moz-pref("sidebar.verticalTabs") {
+    .tabbrowser-tab:hover .tab-label {
+      clip-path: inset(0 16px 0 0) !important;
+    }
+  }
 }
 /* Different titlebar styles */
 @media -moz-pref("uc.winui.titlebar-style", 1) or
@@ -11122,7 +11151,7 @@ tab-split-view-wrapper {
   }
   #PersonalToolbar,
   #nav-bar,
-  #sidebar-main,
+  #sidebar-container,
   #sidebar-box, 
   #sidebar-splitter,
   #nav-bar:-moz-window-inactive, 
@@ -11133,7 +11162,7 @@ tab-split-view-wrapper {
   }
 
   /* Rounded upper left corner if the side panel is shown */
-  :root:has(#sidebar-main:not([hidden=""])):not([inFullscreen]) {
+  :root:has(#sidebar-container:not([hidden=""])):not([inFullscreen]) {
     & tabbox#tabbrowser-tabbox,
     & #tabbrowser-tabpanels {
       border-radius: 8px 0 0 0 !important;
@@ -11181,7 +11210,7 @@ tab-split-view-wrapper {
     }
 
     /* === Tabbox container === */
-    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]):has(#sidebar-main[hidden=""]) {
+    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"]):has(#sidebar-container[hidden=""]) {
       tabbox#tabbrowser-tabbox {
         margin: 0 5px 5px 5px !important;
         border-radius: 7px 7px 5px 5px !important;
@@ -11203,7 +11232,7 @@ tab-split-view-wrapper {
       }
     }
     /* Maximized state */
-    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"])[sizemode="maximized"]:has(#sidebar-main[hidden=""]) {
+    :root:not([inDOMFullscreen="true"]):not([sizemode="fullscreen"]):not([chromehidden*="toolbar"]):not([chromehidden*="menubar"])[sizemode="maximized"]:has(#sidebar-container[hidden=""]) {
       tabbox#tabbrowser-tabbox {
         border-radius: 7px !important;
       }
@@ -11218,8 +11247,8 @@ tab-split-view-wrapper {
       border-radius: 0 0 7px 7px !important;
     }
 
-    :root:has(#sidebar-main:not([hidden=""])) {
-      #sidebar-main {
+    :root:has(#sidebar-container:not([hidden=""])) {
+      #sidebar-container {
         margin: 0 0 5px 5px !important;
         box-shadow:
           1px 0 0 0 light-dark(rgba(0,0,0,.0605), rgba(0,0,0,.135)),
@@ -11228,7 +11257,7 @@ tab-split-view-wrapper {
         border-radius: 0 0 0 5px !important;
       }
       &[sizemode="maximized"] {
-        #sidebar-main {border-radius: 0 7px 0 7px !important;}
+        #sidebar-container {border-radius: 0 7px 0 7px !important;}
       }
 
       tabbox#tabbrowser-tabbox {
@@ -11305,6 +11334,10 @@ tab-split-view-wrapper {
       box-shadow: var(--buttonShadowPressed) !important;
     }
   }
+  .unified-extensions-item > box > toolbarbutton {
+    padding-block: 1px !important;
+    transition: basicBGAnimation !important;
+  }
 
   /* ── Toolbar active / checked states + sidebar special case  */
   toolbar .toolbarbutton-1:not([disabled]) {
@@ -11328,7 +11361,8 @@ tab-split-view-wrapper {
     #trust-icon-container,
     .searchmode-switcher,
     #identity-icon-box,
-    #page-action-buttons > hbox {
+    #page-action-buttons > hbox,
+    #urlbar-revert-button-container image {
       border-radius: 3px !important;
       box-shadow: 0 0 0 1px transparent !important;
 
@@ -11352,7 +11386,18 @@ tab-split-view-wrapper {
       }
     }
   }
-
+  
+  @media -moz-pref("uc.winui.pill-urlbar") {
+    #urlbar {
+      #trust-icon-container,
+      .searchmode-switcher,
+      #identity-icon-box,
+      #page-action-buttons > hbox,
+      #urlbar-revert-button-container image {
+        border-radius: 99px !important;
+      }
+    }
+  }
 
   /* ── URL bar actions — no animation, [open] state only  */
   .urlbar-page-action,
@@ -11394,8 +11439,7 @@ tab-split-view-wrapper {
   }
   
   /* Subtle buttons inside certain components */
-  .findbar-closebutton,
-  .downloadButton.downloadIconShow{
+  .findbar-closebutton{
     box-shadow: 0 0 0 1px transparent !important;
     border-radius: 3px !important;
 
@@ -11407,13 +11451,13 @@ tab-split-view-wrapper {
       /* ========== Hover-in enter ========== */
 
       &:hover {
-        background: var(--winUIButtonHover) !important;
+        background-color: var(--winUIButtonHover) !important;
         box-shadow: var(--buttonShadow) !important;
         transition: background-color 87ms linear,
           box-shadow       0ms linear !important;
       }
 
-      &:active {
+      &:active, &[open="true"] {
         background: var(--buttonPressed) !important;
         box-shadow: var(--buttonShadowPressed) !important;
       }

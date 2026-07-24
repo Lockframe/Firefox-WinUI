@@ -1,7 +1,7 @@
 /* Edge-Frfox - icons.css */
 
 /*
-  MARK: Win 11 window controls
+MARK: Win 11 window controls
 */
 @media (-moz-platform: windows) {
   .titlebar-min {
@@ -24,8 +24,8 @@
     list-style-image: url("win11-close.svg") !important;
 
     /* Alternative icon that uses a thicker stroke, making it easier to see when
-     * displayed on a dark background, only needed at 100% UI scale.
-     */
+    * displayed on a dark background, only needed at 100% UI scale.
+    */
     @media (resolution = 1dppx) {
       toolbar[brighttext] &,
       &:hover {
@@ -39,13 +39,13 @@
   &:not([disabled], [disabled="true"]) {
     fill: var(--textPrimary) !important;
     color: var(--textPrimary) !important;
-    
+
     &:active {
       fill: var(--textSecondary) !important;
       color: var(--textSecondary) !important;
     }
   }
-  
+
   &:is([disabled], [disabled="true"]) {
     fill: var(--textDisabled) !important;
     color: var(--textDisabled) !important;
@@ -604,409 +604,408 @@
 }
 
 /*
-  MARK: Context menu
+MARK: Context menu
 */
 
-/* disable context menu icons when this tweak is applied */
-@media not -moz-pref("uc.tweak.revert-context-menu") {
 
-  /* Context Menu Icons */
-  menupopup > menuitem:is([checked="true"], [selected="true"]) .menu-iconic-icon {
+/* Context Menu Icons */
+menupopup > menuitem:is([checked="true"], [selected="true"]) .menu-iconic-icon {
+  list-style-image: none !important;
+  background-image: url(checkmark.svg);
+  background-size: 14px;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  @media (-moz-platform: linux) {
     list-style-image: none !important;
-    background-image: url(checkmark.svg);
-    background-size: 14px;
-    background-repeat: no-repeat;
-    background-position: center center;
-
-    @media (-moz-platform: linux) {
-      list-style-image: none !important;
-    }
-  }
-
-  #context-video-pictureinpicture:not([checked="true"]) .menu-iconic-icon {
-    list-style-image: url("media-pip.svg") !important;
-  }
-
-  #context-media-loop:not([checked="true"]) .menu-iconic-icon {
-    list-style-image: url("media-loop.svg") !important;
-  }
-
-  :not(:not(menubar) > menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [type="radio"], .in-menulist, .in-menulist menuitem, .unified-nav-current),
-  :not(:not(menubar) > menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [type="radio"], .in-menulist, .in-menulist menu, .unified-nav-current) {
-    background-image: var(--menu-image) !important;
-    background-size: 16px;
-    background-position: var(--uc-contextmenu-menuitem-padding-inline) center !important;
-    background-repeat: no-repeat !important;
-    -moz-context-properties: fill, fill-opacity !important;
-    fill: currentColor !important;
-  }
-
-  @media (-moz-platform: macos) {
-    #context-back {
-      --menu-image: url("back.svg");
-    }
-
-    #context-forward {
-      --menu-image: url("forward.svg");
-    }
-
-    #context-reload {
-      --menu-image: url("reload.svg");
-    }
-
-    #context-stop {
-      --menu-image: url("close.svg");
-    }
-
-    #context-bookmarkpage {
-      --menu-image: url("bookmark-hollow.svg");
-    }
-
-    #contentAreaContextMenu #context-bookmarkpage[starred] {
-      --menu-image: url("bookmark.svg");
-      fill: var(--toolbarbutton-icon-fill-attention, currentColor) !important;
-    }
-  }
-
-  #context-savepage {
-    --menu-image: url("save.svg");
-  }
-
-  #context-selectall,
-  .textbox-contextmenu menuitem[cmd*="selectAll"],
-  #context_selectAllTabs,
-  #toolbar-context-selectAllTabs {
-    --menu-image: url("edit-select-all.svg");
-  }
-
-  #context-undo,
-  .textbox-contextmenu menuitem[cmd*="undo"],
-  #context_undoCloseTab,
-  #toolbar-context-undoCloseTab {
-    --menu-image: url("edit-undo.svg");
-  }
-
-  #context-redo,
-  .textbox-contextmenu menuitem[cmd*="redo"] {
-    --menu-image: url("edit-redo.svg");
-  }
-
-  #context-copy,
-  .textbox-contextmenu menuitem[cmd*="copy"],
-  #placesContext_copy {
-    --menu-image: url("copy.svg");
-  }
-
-  #context-stripOnShareLink,
-  #strip-on-share,
-  #context-copy-clean-link-to-highlight {
-    --menu-image: url("edit-copy-without-tracking.svg");
-  }
-
-  #context-paste,
-  .textbox-contextmenu menuitem[cmd*="paste"],
-  #placesContext_paste_group {
-    --menu-image: url("edit-paste.svg");
-  }
-
-  #context-cut,
-  .textbox-contextmenu menuitem[cmd*="cut"],
-  #placesContext_cut {
-    --menu-image: url("edit-cut.svg");
-  }
-
-  #context-delete,
-  .customize-context-removeExtension,
-  .unified-extensions-context-menu-remove-extension,
-  .textbox-contextmenu menuitem[cmd*="delete"],
-  menuitem[id="placesContext_deleteBookmark"],
-  menuitem[id="placesContext_deleteFolder"],
-  menuitem[id="placesContext_delete"],
-  menuitem[id="placesContext_delete_history"],
-  menuitem[id="placesContext_deleteHost"] {
-    --menu-image: url("edit-delete.svg");
-  }
-
-  #paste-and-go,
-  .searchbar-paste-and-search {
-    --menu-image: url("paste-and-go.svg");
-  }
-
-  #context-print-selection {
-    --menu-image: url("print.svg");
-  }
-
-  #context-take-screenshot {
-    --menu-image: url("screenshot.svg");
-  }
-
-  #context-viewsource,
-  #context-viewpartialsource-selection {
-    --menu-image: url("source-code.svg");
-  }
-
-  #context-inspect-a11y {
-    --menu-image: url("accessibility.svg");
-  }
-
-  #context-inspect {
-    --menu-image: url("inspect.svg");
-  }
-
-  #context-searchselect {
-    --menu-image: url("search-glass.svg");
-  }
-
-  #context-viewimage {
-    --menu-image: url("image-open.svg");
-  }
-
-  #context-saveimage,
-  #context-video-saveimage {
-    --menu-image: url("image-save.svg");
-  }
-
-  #context-savevideo {
-    --menu-image: url("video-save.svg");
-  }
-
-  #context-viewvideo {
-    --menu-image: url("video-open.svg");
-  }
-
-  #context-saveaudio {
-    --menu-image: url("audio-save.svg");
-  }
-
-  #context-copyimage-contents {
-    --menu-image: url("image-copy.svg");
-  }
-
-  #context-copyimage,
-  #context-copyvideourl,
-  #context-copylink {
-    --menu-image: url("link.svg");
-  }
-
-  #context-sendimage,
-  #context-sendvideo,
-  #context-sendaudio {
-    --menu-image: url("mail.svg");
-  }
-
-  #context-setDesktopBackground,
-  .viewCustomizeToolbar {
-    --menu-image: url("customize.svg");
-  }
-
-  #context-reloadimage,
-  #context_reloadTab,
-  #context_reloadSelectedTabs,
-  #toolbar-context-reloadSelectedTab,
-  #toolbar-context-reloadSelectedTabs {
-    --menu-image: url("reload.svg");
-  }
-
-  #context-sendlinktodevice,
-  #context_sendTabToDevice,
-  #context-sendpagetodevice,
-  #sidebar-switcher-tabs {
-    --menu-image: url("send-to-device.svg");
-  }
-
-  #context-openlinkintab,
-  #context-openlinkincontainertab,
-  menuitem[id="placesContext_open:newtab"],
-  menuitem[id="placesContext_openLinks:tabs"],
-  menuitem[id="placesContext_openBookmarkLinks:tabs"],
-  menuitem[id="placesContext_openBookmarkContainer:tabs"] {
-    --menu-image: url("tab.svg");
-  }
-
-  #context_openANewTab,
-  #toolbar-context-openANewTab {
-    --menu-image: url("new-tab-image.svg");
-  }
-
-  #context-openlinkinusercontext-menu,
-  menu[id="placesContext_open:newcontainertab"],
-  menu[id="placesContext_openContainer:tabs"] {
-    --menu-image: url("container-tab.svg");
-  }
-
-  #context-openlink,
-  menuitem[id="placesContext_open:newwindow"] {
-    --menu-image: url("window.svg");
-  }
-
-  #context-openlinkprivate,
-  menuitem[id="placesContext_open:newprivatewindow"] {
-    --menu-image: url("private-window.svg");
-  }
-
-  #context-savelink {
-    --menu-image: url("downloads.svg");
-  }
-
-  #spell-add-to-dictionary {
-    --menu-image: url("add-to-dictionary.svg");
-  }
-
-  #manage-saved-logins {
-    --menu-image: url("key.svg");
-  }
-
-  #context-media-play,
-  #context_playTab,
-  #context_playSelectedTabs {    
-    & .menu-text::after {
-      content: '';
-      width: 16px;
-      height: 16px;
-      display: block;
-      position: absolute;
-      -moz-context-properties: fill;
-      fill: var(--textPrimary);
-      order: -1;
-      background-image: url(play.svg);
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 13px;
-      transform: translate(-28px, 2px);
-    }
-  }
-
-  #context-media-pause {
-    & .menu-text::after {
-      content: '';
-      width: 16px;
-      height: 16px;
-      display: block;
-      position: absolute;
-      -moz-context-properties: fill;
-      fill: var(--textPrimary);
-      order: -1;
-      background-image: url(pause.svg);
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 14px;
-      transform: translate(-28px, 2px);
-    }
-  }
-
-  #context-media-mute,
-  #context_toggleMuteTab,
-  #context_toggleMuteSelectedTabs {
-    --menu-image: url("media-mute.svg");
-  }
-
-  #context-media-unmute,
-  #context_toggleMuteTab[muted],
-  #context_toggleMuteSelectedTabs[muted] {
-    --menu-image: url("media-unmute.svg");
-  }
-
-  #context-media-playbackrate {
-    --menu-image: url("media-speed.svg");
-  }
-
-  #context-video-fullscreen {
-    --menu-image: url("fullscreen.svg");
-  }
-
-  #context-leave-dom-fullscreen,
-  menuitem[contexttype="fullscreen"][label*="Exit"] {
-    --menu-image: url("fullscreen-exit.svg");
-  }
-
-  #context-media-hidecontrols,
-  #context-media-showcontrols {
-    --menu-image: url("permissions.svg");
-  }
-
-  #context_pinTab,
-  #context_unpinTab,
-  #context_pinSelectedTabs,
-  #context_unpinSelectedTabs,
-  .customize-context-moveToPanel {
-    --menu-image: url("pin.svg");
-  }
-
-  #context_duplicateTab,
-  #context_duplicateTabs {
-    --menu-image: url("duplicate-tab.svg");
-  }
-
-  #context_bookmarkTab,
-  #context_bookmarkSelectedTabs,
-  #toggle_PersonalToolbar,
-  #context-bookmarklink,
-  #toolbar-context-bookmarkSelectedTab,
-  #toolbar-context-bookmarkSelectedTabs {
-    --menu-image: url("bookmark-hollow.svg");
-  }
-
-  #sidebar-switcher-bookmarks {
-    --menu-image: url("bookmark-star-on-tray.svg");
-  }
-
-  menuitem[id="placesContext_show_bookmark:info"],
-  menuitem[id="placesContext_show_folder:info"],
-  menuitem[id="placesContext_show:info"] {
-    --menu-image: url("edit.svg");
-  }
-
-  menuitem[id="placesContext_showAllBookmarks"],
-  #BMB_bookmarksShowAllTop,
-  #BMB_bookmarksShowAll,
-  .customize-context-manageExtension,
-  .unified-extensions-context-menu-manage-extension {
-    --menu-image: url("manage.svg");
-  }
-
-  menuitem[id="placesContext_new:bookmark"],
-  menuitem[id="placesContext_new:folder"],
-  menuitem[id="placesContext_new:separator"] {
-    --menu-image: url("plus.svg");
-  }
-
-  #context-savelinktopocket,
-  #context-pocket {
-    --menu-image: url("pocket-outline.svg");
-  }
-
-  #context_moveTabOptions {
-    --menu-image: url("move-tab.svg");
-  }
-
-  .share-tab-url-item {
-    --menu-image: url("share.svg");
-  }
-
-  #context_reopenInContainer {
-    --menu-image: url("container-tab.svg");
-  }
-
-  #context_closeTab {
-    --menu-image: url("close.svg");
-  }
-
-  .customize-context-reportExtension,
-  .unified-extensions-context-menu-report-extension {
-    --menu-image: url("report.svg");
-  }
-
-  #sidebar-switcher-history {
-    --menu-image: url("history.svg");
-  }
-
-  #context-translate-selection {
-    --menu-image: url("translate.svg");
   }
 }
 
+#context-video-pictureinpicture:not([checked="true"]) .menu-iconic-icon {
+  list-style-image: url("media-pip.svg") !important;
+}
+
+#context-media-loop:not([checked="true"]) .menu-iconic-icon {
+  list-style-image: url("media-loop.svg") !important;
+}
+
+:not(:not(menubar) > menu, #ContentSelectDropdown) > menupopup > menuitem:not(.menuitem-iconic, [type="checkbox"], [type="radio"], .in-menulist, .in-menulist menuitem, .unified-nav-current),
+:not(:not(menubar) > menu, #ContentSelectDropdown) > menupopup > menu:not(.menu-iconic, [type="checkbox"], [type="radio"], .in-menulist, .in-menulist menu, .unified-nav-current) {
+  background-image: var(--menu-image) !important;
+  background-size: 16px;
+  background-position: var(--uc-contextmenu-menuitem-padding-inline) center !important;
+  background-repeat: no-repeat !important;
+  -moz-context-properties: fill, fill-opacity !important;
+  fill: currentColor !important;
+}
+
+
+@media (-moz-platform: macos) {
+  #context-back {
+    --menu-image: url("back.svg");
+  }
+
+  #context-forward {
+    --menu-image: url("forward.svg");
+  }
+
+  #context-reload {
+    --menu-image: url("reload.svg");
+  }
+
+  #context-stop {
+    --menu-image: url("close.svg");
+  }
+
+  #context-bookmarkpage {
+    --menu-image: url("bookmark-hollow.svg");
+  }
+
+  #contentAreaContextMenu #context-bookmarkpage[starred] {
+    --menu-image: url("bookmark.svg");
+    fill: var(--toolbarbutton-icon-fill-attention, currentColor) !important;
+  }
+}
+
+#context-savepage {
+  --menu-image: url("save.svg");
+}
+
+#context-selectall,
+.textbox-contextmenu menuitem[cmd*="selectAll"],
+#context_selectAllTabs,
+#toolbar-context-selectAllTabs {
+  --menu-image: url("edit-select-all.svg");
+}
+
+#context-undo,
+.textbox-contextmenu menuitem[cmd*="undo"],
+#context_undoCloseTab,
+#toolbar-context-undoCloseTab {
+  --menu-image: url("edit-undo.svg");
+}
+
+#context-redo,
+.textbox-contextmenu menuitem[cmd*="redo"] {
+  --menu-image: url("edit-redo.svg");
+}
+
+#context-copy,
+.textbox-contextmenu menuitem[cmd*="copy"],
+#placesContext_copy {
+  --menu-image: url("copy.svg");
+}
+
+#context-stripOnShareLink,
+#strip-on-share,
+#context-copy-clean-link-to-highlight {
+  --menu-image: url("edit-copy-without-tracking.svg");
+}
+
+#context-paste,
+.textbox-contextmenu menuitem[cmd*="paste"],
+#placesContext_paste_group {
+  --menu-image: url("edit-paste.svg");
+}
+
+#context-cut,
+.textbox-contextmenu menuitem[cmd*="cut"],
+#placesContext_cut {
+  --menu-image: url("edit-cut.svg");
+}
+
+#context-delete,
+.customize-context-removeExtension,
+.unified-extensions-context-menu-remove-extension,
+.textbox-contextmenu menuitem[cmd*="delete"],
+menuitem[id="placesContext_deleteBookmark"],
+menuitem[id="placesContext_deleteFolder"],
+menuitem[id="placesContext_delete"],
+menuitem[id="placesContext_delete_history"],
+menuitem[id="placesContext_deleteHost"] {
+  --menu-image: url("edit-delete.svg");
+}
+
+#paste-and-go,
+.searchbar-paste-and-search {
+  --menu-image: url("paste-and-go.svg");
+}
+
+#context-print-selection {
+  --menu-image: url("print.svg");
+}
+
+#context-take-screenshot {
+  --menu-image: url("screenshot.svg");
+}
+
+#context-viewsource,
+#context-viewpartialsource-selection {
+  --menu-image: url("source-code.svg");
+}
+
+#context-inspect-a11y {
+  --menu-image: url("accessibility.svg");
+}
+
+#context-inspect {
+  --menu-image: url("inspect.svg");
+}
+
+#context-searchselect {
+  --menu-image: url("search-glass.svg");
+}
+
+#context-viewimage {
+  --menu-image: url("image-open.svg");
+}
+
+#context-saveimage,
+#context-video-saveimage {
+  --menu-image: url("image-save.svg");
+}
+
+#context-savevideo {
+  --menu-image: url("video-save.svg");
+}
+
+#context-viewvideo {
+  --menu-image: url("video-open.svg");
+}
+
+#context-saveaudio {
+  --menu-image: url("audio-save.svg");
+}
+
+#context-copyimage-contents {
+  --menu-image: url("image-copy.svg");
+}
+
+#context-copyimage,
+#context-copyvideourl,
+#context-copylink {
+  --menu-image: url("link.svg");
+}
+
+#context-sendimage,
+#context-sendvideo,
+#context-sendaudio {
+  --menu-image: url("mail.svg");
+}
+
+#context-setDesktopBackground,
+.viewCustomizeToolbar {
+  --menu-image: url("customize.svg");
+}
+
+#context-reloadimage,
+#context_reloadTab,
+#context_reloadSelectedTabs,
+#toolbar-context-reloadSelectedTab,
+#toolbar-context-reloadSelectedTabs {
+  --menu-image: url("reload.svg");
+}
+
+#context-sendlinktodevice,
+#context_sendTabToDevice,
+#context-sendpagetodevice,
+#sidebar-switcher-tabs {
+  --menu-image: url("send-to-device.svg");
+}
+
+#context-openlinkintab,
+#context-openlinkincontainertab,
+menuitem[id="placesContext_open:newtab"],
+menuitem[id="placesContext_openLinks:tabs"],
+menuitem[id="placesContext_openBookmarkLinks:tabs"],
+menuitem[id="placesContext_openBookmarkContainer:tabs"] {
+  --menu-image: url("tab.svg");
+}
+
+#context_openANewTab,
+#toolbar-context-openANewTab {
+  --menu-image: url("new-tab-image.svg");
+}
+
+#context-openlinkinusercontext-menu,
+menu[id="placesContext_open:newcontainertab"],
+menu[id="placesContext_openContainer:tabs"] {
+  --menu-image: url("container-tab.svg");
+}
+
+#context-openlink,
+menuitem[id="placesContext_open:newwindow"] {
+  --menu-image: url("window.svg");
+}
+
+#context-openlinkprivate,
+menuitem[id="placesContext_open:newprivatewindow"] {
+  --menu-image: url("private-window.svg");
+}
+
+#context-savelink {
+  --menu-image: url("downloads.svg");
+}
+
+#spell-add-to-dictionary {
+  --menu-image: url("add-to-dictionary.svg");
+}
+
+#manage-saved-logins {
+  --menu-image: url("key.svg");
+}
+
+#context-media-play,
+#context_playTab,
+#context_playSelectedTabs {    
+  & .menu-text::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    display: block;
+    position: absolute;
+    -moz-context-properties: fill;
+    fill: var(--textPrimary);
+    order: -1;
+    background-image: url(play.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 13px;
+    transform: translate(-28px, 2px);
+  }
+}
+
+#context-media-pause {
+  & .menu-text::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    display: block;
+    position: absolute;
+    -moz-context-properties: fill;
+    fill: var(--textPrimary);
+    order: -1;
+    background-image: url(pause.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 14px;
+    transform: translate(-28px, 2px);
+  }
+}
+
+#context-media-mute,
+#context_toggleMuteTab,
+#context_toggleMuteSelectedTabs {
+  --menu-image: url("media-mute.svg");
+}
+
+#context-media-unmute,
+#context_toggleMuteTab[muted],
+#context_toggleMuteSelectedTabs[muted] {
+  --menu-image: url("media-unmute.svg");
+}
+
+#context-media-playbackrate {
+  --menu-image: url("media-speed.svg");
+}
+
+#context-video-fullscreen {
+  --menu-image: url("fullscreen.svg");
+}
+
+#context-leave-dom-fullscreen,
+menuitem[contexttype="fullscreen"][label*="Exit"] {
+  --menu-image: url("fullscreen-exit.svg");
+}
+
+#context-media-hidecontrols,
+#context-media-showcontrols {
+  --menu-image: url("permissions.svg");
+}
+
+#context_pinTab,
+#context_unpinTab,
+#context_pinSelectedTabs,
+#context_unpinSelectedTabs,
+.customize-context-moveToPanel {
+  --menu-image: url("pin.svg");
+}
+
+#context_duplicateTab,
+#context_duplicateTabs {
+  --menu-image: url("duplicate-tab.svg");
+}
+
+#context_bookmarkTab,
+#context_bookmarkSelectedTabs,
+#toggle_PersonalToolbar,
+#context-bookmarklink,
+#toolbar-context-bookmarkSelectedTab,
+#toolbar-context-bookmarkSelectedTabs {
+  --menu-image: url("bookmark-hollow.svg");
+}
+
+#sidebar-switcher-bookmarks {
+  --menu-image: url("bookmark-star-on-tray.svg");
+}
+
+menuitem[id="placesContext_show_bookmark:info"],
+menuitem[id="placesContext_show_folder:info"],
+menuitem[id="placesContext_show:info"] {
+  --menu-image: url("edit.svg");
+}
+
+menuitem[id="placesContext_showAllBookmarks"],
+#BMB_bookmarksShowAllTop,
+#BMB_bookmarksShowAll,
+.customize-context-manageExtension,
+.unified-extensions-context-menu-manage-extension {
+  --menu-image: url("manage.svg");
+}
+
+menuitem[id="placesContext_new:bookmark"],
+menuitem[id="placesContext_new:folder"],
+menuitem[id="placesContext_new:separator"] {
+  --menu-image: url("plus.svg");
+}
+
+#context-savelinktopocket,
+#context-pocket {
+  --menu-image: url("pocket-outline.svg");
+}
+
+#context_moveTabOptions {
+  --menu-image: url("move-tab.svg");
+}
+
+.share-tab-url-item {
+  --menu-image: url("share.svg");
+}
+
+#context_reopenInContainer {
+  --menu-image: url("container-tab.svg");
+}
+
+#context_closeTab {
+  --menu-image: url("close.svg");
+}
+
+.customize-context-reportExtension,
+.unified-extensions-context-menu-report-extension {
+  --menu-image: url("report.svg");
+}
+
+#sidebar-switcher-history {
+  --menu-image: url("history.svg");
+}
+
+#context-translate-selection {
+  --menu-image: url("translate.svg");
+}
+
+
 /*
-  MARK: App menu header
+MARK: App menu header
 */
 
 /* Header icons for the app menu sub menus (eg. fx account, history...) */
@@ -1062,7 +1061,7 @@
 }
 
 /*
-  MARK: Tree items
+MARK: Tree items
 */
 
 /* Tree items used for side bar and library windows */
@@ -1437,7 +1436,7 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
   background-position: 10px 6px !important;
   -moz-context-properties: fill !important;
   fill: var(--textPrimary) !important;
-  
+
   &[disabled] {
     fill: var(--textTertiary) !important;
   }
@@ -1547,7 +1546,7 @@ body:fullscreen #fullscreen {
 
 #context_unpinTab {
   --menu-image: unset !important;
-  
+
   & .menu-text::after {
     background-image: url(unpin.svg) !important;
   }
@@ -1645,7 +1644,7 @@ menu::after {
 
 /* Sidebar icon - Moves around*/
 #sidebar-button {
- @media not -moz-pref("sidebar.revamp") {
+  @media not -moz-pref("sidebar.revamp") {
     &:-moz-locale-dir(ltr):not([positionend]), &:-moz-locale-dir(rtl)[positionend] {
       list-style-image: none !important;
       background-image: url(dock-left.svg);
