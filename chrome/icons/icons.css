@@ -1586,16 +1586,23 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after {
 .menu-right {
   opacity: 0 !important;
 }
+
 menu::after {
-  content: "";
-  margin-right: -1px !important;
+  content: "" !important;
+  margin-block: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-right: -6px !important;
   color: var(--textSecondary) !important;
   font-size: 10px !important;
+  opacity: 1 !important;
   font-family: 'Segoe Fluent Icons', 'Segoe MDL2 Assets' !important;
   background-size: 10px !important;
   background-repeat: no-repeat !important;
   background-position: center center !important;
+  background-image: none !important;
 }
+
 #protections-popup-mainView .subviewbutton-nav:not(.notFound), 
 .widget-overflow-list .subviewbutton-nav, 
 .PanelUI-subView .subviewbutton-nav {
@@ -1612,13 +1619,6 @@ menu::after {
   padding: 0 0 4px 0 !important;
 }
 
-#BMB_bookmarksPopup menu[container=true]{
-  background-image: url(chevron-right.svg);
-  background-repeat: no-repeat;
-  background-size: 4.5px;
-  background-position: 94.5% 50%;
-}
-
 /* Tab scroll icons */
 #scrollbutton-up:not(.menupopup-scrollbutton), #scrollbutton-down:not(.menupopup-scrollbutton) {
   list-style-image: none !important;
@@ -1629,6 +1629,25 @@ menu::after {
 }
 #scrollbutton-down:not(.menupopup-scrollbutton) {
   background-image: url(caret-right.svg) !important;
+}
+
+/* Bookmarks toolbar scroll arrows */
+
+#scrollbutton-up[part="scrollbutton-up"] {
+  background-image: var(--menu-arrow-icon-up, url(caret-left.svg)) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 8px !important;
+}
+#scrollbutton-down[part="scrollbutton-down"] {
+  background-image: var(--menu-arrow-icon-down, url(caret-right.svg)) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 8px !important;
+}
+.menupopup-arrowscrollbox {
+  --menu-arrow-icon-up: url(arrow-filled-up.svg);
+  --menu-arrow-icon-down: url(arrow-filled-down.svg);
 }
 
 /* Proper back icon inside panels */

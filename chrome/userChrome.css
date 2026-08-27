@@ -4552,6 +4552,56 @@ menupopup menu[disabled="true"], menupopup menuitem[disabled="true"] {
   }
 }
 
+/* ========== Bookmarks toolbar ========== */
+
+#BMB_searchBookmarks,
+#BMB_viewBookmarksSidebar {
+  position: relative !important;
+}
+
+* {
+  --menu-clip-enable: 0;
+}
+
+.menupopup-arrowscrollbox {
+  --menu-clip-enable: 1;
+}
+
+scrollbox[part="scrollbox"] {
+  --clr-top: 0px;
+  --clr-bottom: 0px;
+  clip-path: inset(var(--clr-top) 0 var(--clr-bottom) 0) !important;
+  padding-top: var(--clr-top) !important;
+  padding-bottom: var(--clr-bottom) !important;
+}
+
+toolbarbutton#scrollbutton-up:not([disabled]) ~ scrollbox[part="scrollbox"] {
+  --clr-top: calc(26px * var(--menu-clip-enable, 0));
+}
+
+scrollbox[part="scrollbox"]:has(~ toolbarbutton#scrollbutton-down:not([disabled])) {
+  --clr-bottom: calc(26px * var(--menu-clip-enable, 0));
+}
+
+.menupopup-arrowscrollbox {
+  --menu-scrollbtn-shift-x: 2px;
+  --menu-scrollbtn-shift-up-y: 10px;
+  --menu-scrollbtn-shift-down-y: 6px;
+}
+
+#scrollbutton-up[part="scrollbutton-up"] {
+  position: relative;
+  z-index: 2;
+  top: calc(-8px + var(--menu-scrollbtn-shift-up-y, 0px)) !important;
+  left: calc(4px + var(--menu-scrollbtn-shift-x, 0px)) !important;
+}
+#scrollbutton-down[part="scrollbutton-down"] {
+  position: relative;
+  z-index: 2;
+  top: calc(-8px + var(--menu-scrollbtn-shift-down-y, 0px)) !important;
+  left: calc(4px + var(--menu-scrollbtn-shift-x, 0px)) !important;
+}
+
 /* ========== Dialog boxes ========== */
 
 dialog:not(#window-modal-dialog) {
@@ -8177,6 +8227,11 @@ tab-split-view-wrapper {
   margin-bottom: 0 !important;
 }
 
+#tabbrowser-arrowscrollbox {
+  --menu-scrollbtn-shift-up-y: 1px;
+  --menu-scrollbtn-shift-down-y: 1px;
+}
+
 @media (-moz-platform: windows) and (not (-moz-windows-accent-color-in-titlebar)) {
   :root[sizemode="normal"][customtitlebar]:not([inFullscreen]) #navigator-toolbox {
     padding-top: 0 !important;
@@ -8620,7 +8675,7 @@ tab-split-view-wrapper {
 
     /* Toolbar icons pinned to the tab area */
     #TabsToolbar .toolbarbutton-1 {
-      margin-bottom: 6px !important;
+      margin-bottom: 5px !important;
     }
 
     /* Tab gap up and down */
