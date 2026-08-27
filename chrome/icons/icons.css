@@ -1380,7 +1380,7 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
   display: block;
   position: absolute;
   order: -1;
-  transform: translate(-28px, 2px);
+  transform: translate(-28px, -17px);
 }
 
 #context-previewlink > .menu-text::after {
@@ -1717,7 +1717,7 @@ menu::after {
   height: 16px;
   fill: var(--textPrimary) !important;
   -moz-context-properties: fill !important;
-  margin-left: -28px;
+  margin-left: -158px;
   transform: translateY(2px) !important;
 }
 
