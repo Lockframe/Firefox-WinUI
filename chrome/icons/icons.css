@@ -131,7 +131,8 @@ MARK: Win 11 window controls
 }
 
 #appMenu-passwords-button,
-#password-notification-icon {
+#password-notification-icon,
+#logins-button{
   list-style-image: url("key.svg") !important;
 }
 
@@ -793,9 +794,11 @@ menuitem[id="placesContext_deleteHost"] {
   --menu-image: url("mail.svg");
 }
 
-#context-setDesktopBackground,
 .viewCustomizeToolbar {
   --menu-image: url("customize.svg");
+}
+#context-setDesktopBackground{
+  --menu-image: url(set-wallpaper.svg);
 }
 
 #context-reloadimage,
@@ -871,7 +874,7 @@ menuitem[id="placesContext_open:newprivatewindow"] {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 13px;
-    transform: translate(-28px, 2px);
+    transform: translate(-28px, -17px);
   }
 }
 
@@ -889,7 +892,7 @@ menuitem[id="placesContext_open:newprivatewindow"] {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 14px;
-    transform: translate(-28px, 2px);
+    transform: translate(-28px, -17px);
   }
 }
 
@@ -1308,6 +1311,9 @@ menuitem[type="checkbox"][checked] {
       fill: var(--textPrimary) !important;
     }
   }
+  &:is(#spell-check-enabled) > .menu-icon {
+    opacity: 0 !important;
+  }
 }
 menuitem[type="radio"]:not([checked]) {
   .menu-text {
@@ -1380,7 +1386,7 @@ menuitem[data-l10n-id="origin-controls-options"] .menu-text::after,
   display: block;
   position: absolute;
   order: -1;
-  transform: translate(-28px, 2px);
+  transform: translate(-28px, -17px);
 }
 
 #context-previewlink > .menu-text::after {
@@ -1505,7 +1511,7 @@ menuitem[command="downloadsCmd_clearList"] .menu-text::after {
   display: block;
   position: absolute;
   order: -1;
-  transform: translate(-28px, 1px);
+  transform: translate(-28px, -17px);
 }
 
 #spell-check-enabled .menu-iconic-text::after {
@@ -1617,6 +1623,10 @@ menu::after {
 }
 #trustpanel-popup-connection::after {
   padding: 0 0 4px 0 !important;
+}
+
+#BMB_bookmarksPopup menu[container=true]{
+  background-image: none !important;
 }
 
 /* Tab scroll icons */
@@ -1736,7 +1746,7 @@ menu::after {
   height: 16px;
   fill: var(--textPrimary) !important;
   -moz-context-properties: fill !important;
-  margin-left: -28px;
+  margin-left: -158px;
   transform: translateY(2px) !important;
 }
 
@@ -1877,6 +1887,10 @@ menuitem[command="placesCmd_sortBy:name"] .menu-text::after {
 
 #appMenu-unified-extensions-button .toolbarbutton-icon {
   list-style-image: url(extension.svg) !important;
+}
+
+#appmenu-edit-pdf-button .toolbarbutton-icon {
+  list-style-image: url(pdf.svg);
 }
 
 .persistent-storage-icon {
@@ -2236,3 +2250,47 @@ menuitem[anonid="clear-search-history"] {
 .persistent-storage-icon.blocked-permission-icon { -webkit-mask-image: url("persistent-storage-blocked.svg") !important; }
 .autoplay-media-icon { -webkit-mask-image: url("autoplay-media.svg") !important; }
 .autoplay-media-icon.blocked-permission-icon { -webkit-mask-image: url("autoplay-media-blocked.svg") !important; }
+
+#ai-window-toggle {
+  list-style-image: url(firefox.svg) !important;
+  & > image {
+    padding: 8px 0px !important;
+  }
+}
+
+.bookmark-item {
+  &[container], &[hostContainer] {
+    --bookmark-item-icon: url(...) !important;
+  }
+}
+
+#BMB_bookmarksToolbar img {
+  content: url(top-bar.svg) !important;
+}
+
+#BMB_bookmarksPopup {
+  .bookmark-item[container="true"]:not(#BMB_bookmarksToolbar) img{
+    list-style-image: url(folder.svg) !important;
+    background-image: url(folder.svg);
+  }
+}
+
+img[src="chrome://global/skin/icons/edit.svg"] {
+  content: url(edit.svg) !important;
+}
+
+
+img[srcset="chrome://global/skin/icons/link.svg"] {
+  content: url(link.svg) !important;
+}
+img[srcset="chrome://browser/skin/qrcode.svg"] {
+  content: url(qr-code.svg) !important;
+}
+
+#PanelUI-fxa-menu-create-profile-button, #appMenu-create-profile-button {
+  list-style-image: url(contact.svg) !important;
+}
+
+#share-tab-button {
+  list-style-image: url(share.svg) !important;
+}

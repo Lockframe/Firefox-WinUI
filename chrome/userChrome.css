@@ -270,6 +270,9 @@
   --button-background-color-destructive-disabled: var(--buttonDisabled) !important;
   --button-text-color-destructive-disabled: var(--textTertiary) !important;
   
+  --button-background-color-ghost-hover: var(--textButtonHover) !important;
+  --focus-outline-width: 0 !important;
+  
   --panel-background-color: var(--commonBackground) !important;
   --panel-box-shadow: var(--genericShadow) !important;
   
@@ -759,6 +762,11 @@ toolbarpaletteitem:not(#wrapper-firefox-view-button)) {
     }
     }
   }
+}
+
+#tabbrowser-tabs[orient="horizontal"]:not([closebuttons="activetab"]) .tab-icon-overlay {
+  margin-inline: 22px 0 !important;
+  top: -6px !important;
 }
 
 /* ========== Regular Tabs ========== */
@@ -2445,12 +2453,14 @@ panel[type="autocomplete-richlistbox"] {
 
 #trustpanel-popup {
   margin-top: -19px !important;
+  padding-block-end: 0 !important;
 
   & * {
     font-size: 14px !important;
   }
   & #trustpanel-header-section {
     margin-right: 0 !important;
+    padding-block-end: 0 !important;
   }
 }
 
@@ -2460,7 +2470,7 @@ panel[type="autocomplete-richlistbox"] {
 
 #trustpanel-popup-mainView {
   #trustpanel-privacy-link {
-    margin: 2px 8px 6px 8px !important;
+    margin: 2px 4px 6px 4px !important;
     padding: 5px 6px 5px 6px !important;
   }
 
@@ -2619,7 +2629,7 @@ span.button-background.labelled[part="button"][type="ghost icon"][size="default"
   font-size: 14px !important;
 }
 #addon-webext-perm-title-required {
-  margin-left: -22px !important;
+  margin-left: -20px !important;
   margin-bottom: 8px !important;
   font-weight: 400 !important;
 }
@@ -2651,7 +2661,7 @@ span.button-background.labelled[part="button"][type="ghost icon"][size="default"
   font-size: 14px !important;
 }
 .popup-notification-bottom-content {
-  margin-inline: 0 auto;
+  margin-inline: 16px auto;
   font-size: 14px;
 }
 .popup-notification-learnmore-link {
@@ -2708,7 +2718,7 @@ input[type="text"]:not(#login-line-input),
 /* ========== General notification panels positioning ========== */
 
 .popup-notification-panel {
-
+  
   & .popup-notification-description {
     color: var(--textPrimary) !important;
     margin-top: -6px !important;
@@ -2720,6 +2730,30 @@ input[type="text"]:not(#login-line-input),
     & .button-text {
       padding: 20px !important;
     }
+  }
+  
+  &:has(.popup-notification-icon) {
+    .popup-notification-icon {
+      width: 24px !important;
+      height: 24px !important;
+      background-color: var(--button) !important;
+      border-radius: 3px !important;
+      outline: 1px solid var(--cardOutline) !important;
+    }
+    
+    .popup-notification-description {
+      margin-top: 0 !important;
+      margin-left: 8px !important;
+      font-size: 16px !important;
+    }
+  }
+  
+  & #addon-webext-perm-list-data-collection {
+    margin-left: -22px !important;
+  }
+  & #addon-webext-perm-title-data-collection {
+    margin-left: -20px !important;
+    font-weight: normal !important;
   }
 
   & input {
@@ -2747,6 +2781,86 @@ input[type="text"]:not(#login-line-input),
     color: var(--TextPrimary) !important;
   }
 }
+
+#PopupAutoComplete > richlistbox {
+  &[pointerselected] > richlistitem.autocomplete-row-item[selected] > autocomplete-row-item {
+    border-radius: 4px !important;
+  }
+}
+
+#PopupAutoComplete > richlistbox > richlistitem.autocomplete-row-item {
+  &:not(:only-child) {
+    margin: 2px 0 !important;
+    padding: 0 !important;
+  }
+}
+
+#PopupAutoComplete > richlistbox {
+  padding: 16px !important;
+  
+  & richlistitem.autocomplete-row-item {
+    border: none !important;
+    border-radius: 3px !important;
+    
+    &:not([originaltype="loginsFooter"]) autocomplete-row-item {
+      background-color: var(--button) !important;
+      outline: 1px solid var(--cardOutline) !important;
+      margin: 1px !important;
+    }
+  }
+  
+  richlistitem.autocomplete-row-item > autocomplete-row-item {
+    padding: 0 0 0 8px !important;
+    border-radius: 3px !important;
+  }
+  
+  /* Remove mail mask ad */
+  & richlistitem.autocomplete-row-item[originaltype="generic"] {
+    display: none !important;
+  }
+  
+  /* Footer - Need to find a way to make text centered */
+  & richlistitem.autocomplete-row-item[originaltype="loginsFooter"] {
+    padding: 0 auto !important;
+    border: none !important;
+    margin-block: 24px 0 !important;
+    
+    & autocomplete-row-item {
+      background-color: var(--button) !important;
+      box-shadow: var(--buttonShadow) !important;
+      margin: 10px 1px 1px 1px !important;
+      
+      &:hover {
+        background-color: var(--buttonHover) !important;
+      }
+      &:active {
+        background-color: var(--buttonPressed) !important;
+      }
+    }
+    &::after {
+      content: '';
+      width: 1000%;
+      background-color: var(--controlStroke);
+      height: 1px;
+      position: absolute;
+      border: none;
+      margin-inline: -40px 0;
+      margin-block: -9px 0;
+    }
+  }
+}
+
+#PopupAutoComplete > richlistbox > richlistitem.autocomplete-row-item {
+  &:not(:only-child) {
+    margin-block-end: var(--space-xsmall);
+  }
+}
+
+.row-item {
+  column-gap: 12px !important;
+  border-radius: 4px !important;
+}
+
 
 /* ========== Move the reveal password button ========== */
 
@@ -3776,7 +3890,7 @@ details {
   transform: translateX(-8px) !important;
 }
 #unified-extensions-area .toolbarbutton-badge {
-  transform: translateX(8px) !important;
+  transform: translateX(3px) !important;
 }
 
 /* Remove cog icon from extensions flyout as it is the same from the context menu */
@@ -4826,7 +4940,7 @@ min-height: calc(100% + 21px) !important;
 }
 .popup-notification-learnmore-link, .text-link {
   margin-block: 12px !important;
-  margin-left: 0 !important;
+  padding: 4px !important;
 }
 .popup-notification-body :is(checkbox){
   margin-block: 8px !important;
@@ -4992,7 +5106,8 @@ select,
 #additional_button,
 #editBMPanel_newFolderButton,
 .footer-button.secondary,
-.footer-button:not([disabled], [default], [slot="primary"], .primary) {
+.footer-button:not([disabled], [default], [slot="primary"], .primary),
+.popup-notification-secondary-button{
   background-color: var(--button) !important;
   border-radius: 4px !important;
   box-shadow: var(--buttonShadow) !important;
@@ -5025,6 +5140,10 @@ select,
 
 #tab-note-editor-button-cancel {
   padding: 5px 10px !important;
+}
+.popup-notification-secondary-button {
+  padding: 6px 16px !important;
+  margin-top: -1px !important;
 }
 
 #additional_button, button[data-l10n-id="genai-onboarding-primary"] {
@@ -7503,9 +7622,13 @@ tab-split-view-wrapper {
   }
   &[focused] {
     .urlbar-input {
-      transform: translateY(-2px) !important;
+      transform: translateY(0px) !important;
     }
   }
+}
+
+#nav-bar-customization-target :where(#reload-button) .toolbarbutton-icon {
+  padding: 0 !important;
 }
 
 /* ========== DARK ========== */
@@ -9567,7 +9690,7 @@ tab-split-view-wrapper {
     }
     &[focused] {
       .urlbar-input {
-        transform: translateY(-2px) !important;
+        transform: translateY(-1px) !important;
       }
     }
   }
@@ -9706,6 +9829,10 @@ tab-split-view-wrapper {
   .tab-icon-overlay:not([crashed]):is([pinned], [sharing]),
   #tabbrowser-tabs[closebuttons="activetab"] .tab-icon-overlay:not([crashed]) {
     top: -7px !important;
+  }
+  /* Move the audio indicator to the right of the tab's icon. */
+  #tabbrowser-tabs:not([closebuttons="activetab"]) .tab-icon-overlay:not([pinned]) {
+    margin-inline: 24px 0 !important;
   }
 
   /* Expanded */

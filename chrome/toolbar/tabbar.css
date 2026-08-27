@@ -341,7 +341,7 @@
 
 /* Move the audio indicator to the right of the tab's icon. */
 #tabbrowser-tabs:not([closebuttons="activetab"]) .tab-icon-overlay:not([pinned]) {
-  margin-inline: 22px 6px !important;
+  margin-inline: 0;
 }
 
 /* When there is no tab icon, move indicator to the left. */
