@@ -574,41 +574,6 @@
 /*
   MARK: Tab shadows
 */
-/* #region */
-
-/* Tab and toolbar shadows. */
-@media not -moz-pref("uc.tweak.rounded-corners") {
-  /* Edge now removes the shadow when rounded corners are enabled. */
-  :root,
-  :root .tabbrowser-tab {
-    /* Light mode shadows. */
-    --uc-titlebar-shadow:
-      0 -1px var(--tabs-navbar-shadow-color, transparent) inset,
-      0 -3px 2px -3px rgb(0 0 0 / .2) inset;
-    --uc-tab-shadow:
-      0 0 0 1px var(--lwt-tab-line-color, transparent),
-      0 4px 5px rgb(0 0 0 / .21),
-      0 0px 2px rgb(0 0 0 / .18);
-
-    & [brighttext],
-    & [brighttext] .tabbrowser-tab {
-      /* Dark mode shadows. */
-      --uc-titlebar-shadow:
-        0 -1px var(--tabs-navbar-shadow-color, transparent) inset,
-        0 -3px 2px -3px rgb(0 0 0 / .7) inset;
-      --uc-tab-shadow:
-        0 0 0 1px var(--lwt-tab-line-color, transparent),
-        0 5px 7px rgb(0 0 0 / .44),
-        0 0px 2px rgb(0 0 0 / .7);
-    }
-  }
-}
-
-/* Apply tab shadows. */
-#tabbrowser-tabs .tab-background:is([selected], [multiselected]),
-#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-  box-shadow: var(--uc-tab-shadow) !important;
-}
 
 /* Apply toolbar shadows. */
 #TabsToolbar {

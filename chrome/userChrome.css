@@ -277,6 +277,16 @@
   --panel-box-shadow: var(--genericShadow) !important;
   
   --toolbar-field-background-color: var(--button) !important;
+  
+  --tab-box-shadow-selected: none !important;
+  --box-shadow-color-darker-layer-1: none !important;
+  --box-shadow-color-darker-layer-2: none !important;
+  --box-shadow-color-lighter-layer-1: none !important;
+  --box-shadow-color-lighter-layer-2: none !important;
+  --box-shadow-level-1: none !important;
+  --box-shadow-level-2: none !important;
+  --box-shadow-level-3: none !important;
+  --box-shadow-level-4: none !important;
 
 /* ========== Measures ========== */
 
@@ -290,6 +300,8 @@
   --border-radius-medium: 8px !important;
   --border-radius-large: 8px !important;
   --border-radius-small: 4px !important;
+  --urlbar-input-container-outline-breakout-focused: none !important;
+  --urlbar-input-container-border: none !important;
 }
 
 @media -moz-pref("widget.windows.mica") {
@@ -356,11 +368,15 @@ h1, h2, h3 {
   width: 20px !important;
   height: 20px !important;
   background: conic-gradient(
-    var(--toolbarbutton-icon-fill-attention) var(--download-progress-pcent),
-    color-mix(in srgb, var(--progressBar), transparent 93%) var(--download-progress-pcent)) !important;
+    var(--toolbarbutton-icon-fill-attention) 
+    var(--download-progress-pcent),
+    color-mix(in srgb, 
+      var(--progressBar), 
+      transparent 83%) 
+    var(--download-progress-pcent)) !important;
   mask: radial-gradient(circle at center,
-    transparent 7.6px,
-    black 7.1px) !important;
+    transparent 8px,
+    black 0px) !important;
   transform-origin: center !important;
 }
 
@@ -368,6 +384,11 @@ h1, h2, h3 {
 
 #downloads-button[progress] .toolbarbutton-animatable-box {
   color: transparent !important;
+}
+#downloads-button > .toolbarbutton-badge-stack > #downloads-indicator-progress-outer {
+  background-image: none !important;
+  height: 2px !important;
+  width: 2px !important;
 }
 
 /* ========== Enlarge the ring ========== */
@@ -387,8 +408,8 @@ h1, h2, h3 {
 
   & #downloads-indicator-progress-inner {
     position: relative !important;
-    transform: scale(1.75) !important;
-    left: -1px !important;
+    transform: scale(1.5) !important;
+    left: 0px !important;
   }
 }
 
@@ -4173,25 +4194,23 @@ menupopup, panel {
 /* ========== Ctrl F - Adapted from Shimmer theme ========== */
 
 findbar {
+  position: fixed !important;
+  top: var(--tab-min-height, 40px) !important; /* Positions it directly below the toolbars */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  width: 51rem !important;
+  height: 48px !important;
   padding-block: 10px !important;
   background-image: var(--acrylic) !important;
   border-top: none !important;
-  position: relative !important;
   border-radius: 7px !important;
-  bottom: -61px !important;
-  margin-inline: auto !important;
-  margin-top: -4em !important;
-  width: 51rem !important;
-  height: 48px !important;
-  display: flex !important;
-  flex-grow: 1 !important;
-  flex-shrink: 0 !important;
-  flex-basis: auto !important;
-  align-items: space-evenly !important;
-  transition: all 333ms cubic-bezier(0, 0, 0, 1) !important;
   outline: 1px solid var(--dialogOutline) !important;
-  order: -1 !important;
-  z-index: 99 !important;
+  display: flex !important;
+  align-items: space-evenly !important;
+  transition: width 333ms cubic-bezier(0, 0, 0, 1) !important;
+  z-index: 9999 !important;
 
   &:has(.found-matches:not([hidden=""])) {
     width: 60rem !important;
@@ -6165,11 +6184,15 @@ body:fullscreen {
   }
 }
 
+#star-button-box {
+  margin-inline: 2px 0 !important;
+}
+
 #trust-icon-container {
   padding: 0 8px !important;
   height: 24px !important;
   margin-block: 0 2px !important;
-  margin-inline: 2px !important;
+  margin-inline: 0 2px !important;
   border-radius: 4px !important;
 
   &:hover {
@@ -7590,8 +7613,10 @@ tab-split-view-wrapper {
   }
 }
 
-/* ==== FIX URL BAR BUTTONS SHIFTING DEPENDING ON STATE === */
-#urlbar {
+/* ==== FIX URL BAR BUTTONS SHIFTING DEPENDING ON STATE ===
+#urlbarr {
+  margin: 0 0 0 0 !important;
+  
   .urlbar-page-action,
   #identity-icon-box,
   #trust-icon-container,
@@ -7614,21 +7639,37 @@ tab-split-view-wrapper {
     .searchmode-switcher{
       margin-block: 0 1px !important;
     }
+    .urlbar-input {
+      margin-block: -2px 0 !important;
+    }
   }
   &[focused]:not([breakout-extended]) {
     .urlbar-input {
-      margin-block: 0 0 !important;
+      margin-block: -2px 0 !important;
     }
   }
   &[focused] {
     .urlbar-input {
-      transform: translateY(0px) !important;
+      transform: translateY(1px) !important;
     }
   }
-}
+} */
 
 #nav-bar-customization-target :where(#reload-button) .toolbarbutton-icon {
   padding: 0 !important;
+}
+
+.urlbar {
+  padding: 0 3px !important;
+  margin-top: 1px !important;
+}
+
+.urlbar-input.textbox-input {
+  transform: translateY(-1px) !important;
+}
+
+.urlbar[breakout][breakout-extend][focused] .urlbar-background {
+  margin-top: -1px !important;
 }
 
 /* ========== DARK ========== */
@@ -7637,13 +7678,14 @@ tab-split-view-wrapper {
   :root {
     --accentLink: color-mix(in srgb, var(--accentAuto), white 20%);
     --buttonShadow: 0 0 0 1px rgba(255,255,255,.07), 0 -1px 0 rgba(255,255,255,.02);
+    --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.135) inset !important;
   }
 
 /* ========== Active tab shadows ========== */
 
   #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
   #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-    box-shadow: 0 0 1px 0 rgba(0,0,0,.35), 0 -1px 0 0 rgba(255,255,255,.005) inset !important;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,1), 0 -1px 0 0 rgba(255,255,255,.005) inset !important;
   }
 
 /* ========== Hovering tab ========== */
@@ -7796,20 +7838,15 @@ tab-split-view-wrapper {
   :root {
     --accentLink: color-mix(in srgb, var(--accentAuto), black 20%);
     --buttonShadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.1);
+    --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.05) inset !important;
   }
 
 /* ========== Active tab shadows. ========== */
 
   #tabbrowser-tabs .tab-background:is([selected], [multiselected]),
   #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
-    box-shadow: 0 0 1px 0 rgba(0,0,0,.175), 
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.5), 
       0 -1px 0 0 rgba(255,255,255,.3) inset !important;
-  }
-
-/* ========== Navbar upper shadow ========== */
-
-  :root, :root .tabbrowser-tab {
-    --uc-titlebar-shadow: 0 -1px 0 0 rgba(0,0,0,.05) inset !important;
   }
 
 /* ========== Fix active tab color in inactive window 133 ========== */
@@ -8317,6 +8354,11 @@ tab-split-view-wrapper {
   --lwt-tab-line-color: unset !important;
 }
 
+#tabbrowser-arrowscrollbox {
+  --menu-scrollbtn-shift-up-y: 4px !important;
+  --menu-scrollbtn-shift-down-y: 4px !important;
+}
+
 .tab-background {
   &::before,
   &::after {
@@ -8348,11 +8390,6 @@ tab-split-view-wrapper {
 #scrollbutton-up:not(.menupopup-scrollbutton) ~ spacer,
 #scrollbutton-down:not(.menupopup-scrollbutton) {
   margin-bottom: 0 !important;
-}
-
-#tabbrowser-arrowscrollbox {
-  --menu-scrollbtn-shift-up-y: 1px;
-  --menu-scrollbtn-shift-down-y: 1px;
 }
 
 @media (-moz-platform: windows) and (not (-moz-windows-accent-color-in-titlebar)) {
@@ -8623,7 +8660,7 @@ tab-split-view-wrapper {
   #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background {
     border-radius: 16px !important;
   }
-  #urlbar[breakout][breakout-extend]:not([usertyping]):focus-within >.urlbar-background::after {
+  .urlbar-background::after {
     height: 30px !important;
     margin-top: 1px !important;
     clip-path: inset(28px 0 0 0px) !important;
@@ -8798,7 +8835,7 @@ tab-split-view-wrapper {
 
     /* Toolbar icons pinned to the tab area */
     #TabsToolbar .toolbarbutton-1 {
-      margin-bottom: 5px !important;
+      margin-bottom: 6px !important;
     }
 
     /* Tab gap up and down */
